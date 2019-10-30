@@ -1,0 +1,15 @@
+{
+  "short_name": "CACURADURA",
+  "name": "CACURADURA - Cacuras em formação",
+  "icons": [
+    {
+      "src": "favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#05050a",
+  "background_color": "#fdd9eb"
+}
