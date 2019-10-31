@@ -7,7 +7,7 @@ const Routes = () => {
   return (
     <section className="container">
       <Switch>
-        <Route exact path="/articles" component={ArticlePage} />
+        <Route exact path="/articles/:id" component={ArticlePage} />
         <Route component={NotFound} />
       </Switch>
     </section>

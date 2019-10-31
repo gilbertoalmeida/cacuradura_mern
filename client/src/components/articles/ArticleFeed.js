@@ -15,7 +15,7 @@ class ArticleFeed extends Component {
   }
 
   render() {
-    const { articles } = this.props.article; //pulling out articles from this.props.article, so that I dont have to write this.props.article.items all the time
+    const { articles } = this.props.article; //pulling out articles from this.props.article, so that I dont have to write this.props.article.articles all the time
     return (
       <Container>
         <ListGroup>
