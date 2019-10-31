@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, ListGroup, ListGroupItem } from "reactstrap";
 import { connect } from "react-redux";
-import { getArticles } from "../actions/articleActions";
+import { getArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 
 class ArticleFeed extends Component {
