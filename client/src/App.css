@@ -82,6 +82,11 @@ h1 span {
   color: #721c24;
 }
 
+.list-group-item {
+  background-color: #f02d0a;
+  border: none;
+}
+
 /* essas duas classes abaixo vem do passport.js, como nao sei como mudar a classe 
  pra ser danger e success tb, to deixando igual a do bootstrap.
  Na verdade, eu posso fazer a de cima virar elas tb, pq isso eu consigo
@@ -120,7 +125,7 @@ div.main-box-element * {
   grid-column: start / end;
 }
 
-div.main-box-element a img {
+div.main-box-element .link img {
   width: 80%;
   max-width: 300px;
   height: auto;
@@ -131,7 +136,7 @@ div.main-box-element a img {
   transition: transform 0.2s;
 }
 
-div.main-box-element a img:hover {
+div.main-box-element .link img:hover {
   transform: scale(1.008);
 }
 
@@ -177,16 +182,16 @@ div.main-box-element p {
   margin-bottom: 1em;
 }
 
-a#biglogo {
+.link#biglogo {
   text-decoration: none;
 }
 
-p a {
+p .link {
   color: #e69696;
   text-decoration: none;
 }
 
-p a:hover {
+p .link:hover {
   text-decoration: underline;
 }
 /* This is a pseudo-class (:) to signilize when you hove a mouse over it. Oder pseudo-classes are
