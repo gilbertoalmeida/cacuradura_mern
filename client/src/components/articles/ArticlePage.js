@@ -10,6 +10,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   }, [getArticle, match.params.id]);
 
   //ver o que acontece quando chanma essa página com um id que nao existe
+  // the loading page is kept bc article is null
 
   return loading || article === null ? (
     <h1>Loading</h1>
@@ -22,9 +23,15 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
         <Link to={`/articles/${article._id}`} className="article-title link">
           {article.title}
         </Link>
-        <time datetime={article.date}>
+        <time dateTime={article.date}>
           <b>
-            §}> {article.date}, por {article.author.username}
+            §}>{" "}
+            {new Date(article.date).getDate() +
+              "/" +
+              (new Date(article.date).getMonth() + 1) +
+              "/" +
+              new Date(article.date).getFullYear()}
+            , por {article.author.username}
           </b>
         </time>
         <Link className="link" to={`/articles/${article._id}`}>
