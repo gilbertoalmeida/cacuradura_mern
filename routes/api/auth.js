@@ -16,16 +16,22 @@ router.post("/", (req, res) => {
 
   //Simple validation
   if (!username || !password) {
-    return res.status(400).json({ msg: "Pls enter all fields" });
+    return res.status(400).json({ msg: "Prencha os dois campos, faz favor" });
   }
 
   //Check for existing user
   User.findOne({ username: username }).then(user => {
-    if (!user) return res.status(400).json({ msg: "username does not exist" }); //check if its safe to say this
+    if (!user)
+      return res
+        .status(400)
+        .json({ msg: "Você errou o nome de cacura ou a senha" }); //check if its safe to say this
 
     //Validade the password
     bcrypt.compare(password, user.password).then(isMatch => {
-      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+      if (!isMatch)
+        return res
+          .status(400)
+          .json({ msg: "Você errou o nome de cacura ou a senha" });
 
       jwt.sign(
         { id: user.id }, // payload. I am sending the user id to verify actions later

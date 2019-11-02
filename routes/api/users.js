@@ -15,14 +15,23 @@ router.post("/", (req, res) => {
 
   //Simple validation
   if (!name || !email || !username || !password) {
-    return res.status(400).json({ msg: "Pls enter all fields" });
+    return res.status(400).json({
+      msg:
+        "Tem que preencher tudo que tá aí embaixo, né? Se não eu nem perguntava, frô"
+    });
   }
 
   //Check for existing user
   User.findOne({ email: email }).then(user => {
-    if (user) return res.status(400).json({ msg: "email already exists" }); //check if its safe to say this
+    if (user)
+      return res
+        .status(400)
+        .json({ msg: "Esse email já é de uma cacura nossa" }); //check if its safe to say this
     User.findOne({ username: username }).then(user => {
-      if (user) return res.status(400).json({ msg: "username already exists" }); //check if its safe to say this
+      if (user)
+        return res
+          .status(400)
+          .json({ msg: "Esse nome de cacura já está rodando por aqui" }); //check if its safe to say this
       const newUser = new User({
         name,
         email,
