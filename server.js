@@ -1,15 +1,14 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const config = require("config");
 
-const dbconfig = {
-  URI: "mongodb://localhost:27017/cacuradura",
-  secret: "nocluewhichsecretisthis"
-};
+const dbconfig = config.get("mongoURI");
 
-mongoose.connect(dbconfig.URI, {
+mongoose.connect(dbconfig, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 });
 let db = mongoose.connection;
 
@@ -26,6 +25,8 @@ app.use(express.json());
 
 //Use Routes
 app.use("/api/articles", require("./routes/api/articles"));
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
 
 // Serve static assets if we are in production
 if (process.env.NODE_ENV === "production") {
