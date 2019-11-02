@@ -17,7 +17,7 @@ import "./App.css";
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser()); //being calles everytime the app mounts
-    //to check is there is a user
+    //to check if there is a user
   }
 
   render() {
