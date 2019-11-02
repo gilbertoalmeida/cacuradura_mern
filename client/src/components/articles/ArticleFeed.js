@@ -21,14 +21,20 @@ class ArticleFeed extends Component {
       <Container>
         <ListGroup>
           {articles.map(({ _id, title, date, author, body }) => (
-            <ListGroupItem>
+            <ListGroupItem key={_id}>
               <div className="main-box-element">
                 <Link to={`/articles/${_id}`} className="article-title link">
                   {title}
                 </Link>
-                <time datetime={date}>
+                <time dateTime={date}>
                   <b>
-                    §}> {date}, por {author.username}
+                    §}>{" "}
+                    {new Date(date).getDate() +
+                      "/" +
+                      (new Date(date).getMonth() + 1) +
+                      "/" +
+                      new Date(date).getFullYear()}
+                    , por {author.username}
                   </b>
                 </time>
                 <Link className="link" to={`/articles/${_id}`}>
