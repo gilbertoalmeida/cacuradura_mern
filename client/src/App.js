@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import store from "./store";
 
+import AuthNavBar from "./components/AuthNavBar";
 import HomePage from "./components/HomePage";
 import Routes from "./components/routing/Routes";
 
@@ -26,6 +27,7 @@ class App extends Component {
         <Router>
           <Fragment>
             <div className="App">
+              <AuthNavBar />
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route component={Routes} />

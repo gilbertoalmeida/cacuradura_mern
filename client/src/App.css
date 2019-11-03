@@ -113,7 +113,7 @@ hr {
   background-color: #05050a;
 }
 
-div.main-box-element {
+.main-box-element {
   font-size: 25px;
   display: grid;
   grid-template-columns: 1fr 25px [start] 10px 325px 10px 325px 10px [end] 25px 1fr;
@@ -121,11 +121,19 @@ div.main-box-element {
   margin-top: 30px;
 }
 
-div.main-box-element * {
+.navbar-dark {
+  margin-top: 0px;
+}
+
+header {
+  margin-top: 60px;
+}
+
+.main-box-element * {
   grid-column: start / end;
 }
 
-div.main-box-element .link img {
+.main-box-element .link img {
   width: 80%;
   max-width: 300px;
   height: auto;
@@ -136,7 +144,7 @@ div.main-box-element .link img {
   transition: transform 0.2s;
 }
 
-div.main-box-element .link img:hover {
+.main-box-element .link img:hover {
   transform: scale(1.008);
 }
 
@@ -155,8 +163,8 @@ div.main-box-element .link img:hover {
  }
  */
 
-@media (max-width: 730px) {
-  div.main-box-element {
+@media (max-width: 766px) {
+  .main-box-element {
     grid-template-columns: 1fr 4% [start] 2% 43% 2% 43% 2% [end] 4% 1fr;
   }
 
@@ -171,14 +179,16 @@ div.main-box-element .link img:hover {
 
 p {
   background: none;
+  font-family: "Rokkitt", serif;
 }
 
 time {
   font-size: 20px;
   margin-bottom: 1em;
+  font-family: "Rokkitt", serif;
 }
 
-div.main-box-element p {
+.main-box-element p {
   margin-bottom: 1em;
 }
 
@@ -201,50 +211,54 @@ p .link:hover {
   color: #e69696;
 }
 
-.form-top {
-  margin-top: 5px;
+.nav-item {
+  text-align: right;
 }
 
 .field-form-top {
-  width: 30%;
+  box-shadow: none;
+  max-width: 140px;
   height: 30px;
-  margin-right: 10px;
+  margin: 0 2px;
   padding-left: 10px;
   outline: none;
+  border: none;
+  border-radius: 5px 5px 0 0;
   border-bottom: 2px solid black;
   background-color: #f02d0a;
   font-size: 17px;
+  color: #05050a;
 }
 
-.field-form-top::-webkit-input-placeholder /* Chrome/Opera/Safari */
- {
+.field-form-top:focus {
+  background-color: #f02d0a;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 2px solid black;
   color: #05050a;
-  font-family: "Rokkitt", serif;
-}
-.field-form-top::-moz-placeholder /* Firefox 19+ */
- {
-  color: #05050a;
-  font-family: "Rokkitt", serif;
-}
-.field-form-top:-ms-input-placeholder /* IE 10+ */
- {
-  color: #05050a;
-  font-family: "Rokkitt", serif;
-}
-.field-form-top:-moz-placeholder /* Firefox 18- */
- {
-  color: #05050a;
-  font-family: "Rokkitt", serif;
 }
 
 .button-form-top {
+  border: none;
   font-size: 13px;
   font-weight: bold;
-  margin-left: 4%;
   padding: 8px 13px;
+  margin: 0;
+}
+
+.button-form-top:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .entrar {
+  background: #05050a;
+  color: #faa9cb;
+  margin-top: 1px; /* pra alinhar com o botao de registrar */
+  margin-left: 10px;
+}
+
+.entrar:hover {
   background: #05050a;
   color: #faa9cb;
 }
@@ -252,26 +266,87 @@ p .link:hover {
 .registrar {
   background: #faa9cb;
   color: #05050a;
+  margin-left: 30px;
 }
 
-@media (max-width: 730px) {
-  .button-form-top {
-    padding: 5px 10px;
-    margin-left: 2%;
+.registrar:hover {
+  background: #faa9cb;
+  color: #05050a;
+}
+
+.logout {
+  background: #faa9cb;
+  color: #05050a;
+}
+
+.logout:hover {
+  background: #faa9cb;
+  color: #05050a;
+}
+
+.greeting-outside-collapse {
+  display: none;
+}
+
+@media (max-width: 766px) {
+  .greeting-inside-collapse {
+    display: none;
   }
-}
 
-@media (max-width: 612px) {
+  .greeting-outside-collapse {
+    display: inline;
+  }
+
+  .form-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
   .field-form-top {
-    width: 40%;
-    margin: 5px;
+    max-width: 140px;
   }
 
-  .button-form-top {
-    width: 45%;
-    margin: 5px;
+  .entrar {
+    margin-left: 0;
+    margin-top: 2px;
+    padding: 8px 54px;
+  }
+
+  .registrar {
+    margin-left: 0;
+    margin-top: 2px;
+    padding: 8px 41px;
   }
 }
+
+.field-form-top::-webkit-input-placeholder /* Chrome/Opera/Safari */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+  font-size: 15px;
+}
+.field-form-top::-moz-placeholder /* Firefox 19+ */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+  font-size: 15px;
+}
+.field-form-top:-ms-input-placeholder /* IE 10+ */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+  font-size: 15px;
+}
+.field-form-top:-moz-placeholder /* Firefox 18- */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+  font-size: 15px;
+}
+
+/* 
+This is for adding articles
 
 .form-line {
   text-align: left;
@@ -285,6 +360,27 @@ p .link:hover {
 #body-field {
   height: 400px;
 }
+
+ */
+
+/* START Removing the highlight from these elements when they are clicked */
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+/* END Removing the highlight from these elements when they are clicked */
+
+.foto {
+  margin: 20px;
+  padding: 100px;
+}
+
+/* 
+I am being more specific with the buttons. Not having this general style
 
 .button {
   background: #faa9cb;
@@ -302,43 +398,4 @@ p .link:hover {
 button:hover {
   text-decoration: underline;
   cursor: pointer;
-}
-
-.copyright {
-  text-align: center;
-}
-
-/* START This is about the placeholder of the input field of cacurindr */
-
-input[type="text"]::placeholder {
-  /* Firefox, Chrome, Opera */
-  color: #9f9da1;
-}
-
-input[type="text"]:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #9f9da1;
-}
-
-input[type="text"]::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: #9f9da1;
-}
-
-/* END This is about the placeholder of the input field of cacurindr */
-
-/* START Removing the highlight from these elements when they are clicked */
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-}
-
-/* END Removing the highlight from these elements when they are clicked */
-
-.foto {
-  margin: 20px;
-  padding: 100px;
-}
+} */

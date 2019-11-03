@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
-import { clearErrors } from "../../actions/errorActions";
 
 class LoginForm extends Component {
   state = {
@@ -15,8 +14,7 @@ class LoginForm extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
-    login: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired
   };
 
   componentDidUpdate(prevProps) {
@@ -52,30 +50,30 @@ class LoginForm extends Component {
   render() {
     return (
       <div>
-        {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}{" "}
-        {/* operator to show the alert only is there is an error */}
-        <Form inline onSubmit={this.onSubmit}>
+        <Form inline onSubmit={this.onSubmit} className="form-top">
           <FormGroup>
-            <Label for="username">Usuário</Label>
+            {/* <Label for="username">Usuário</Label> */}
             <Input
               type="text"
               name="username"
               id="username"
               placeholder="Nome de cacura"
               onChange={this.onChange}
+              className="field-form-top"
             />
           </FormGroup>
           <FormGroup>
-            <Label for="password">Senha</Label>
+            {/* <Label for="password">Senha</Label> */}
             <Input
               type="password"
               name="password"
               id="password"
-              placeholder="olhe pros lados"
+              placeholder="Senha"
               onChange={this.onChange}
+              className="field-form-top"
             />
           </FormGroup>
-          <Button color="dark">Entrar</Button>
+          <Button className="button-form-top entrar">Entrar</Button>
         </Form>
       </div>
     );
@@ -89,5 +87,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login, clearErrors }
+  { login }
 )(LoginForm);
