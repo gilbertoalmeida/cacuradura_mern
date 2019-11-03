@@ -88,13 +88,17 @@ class RegisterModal extends Component {
           Registre-se
         </Button>
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal
+          className="register-modal"
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+        >
           <ModalHeader toggle={this.toggle}>
             Conta pra nós quem você é:
           </ModalHeader>
           <ModalBody>
             {this.state.msg ? (
-              <Alert color="danger">{this.state.msg}</Alert>
+              <Alert className="alert-danger">{this.state.msg}</Alert>
             ) : null}
             {/* operator to show the alert only is there is an error */}
             <Form onSubmit={this.onSubmit}>
@@ -104,7 +108,7 @@ class RegisterModal extends Component {
                   type="text"
                   name="name"
                   id="name"
-                  placeholder="O nome real oficial"
+                  placeholder="Seu nome real oficial social"
                   className="mb-3"
                   onChange={this.onChange}
                 />
@@ -114,7 +118,7 @@ class RegisterModal extends Component {
                   type="email"
                   name="email"
                   id="email"
-                  placeholder="Email"
+                  placeholder="Não mandaremos nada que você não peça"
                   className="mb-3"
                   onChange={this.onChange}
                 />
@@ -124,7 +128,7 @@ class RegisterModal extends Component {
                   type="text"
                   name="username"
                   id="username"
-                  placeholder="Seu nome irreal, não oficial pelo qual a gente vai te chamar aqui"
+                  placeholder="Um irreal, não oficial, pra usar por aqui"
                   className="mb-3"
                   onChange={this.onChange}
                 />
@@ -134,11 +138,11 @@ class RegisterModal extends Component {
                   type="password"
                   name="password"
                   id="password"
-                  placeholder="Conte pra ninguém, tá?"
+                  placeholder="Não erre, porque aqui não tem confirmar"
                   className="mb-3"
                   onChange={this.onChange}
                 />
-                <Button color="dark" style={{ marginTop: "2rem" }} block>
+                <Button className="button-form-top submit-register" block>
                   Pronto
                 </Button>
               </FormGroup>
