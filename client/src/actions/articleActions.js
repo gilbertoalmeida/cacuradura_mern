@@ -22,16 +22,3 @@ export const getArticle = id => dispatch => {
       })
     );
 };
-
-/* export const getArticle = id => async dispatch => {
-  try {
-    const res = await axios.get(`/api/articles/${id}`);
-
-    dispatch({
-      type: GET_ARTICLE,
-      payload: res.data
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}; */
