@@ -99,7 +99,7 @@ class AuthNavBar extends Component {
     return (
       <div>
         <Navbar
-          /* fixed="top" */
+          fixed="top"
           style={{ "background-color": "#f02d0a70" }}
           expand="md"
           className="main-box-element navbar-dark"
