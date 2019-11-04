@@ -1,5 +1,9 @@
 const express = require("express");
 const router = express.Router();
+/* 
+This is the middleware to protect routes. Add as a second parameter to
+the route that will need a token to be accessible
+const auth = require("../../middleware/auth"); */
 
 //Bringing Article Model
 const Article = require("../../models/Article");
