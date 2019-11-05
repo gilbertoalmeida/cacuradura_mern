@@ -73,7 +73,7 @@ class LoginForm extends Component {
               className="field-form-top"
             />
           </FormGroup>
-          <Button className="button-form-top entrar">Entrar</Button>
+          <Button className="button-form-top login">Entrar</Button>
         </Form>
       </div>
     );

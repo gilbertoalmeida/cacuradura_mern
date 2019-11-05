@@ -10,11 +10,11 @@ class HomePage extends Component {
           <h1>
             Cacura<span>Dura</span>
           </h1>
-          <p id="maindescription">
+          <h2>
             Cacuras em formação
             <br />
             Acompanhe essa metamorfose
-          </p>
+          </h2>
         </header>
         <ArticleFeed />
       </div>
