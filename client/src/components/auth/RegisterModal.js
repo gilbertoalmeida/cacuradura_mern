@@ -84,7 +84,7 @@ class RegisterModal extends Component {
   render() {
     return (
       <div>
-        <Button className="button-form-top registrar" onClick={this.toggle}>
+        <Button className="button-form-top register" onClick={this.toggle}>
           Registre-se
         </Button>
 

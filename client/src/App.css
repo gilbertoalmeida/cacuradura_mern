@@ -44,6 +44,13 @@ body * {
   padding: 0px;
 }
 
+/* Page main description */
+
+header {
+  /* empty space for the fixed AuthNavBar */
+  margin-top: 60px;
+}
+
 h1 {
   font-family: "Anton", sans-serif;
   font-size: 150px;
@@ -55,14 +62,102 @@ h1 span {
   color: #faa9cb;
 }
 
+h2 {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* central box organization of the page */
+
+.main-box-element {
+  display: grid;
+  grid-template-columns: 1fr 25px [start] 10px 325px 10px 325px 10px [end] 25px 1fr;
+  text-align: justify;
+}
+
+.main-box-element:not(.navbar) {
+  margin-top: 30px;
+}
+
+.main-box-element * {
+  grid-column: start / end;
+}
+
+/* responsiveness of main description and box organization */
+
+@media (max-width: 766px) {
+  h1 {
+    font-size: 19vw;
+  }
+
+  h2 {
+    font-size: 4vw;
+  }
+
+  .main-box-element {
+    grid-template-columns: 1fr 4% [start] 2% 43% 2% 43% 2% [end] 4% 1fr;
+  }
+}
+
+/* article elements */
+
+.article-list-group-item {
+  background-color: #f02d0a;
+  border: none;
+}
+
 .article-title {
   font-family: "Anton", sans-serif;
   font-size: 30px;
   text-transform: uppercase;
   width: fit-content;
   height: fit-content;
+}
+
+.article-title:hover {
+  color: #e69696;
+  text-decoration: underline;
+}
+
+time {
+  font-size: 20px;
+  margin-bottom: 1em;
+  font-family: "Rokkitt", serif;
+}
+
+.link img {
+  width: 80%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
+}
+
+.link img:hover {
+  transform: scale(1.008);
+}
+
+p {
+  background: none;
+  font-family: "Rokkitt", serif;
+  font-size: 25px;
+  margin-bottom: 1em;
+}
+
+p .link {
+  color: #e69696;
   text-decoration: none;
 }
+
+p .link:hover {
+  text-decoration: underline;
+}
+
+/* alerts */
 
 .alert {
   position: relative;
@@ -74,144 +169,19 @@ h1 span {
   border: none;
 }
 
-.alert-success {
+.alert-success, /* bootstrap */
+.alert-success_msg /* passport.js */ {
   background-color: #faa9cb;
   color: #fdd9eb;
 }
 
-.alert-danger {
+.alert-danger, /* bootstrap */
+.alert-error  /* passport.js */ {
   background-color: #05050a;
   color: #721c24;
 }
 
-.list-group-item {
-  background-color: #f02d0a;
-  border: none;
-}
-
-/* essas duas classes abaixo vem do passport.js, como nao sei como mudar a classe 
- pra ser danger e success tb, to deixando igual a do bootstrap.
- Na verdade, eu posso fazer a de cima virar elas tb, pq isso eu consigo
- fazer. Inclusive, acho o nome error mais apropriado que danger.
- mas vou mecher nisso só no futuro*/
-.alert-error {
-  background-color: #05050a;
-  color: #721c24;
-}
-
-.alert-success_msg {
-  background-color: #faa9cb;
-  color: #fdd9eb;
-}
-
-#maindescription {
-  text-align: center;
-  font-size: 35px;
-  font-family: "Courier New", Courier, monospace;
-}
-
-hr {
-  border-top: 1px solid black;
-  background-color: #05050a;
-}
-
-.main-box-element {
-  display: grid;
-  grid-template-columns: 1fr 25px [start] 10px 325px 10px 325px 10px [end] 25px 1fr;
-  text-align: justify;
-  margin-top: 30px;
-}
-
-.navbar-dark {
-  margin-top: 0px;
-}
-
-header {
-  margin-top: 60px;
-}
-
-.main-box-element * {
-  grid-column: start / end;
-}
-
-.main-box-element .link img {
-  width: 80%;
-  max-width: 300px;
-  height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10px;
-  transition: transform 0.2s;
-}
-
-.main-box-element .link img:hover {
-  transform: scale(1.008);
-}
-
-/* 
- I am not using this anymore bc I ended up liking the way I combined the script image with the flower image in the same one.
- But if in the future I am using two images, I can use this to make the second one be next to it vertically centered
- 
- div.main-box-element a .smallerimg
- {
-   max-width: 150px;
-   position: relative;
-     top: 50%;
-     
-   //bring your own prefixes  
-   transform: translate(0, -50%);
- }
- */
-
-@media (max-width: 766px) {
-  .main-box-element {
-    grid-template-columns: 1fr 4% [start] 2% 43% 2% 43% 2% [end] 4% 1fr;
-  }
-
-  h1 {
-    font-size: 19vw;
-  }
-
-  #maindescription {
-    font-size: 4vw;
-  }
-}
-
-p {
-  background: none;
-  font-family: "Rokkitt", serif;
-  font-size: 25px;
-}
-
-time {
-  font-size: 20px;
-  margin-bottom: 1em;
-  font-family: "Rokkitt", serif;
-}
-
-.main-box-element p {
-  margin-bottom: 1em;
-}
-
-.link#biglogo {
-  text-decoration: none;
-}
-
-p .link {
-  color: #e69696;
-  text-decoration: none;
-}
-
-p .link:hover {
-  text-decoration: underline;
-}
-/* This is a pseudo-class (:) to signilize when you hove a mouse over it. Oder pseudo-classes are
- first-child, last-child */
-
-.article-title:hover {
-  color: #e69696;
-}
+/* NavBar */
 
 .nav-item {
   text-align: right;
@@ -253,37 +223,21 @@ p .link:hover {
   box-shadow: none;
 }
 
-.entrar {
+.login,
+.login:hover {
   background: #05050a;
   color: #faa9cb;
-  margin-top: 1px; /* pra alinhar com o botao de registrar */
+  margin-top: 1px; /* to align with register button  */
   margin-left: 10px;
 }
 
-.entrar:hover {
-  background: #05050a;
-  color: #faa9cb;
-}
-
-.registrar {
-  background: #faa9cb;
-  color: #05050a;
-  margin-left: 30px;
-}
-
-.registrar:hover {
-  background: #faa9cb;
-  color: #05050a;
-}
-
-.logout {
-  background: #faa9cb;
-  color: #05050a;
-}
-
+.register,
+.register:hover,
+.logout,
 .logout:hover {
   background: #faa9cb;
   color: #05050a;
+  margin-left: 30px;
 }
 
 .greeting-outside-collapse {
@@ -309,18 +263,52 @@ p .link:hover {
     max-width: 140px;
   }
 
-  .entrar {
+  .login {
     margin-left: 0;
     margin-top: 2px;
     padding: 8px 54px;
   }
 
-  .registrar {
+  .register {
     margin-left: 0;
     margin-top: 2px;
     padding: 8px 41px;
   }
 }
+
+.modal-header {
+  background-color: #faa9cb;
+  border-bottom: 1px solid black;
+}
+
+.modal-title {
+  font-family: "Anton", sans-serif;
+}
+
+.modal-body label {
+  margin-top: 0.5rem;
+}
+
+.modal-body input {
+  box-shadow: none;
+  padding: 0 0 0 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 2px solid black;
+  font-size: 17px;
+  color: #05050a;
+}
+
+.submit-register,
+.submit-register:hover {
+  background-color: #05050a;
+  color: #faa9cb;
+  font-size: 17px;
+  margin-top: 2rem;
+}
+
+/* styling the placeholders in different browsers */
 
 .field-form-top::-webkit-input-placeholder /* Chrome/Opera/Safari */
  {
@@ -352,32 +340,6 @@ p .link:hover {
   font-family: "Rokkitt", serif;
 }
 
-.modal-header {
-  background-color: #faa9cb;
-  border-bottom: 1px solid black;
-}
-
-.modal-title,
-.modal-body label {
-  background-color: #faa9cb;
-  font-family: "Anton", sans-serif;
-}
-
-.modal-body label {
-  margin-top: 0.5rem;
-}
-
-.modal-body input {
-  box-shadow: none;
-  padding: 0 0 0 10px;
-  outline: none;
-  border: none;
-  border-radius: 5px 5px 0 0;
-  border-bottom: 2px solid black;
-  font-size: 17px;
-  color: #05050a;
-}
-
 .modal-body input::-webkit-input-placeholder /* Chrome/Opera/Safari */
  {
   color: #05050a;
@@ -403,11 +365,13 @@ p .link:hover {
   font-size: 14px;
 }
 
-.submit-register {
-  background-color: #05050a;
-  color: #faa9cb;
-  font-size: 17px;
-  margin-top: 2rem;
+/* Removing the highlight from these elements when they are clicked */
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
 }
 
 /* 
@@ -427,40 +391,3 @@ This is for adding articles
 }
 
  */
-
-/* START Removing the highlight from these elements when they are clicked */
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-}
-
-/* END Removing the highlight from these elements when they are clicked */
-
-.foto {
-  margin: 20px;
-  padding: 100px;
-}
-
-/* 
-I am being more specific with the buttons. Not having this general style
-
-.button {
-  background: #faa9cb;
-  border-radius: 7px;
-  border: 1px solid #faa9cb;
-  box-shadow: grey 0 0 5px;
-  color: #05050a;
-  font-size: 13px;
-  font-weight: bold;
-  margin-left: 10px;
-  padding: 3px 8px;
-  float: right;
-}
-
-button:hover {
-  text-decoration: underline;
-  cursor: pointer;
-} */
