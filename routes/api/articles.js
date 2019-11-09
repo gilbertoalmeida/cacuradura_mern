@@ -24,4 +24,35 @@ router.get("/:id", (req, res) => {
   Article.findById(req.params.id).then(article => res.json(article));
 });
 
+// @route   POST api/articles/add
+// @desc    Post an article to the database
+// @access  Private
+router.post("/add", (req, res) => {
+  const { title, body } = req.body;
+
+  //Simple validation
+  if (!title || !body) {
+    return res.status(400).json({
+      msg: "O artigo precisa de um título e um texto, frô"
+    });
+  }
+
+  const newArticle = new Article({
+    title,
+    body,
+    author: {
+      username: "test!!",
+      _id: "tesst"
+    }
+  });
+
+  newArticle.save();
+
+  console.log(req);
+
+  res.json({
+    newArticle
+  });
+});
+
 module.exports = router;
