@@ -1,6 +1,7 @@
 export const GET_ARTICLES = "GET_ARTICLES";
 export const GET_ARTICLE = "GET_ARTICLE";
-export const ADD_ARTICLE = "ADD_ARTICLE";
+export const ADD_ARTICLE_SUCCESS = "ADD_ARTICLE_SUCCESS";
+export const ADD_ARTICLE_FAIL = "ADD_ARTICLE_FAIL";
 
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";

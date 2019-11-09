@@ -1,5 +1,11 @@
 import axios from "axios";
-import { GET_ARTICLES, GET_ARTICLE, ADD_ARTICLE } from "./types";
+import {
+  GET_ARTICLES,
+  GET_ARTICLE,
+  ADD_ARTICLE_SUCCESS,
+  ADD_ARTICLE_FAIL
+} from "./types";
+import { returnErrors } from "./errorActions";
 
 export const getArticles = () => dispatch => {
   axios
@@ -39,10 +45,20 @@ export const addArticle = ({
   //Request body
   const bbody = JSON.stringify({ title, body, author: { username, _id } });
 
-  axios.post("/api/articles/add", bbody, config).then(res =>
-    dispatch({
-      type: ADD_ARTICLE,
-      payload: res.data // this endpoint sends everything, including the token to the auth reducer
-    })
-  );
+  axios
+    .post("/api/articles/add", bbody, config)
+    .then(res =>
+      dispatch({
+        type: ADD_ARTICLE_SUCCESS,
+        payload: res.data // this endpoint sends everything, including the token to the auth reducer
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "ADD_ARTICLE_FAIL")
+      );
+      dispatch({
+        type: ADD_ARTICLE_FAIL
+      });
+    });
 };
