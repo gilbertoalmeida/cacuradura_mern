@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ARTICLES, GET_ARTICLE } from "./types";
+import { GET_ARTICLES, GET_ARTICLE, GET_USER_ARTICLES } from "./types";
 
 export const getArticles = () => dispatch => {
   axios
@@ -21,4 +21,13 @@ export const getArticle = id => dispatch => {
         payload: res.data
       })
     );
+};
+
+export const getUserArticles = id => dispatch => {
+  axios.get(`/api/articles/user/${id}`).then(res =>
+    dispatch({
+      type: GET_USER_ARTICLES,
+      payload: res.data
+    })
+  );
 };

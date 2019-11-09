@@ -1,4 +1,4 @@
-import { GET_ARTICLES, GET_ARTICLE } from "../actions/types";
+import { GET_ARTICLES, GET_ARTICLE, GET_USER_ARTICLES } from "../actions/types";
 
 const initialState = {
   articles: [],
@@ -18,6 +18,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         article: action.payload,
+        loading: false
+      };
+    case GET_USER_ARTICLES:
+      return {
+        ...state,
+        articles: action.payload,
         loading: false
       };
     default:
