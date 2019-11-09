@@ -127,6 +127,7 @@ time {
 }
 
 .user-link {
+  color: #e69696;
   width: fit-content;
   height: fit-content;
 }
@@ -250,7 +251,12 @@ p .link:hover {
   margin-left: 30px;
 }
 
+.greeting-inside-collapse {
+  font-size: 22px;
+}
+
 .greeting-outside-collapse {
+  font-size: 22px;
   display: none;
 }
 

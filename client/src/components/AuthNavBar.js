@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux"; //access the state
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import RegisterModal from "./auth/RegisterModal";
 import LoginForm from "./auth/LoginForm";
@@ -60,7 +61,18 @@ class AuthNavBar extends Component {
           <NavItem className="greeting-outside-collapse">
             {/* Using two greetings bc I can't make the greeting be outside of the collape, but still be next to the buttons. So I am using two types and hidding each of them depending if the collapse happened or not */}
             <span>
-              <strong>{user ? `Oi, ${user.username}` : ""}</strong>
+              <strong>
+                {user ? (
+                  <div>
+                    Oi,{" "}
+                    <Link to={`/users/${user.id}`} className="user-link link">
+                      {user.username}
+                    </Link>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </strong>
             </span>
           </NavItem>
         </Nav>
@@ -68,8 +80,19 @@ class AuthNavBar extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem className="greeting-inside-collapse">
-              <span className="mr-3">
-                <strong>{user ? `Oi, ${user.username}` : ""}</strong>
+              <span>
+                <strong>
+                  {user ? (
+                    <div>
+                      Oi,{" "}
+                      <Link to={`/users/${user.id}`} className="user-link link">
+                        {user.username}
+                      </Link>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </strong>
               </span>
             </NavItem>
             <NavItem>
