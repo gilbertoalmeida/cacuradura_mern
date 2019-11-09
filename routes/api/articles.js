@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 /* 
 This is the middleware to protect routes. Add as a second parameter to
-the route that will need a token to be accessible
-const auth = require("../../middleware/auth"); */
+the route that will need a token to be accessible */
+const auth = require("../../middleware/auth");
 
 //Bringing Article Model
 const Article = require("../../models/Article");
@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
 // @route   POST api/articles/add
 // @desc    Post an article to the database
 // @access  Private
-router.post("/add", (req, res) => {
+router.post("/add", auth, (req, res) => {
   const { title, body } = req.body;
 
   //Simple validation
@@ -41,14 +41,12 @@ router.post("/add", (req, res) => {
     title,
     body,
     author: {
-      username: "test!!",
-      _id: "tesst"
+      username: req.body.author.username,
+      _id: req.body.author._id
     }
   });
 
   newArticle.save();
-
-  console.log(req);
 
   res.json({
     newArticle

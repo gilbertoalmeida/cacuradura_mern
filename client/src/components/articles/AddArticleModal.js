@@ -26,6 +26,7 @@ class RegisterModal extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
     addArticle: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
   };
@@ -72,8 +73,8 @@ class RegisterModal extends Component {
       title,
       body,
       author: {
-        username: "opaa",
-        _id: "123"
+        username: this.props.user.username || "cacura não logada",
+        _id: this.props.user.id || "cacura não logada"
       }
     };
 
@@ -136,7 +137,8 @@ class RegisterModal extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
+  user: state.auth.user
 });
 
 export default connect(

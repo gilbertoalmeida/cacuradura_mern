@@ -1,4 +1,9 @@
-import { GET_ARTICLES, GET_ARTICLE, ADD_ARTICLE } from "../actions/types";
+import {
+  GET_ARTICLES,
+  GET_ARTICLE,
+  ADD_ARTICLE_SUCCESS,
+  ADD_ARTICLE_FAIL
+} from "../actions/types";
 
 const initialState = {
   articles: [],
@@ -20,10 +25,15 @@ export default function(state = initialState, action) {
         article: action.payload,
         loading: false
       };
-    case ADD_ARTICLE:
+    case ADD_ARTICLE_SUCCESS:
       return {
         ...state,
         article: action.payload
+      };
+    case ADD_ARTICLE_FAIL:
+      return {
+        ...state,
+        article: null
       };
     default:
       return state;
