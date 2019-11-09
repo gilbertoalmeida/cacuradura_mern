@@ -69,4 +69,11 @@ router.post("/", (req, res) => {
   });
 });
 
+// @route   GET api/users/:id
+// @desc    Get one user by its id
+// @access  Public
+router.get("/:id", (req, res) => {
+  User.findById(req.params.id).then(user => res.json(user));
+});
+
 module.exports = router;

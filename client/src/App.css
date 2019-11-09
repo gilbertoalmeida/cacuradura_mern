@@ -126,6 +126,16 @@ time {
   font-family: "Rokkitt", serif;
 }
 
+.user-link {
+  width: fit-content;
+  height: fit-content;
+}
+
+.user-link:hover {
+  color: #e69696;
+  text-decoration: underline;
+}
+
 .link img {
   width: 80%;
   max-width: 300px;
