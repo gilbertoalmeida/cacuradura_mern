@@ -100,7 +100,7 @@ class AuthNavBar extends Component {
       <div>
         <Navbar
           fixed="top"
-          style={{ "background-color": "#f02d0a70" }}
+          style={{ backgroundColor: "#f02d0a70" }}
           expand="md"
           className="main-box-element navbar-dark"
         >
@@ -108,7 +108,7 @@ class AuthNavBar extends Component {
             <NavbarBrand href="/">
               <img
                 alt="favicon of the website"
-                src="NavBarBrand.png"
+                src="/NavBarBrand.png"
                 width="32"
                 height="32"
                 className="d-inline-block align-top"
