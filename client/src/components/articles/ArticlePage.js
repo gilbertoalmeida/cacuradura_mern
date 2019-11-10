@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getArticle } from "../../actions/articleActions";
 import PropTypes from "prop-types";
+import ReactHtmlParser from "react-html-parser";
 
 const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   useEffect(() => {
@@ -47,7 +48,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
           ></img>
         </Link>
         <br />
-        <p>{article.body}</p>
+        <div>{ReactHtmlParser(article.body)}</div>
       </div>
     </Fragment>
   );

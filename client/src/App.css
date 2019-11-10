@@ -156,7 +156,6 @@ p {
   background: none;
   font-family: "Rokkitt", serif;
   font-size: 25px;
-  margin-bottom: 1em;
 }
 
 p .link {
@@ -359,10 +358,13 @@ p .link:hover {
 
 .modal-body input,
 .modal-body input:focus,
-.modal-body textarea,
-.modal-body textarea:focus {
+.DraftEditor-root,
+.DraftEditor-root:focus,
+.DraftEditor-editorContainer,
+.DraftEditor-editorContainer:focus,
+.public-DraftEditor-content,
+.public-DraftEditor-content:focus {
   box-shadow: none;
-  padding: 0 0 0 10px;
   outline: none;
   border: none;
   font-size: 17px;
@@ -376,11 +378,21 @@ p .link:hover {
   border-radius: 5px 5px 0 0;
   border-bottom: 2px solid black;
 }
-.modal-body textarea,
-.modal-body textarea:focus {
+.DraftEditor-root,
+.DraftEditor-root:focus {
   border: 2px solid black;
   padding-top: 5px;
-  height: 30vh;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.DraftEditor-editorContainer,
+.public-DraftEditor-content {
+  height: 100%;
+}
+
+.public-DraftEditor-content {
+  padding: 5px 10px;
 }
 
 .submit-register,

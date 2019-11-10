@@ -15,11 +15,19 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { addArticle } from "../../actions/articleActions";
 import { clearErrors } from "../../actions/errorActions";
+import { Editor, EditorState, RichUtils } from "draft-js";
+import { stateToHTML } from "draft-js-export-html";
 
 class RegisterModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { editorState: EditorState.createEmpty() };
+    this.onChange = editorState => this.setState({ editorState });
+    this.handleKeyCommand = this.handleKeyCommand.bind(this);
+  }
+
   state = {
     modal: false,
-    text: "",
     body: "",
     msg: null
   };
@@ -45,6 +53,15 @@ class RegisterModal extends Component {
     }
   }
 
+  handleKeyCommand(command, editorState) {
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+    if (newState) {
+      this.onChange(newState);
+      return "handled";
+    }
+    return "not-handled";
+  }
+
   toggle = () => {
     this.props.clearErrors(); //calling this so that the error alert doesnt stay in the modal after you close and open
     this.setState({
@@ -52,14 +69,20 @@ class RegisterModal extends Component {
     });
   };
 
-  onChange = e => {
+  titleonChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   onSubmit = e => {
     e.preventDefault();
 
-    const { title, body } = this.state; //form data
+    const { title } = this.state; //form data
+
+    /* const title = "html do draft"; */
+
+    const editorState = this.state.editorState;
+    const contentState = editorState.getCurrentContent();
+    const body = stateToHTML(contentState);
 
     //Create Article object
     const newArticle = {
@@ -111,17 +134,16 @@ class RegisterModal extends Component {
                   id="title"
                   placeholder="Um titulo bem bonito"
                   className="mb-3"
-                  onChange={this.onChange}
+                  onChange={this.titleonChange}
                 />
 
                 <Label for="body">Texto</Label>
-                <Input
-                  type="textarea"
-                  name="body"
-                  id="body"
-                  placeholder="Um texto bem bonito"
-                  className="mb-3"
+                <Editor
+                  placeholder="draft js editor here"
+                  editorState={this.state.editorState}
+                  handleKeyCommand={this.handleKeyCommand}
                   onChange={this.onChange}
+                  className="draft-editor"
                 />
                 <Button className="button-form-top submit-post-article" block>
                   Postar
