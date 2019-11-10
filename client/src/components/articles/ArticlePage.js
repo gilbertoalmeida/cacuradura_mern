@@ -31,7 +31,13 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
               (new Date(article.date).getMonth() + 1) +
               "/" +
               new Date(article.date).getFullYear()}
-            , por {article.author.username}
+            , por{" "}
+            <Link
+              to={`/users/${article.author._id}`}
+              className="user-link link"
+            >
+              {article.author.username}
+            </Link>
           </b>
         </time>
         <Link className="link" to={`/articles/${article._id}`}>
