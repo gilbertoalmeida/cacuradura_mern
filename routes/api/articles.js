@@ -24,4 +24,11 @@ router.get("/:id", (req, res) => {
   Article.findById(req.params.id).then(article => res.json(article));
 });
 
+router.get("/user/:id", (req, res) => {
+  let query = { "author._id": req.params.id };
+  Article.find(query)
+    .sort({ date: -1 })
+    .then(articles => res.json(articles));
+});
+
 module.exports = router;

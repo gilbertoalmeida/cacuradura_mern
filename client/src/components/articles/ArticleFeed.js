@@ -34,7 +34,13 @@ class ArticleFeed extends Component {
                       (new Date(date).getMonth() + 1) +
                       "/" +
                       new Date(date).getFullYear()}
-                    , por {author.username}
+                    , por{" "}
+                    <Link
+                      to={`/users/${author._id}`}
+                      className="user-link link"
+                    >
+                      {author.username}
+                    </Link>
                   </b>
                 </time>
                 <Link className="link" to={`/articles/${_id}`}>
