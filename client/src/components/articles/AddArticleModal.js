@@ -74,7 +74,7 @@ class RegisterModal extends Component {
       body,
       author: {
         username: this.props.user.username || "cacura não logada",
-        _id: this.props.user.id || "cacura não logada"
+        _id: this.props.user._id || "cacura não logada"
       }
     };
 
@@ -85,7 +85,7 @@ class RegisterModal extends Component {
   render() {
     return (
       <div>
-        <Button className="button-form-top register" onClick={this.toggle}>
+        <Button className="button-form-top post_article" onClick={this.toggle}>
           Postar um artigo
         </Button>
 

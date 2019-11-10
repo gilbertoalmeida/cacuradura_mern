@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import RegisterModal from "./auth/RegisterModal";
 import LoginForm from "./auth/LoginForm";
 import Logout from "./auth/Logout";
+import AddArticleModal from "./articles/AddArticleModal";
 
 class AuthNavBar extends Component {
   state = {
@@ -97,6 +98,9 @@ class AuthNavBar extends Component {
                   )}
                 </strong>
               </span>
+            </NavItem>
+            <NavItem>
+              <AddArticleModal />
             </NavItem>
             <NavItem>
               <Logout />
