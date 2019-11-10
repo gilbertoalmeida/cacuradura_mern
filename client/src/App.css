@@ -126,6 +126,17 @@ time {
   font-family: "Rokkitt", serif;
 }
 
+.user-link {
+  color: #e69696;
+  width: fit-content;
+  height: fit-content;
+}
+
+.user-link:hover {
+  color: #e69696;
+  text-decoration: underline;
+}
+
 .link img {
   width: 80%;
   max-width: 300px;
@@ -155,6 +166,48 @@ p .link {
 
 p .link:hover {
   text-decoration: underline;
+}
+
+/* User page elements */
+
+.nav-tabs {
+  border-bottom: 2px solid #faa9cb;
+  margin-bottom: 20px;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+}
+
+.nav-item {
+  margin-bottom: none;
+}
+
+.nav-item:hover {
+  margin-bottom: none;
+}
+
+.nav-link {
+  font-family: "Rokkitt", serif;
+  font-size: 20px;
+}
+
+.nav-link:focus,
+.nav-link:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+  border: none;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #05050a;
+  background-color: #faa9cb;
+  border: none;
 }
 
 /* alerts */
@@ -240,7 +293,12 @@ p .link:hover {
   margin-left: 30px;
 }
 
+.greeting-inside-collapse {
+  font-size: 22px;
+}
+
 .greeting-outside-collapse {
+  font-size: 22px;
   display: none;
 }
 
