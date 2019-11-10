@@ -85,12 +85,12 @@ class RegisterModal extends Component {
   render() {
     return (
       <div>
-        <Button className="button-form-top post_article" onClick={this.toggle}>
+        <Button className="button-form-top post-article" onClick={this.toggle}>
           Postar um artigo
         </Button>
 
         <Modal
-          className="add-article-modal"
+          className="post-article-modal"
           isOpen={this.state.modal}
           toggle={this.toggle}
         >
@@ -116,14 +116,14 @@ class RegisterModal extends Component {
 
                 <Label for="body">Texto</Label>
                 <Input
-                  type="text"
+                  type="textarea"
                   name="body"
                   id="body"
                   placeholder="Um texto bem bonito"
                   className="mb-3"
                   onChange={this.onChange}
                 />
-                <Button className="button-form-top submit-register" block>
+                <Button className="button-form-top submit-post-article" block>
                   Postar
                 </Button>
               </FormGroup>

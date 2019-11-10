@@ -279,8 +279,8 @@ p .link:hover {
 
 .login,
 .login:hover,
-.post_article,
-.post_article:hover {
+.post-article,
+.post-article:hover {
   background: #05050a;
   color: #faa9cb;
   margin-top: 1px; /* to align with register button  */
@@ -337,6 +337,12 @@ p .link:hover {
   }
 }
 
+.register-modal *:not(.alert):not(.button-form-top):not(.modal-title),
+.post-article-modal *:not(.alert):not(.button-form-top):not(.modal-title) {
+  background-color: #faa9cb;
+  font-family: "Rokkitt", serif;
+}
+
 .modal-header {
   background-color: #faa9cb;
   border-bottom: 1px solid black;
@@ -348,21 +354,39 @@ p .link:hover {
 
 .modal-body label {
   margin-top: 0.5rem;
+  font-size: 25px;
 }
 
-.modal-body input {
+.modal-body input,
+.modal-body input:focus,
+.modal-body textarea,
+.modal-body textarea:focus {
   box-shadow: none;
   padding: 0 0 0 10px;
   outline: none;
   border: none;
-  border-radius: 5px 5px 0 0;
-  border-bottom: 2px solid black;
   font-size: 17px;
   color: #05050a;
+  box-shadow: none;
+  background-color: #faa9cb;
+}
+
+.modal-body input,
+.modal-body input:focus {
+  border-radius: 5px 5px 0 0;
+  border-bottom: 2px solid black;
+}
+.modal-body textarea,
+.modal-body textarea:focus {
+  border: 2px solid black;
+  padding-top: 5px;
+  height: 30vh;
 }
 
 .submit-register,
-.submit-register:hover {
+.submit-register:hover,
+.submit-post-article,
+.submit-post-article:hover {
   background-color: #05050a;
   color: #faa9cb;
   font-size: 17px;
@@ -396,34 +420,33 @@ p .link:hover {
   font-size: 15px;
 }
 
-.register-modal *:not(.alert):not(.submit-register) {
-  background-color: #faa9cb;
-  font-family: "Rokkitt", serif;
-}
-
-.modal-body input::-webkit-input-placeholder /* Chrome/Opera/Safari */
+.modal-body input::-webkit-input-placeholder,
+.modal-body textarea::-webkit-input-placeholder  /* Chrome/Opera/Safari */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
-  font-size: 14px;
+  font-size: 17px;
 }
-.modal-body input::-moz-placeholder /* Firefox 19+ */
+.modal-body input::-moz-placeholder,
+.modal-body textarea::-moz-placeholder /* Firefox 19+ */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
-  font-size: 14px;
+  font-size: 17px;
 }
-.modal-body input:-ms-input-placeholder /* IE 10+ */
+.modal-body input:-ms-input-placeholder,
+.modal-body textarea:-ms-input-placeholder /* IE 10+ */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
-  font-size: 14px;
+  font-size: 17px;
 }
-.modal-body input:-moz-placeholder /* Firefox 18- */
+.modal-body input:-moz-placeholder,
+.modal-body textarea:-moz-placeholder /* Firefox 18- */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
-  font-size: 14px;
+  font-size: 17px;
 }
 
 /* Removing the highlight from these elements when they are clicked */
