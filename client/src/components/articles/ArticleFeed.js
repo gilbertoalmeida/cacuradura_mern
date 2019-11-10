@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
+import ReactHtmlParser from "react-html-parser";
 
 class ArticleFeed extends Component {
   static propTypes = {
@@ -50,12 +51,12 @@ class ArticleFeed extends Component {
                   ></img>
                 </Link>
                 <br />
-                <p>
-                  {body + " "}
+                <div>
+                  {ReactHtmlParser(body)}
                   <Link to={`/articles/${_id}`} className="link">
                     [Leia mais]
                   </Link>
-                </p>
+                </div>
               </div>
             </ListGroupItem>
           ))}

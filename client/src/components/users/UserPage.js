@@ -22,6 +22,8 @@ import { getUser } from "../../actions/userActions";
 import { getUserArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 
+import ReactHtmlParser from "react-html-parser";
+
 const UserPage = ({
   getUser,
   getUserArticles,
@@ -120,12 +122,12 @@ const UserPage = ({
                           ></img>
                         </Link>
                         <br />
-                        <p>
-                          {body + " "}
+                        <div>
+                          {ReactHtmlParser(body)}
                           <Link to={`/articles/${_id}`} className="link">
                             [Leia mais]
                           </Link>
-                        </p>
+                        </div>
                       </div>
                     </ListGroupItem>
                   ))}
