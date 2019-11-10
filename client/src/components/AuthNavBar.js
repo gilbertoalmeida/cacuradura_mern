@@ -65,7 +65,7 @@ class AuthNavBar extends Component {
                 {user ? (
                   <div>
                     Oi,{" "}
-                    <Link to={`/users/${user.id}`} className="user-link link">
+                    <Link to={`/users/${user._id}`} className="user-link link">
                       {user.username}
                     </Link>
                   </div>
@@ -85,7 +85,10 @@ class AuthNavBar extends Component {
                   {user ? (
                     <div>
                       Oi,{" "}
-                      <Link to={`/users/${user.id}`} className="user-link link">
+                      <Link
+                        to={`/users/${user._id}`}
+                        className="user-link link"
+                      >
                         {user.username}
                       </Link>
                     </div>

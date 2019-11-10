@@ -46,7 +46,7 @@ router.post("/", (req, res) => {
           newUser.password = hash;
           newUser.save().then(user => {
             jwt.sign(
-              { id: user.id }, // payload. I am sending the user id to verify actions later
+              { _id: user._id }, // payload. I am sending the user id to verify actions later
               config.get("jwtSecret"),
               { expiresIn: 360000 },
               (err, token) => {
@@ -54,7 +54,7 @@ router.post("/", (req, res) => {
                 res.json({
                   token: token,
                   user: {
-                    id: user.id,
+                    _id: user._id,
                     name: user.name,
                     username: user.username,
                     email: user.email
