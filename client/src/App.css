@@ -265,10 +265,11 @@ p .link:hover {
 
 .button-form-top {
   border: none;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   padding: 8px 13px;
   margin: 0;
+  margin-bottom: 2px;
 }
 
 .button-form-top:focus {
@@ -277,7 +278,9 @@ p .link:hover {
 }
 
 .login,
-.login:hover {
+.login:hover,
+.post_article,
+.post_article:hover {
   background: #05050a;
   color: #faa9cb;
   margin-top: 1px; /* to align with register button  */
@@ -294,11 +297,11 @@ p .link:hover {
 }
 
 .greeting-inside-collapse {
-  font-size: 22px;
+  font-size: 25px;
 }
 
 .greeting-outside-collapse {
-  font-size: 22px;
+  font-size: 25px;
   display: none;
 }
 

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import ArticleFeed from "./articles/ArticleFeed";
-import AddArticleModal from "./articles/AddArticleModal";
 
 class HomePage extends Component {
   render() {
@@ -17,7 +16,6 @@ class HomePage extends Component {
             Acompanhe essa metamorfose
           </h2>
         </header>
-        <AddArticleModal />
         <ArticleFeed />
       </div>
     );

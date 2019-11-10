@@ -7,6 +7,7 @@ import {
   GET_USER_ARTICLES
 } from "./types";
 import { returnErrors } from "./errorActions";
+import { tokenConfig } from "./authActions";
 
 export const getArticles = () => dispatch => {
   axios
@@ -39,24 +40,15 @@ export const getUserArticles = id => dispatch => {
   );
 };
 
-//Register User
-export const addArticle = ({
-  title,
-  body,
-  author: { username, _id }
-}) => dispatch => {
-  // Headers
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-
+export const addArticle = ({ title, body, author: { username, _id } }) => (
+  dispatch,
+  getState
+) => {
   //Request body
   const bbody = JSON.stringify({ title, body, author: { username, _id } });
 
   axios
-    .post("/api/articles/add", bbody, config)
+    .post("/api/articles/add", bbody, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: ADD_ARTICLE_SUCCESS,
