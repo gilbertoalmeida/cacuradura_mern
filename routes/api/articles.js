@@ -24,6 +24,7 @@ router.get("/:id", (req, res) => {
   Article.findById(req.params.id).then(article => res.json(article));
 });
 
+<<<<<<< HEAD
 // @route   POST api/articles/add
 // @desc    Post an article to the database
 // @access  Private
@@ -51,6 +52,13 @@ router.post("/add", auth, (req, res) => {
   res.json({
     newArticle
   });
+=======
+router.get("/user/:id", (req, res) => {
+  let query = { "author._id": req.params.id };
+  Article.find(query)
+    .sort({ date: -1 })
+    .then(articles => res.json(articles));
+>>>>>>> c0d85951ad6b52c3105eea4ad6448390bbefae3e
 });
 
 module.exports = router;

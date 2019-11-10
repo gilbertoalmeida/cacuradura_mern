@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux"; //access the state
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import RegisterModal from "./auth/RegisterModal";
 import LoginForm from "./auth/LoginForm";
@@ -60,7 +61,18 @@ class AuthNavBar extends Component {
           <NavItem className="greeting-outside-collapse">
             {/* Using two greetings bc I can't make the greeting be outside of the collape, but still be next to the buttons. So I am using two types and hidding each of them depending if the collapse happened or not */}
             <span>
-              <strong>{user ? `Oi, ${user.username}` : ""}</strong>
+              <strong>
+                {user ? (
+                  <div>
+                    Oi,{" "}
+                    <Link to={`/users/${user._id}`} className="user-link link">
+                      {user.username}
+                    </Link>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </strong>
             </span>
           </NavItem>
         </Nav>
@@ -68,8 +80,22 @@ class AuthNavBar extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem className="greeting-inside-collapse">
-              <span className="mr-3">
-                <strong>{user ? `Oi, ${user.username}` : ""}</strong>
+              <span>
+                <strong>
+                  {user ? (
+                    <div>
+                      Oi,{" "}
+                      <Link
+                        to={`/users/${user._id}`}
+                        className="user-link link"
+                      >
+                        {user.username}
+                      </Link>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </strong>
               </span>
             </NavItem>
             <NavItem>
@@ -100,7 +126,7 @@ class AuthNavBar extends Component {
       <div>
         <Navbar
           fixed="top"
-          style={{ "background-color": "#f02d0a70" }}
+          style={{ backgroundColor: "#f02d0a70" }}
           expand="md"
           className="main-box-element navbar-dark"
         >
@@ -108,7 +134,7 @@ class AuthNavBar extends Component {
             <NavbarBrand href="/">
               <img
                 alt="favicon of the website"
-                src="NavBarBrand.png"
+                src="/NavBarBrand.png"
                 width="32"
                 height="32"
                 className="d-inline-block align-top"

@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 
-//Bringing User Model
+//Bringing User and Article Models
 const User = require("../../models/User");
 
 // @route   POST api/users
@@ -46,7 +46,7 @@ router.post("/", (req, res) => {
           newUser.password = hash;
           newUser.save().then(user => {
             jwt.sign(
-              { id: user.id }, // payload. I am sending the user id to verify actions later
+              { _id: user._id }, // payload. I am sending the user id to verify actions later
               config.get("jwtSecret"),
               { expiresIn: 360000 },
               (err, token) => {
@@ -54,7 +54,7 @@ router.post("/", (req, res) => {
                 res.json({
                   token: token,
                   user: {
-                    id: user.id,
+                    _id: user._id,
                     name: user.name,
                     username: user.username,
                     email: user.email
@@ -67,6 +67,13 @@ router.post("/", (req, res) => {
       });
     });
   });
+});
+
+// @route   GET api/users/:id
+// @desc    Get one user by its id
+// @access  Public
+router.get("/:id", (req, res) => {
+  User.findById(req.params.id).then(user => res.json(user));
 });
 
 module.exports = router;
