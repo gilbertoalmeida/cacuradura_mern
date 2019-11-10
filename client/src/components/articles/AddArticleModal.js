@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { addArticle } from "../../actions/articleActions";
 import { clearErrors } from "../../actions/errorActions";
 
@@ -35,21 +36,13 @@ class RegisterModal extends Component {
     const { error } = this.props; //extracting the errors imported from the map function below that transforms the state into a prop
     if (error !== prevProps.error) {
       //equal to the previous error
-      //Check for register error
+      //Check for add article error
       if (error.id === "ADD_ARTICLE_FAIL") {
         this.setState({ msg: error.msg.msg }); //comes from the routes in the backend
       } else {
         this.setState({ msg: null });
       }
     }
-
-    /* if (this.state.modal) {
-      //if the modal is open
-      if (this.props.isAuthenticated) {
-        //if authenticated, close modal
-        this.toggle();
-      }
-    } */
   }
 
   toggle = () => {
@@ -80,6 +73,11 @@ class RegisterModal extends Component {
 
     //send the article
     this.props.addArticle(newArticle);
+
+    if (title && body) {
+      this.toggle();
+      this.props.history.push(`/users/${this.props.user._id}`);
+    }
   };
 
   render() {
@@ -90,7 +88,7 @@ class RegisterModal extends Component {
         </Button>
 
         <Modal
-          className="post-article-modal"
+          className="post-article-modal modal-lg"
           isOpen={this.state.modal}
           toggle={this.toggle}
         >
@@ -104,6 +102,8 @@ class RegisterModal extends Component {
             {/* operator to show the alert only is there is an error */}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
+                <Label for="author">Autor: {this.props.user.username}</Label>
+                <br />
                 <Label for="title">Título</Label>
                 <Input
                   type="text"
@@ -144,4 +144,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { addArticle, clearErrors }
-)(RegisterModal);
+)(withRouter(RegisterModal));

@@ -42,7 +42,6 @@ router.post("/add", auth, (req, res) => {
 
   //Simple validation
   if (!title || !body) {
-    console.log(req);
     return res.status(400).json({
       msg: "O artigo precisa de um título e um texto, frô"
     });
