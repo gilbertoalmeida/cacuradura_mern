@@ -34,7 +34,7 @@ router.post("/", (req, res) => {
           .json({ msg: "Você errou o nome de cacura ou a senha" });
 
       jwt.sign(
-        { id: user.id }, // payload. I am sending the user id to verify actions later
+        { _id: user._id }, // payload. I am sending the user id to verify actions later
         config.get("jwtSecret"),
         { expiresIn: 360000 },
         (err, token) => {
@@ -42,7 +42,7 @@ router.post("/", (req, res) => {
           res.json({
             token: token,
             user: {
-              id: user.id,
+              _id: user._id,
               name: user.name,
               username: user.username,
               email: user.email
@@ -58,7 +58,7 @@ router.post("/", (req, res) => {
 // @desc    Get user data
 // @access  Private
 router.get("/user", auth, (req, res) => {
-  User.findById(req.user.id)
+  User.findById(req.user._id)
     .select("-password")
     .then(user => res.json(user));
 });
