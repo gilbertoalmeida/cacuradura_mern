@@ -25,21 +25,16 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
           {article.title}
         </Link>
         <time dateTime={article.date}>
-          <b>
-            §}>{" "}
-            {new Date(article.date).getDate() +
-              "/" +
-              (new Date(article.date).getMonth() + 1) +
-              "/" +
-              new Date(article.date).getFullYear()}
-            , por{" "}
-            <Link
-              to={`/users/${article.author._id}`}
-              className="user-link link"
-            >
-              {article.author.username}
-            </Link>
-          </b>
+          §}>{" "}
+          {new Date(article.date).getDate() +
+            "/" +
+            (new Date(article.date).getMonth() + 1) +
+            "/" +
+            new Date(article.date).getFullYear()}
+          , por{" "}
+          <Link to={`/users/${article.author._id}`} className="user-link link">
+            {article.author.username}
+          </Link>
         </time>
         <Link className="link" to={`/articles/${article._id}`}>
           <img

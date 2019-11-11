@@ -28,21 +28,16 @@ class ArticleFeed extends Component {
                   <h3 className="article-title">{title}</h3>
                 </Link>
                 <time dateTime={date}>
-                  <b>
-                    §}>{" "}
-                    {new Date(date).getDate() +
-                      "/" +
-                      (new Date(date).getMonth() + 1) +
-                      "/" +
-                      new Date(date).getFullYear()}
-                    , por{" "}
-                    <Link
-                      to={`/users/${author._id}`}
-                      className="user-link link"
-                    >
-                      {author.username}
-                    </Link>
-                  </b>
+                  §}>{" "}
+                  {new Date(date).getDate() +
+                    "/" +
+                    (new Date(date).getMonth() + 1) +
+                    "/" +
+                    new Date(date).getFullYear()}
+                  , por{" "}
+                  <Link to={`/users/${author._id}`} className="user-link link">
+                    {author.username}
+                  </Link>
                 </time>
                 <Link className="link" to={`/articles/${_id}`}>
                   <img
@@ -53,9 +48,11 @@ class ArticleFeed extends Component {
                 <br />
                 <div>
                   {ReactHtmlParser(body)}
-                  <Link to={`/articles/${_id}`} className="link">
-                    [Leia mais]
-                  </Link>
+                  <p>
+                    <Link to={`/articles/${_id}`} className="link">
+                      [Leia mais]
+                    </Link>
+                  </p>
                 </div>
               </div>
             </ListGroupItem>
