@@ -99,21 +99,19 @@ const UserPage = ({
                           <h3 className="article-title">{title}</h3>
                         </Link>
                         <time dateTime={date}>
-                          <b>
-                            §}>{" "}
-                            {new Date(date).getDate() +
-                              "/" +
-                              (new Date(date).getMonth() + 1) +
-                              "/" +
-                              new Date(date).getFullYear()}
-                            , por{" "}
-                            <Link
-                              to={`/users/${author._id}`}
-                              className="user-link link"
-                            >
-                              {author.username}
-                            </Link>
-                          </b>
+                          §}>{" "}
+                          {new Date(date).getDate() +
+                            "/" +
+                            (new Date(date).getMonth() + 1) +
+                            "/" +
+                            new Date(date).getFullYear()}
+                          , por{" "}
+                          <Link
+                            to={`/users/${author._id}`}
+                            className="user-link link"
+                          >
+                            {author.username}
+                          </Link>
                         </time>
                         <Link className="link" to={`/articles/${_id}`}>
                           <img
