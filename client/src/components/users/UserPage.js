@@ -120,12 +120,7 @@ const UserPage = ({
                           ></img>
                         </Link>
                         <br />
-                        <div>
-                          {ReactHtmlParser(body)}
-                          <Link to={`/articles/${_id}`} className="link">
-                            [Leia mais]
-                          </Link>
-                        </div>
+                        <div>{ReactHtmlParser(body)}</div>
                       </div>
                     </ListGroupItem>
                   ))}
