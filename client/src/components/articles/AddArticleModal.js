@@ -100,6 +100,7 @@ class RegisterModal extends Component {
     if (title && body) {
       this.toggle();
       this.props.history.push(`/users/${this.props.user._id}`);
+      window.location.reload();
     }
   };
 

@@ -46,14 +46,7 @@ class ArticleFeed extends Component {
                   ></img>
                 </Link>
                 <br />
-                <div>
-                  {ReactHtmlParser(body)}
-                  <p>
-                    <Link to={`/articles/${_id}`} className="link">
-                      [Leia mais]
-                    </Link>
-                  </p>
-                </div>
+                <div>{ReactHtmlParser(body)}</div>
               </div>
             </ListGroupItem>
           ))}
