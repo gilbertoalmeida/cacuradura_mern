@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
+import ReactHtmlParser from "react-html-parser";
 
 class ArticleFeed extends Component {
   static propTypes = {
@@ -27,21 +28,16 @@ class ArticleFeed extends Component {
                   <h3 className="article-title">{title}</h3>
                 </Link>
                 <time dateTime={date}>
-                  <b>
-                    §}>{" "}
-                    {new Date(date).getDate() +
-                      "/" +
-                      (new Date(date).getMonth() + 1) +
-                      "/" +
-                      new Date(date).getFullYear()}
-                    , por{" "}
-                    <Link
-                      to={`/users/${author._id}`}
-                      className="user-link link"
-                    >
-                      {author.username}
-                    </Link>
-                  </b>
+                  §}>{" "}
+                  {new Date(date).getDate() +
+                    "/" +
+                    (new Date(date).getMonth() + 1) +
+                    "/" +
+                    new Date(date).getFullYear()}
+                  , por{" "}
+                  <Link to={`/users/${author._id}`} className="user-link link">
+                    {author.username}
+                  </Link>
                 </time>
                 <Link className="link" to={`/articles/${_id}`}>
                   <img
@@ -50,12 +46,7 @@ class ArticleFeed extends Component {
                   ></img>
                 </Link>
                 <br />
-                <p>
-                  {body + " "}
-                  <Link to={`/articles/${_id}`} className="link">
-                    [Leia mais]
-                  </Link>
-                </p>
+                <div>{ReactHtmlParser(body)}</div>
               </div>
             </ListGroupItem>
           ))}

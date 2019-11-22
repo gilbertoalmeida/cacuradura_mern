@@ -8,7 +8,6 @@ import {
   NavItem,
   NavLink,
   Card,
-  Button,
   CardTitle,
   CardText,
   Row,
@@ -21,6 +20,8 @@ import classnames from "classnames";
 import { getUser } from "../../actions/userActions";
 import { getUserArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
+
+import ReactHtmlParser from "react-html-parser";
 
 const UserPage = ({
   getUser,
@@ -44,9 +45,11 @@ const UserPage = ({
     <h1>Loading</h1>
   ) : (
     <Fragment>
-      <h1>
-        uma <span>cacura</span>
-      </h1>
+      <header className="App-header">
+        <h1>
+          uma <span>cacura</span>
+        </h1>
+      </header>
       <div className="main-box-element">
         <Link to={`/users/${user._id}`} className="article-title link">
           Esse perfil é de: {user.username}
@@ -97,21 +100,19 @@ const UserPage = ({
                           <h3 className="article-title">{title}</h3>
                         </Link>
                         <time dateTime={date}>
-                          <b>
-                            §}>{" "}
-                            {new Date(date).getDate() +
-                              "/" +
-                              (new Date(date).getMonth() + 1) +
-                              "/" +
-                              new Date(date).getFullYear()}
-                            , por{" "}
-                            <Link
-                              to={`/users/${author._id}`}
-                              className="user-link link"
-                            >
-                              {author.username}
-                            </Link>
-                          </b>
+                          §}>{" "}
+                          {new Date(date).getDate() +
+                            "/" +
+                            (new Date(date).getMonth() + 1) +
+                            "/" +
+                            new Date(date).getFullYear()}
+                          , por{" "}
+                          <Link
+                            to={`/users/${author._id}`}
+                            className="user-link link"
+                          >
+                            {author.username}
+                          </Link>
                         </time>
                         <Link className="link" to={`/articles/${_id}`}>
                           <img
@@ -120,12 +121,7 @@ const UserPage = ({
                           ></img>
                         </Link>
                         <br />
-                        <p>
-                          {body + " "}
-                          <Link to={`/articles/${_id}`} className="link">
-                            [Leia mais]
-                          </Link>
-                        </p>
+                        <div>{ReactHtmlParser(body)}</div>
                       </div>
                     </ListGroupItem>
                   ))}
@@ -136,23 +132,21 @@ const UserPage = ({
           <TabPane tabId="2">
             <Row>
               <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
+                <Card body className="pic-card">
+                  <CardTitle>Primeira foto</CardTitle>
                   <CardText>
-                    With supporting text below as a natural lead-in to
-                    additional content.
+                    Uma foto pretenciosa com um leve filtro vermelho, tipo a que
+                    tá nos artigos.
                   </CardText>
-                  <Button>Go somewhere</Button>
                 </Card>
               </Col>
               <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
+                <Card body className="pic-card">
+                  <CardTitle>Segunda foto</CardTitle>
                   <CardText>
-                    With supporting text below as a natural lead-in to
-                    additional content.
+                    Um nudez artístico. <br></br> SIM! <br></br> Será permitida
+                    nudez aqui <br></br> mORRE INSTAGRAM!
                   </CardText>
-                  <Button>Go somewhere</Button>
                 </Card>
               </Col>
             </Row>

@@ -20,7 +20,7 @@ let articleSchema = mongoose.Schema({
     }
   },
   body: {
-    type: String,
+    type: Object,
     required: true
   },
   homepage: {

@@ -13,6 +13,7 @@ import { loadUser } from "./actions/authActions";
 https://medium.com/@ryandrewjohnson/adding-multi-language-support-to-your-react-redux-app-cf6e64250050 */
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import "draft-js/dist/Draft.css";
 import "./App.css";
 
 class App extends Component {
