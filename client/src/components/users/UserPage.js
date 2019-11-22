@@ -8,7 +8,6 @@ import {
   NavItem,
   NavLink,
   Card,
-  Button,
   CardTitle,
   CardText,
   Row,
@@ -46,9 +45,11 @@ const UserPage = ({
     <h1>Loading</h1>
   ) : (
     <Fragment>
-      <h1>
-        uma <span>cacura</span>
-      </h1>
+      <header className="App-header">
+        <h1>
+          uma <span>cacura</span>
+        </h1>
+      </header>
       <div className="main-box-element">
         <Link to={`/users/${user._id}`} className="article-title link">
           Esse perfil é de: {user.username}
@@ -131,23 +132,21 @@ const UserPage = ({
           <TabPane tabId="2">
             <Row>
               <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
+                <Card body className="pic-card">
+                  <CardTitle>Primeira foto</CardTitle>
                   <CardText>
-                    With supporting text below as a natural lead-in to
-                    additional content.
+                    Uma foto pretenciosa com um leve filtro vermelho, tipo a que
+                    tá nos artigos.
                   </CardText>
-                  <Button>Go somewhere</Button>
                 </Card>
               </Col>
               <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
+                <Card body className="pic-card">
+                  <CardTitle>Segunda foto</CardTitle>
                   <CardText>
-                    With supporting text below as a natural lead-in to
-                    additional content.
+                    Um nudez artístico. <br></br> SIM! <br></br> Será permitida
+                    nudez aqui <br></br> mORRE INSTAGRAM!
                   </CardText>
-                  <Button>Go somewhere</Button>
                 </Card>
               </Col>
             </Row>

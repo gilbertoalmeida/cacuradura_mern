@@ -17,9 +17,11 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
     <h1>Loading</h1>
   ) : (
     <Fragment>
-      <h1>
-        um <span>artigo</span>
-      </h1>
+      <header className="App-header">
+        <h1>
+          um <span>artigo</span>
+        </h1>
+      </header>
       <div className="main-box-element">
         <Link to={`/articles/${article._id}`} className="article-title link">
           {article.title}
