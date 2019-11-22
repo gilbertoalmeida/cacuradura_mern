@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb://localhost:27017/cacuradura",
+  "mongoURI": "mongodb+srv://cacurona:cacurona9512@cacuradura-zw8il.mongodb.net/cacuradura?retryWrites=true&w=majority",
   "secret": "nocluewhichsecretisthis",
   "jwtSecret": "cacura_95_dura_12"
 }
