@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getArticle } from "../../actions/articleActions";
 import PropTypes from "prop-types";
+import ReactHtmlParser from "react-html-parser";
 
 const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   useEffect(() => {
@@ -16,29 +17,26 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
     <h1>Loading</h1>
   ) : (
     <Fragment>
-      <h1>
-        um <span>artigo</span>
-      </h1>
+      <header className="App-header">
+        <h1>
+          um <span>artigo</span>
+        </h1>
+      </header>
       <div className="main-box-element">
         <Link to={`/articles/${article._id}`} className="article-title link">
           {article.title}
         </Link>
         <time dateTime={article.date}>
-          <b>
-            §}>{" "}
-            {new Date(article.date).getDate() +
-              "/" +
-              (new Date(article.date).getMonth() + 1) +
-              "/" +
-              new Date(article.date).getFullYear()}
-            , por{" "}
-            <Link
-              to={`/users/${article.author._id}`}
-              className="user-link link"
-            >
-              {article.author.username}
-            </Link>
-          </b>
+          §}>{" "}
+          {new Date(article.date).getDate() +
+            "/" +
+            (new Date(article.date).getMonth() + 1) +
+            "/" +
+            new Date(article.date).getFullYear()}
+          , por{" "}
+          <Link to={`/users/${article.author._id}`} className="user-link link">
+            {article.author.username}
+          </Link>
         </time>
         <Link className="link" to={`/articles/${article._id}`}>
           <img
@@ -47,7 +45,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
           ></img>
         </Link>
         <br />
-        <p>{article.body}</p>
+        <div>{ReactHtmlParser(article.body)}</div>
       </div>
     </Fragment>
   );
