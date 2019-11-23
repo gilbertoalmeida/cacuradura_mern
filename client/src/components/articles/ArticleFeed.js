@@ -19,11 +19,11 @@ class ArticleFeed extends Component {
   render() {
     const { articles } = this.props.article; //pulling out articles from this.props.article, so that I dont have to write this.props.article.articles all the time
     return (
-      <Container>
+      <Container className="main-box-element">
         <ListGroup>
           {articles.map(({ _id, title, date, author, body }) => (
             <ListGroupItem key={_id} className="article-list-group-item">
-              <div className="main-box-element">
+              <div>
                 <Link to={`/articles/${_id}`} className="article-title link">
                   <h3 className="article-title">{title}</h3>
                 </Link>
