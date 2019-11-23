@@ -47,7 +47,7 @@ const UserPage = ({
     <Fragment>
       <header className="App-header">
         <h1>
-          uma <span>cacura</span>
+          uma<span>cacura</span>
         </h1>
       </header>
       <div className="main-box-element">
@@ -92,7 +92,7 @@ const UserPage = ({
                       key={_id}
                       className="article-list-group-item"
                     >
-                      <div className="main-box-element">
+                      <div>
                         <Link
                           to={`/articles/${_id}`}
                           className="article-title link"
