@@ -354,15 +354,18 @@ p .link:hover {
   }
 }
 
-.register-modal *:not(.alert):not(.button-form-top):not(.modal-title),
-.post-article-modal *:not(.alert):not(.button-form-top):not(.modal-title) {
-  background-color: #faa9cb;
+.register-modal *,
+.post-article-modal * {
   font-family: "Rokkitt", serif;
 }
 
 .modal-header {
-  background-color: #faa9cb;
   border-bottom: 1px solid black;
+}
+
+.modal-header,
+.modal-body {
+  background-color: #faa9cb;
 }
 
 .modal-title {
@@ -422,6 +425,141 @@ p .link:hover {
   color: #faa9cb;
   font-size: 17px;
   margin-top: 2rem;
+}
+
+/* wysiwyg editor */
+
+.rdw-dropdown-wrapper:hover,
+.rdw-inline-wrapper .rdw-option-wrapper:hover,
+.rdw-dropdown-optionwrapper:hover,
+.rdw-embedded-wrapper:hover,
+.rdw-emoji-wrapper:hover,
+.rdw-image-wrapper:hover,
+.rdw-remove-wrapper:hover {
+  box-shadow: 1px 1px 2px #05050a;
+}
+
+.rdw-editor-toolbar {
+  background-color: #faa9cb;
+}
+
+.rdw-inline-wrapper .rdw-option-wrapper:hover,
+.rdw-dropdownoption-highlighted,
+.rdw-dropdown-wrapper:hover,
+.rdw-embedded-wrapper:hover,
+.rdw-emoji-wrapper:hover,
+.rdw-image-wrapper:hover,
+.rdw-remove-wrapper:hover {
+  background-color: #fccbdf;
+}
+
+.rdw-inline-wrapper .rdw-option-wrapper,
+.rdw-dropdown-wrapper,
+.rdw-dropdown-optionwrapper,
+.rdw-dropdown-optionwrapper:hover,
+.rdw-embedded-wrapper,
+.rdw-emoji-wrapper,
+.rdw-image-wrapper,
+.rdw-remove-wrapper,
+.rdw-embedded-modal,
+.rdw-image-modal,
+.rdw-emoji-modal {
+  border: 1px solid #05050a;
+  background-color: #faa9cb;
+}
+
+.rdw-inline-wrapper .rdw-option-wrapper,
+.rdw-embedded-wrapper,
+.rdw-emoji-wrapper,
+.rdw-image-wrapper,
+.rdw-remove-wrapper {
+  margin: 0 3px;
+  height: 30px;
+  width: 30px;
+}
+
+.rdw-embedded-wrapper .rdw-option-wrapper,
+.rdw-emoji-wrapper .rdw-option-wrapper,
+.rdw-image-wrapper .rdw-option-wrapper,
+.rdw-remove-wrapper .rdw-option-wrapper {
+  margin: 0px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 6px;
+}
+
+.rdw-embedded-modal,
+.rdw-image-modal,
+.rdw-emoji-modal,
+.rdw-dropdown-optionwrapper {
+  box-shadow: 3px 3px 5px #05050a !important;
+}
+
+.rdw-remove-wrapper .rdw-option-wrapper:active {
+  background-color: #7d5465;
+}
+
+.rdw-option-active,
+.rdw-dropdown-wrapper[aria-expanded="true"],
+.rdw-embedded-wrapper[aria-expanded="true"],
+.rdw-emoji-wrapper[aria-expanded="true"],
+.rdw-image-wrapper[aria-expanded="true"] {
+  box-shadow: 1.3px 1.3px 0px #7d5465 inset !important;
+  background-color: #e198b6 !important;
+}
+
+.rdw-dropdownoption-active {
+  border: 1px solid #c887a2;
+  box-shadow: 1px 1px 0px #7d5465 inset !important;
+  background-color: #e198b6 !important;
+}
+
+.rdw-editor-toolbar {
+  justify-content: center;
+  border: none;
+}
+
+.rdw-embedded-modal-header-label,
+.rdw-image-modal-header-label-highlighted {
+  border: none;
+  border-bottom: none;
+}
+
+.rdw-image-modal-header {
+  margin: 0;
+}
+
+.rdw-embedded-modal-header-option,
+.rdw-image-modal-header-option {
+  width: 100%;
+  font-family: "Anton", sans-serif;
+  font-size: 17px;
+  align-items: flex-start;
+}
+
+.rdw-embedded-modal-link-input,
+.rdw-image-modal-url-input {
+  margin: 3px 0;
+  height: 25px;
+}
+
+.rdw-embedded-modal-btn,
+.rdw-image-modal-btn {
+  background-color: #05050a;
+  color: #faa9cb;
+  border: 0;
+}
+
+.rdw-embedded-modal-btn:hover,
+.rdw-image-modal-btn:hover {
+  box-shadow: none;
+}
+
+.rdw-embedded-modal-btn:disabled,
+.rdw-image-modal-btn:disabled {
+  display: none;
 }
 
 /* styling the placeholders in different browsers */

@@ -110,7 +110,7 @@ class RegisterModal extends Component {
         </Button>
 
         <Modal
-          className="post-article-modal modal-lg"
+          className="post-article-modal modal-xl"
           isOpen={this.state.modal}
           toggle={this.toggle}
         >
@@ -139,8 +139,6 @@ class RegisterModal extends Component {
                 <Label for="body">Texto</Label>
                 <Editor
                   editorState={editorState}
-                  wrapperClassName="demo-wrapper"
-                  editorClassName="demo-editor"
                   onEditorStateChange={this.onEditorStateChange}
                   localization={{
                     locale: "pt"
@@ -149,7 +147,6 @@ class RegisterModal extends Component {
                     options: [
                       "inline",
                       "blockType",
-                      "fontSize",
                       "list",
                       "textAlign",
                       "link",
@@ -160,7 +157,6 @@ class RegisterModal extends Component {
                       "history"
                     ],
                     inline: {
-                      inDropdown: true,
                       options: ["bold", "italic", "underline", "strikethrough"]
                     },
                     blockType: {
