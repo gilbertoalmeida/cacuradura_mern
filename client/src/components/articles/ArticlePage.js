@@ -45,7 +45,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
           ></img>
         </Link>
         <br />
-        <div>{ReactHtmlParser(article.body)}</div>
+        <div className="article-body">{ReactHtmlParser(article.body)}</div>
       </div>
     </Fragment>
   );
