@@ -130,7 +130,7 @@ class AuthNavBar extends Component {
       <div>
         <Navbar
           fixed="top"
-          style={{ backgroundColor: "#f02d0a70" }}
+          style={{ backgroundColor: "#f02d0a70", flexFlow: "wrap" }}
           expand="md"
           className="main-box-element navbar-dark"
         >
@@ -146,10 +146,12 @@ class AuthNavBar extends Component {
             </NavbarBrand>
             {isAuthenticated ? authLinks : guestLinks}
           </Container>
-          {this.state.msg ? (
-            <Alert color="danger">{this.state.msg}</Alert>
-          ) : null}{" "}
-          {/* operator to show the alert only is there is an error */}
+          <Container style={{ display: "block" }}>
+            {this.state.msg ? (
+              <Alert color="danger">{this.state.msg}</Alert>
+            ) : null}{" "}
+            {/* operator to show the alert only is there is an error */}
+          </Container>
         </Navbar>
       </div>
     );
