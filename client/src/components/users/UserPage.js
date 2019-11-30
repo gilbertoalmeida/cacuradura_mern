@@ -121,7 +121,9 @@ const UserPage = ({
                           ></img>
                         </Link>
                         <br />
-                        <div>{ReactHtmlParser(body)}</div>
+                        <div className="article-body">
+                          {ReactHtmlParser(body)}
+                        </div>
                       </div>
                     </ListGroupItem>
                   ))}

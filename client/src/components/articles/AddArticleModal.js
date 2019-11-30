@@ -115,23 +115,17 @@ class RegisterModal extends Component {
           toggle={this.toggle}
         >
           <ModalHeader toggle={this.toggle}>
-            Conta pra nós como é ser cacura pra você
+            Conta pra nós como é ser cacura pra você, {this.props.user.username}
           </ModalHeader>
           <ModalBody>
-            {this.state.msg ? (
-              <Alert className="alert-danger">{this.state.msg}</Alert>
-            ) : null}
-            {/* operator to show the alert only is there is an error */}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="author">Autor: {this.props.user.username}</Label>
-                <br />
                 <Label for="title">Título</Label>
                 <Input
                   type="text"
                   name="title"
                   id="title"
-                  placeholder="Um titulo bem bonito"
+                  placeholder="Dê um título bem bonito"
                   className="mb-3"
                   onChange={this.titleonChange}
                 />
@@ -176,6 +170,12 @@ class RegisterModal extends Component {
                     history: { inDropdown: true }
                   }}
                 />
+                {this.state.msg ? (
+                  <Alert className="add-article-alert alert-danger">
+                    {this.state.msg}
+                  </Alert>
+                ) : null}
+                {/* operator to show the alert only is there is an error */}
                 <Button className="button-form-top submit-post-article" block>
                   Postar
                 </Button>
