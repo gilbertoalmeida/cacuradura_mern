@@ -14,6 +14,7 @@ https://medium.com/@ryandrewjohnson/adding-multi-language-support-to-your-react-
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "draft-js/dist/Draft.css";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./App.css";
 
 class App extends Component {

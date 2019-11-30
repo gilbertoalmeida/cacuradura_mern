@@ -15,7 +15,8 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { addArticle } from "../../actions/articleActions";
 import { clearErrors } from "../../actions/errorActions";
-import { Editor, EditorState, RichUtils } from "draft-js";
+import { EditorState } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
 import { stateToHTML } from "draft-js-export-html";
 
 class RegisterModal extends Component {
@@ -23,7 +24,6 @@ class RegisterModal extends Component {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
     this.onChange = editorState => this.setState({ editorState });
-    this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
 
   state = {
@@ -53,15 +53,6 @@ class RegisterModal extends Component {
     }
   }
 
-  handleKeyCommand(command, editorState) {
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-    if (newState) {
-      this.onChange(newState);
-      return "handled";
-    }
-    return "not-handled";
-  }
-
   toggle = () => {
     this.props.clearErrors(); //calling this so that the error alert doesnt stay in the modal after you close and open
     this.setState({
@@ -71,6 +62,12 @@ class RegisterModal extends Component {
 
   titleonChange = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onEditorStateChange = editorState => {
+    this.setState({
+      editorState
+    });
   };
 
   onSubmit = e => {
@@ -105,6 +102,7 @@ class RegisterModal extends Component {
   };
 
   render() {
+    const { editorState } = this.state;
     return (
       <div>
         <Button className="button-form-top post-article" onClick={this.toggle}>
@@ -112,40 +110,72 @@ class RegisterModal extends Component {
         </Button>
 
         <Modal
-          className="post-article-modal modal-lg"
+          className="post-article-modal modal-xl"
           isOpen={this.state.modal}
           toggle={this.toggle}
         >
           <ModalHeader toggle={this.toggle}>
-            Conta pra nós como é ser cacura pra você
+            Conta pra nós como é ser cacura pra você, {this.props.user.username}
           </ModalHeader>
           <ModalBody>
-            {this.state.msg ? (
-              <Alert className="alert-danger">{this.state.msg}</Alert>
-            ) : null}
-            {/* operator to show the alert only is there is an error */}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="author">Autor: {this.props.user.username}</Label>
-                <br />
                 <Label for="title">Título</Label>
                 <Input
                   type="text"
                   name="title"
                   id="title"
-                  placeholder="Um titulo bem bonito"
+                  placeholder="Dê um título bem bonito"
                   className="mb-3"
                   onChange={this.titleonChange}
                 />
 
                 <Label for="body">Texto</Label>
                 <Editor
-                  placeholder="draft js editor here"
-                  editorState={this.state.editorState}
-                  handleKeyCommand={this.handleKeyCommand}
-                  onChange={this.onChange}
-                  className="draft-editor"
+                  editorState={editorState}
+                  onEditorStateChange={this.onEditorStateChange}
+                  localization={{
+                    locale: "pt"
+                  }}
+                  toolbar={{
+                    options: [
+                      "inline",
+                      "blockType",
+                      "list",
+                      "textAlign",
+                      "link",
+                      "embedded",
+                      "emoji",
+                      "image",
+                      "remove",
+                      "history"
+                    ],
+                    inline: {
+                      options: ["bold", "italic", "underline", "strikethrough"]
+                    },
+                    blockType: {
+                      options: [
+                        "Normal",
+                        "H2",
+                        "H3",
+                        "H4",
+                        "H5",
+                        "H6",
+                        "Blockquote"
+                      ]
+                    },
+                    list: { inDropdown: true },
+                    textAlign: { inDropdown: true },
+                    link: { inDropdown: true },
+                    history: { inDropdown: true }
+                  }}
                 />
+                {this.state.msg ? (
+                  <Alert className="add-article-alert alert-danger">
+                    {this.state.msg}
+                  </Alert>
+                ) : null}
+                {/* operator to show the alert only is there is an error */}
                 <Button className="button-form-top submit-post-article" block>
                   Postar
                 </Button>
