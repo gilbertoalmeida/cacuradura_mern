@@ -79,7 +79,7 @@ header h2 {
   text-align: justify;
 }
 
-.main-box-element:not(.navbar) {
+.main-box-element:not(.navbar):not(.post-article-wrap) {
   margin-top: 30px;
 }
 
@@ -415,12 +415,8 @@ time {
   font-family: "Rokkitt", serif;
 }
 
-.article-tell-us {
-  font-family: "Anton", sans-serif;
-  font-size: 22px;
-  text-transform: uppercase;
-  border-bottom: 1px solid black;
-  max-width: 90%;
+.post-article-wrap {
+  margin-top: 70px;
 }
 
 .add-article-form .title-input,
@@ -434,10 +430,21 @@ time {
   box-shadow: none;
   outline: none;
   border: none;
-  font-size: 17px;
   color: #05050a;
   box-shadow: none;
   background-color: #f02d0a;
+}
+
+.public-DraftEditor-content,
+.public-DraftEditor-content:focus {
+  font-size: 25px;
+}
+
+@media (max-width: 766px) {
+  .public-DraftEditor-content,
+  .public-DraftEditor-content:focus {
+    font-size: 18px;
+  }
 }
 
 .add-article-form .title-input,
@@ -449,6 +456,7 @@ time {
   margin-top: 15px;
   margin-bottom: 0px;
   padding: 0;
+  height: 36px;
 }
 
 .DraftEditor-root,
@@ -462,10 +470,20 @@ time {
   height: 100%;
 }
 
+.public-DraftEditor-content {
+  min-height: 50vh;
+}
+
 .public-DraftEditorPlaceholder-root {
   z-index: 2;
-  font-size: 17px;
+  font-size: 25px;
   color: #05050a8c;
+}
+
+@media (max-width: 766px) {
+  .public-DraftEditorPlaceholder-root {
+    font-size: 18px;
+  }
 }
 
 .submit-register,
@@ -482,6 +500,10 @@ time {
 
 .public-DraftStyleDefault-block {
   margin: 0;
+}
+
+.rdw-editor-wrapper {
+  margin-top: 20px;
 }
 
 .rdw-dropdown-wrapper:hover,
