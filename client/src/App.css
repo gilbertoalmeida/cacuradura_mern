@@ -419,6 +419,26 @@ time {
   margin-top: 70px;
 }
 
+.modal-header {
+  border-bottom: 1px solid black;
+}
+
+.modal-header,
+.modal-body {
+  background-color: #faa9cb;
+}
+
+.modal-title {
+  font-family: "Anton", sans-serif;
+}
+
+.modal-body label {
+  margin-top: 0.5rem;
+  font-size: 25px;
+}
+
+.modal-body input,
+.modal-body input:focus,
 .add-article-form .title-input,
 .add-article-form .title-input:focus,
 .DraftEditor-root,
@@ -432,7 +452,28 @@ time {
   border: none;
   color: #05050a;
   box-shadow: none;
+}
+
+.modal-body input,
+.modal-body input:focus {
+  background-color: #faa9cb;
+}
+
+.add-article-form .title-input,
+.add-article-form .title-input:focus,
+.DraftEditor-root,
+.DraftEditor-root:focus,
+.DraftEditor-editorContainer,
+.DraftEditor-editorContainer:focus,
+.public-DraftEditor-content,
+.public-DraftEditor-content:focus {
   background-color: #f02d0a;
+}
+
+.modal-body input,
+.modal-body input:focus {
+  border-radius: 5px 5px 0 0;
+  border-bottom: 2px solid black;
 }
 
 .public-DraftEditor-content,
@@ -736,6 +777,7 @@ time {
 
 /* styling the placeholders in different browsers */
 
+.modal-body input::-webkit-input-placeholder,
 .field-form-top::-webkit-input-placeholder,
 .rdw-embedded-modal-link-input::-webkit-input-placeholder /* Chrome/Opera/Safari */
  {
@@ -743,6 +785,7 @@ time {
   font-family: "Rokkitt", serif;
   font-size: 15px;
 }
+.modal-body input::-moz-placeholder,
 .field-form-top::-moz-placeholder,
 .rdw-embedded-modal-link-input::-moz-placeholder /* Firefox 19+ */
  {
@@ -750,6 +793,7 @@ time {
   font-family: "Rokkitt", serif;
   font-size: 15px;
 }
+.modal-body input:-ms-input-placeholder,
 .field-form-top:-ms-input-placeholder,
 .rdw-embedded-modal-link-input:-ms-input-placeholder /* IE 10+ */
  {
@@ -757,6 +801,7 @@ time {
   font-family: "Rokkitt", serif;
   font-size: 15px;
 }
+.modal-body input:-moz-placeholder,
 .field-form-top:-moz-placeholder,
 .rdw-embedded-modal-link-input:-moz-placeholder /* Firefox 18- */
  {
