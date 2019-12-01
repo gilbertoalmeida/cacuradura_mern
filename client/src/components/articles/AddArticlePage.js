@@ -127,7 +127,6 @@ class AddArticlePage extends Component {
                     "list",
                     "textAlign",
                     "link",
-                    "embedded",
                     "emoji",
                     "image",
                     "remove",
