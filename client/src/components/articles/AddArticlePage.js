@@ -125,7 +125,6 @@ class AddArticlePage extends Component {
                     "inline",
                     "blockType",
                     "list",
-                    "textAlign",
                     "link",
                     "emoji",
                     "image",
