@@ -12,7 +12,7 @@ const Article = require("../../models/Article");
 // @desc    Get All articles
 // @access  Public
 router.get("/", (req, res) => {
-  Article.find()
+  Article.find({ homepage: true })
     .sort({ date: -1 })
     .then(articles => res.json(articles));
 });
