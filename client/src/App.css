@@ -224,10 +224,25 @@ time {
   content: close-quote;
 }
 
-.article-body p {
+.article-body p,
+.article-body ul,
+.article-body ol {
   background: none;
   font-family: "Rokkitt", serif;
   font-size: 25px;
+}
+
+.article-body ul li,
+.article-body ol li {
+  margin-left: 1em;
+}
+
+.article-body ul {
+  list-style-type: disc;
+}
+
+.article-body ul ul {
+  list-style-type: circle;
 }
 
 .article-body p a {
@@ -250,7 +265,9 @@ time {
     font-size: 16px;
   }
 
-  .article-body p {
+  .article-body p,
+  .article-body ul,
+  .article-body ol {
     font-size: 18px;
   }
 }
@@ -599,6 +616,7 @@ time {
 .rdw-image-wrapper,
 .rdw-remove-wrapper,
 .rdw-embedded-modal,
+.rdw-link-modal,
 .rdw-image-modal,
 .rdw-emoji-modal {
   border: 1px solid #05050a;
@@ -607,6 +625,7 @@ time {
 
 .rdw-embedded-modal-link-input,
 .rdw-embedded-modal-size-input,
+.rdw-link-modal-input,
 .rdw-image-modal-url-input,
 .rdw-image-modal-size-input {
   border: none;
@@ -636,7 +655,12 @@ time {
   padding: 6px;
 }
 
+.rdw-link-modal {
+  height: 235px;
+}
+
 .rdw-embedded-modal,
+.rdw-link-modal,
 .rdw-image-modal,
 .rdw-emoji-modal,
 .rdw-dropdown-optionwrapper {
@@ -678,6 +702,7 @@ time {
 }
 
 .rdw-embedded-modal-header-option,
+.rdw-link-modal-label,
 .rdw-image-modal-header-option {
   width: 100%;
   font-family: "Anton", sans-serif;
@@ -692,6 +717,7 @@ time {
 }
 
 .rdw-embedded-modal-btn,
+.rdw-link-modal-btn,
 .rdw-image-modal-btn {
   background-color: #05050a;
   color: #faa9cb;
@@ -699,11 +725,13 @@ time {
 }
 
 .rdw-embedded-modal-btn:hover,
+.rdw-link-modal-btn:hover,
 .rdw-image-modal-btn:hover {
   box-shadow: none;
 }
 
 .rdw-embedded-modal-btn:disabled,
+.rdw-link-modal-btn:disabled,
 .rdw-image-modal-btn:disabled {
   display: none;
 }
@@ -778,6 +806,11 @@ time {
 .public-DraftEditor-content h6 {
   margin-top: 0.1em;
   color: #565d68;
+}
+
+.public-DraftStyleDefault-ol,
+.public-DraftStyleDefault-ul {
+  margin: 0;
 }
 
 .rdw-editor-main blockquote {
