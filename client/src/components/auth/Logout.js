@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import { Button } from "reactstrap";
 import { connect } from "react-redux";
 import { logout } from "../../actions/authActions";
@@ -9,10 +10,18 @@ class Logout extends Component {
     logout: PropTypes.func.isRequired
   };
 
+  logoutProcedure = () => {
+    this.props.history.push("/");
+    this.props.logout();
+  };
+
   render() {
     return (
       <Fragment>
-        <Button className="button-form-top logout" onClick={this.props.logout}>
+        <Button
+          className="button-form-top logout"
+          onClick={this.logoutProcedure}
+        >
           Deslogar
         </Button>
       </Fragment>
@@ -23,4 +32,4 @@ class Logout extends Component {
 export default connect(
   null,
   { logout }
-)(Logout);
+)(withRouter(Logout));
