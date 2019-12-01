@@ -42,7 +42,9 @@ const UserPage = ({
   };
 
   return loading || user === null ? (
-    <h1>Loading</h1>
+    <header>
+      <h1>Loading</h1>
+    </header>
   ) : (
     <Fragment>
       <header className="App-header">
@@ -81,10 +83,10 @@ const UserPage = ({
           <TabPane tabId="1">
             <Container>
               {articles.length === 0 ? (
-                <>
+                <header>
                   <h2> {"><((((º>"}</h2>
                   <h2>Essa cacura ainda nao postou nenhum artigo</h2>
-                </>
+                </header>
               ) : (
                 <ListGroup>
                   {articles.map(({ _id, title, date, author, body }) => (
@@ -120,6 +122,7 @@ const UserPage = ({
                             alt="Foto de um girassol murcho com o scripting de'A cacurice vem' por cima"
                           ></img>
                         </Link> */}
+                        <br />
                         <br />
                         <div className="article-body">
                           {ReactHtmlParser(body)}

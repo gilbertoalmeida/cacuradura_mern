@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
+import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { addArticle } from "../../actions/articleActions";
 import { clearErrors } from "../../actions/errorActions";
 import { EditorState } from "draft-js";
@@ -84,17 +84,9 @@ class AddArticlePage extends Component {
 
   render() {
     const { editorState } = this.state;
+    let datenow = Date.now();
     return (
       <div>
-        <header>
-          <h1>
-            Criar<span>Artigo</span>{" "}
-          </h1>
-        </header>
-        <div className="article-tell-us">
-          Conta pra nós como é ser cacura pra você,{" "}
-          {/* {this.props.user.username} */}
-        </div>
         <div className="main-box-element post-article-wrap">
           <Form className="add-article-form" onSubmit={this.onSubmit}>
             <FormGroup>
@@ -106,10 +98,25 @@ class AddArticlePage extends Component {
                 className="title-input"
                 onChange={this.titleonChange}
               />
+              <time dateTime={datenow}>
+                §}>{" "}
+                {new Date(datenow).getDate() +
+                  "/" +
+                  (new Date(datenow).getMonth() + 1) +
+                  "/" +
+                  new Date(datenow).getFullYear()}
+                , por{" "}
+                <Link
+                  to={`/users/${this.props.user._id}`}
+                  className="user-link link"
+                >
+                  {this.props.user.username}
+                </Link>{" "}
+              </time>
               <Editor
                 editorState={editorState}
                 onEditorStateChange={this.onEditorStateChange}
-                placeholder="Desabafa aqui..."
+                placeholder="Conta pra nós como é ser cacura pra você..."
                 localization={{
                   locale: "pt"
                 }}
