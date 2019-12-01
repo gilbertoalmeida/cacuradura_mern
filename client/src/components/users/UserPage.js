@@ -114,12 +114,12 @@ const UserPage = ({
                             {author.username}
                           </Link>
                         </time>
-                        <Link className="link" to={`/articles/${_id}`}>
+                        {/* <Link className="link" to={`/articles/${_id}`}>
                           <img
                             src="/Assets/a-cacurice-vem.png"
                             alt="Foto de um girassol murcho com o scripting de'A cacurice vem' por cima"
                           ></img>
-                        </Link>
+                        </Link> */}
                         <br />
                         <div className="article-body">
                           {ReactHtmlParser(body)}
