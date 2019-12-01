@@ -7,7 +7,8 @@ import {
   Nav,
   NavItem,
   Container,
-  Alert
+  Alert,
+  Button
 } from "reactstrap";
 import { connect } from "react-redux"; //access the state
 import PropTypes from "prop-types";
@@ -16,7 +17,6 @@ import { Link } from "react-router-dom";
 import RegisterModal from "./auth/RegisterModal";
 import LoginForm from "./auth/LoginForm";
 import Logout from "./auth/Logout";
-import AddArticleModal from "./articles/AddArticleModal";
 
 class AuthNavBar extends Component {
   state = {
@@ -100,7 +100,11 @@ class AuthNavBar extends Component {
               </span>
             </NavItem>
             <NavItem>
-              <AddArticleModal />
+              <Link to={`/articles/addarticle`}>
+                <Button className="button-form-top post-article">
+                  Postar um artigo
+                </Button>
+              </Link>
             </NavItem>
             <NavItem>
               <Logout />

@@ -79,7 +79,7 @@ header h2 {
   text-align: justify;
 }
 
-.main-box-element:not(.navbar) {
+.main-box-element:not(.navbar):not(.post-article-wrap) {
   margin-top: 30px;
 }
 
@@ -93,7 +93,9 @@ header h2 {
   header h2 {
     font-size: 4vw;
   }
+}
 
+@media (max-width: 865px) {
   .main-box-element {
     max-width: 100%;
   }
@@ -409,8 +411,12 @@ time {
 }
 
 .register-modal *,
-.post-article-modal * {
+.post-article-wrap * {
   font-family: "Rokkitt", serif;
+}
+
+.post-article-wrap {
+  margin-top: 70px;
 }
 
 .modal-header {
@@ -433,6 +439,8 @@ time {
 
 .modal-body input,
 .modal-body input:focus,
+.add-article-form .title-input,
+.add-article-form .title-input:focus,
 .DraftEditor-root,
 .DraftEditor-root:focus,
 .DraftEditor-editorContainer,
@@ -442,10 +450,24 @@ time {
   box-shadow: none;
   outline: none;
   border: none;
-  font-size: 17px;
   color: #05050a;
   box-shadow: none;
+}
+
+.modal-body input,
+.modal-body input:focus {
   background-color: #faa9cb;
+}
+
+.add-article-form .title-input,
+.add-article-form .title-input:focus,
+.DraftEditor-root,
+.DraftEditor-root:focus,
+.DraftEditor-editorContainer,
+.DraftEditor-editorContainer:focus,
+.public-DraftEditor-content,
+.public-DraftEditor-content:focus {
+  background-color: #f02d0a;
 }
 
 .modal-body input,
@@ -454,11 +476,33 @@ time {
   border-bottom: 2px solid black;
 }
 
+.public-DraftEditor-content,
+.public-DraftEditor-content:focus {
+  font-size: 25px;
+}
+
+@media (max-width: 766px) {
+  .public-DraftEditor-content,
+  .public-DraftEditor-content:focus {
+    font-size: 18px;
+  }
+}
+
+.add-article-form .title-input,
+.add-article-form .title-input:focus {
+  font-family: "Anton", sans-serif;
+  font-size: 25px;
+  color: #05050c;
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  padding: 0;
+  height: 36px;
+}
+
 .DraftEditor-root,
 .DraftEditor-root:focus {
-  border: 2px solid black;
-  padding-top: 5px;
-  height: 80vh;
+  padding: 5px 0px;
   overflow-y: auto;
 }
 
@@ -468,7 +512,19 @@ time {
 }
 
 .public-DraftEditor-content {
-  padding: 5px 10px;
+  min-height: 50vh;
+}
+
+.public-DraftEditorPlaceholder-root {
+  z-index: 2;
+  font-size: 25px;
+  color: #05050a8c;
+}
+
+@media (max-width: 766px) {
+  .public-DraftEditorPlaceholder-root {
+    font-size: 18px;
+  }
 }
 
 .submit-register,
@@ -487,6 +543,10 @@ time {
   margin: 0;
 }
 
+.rdw-editor-wrapper {
+  margin-top: 20px;
+}
+
 .rdw-dropdown-wrapper:hover,
 .rdw-inline-wrapper .rdw-option-wrapper:hover,
 .rdw-dropdown-optionwrapper:hover,
@@ -498,7 +558,7 @@ time {
 }
 
 .rdw-editor-toolbar {
-  background-color: #faa9cb;
+  background-color: #f02d0a;
 }
 
 .rdw-inline-wrapper .rdw-option-wrapper:hover,
@@ -523,6 +583,15 @@ time {
 .rdw-image-modal,
 .rdw-emoji-modal {
   border: 1px solid #05050a;
+  background-color: #faa9cb;
+}
+
+.rdw-embedded-modal-link-input,
+.rdw-embedded-modal-size-input,
+.rdw-image-modal-url-input,
+.rdw-image-modal-size-input {
+  border: none;
+  border-bottom: 2px solid #05050a;
   background-color: #faa9cb;
 }
 
@@ -708,58 +777,66 @@ time {
 
 /* styling the placeholders in different browsers */
 
-.field-form-top::-webkit-input-placeholder /* Chrome/Opera/Safari */
+.modal-body input::-webkit-input-placeholder,
+.field-form-top::-webkit-input-placeholder,
+.rdw-embedded-modal-link-input::-webkit-input-placeholder /* Chrome/Opera/Safari */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
   font-size: 15px;
 }
-.field-form-top::-moz-placeholder /* Firefox 19+ */
+.modal-body input::-moz-placeholder,
+.field-form-top::-moz-placeholder,
+.rdw-embedded-modal-link-input::-moz-placeholder /* Firefox 19+ */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
   font-size: 15px;
 }
-.field-form-top:-ms-input-placeholder /* IE 10+ */
+.modal-body input:-ms-input-placeholder,
+.field-form-top:-ms-input-placeholder,
+.rdw-embedded-modal-link-input:-ms-input-placeholder /* IE 10+ */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
   font-size: 15px;
 }
-.field-form-top:-moz-placeholder /* Firefox 18- */
+.modal-body input:-moz-placeholder,
+.field-form-top:-moz-placeholder,
+.rdw-embedded-modal-link-input:-moz-placeholder /* Firefox 18- */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
   font-size: 15px;
 }
 
-.modal-body input::-webkit-input-placeholder,
-.modal-body textarea::-webkit-input-placeholder  /* Chrome/Opera/Safari */
+.add-article-form .title-input::-webkit-input-placeholder  /* Chrome/Opera/Safari */
  {
-  color: #05050a;
-  font-family: "Rokkitt", serif;
-  font-size: 17px;
+  font-family: "Anton", sans-serif;
+  font-size: 25px;
+  color: #05050a8c;
+  text-transform: uppercase;
 }
-.modal-body input::-moz-placeholder,
-.modal-body textarea::-moz-placeholder /* Firefox 19+ */
+.add-article-form .title-input::-moz-placeholder /* Firefox 19+ */
  {
-  color: #05050a;
-  font-family: "Rokkitt", serif;
-  font-size: 17px;
+  font-family: "Anton", sans-serif;
+  font-size: 25px;
+  color: #05050a8c;
+  text-transform: uppercase;
 }
-.modal-body input:-ms-input-placeholder,
-.modal-body textarea:-ms-input-placeholder /* IE 10+ */
+.add-article-form .title-input:-ms-input-placeholder /* IE 10+ */
  {
-  color: #05050a;
-  font-family: "Rokkitt", serif;
-  font-size: 17px;
+  font-family: "Anton", sans-serif;
+  font-size: 25px;
+  color: #05050a8c;
+  text-transform: uppercase;
 }
-.modal-body input:-moz-placeholder,
-.modal-body textarea:-moz-placeholder /* Firefox 18- */
+.add-article-form .title-input:-moz-placeholder /* Firefox 18- */
  {
-  color: #05050a;
-  font-family: "Rokkitt", serif;
-  font-size: 17px;
+  font-family: "Anton", sans-serif;
+  font-size: 25px;
+  color: #05050a8c;
+  text-transform: uppercase;
 }
 
 /* User profile */

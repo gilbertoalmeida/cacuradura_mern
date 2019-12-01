@@ -14,7 +14,9 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   // the loading page is kept bc article is null
 
   return loading || article === null ? (
-    <h1>Loading</h1>
+    <header>
+      <h1>Loading</h1>
+    </header>
   ) : (
     <Fragment>
       <header className="App-header">
@@ -38,12 +40,12 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
             {article.author.username}
           </Link>
         </time>
-        <Link className="link" to={`/articles/${article._id}`}>
+        {/* <Link className="link" to={`/articles/${article._id}`}>
           <img
             src="/Assets/a-cacurice-vem.png"
             alt="Foto de um girassol murcho com o scripting de'A cacurice vem' por cima"
           ></img>
-        </Link>
+        </Link> */}
         <br />
         <div className="article-body">{ReactHtmlParser(article.body)}</div>
       </div>
