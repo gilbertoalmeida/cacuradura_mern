@@ -389,7 +389,9 @@ time {
 .login,
 .login:hover,
 .post-article,
-.post-article:hover {
+.post-article:hover,
+.languages,
+.languages:hover {
   background: #05050a;
   color: #faa9cb;
   margin-top: 1px; /* to align with register button  */
@@ -403,6 +405,26 @@ time {
   background: #faa9cb;
   color: #05050a;
   margin-left: 30px;
+}
+
+.language-modal {
+  border: 1px solid #05050a;
+  background-color: #faa9cb;
+  box-shadow: 3px 3px 5px #05050a !important;
+  padding: 0;
+  min-width: 0;
+}
+
+.language-modal button {
+  padding: auto;
+}
+
+.language-modal button:hover {
+  background-color: #fccbdf;
+}
+
+.language-modal button button {
+  background-color: transparent;
 }
 
 .greeting-inside-collapse {

@@ -17,8 +17,32 @@ import { Link } from "react-router-dom";
 import RegisterModal from "./auth/RegisterModal";
 import LoginForm from "./auth/LoginForm";
 import Logout from "./auth/Logout";
+import LanguageToggle from "./LanguageToggle";
+
+import { renderToStaticMarkup } from "react-dom/server";
+import { withLocalize, Translate } from "react-localize-redux";
+import overallTranslations from "../translations/all_languages.json";
 
 class AuthNavBar extends Component {
+  constructor(props) {
+    super(props);
+
+    const chosenLanguage = window.localStorage.getItem("languageCode") || "en";
+
+    this.props.initialize({
+      languages: [
+        { name: "English", code: "en" },
+        { name: "Português", code: "pt" }
+      ],
+      translation: overallTranslations,
+      options: {
+        renderToStaticMarkup,
+        renderInnerHtml: true,
+        defaultLanguage: chosenLanguage
+      }
+    });
+  }
+
   state = {
     isOpen: false,
     msg: null
@@ -40,6 +64,17 @@ class AuthNavBar extends Component {
       } else {
         this.setState({ msg: null });
       }
+    }
+
+    const prevLangCode =
+      prevProps.activeLanguage && prevProps.activeLanguage.code;
+    const curLangCode =
+      this.props.activeLanguage && this.props.activeLanguage.code;
+
+    const hasLanguageChanged = prevLangCode !== curLangCode;
+
+    if (hasLanguageChanged) {
+      window.localStorage.setItem("languageCode", curLangCode);
     }
   }
 
@@ -85,7 +120,7 @@ class AuthNavBar extends Component {
                 <strong>
                   {user ? (
                     <div>
-                      Oi,{" "}
+                      <Translate id="authnavbar.greeting" />{" "}
                       <Link
                         to={`/users/${user._id}`}
                         className="user-link link"
@@ -102,7 +137,7 @@ class AuthNavBar extends Component {
             <NavItem>
               <Link to={`/articles/addarticle`}>
                 <Button className="button-form-top post-article">
-                  Postar um artigo
+                  <Translate id="authnavbar.postarticlebutton" />
                 </Button>
               </Link>
             </NavItem>
@@ -148,13 +183,14 @@ class AuthNavBar extends Component {
                 className="d-inline-block align-top"
               />
             </NavbarBrand>
+            <LanguageToggle />
             {isAuthenticated ? authLinks : guestLinks}
           </Container>
           <Container style={{ display: "block" }}>
             {this.state.msg ? (
               <Alert color="danger">{this.state.msg}</Alert>
             ) : null}{" "}
-            {/* operator to show the alert only is there is an error */}
+            {/* operator to show the alert only if there is an error */}
           </Container>
         </Navbar>
       </div>
@@ -167,7 +203,9 @@ const mapStateToProps = state => ({
   error: state.error
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(AuthNavBar);
+export default withLocalize(
+  connect(
+    mapStateToProps,
+    null
+  )(AuthNavBar)
+);

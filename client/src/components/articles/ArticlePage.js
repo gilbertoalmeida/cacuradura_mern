@@ -5,6 +5,8 @@ import { getArticle } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 import ReactHtmlParser from "react-html-parser";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   useEffect(() => {
     getArticle(match.params.id);
@@ -62,7 +64,9 @@ const mapStateToProps = state => ({
   article: state.article
 });
 
-export default connect(
-  mapStateToProps,
-  { getArticle }
-)(ArticlePage);
+export default withLocalize(
+  connect(
+    mapStateToProps,
+    { getArticle }
+  )(ArticlePage)
+);

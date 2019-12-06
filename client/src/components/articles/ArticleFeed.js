@@ -6,6 +6,8 @@ import { getArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 import ReactHtmlParser from "react-html-parser";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 class ArticleFeed extends Component {
   static propTypes = {
     getArticles: PropTypes.func.isRequired,
@@ -61,7 +63,9 @@ const mapStateToProps = state => ({
   article: state.article
 });
 
-export default connect(
-  mapStateToProps,
-  { getArticles }
-)(ArticleFeed);
+export default withLocalize(
+  connect(
+    mapStateToProps,
+    { getArticles }
+  )(ArticleFeed)
+);
