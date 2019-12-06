@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 class LoginForm extends Component {
   state = {
     username: "",
@@ -52,18 +54,16 @@ class LoginForm extends Component {
       <div>
         <Form inline onSubmit={this.onSubmit} className="form-top">
           <FormGroup>
-            {/* <Label for="username">Usuário</Label> */}
             <Input
               type="text"
               name="username"
               id="username"
-              placeholder="Nome de cacura"
+              placeholder="nome de cacura"
               onChange={this.onChange}
               className="field-form-top"
             />
           </FormGroup>
           <FormGroup>
-            {/* <Label for="password">Senha</Label> */}
             <Input
               type="password"
               name="password"
@@ -73,7 +73,9 @@ class LoginForm extends Component {
               className="field-form-top"
             />
           </FormGroup>
-          <Button className="button-form-top login">Entrar</Button>
+          <Button className="button-form-top login">
+            <Translate id="authnavbar.loginbutton" />
+          </Button>
         </Form>
       </div>
     );
@@ -85,7 +87,9 @@ const mapStateToProps = state => ({
   error: state.error
 });
 
-export default connect(
-  mapStateToProps,
-  { login }
-)(LoginForm);
+export default withLocalize(
+  connect(
+    mapStateToProps,
+    { login }
+  )(LoginForm)
+);

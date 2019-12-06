@@ -1,0 +1,14 @@
+{
+  "header": {
+    "call1": ["Cacuras in the making", "Cacuras em formação"],
+    "call2": ["Follow this metamorphose", "Acompanhe essa metamorfose"]
+  },
+  "authnavbar": {
+    "greeting": ["Hi,", "Oi,"],
+    "postarticlebutton": ["Post an article", "Postar um artigo"],
+    "logoutbutton": ["Log out", "Sair"],
+    "loginbutton": ["Log in", "Entrar"],
+    "username": ["username", "nome de Cacura"],
+    "senha": ["password", "senha"]
+  }
+}

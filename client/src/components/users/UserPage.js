@@ -21,6 +21,8 @@ import { getUser } from "../../actions/userActions";
 import { getUserArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 import ReactHtmlParser from "react-html-parser";
 
 const UserPage = ({
@@ -65,7 +67,7 @@ const UserPage = ({
                 toggle("1");
               }}
             >
-              Artigos
+              Artigo
             </NavLink>
           </NavItem>
           <NavItem>
@@ -172,7 +174,9 @@ const mapStateToProps = state => ({
   article: state.article
 });
 
-export default connect(
-  mapStateToProps,
-  { getUser, getUserArticles }
-)(UserPage);
+export default withLocalize(
+  connect(
+    mapStateToProps,
+    { getUser, getUserArticles }
+  )(UserPage)
+);
