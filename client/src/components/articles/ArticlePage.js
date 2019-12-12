@@ -23,8 +23,14 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
     <Fragment>
       <header className="App-header">
         <h1>
-          um<span>artigo</span>
+          <Translate id="header.a(article)"></Translate>
+          <span>
+            <Translate id="header.article"></Translate>
+          </span>
         </h1>
+        <h2>
+          <Translate id="header.still_working"></Translate>
+        </h2>
       </header>
       <div className="main-box-element single-article">
         <Link to={`/articles/${article._id}`} className="article-title link">
@@ -37,17 +43,11 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
             (new Date(article.date).getMonth() + 1) +
             "/" +
             new Date(article.date).getFullYear()}
-          , por{" "}
+          <Translate id="article.by"></Translate>{" "}
           <Link to={`/users/${article.author._id}`} className="user-link link">
             {article.author.username}
           </Link>
         </time>
-        {/* <Link className="link" to={`/articles/${article._id}`}>
-          <img
-            src="/Assets/a-cacurice-vem.png"
-            alt="Foto de um girassol murcho com o scripting de'A cacurice vem' por cima"
-          ></img>
-        </Link> */}
         <br />
         <div className="article-body">{ReactHtmlParser(article.body)}</div>
       </div>

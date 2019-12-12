@@ -31,8 +31,8 @@ class AuthNavBar extends Component {
 
     this.props.initialize({
       languages: [
-        { name: "English", code: "en" },
-        { name: "Português", code: "pt" }
+        { name: "English", code: "en", icon: "uk_flag.png" },
+        { name: "Português", code: "pt", icon: "brazil_flag.png" }
       ],
       translation: overallTranslations,
       options: {

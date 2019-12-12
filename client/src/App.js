@@ -10,9 +10,6 @@ import Routes from "./components/routing/Routes";
 
 import { loadUser } from "./actions/authActions";
 
-/* For when I want to translate the app:
-https://medium.com/@ryandrewjohnson/adding-multi-language-support-to-your-react-redux-app-cf6e64250050 */
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "draft-js/dist/Draft.css";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -20,7 +17,7 @@ import "./App.css";
 
 class App extends Component {
   componentDidMount() {
-    store.dispatch(loadUser()); //being calles everytime the app mounts
+    store.dispatch(loadUser()); //being called everytime the app mounts
     //to check if there is a user
   }
 

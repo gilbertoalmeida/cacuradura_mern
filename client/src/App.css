@@ -389,13 +389,17 @@ time {
 .login,
 .login:hover,
 .post-article,
-.post-article:hover,
-.languages,
-.languages:hover {
+.post-article:hover {
   background: #05050a;
   color: #faa9cb;
   margin-top: 1px; /* to align with register button  */
   margin-left: 10px;
+}
+
+.languages,
+.languages:hover {
+  background: #490d02;
+  padding: 1px 2px;
 }
 
 .register,
@@ -416,7 +420,7 @@ time {
 }
 
 .language-modal button {
-  padding: auto;
+  padding: 1px 2px;
 }
 
 .language-modal button:hover {
@@ -903,6 +907,21 @@ time {
   color: #05050a;
   font-family: "Rokkitt", serif;
   font-size: 15px;
+}
+
+@media (max-width: 370px) {
+  .modal-body input::-webkit-input-placeholder {
+    font-size: 12.5px;
+  }
+  .modal-body input::-moz-placeholder {
+    font-size: 12.5px;
+  }
+  .modal-body input:-ms-input-placeholder {
+    font-size: 12.5px;
+  }
+  .modal-body input:-moz-placeholder {
+    font-size: 12.5px;
+  }
 }
 
 .add-article-form .title-input::-webkit-input-placeholder  /* Chrome/Opera/Safari */

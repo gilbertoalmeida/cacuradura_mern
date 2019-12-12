@@ -5,7 +5,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-import { withLocalize } from "react-localize-redux";
+import { withLocalize, Translate } from "react-localize-redux";
 
 const LanguageToggle = ({
   props,
@@ -20,14 +20,28 @@ const LanguageToggle = ({
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle className="button-form-top languages">
-        Languages
+        <Translate>
+          {({ translate }) => (
+            <img
+              src={translate("authnavbar.lang_icon")}
+              alt="country flag for language selection"
+              width="30px"
+              height="18px"
+            ></img>
+          )}
+        </Translate>
       </DropdownToggle>
       <DropdownMenu className="language-modal">
         {languages.map(lang => (
           <DropdownItem key={lang.code}>
-            <button onClick={() => setActiveLanguage(lang.code)}>
-              {lang.name}
-            </button>
+            <div onClick={() => setActiveLanguage(lang.code)}>
+              <img
+                src={`/${lang.icon}`}
+                alt="country flag for language selection"
+                width="30px"
+                height="18px"
+              ></img>
+            </div>
           </DropdownItem>
         ))}
       </DropdownMenu>
