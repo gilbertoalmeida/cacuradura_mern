@@ -36,17 +36,11 @@ class ArticleFeed extends Component {
                     (new Date(date).getMonth() + 1) +
                     "/" +
                     new Date(date).getFullYear()}
-                  , por{" "}
+                  <Translate id="article.by"></Translate>{" "}
                   <Link to={`/users/${author._id}`} className="user-link link">
                     {author.username}
                   </Link>
                 </time>
-                {/* <Link className="link" to={`/articles/${_id}`}>
-                  <img
-                    src="/Assets/a-cacurice-vem.png"
-                    alt="Foto de um girassol murcho com o scripting de'A cacurice vem' por cima"
-                  ></img>
-                </Link> */}
                 <br />
                 <br />
                 <div className="article-body">{ReactHtmlParser(body)}</div>

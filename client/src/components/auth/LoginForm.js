@@ -54,24 +54,32 @@ class LoginForm extends Component {
       <div>
         <Form inline onSubmit={this.onSubmit} className="form-top">
           <FormGroup>
-            <Input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="nome de cacura"
-              onChange={this.onChange}
-              className="field-form-top"
-            />
+            <Translate>
+              {({ translate }) => (
+                <Input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder={translate("authnavbar.username_placeholder")}
+                  onChange={this.onChange}
+                  className="field-form-top"
+                />
+              )}
+            </Translate>
           </FormGroup>
           <FormGroup>
-            <Input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Senha"
-              onChange={this.onChange}
-              className="field-form-top"
-            />
+            <Translate>
+              {({ translate }) => (
+                <Input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder={translate("authnavbar.password_placeholder")}
+                  onChange={this.onChange}
+                  className="field-form-top"
+                />
+              )}
+            </Translate>
           </FormGroup>
           <Button className="button-form-top login">
             <Translate id="authnavbar.loginbutton" />
