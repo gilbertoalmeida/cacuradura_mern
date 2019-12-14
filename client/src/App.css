@@ -659,6 +659,10 @@ time {
   background-color: #faa9cb;
 }
 
+.rdw-block-dropdown {
+  width: 160px;
+}
+
 .rdw-inline-wrapper .rdw-option-wrapper,
 .rdw-embedded-wrapper,
 .rdw-emoji-wrapper,

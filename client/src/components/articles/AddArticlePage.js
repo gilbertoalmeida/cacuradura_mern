@@ -112,7 +112,7 @@ class AddArticlePage extends Component {
                   (new Date(datenow).getMonth() + 1) +
                   "/" +
                   new Date(datenow).getFullYear()}
-                , por{" "}
+                <Translate id="article.by"></Translate>{" "}
                 <Link
                   to={`/users/${this.props.user._id}`}
                   className="user-link link"
@@ -127,7 +127,7 @@ class AddArticlePage extends Component {
                     onEditorStateChange={this.onEditorStateChange}
                     placeholder={translate("add_article_page.body")}
                     localization={{
-                      locale: "pt"
+                      locale: translate("add_article_page.language")
                     }}
                     toolbar={{
                       options: [
