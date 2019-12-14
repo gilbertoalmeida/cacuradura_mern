@@ -1,0 +1,92 @@
+{
+  "header": {
+    "call1": ["Cacuras in the making", "Cacuras em formação"],
+    "call2": ["Follow this metamorphose", "Acompanhe essa metamorfose"],
+    "a(article)": ["an", "um"],
+    "a(cacura)": ["a", "uma"],
+    "article": ["article", "artigo"],
+    "still_working": [
+      "I'm still working on the design of this page. Chill out",
+      "Ainda não terminei o design dessa página. Relaxe"
+    ]
+  },
+  "authnavbar": {
+    "greeting": ["Hi,", "Oi,"],
+    "postarticlebutton": ["Post an article", "Postar um artigo"],
+    "logoutbutton": ["Log out", "Sair"],
+    "loginbutton": ["Log in", "Entrar"],
+    "registerbutton": ["Sign in", "Registre-se"],
+    "username_placeholder": ["cacura name", "nome de cacura"],
+    "password_placeholder": ["password", "senha"],
+    "lang_icon": ["/uk_flag.png", "/brazil_flag.png"]
+  },
+  "registermodal": {
+    "header": ["Tell us who you are:", "Conta pra nós quem você é:"],
+    "name": ["Name", "Nome"],
+    "email": ["Email", "Email"],
+    "username": ["Cacura Name", "Nome de Cacura"],
+    "password": ["Password", "Senha"],
+    "name_placeholder": [
+      "Your real, official, like-to-be-called name :)",
+      "Seu nome real, oficial, social :)"
+    ],
+    "email_placeholder": [
+      "We won't send you anything you don't ask for",
+      "Não mandaremos nada que você não peça"
+    ],
+    "username_placeholder": [
+      "An unreal, non-official one, to use around here",
+      "Um irreal, não oficial, pra usar por aqui"
+    ],
+    "password_placeholder": [
+      "Don't make a mistake, we won't confirm it",
+      "Não erre, porque aqui não tem confirmar"
+    ],
+    "submitbutton": ["Done", "Pronto"]
+  },
+  "article": {
+    "by": [", by", ", por"]
+  },
+  "add_article_page": {
+    "title": ["Title...", "Título..."],
+    "body": [
+      "Tell us how is being a cacura for you...",
+      "Conta pra nós como é ser uma cacura pra você..."
+    ],
+    "language": ["en", "pt"]
+  },
+  "user_page": {
+    "owner_phrase": [
+      "This is ${owner}'s profile",
+      "Esse é o perfil de ${owner}"
+    ],
+    "articles": ["Articles", "Artigos"],
+    "pictures": ["Pictures", "Fotos"]
+  },
+  "error_messages": {
+    "missing_credentials": [
+      "You have to fill in both fields, honey",
+      "Prencha os dois campos, fazendo o favor querida"
+    ],
+    "wrong_credentials": [
+      "Uh, that's a wrong cacura name or password",
+      "Ops, você errou o nome de cacura ou a senha"
+    ],
+    "missing_register_fields": [
+      "You have to fill in all the fields. Otherwise we wouldn't ask, darling",
+      "Tem que preencher tudo que tá aí embaixo, né? Se não eu nem perguntava, frô"
+    ],
+    "existing_email": [
+      "This email belongs to one of our cacuras already. Pls enter a new one",
+      "Esse email já é de uma cacura nossa. Por favor, escolha outro"
+    ],
+    "existing_username": [
+      "This cacura name is already used around here. Pls choose another one",
+      "Esse nome de cacura já está rodando por aqui. Por favor, escolha outro"
+    ],
+    "missing_title_text": [
+      "The article needs a title and a text, sweetie",
+      "O artigo precisa de um título e um texto, frô"
+    ]
+  }
+}

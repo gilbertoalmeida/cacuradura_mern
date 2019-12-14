@@ -16,22 +16,16 @@ router.post("/", (req, res) => {
 
   //Simple validation
   if (!username || !password) {
-    return res.status(400).json({ msg: "Prencha os dois campos, faz favor" });
+    return res.status(400).json({ msg: "missing_credentials" }); //this is now not the error message itself, but part of the id of the translation
   }
 
   //Check for existing user
   User.findOne({ username: username }).then(user => {
-    if (!user)
-      return res
-        .status(400)
-        .json({ msg: "Você errou o nome de cacura ou a senha" }); //check if its safe to say this
+    if (!user) return res.status(400).json({ msg: "wrong_credentials" }); //this is now not the error message itself, but part of the id of the translation
 
     //Validade the password
     bcrypt.compare(password, user.password).then(isMatch => {
-      if (!isMatch)
-        return res
-          .status(400)
-          .json({ msg: "Você errou o nome de cacura ou a senha" });
+      if (!isMatch) return res.status(400).json({ msg: "wrong_credentials" });
 
       jwt.sign(
         { _id: user._id }, // payload. I am sending the user id to verify actions later

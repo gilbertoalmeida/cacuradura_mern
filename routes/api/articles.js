@@ -40,10 +40,12 @@ router.get("/user/:id", (req, res) => {
 router.post("/add", auth, (req, res) => {
   const { title, body } = req.body;
 
+  console.log("body: " + body);
+
   //Simple validation
-  if (!title || !body) {
+  if (!title || body == "<p><br></p>") {
     return res.status(400).json({
-      msg: "O artigo precisa de um título e um texto, frô"
+      msg: "missing_title_text" //this is now not the error message itself, but part of the id of the translation
     });
   }
 

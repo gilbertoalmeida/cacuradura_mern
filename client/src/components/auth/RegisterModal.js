@@ -15,6 +15,8 @@ import PropTypes from "prop-types";
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 class RegisterModal extends Component {
   state = {
     modal: false,
@@ -85,7 +87,7 @@ class RegisterModal extends Component {
     return (
       <div>
         <Button className="button-form-top register" onClick={this.toggle}>
-          Registre-se
+          <Translate id="authnavbar.registerbutton"></Translate>
         </Button>
 
         <Modal
@@ -94,56 +96,91 @@ class RegisterModal extends Component {
           toggle={this.toggle}
         >
           <ModalHeader toggle={this.toggle}>
-            Conta pra nós quem você é:
+            <Translate id="registermodal.header"></Translate>
           </ModalHeader>
           <ModalBody>
             {this.state.msg ? (
-              <Alert className="alert-danger">{this.state.msg}</Alert>
+              <Translate>
+                {({ translate }) => (
+                  <Alert color="danger">
+                    {translate(`error_messages.${this.state.msg}`)}
+                  </Alert>
+                )}
+              </Translate>
             ) : null}
             {/* operator to show the alert only is there is an error */}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="name">Nome</Label>
-                <Input
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Seu nome real oficial social"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
+                <Label for="name">
+                  <Translate id="registermodal.name"></Translate>
+                </Label>
+                <Translate>
+                  {({ translate }) => (
+                    <Input
+                      type="text"
+                      name="name"
+                      id="name"
+                      placeholder={translate("registermodal.name_placeholder")}
+                      className="mb-3"
+                      onChange={this.onChange}
+                    />
+                  )}
+                </Translate>
 
-                <Label for="email">Email</Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Não mandaremos nada que você não peça"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
+                <Label for="email">
+                  <Translate id="registermodal.email"></Translate>
+                </Label>
+                <Translate>
+                  {({ translate }) => (
+                    <Input
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder={translate("registermodal.email_placeholder")}
+                      className="mb-3"
+                      onChange={this.onChange}
+                    />
+                  )}
+                </Translate>
 
-                <Label for="username">Nome de cacura</Label>
-                <Input
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="Um irreal, não oficial, pra usar por aqui"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
+                <Label for="username">
+                  <Translate id="registermodal.username"></Translate>
+                </Label>
+                <Translate>
+                  {({ translate }) => (
+                    <Input
+                      type="text"
+                      name="username"
+                      id="username"
+                      placeholder={translate(
+                        "registermodal.username_placeholder"
+                      )}
+                      className="mb-3"
+                      onChange={this.onChange}
+                    />
+                  )}
+                </Translate>
 
-                <Label for="password">Senha</Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Não erre, porque aqui não tem confirmar"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
+                <Label for="password">
+                  <Translate id="registermodal.password"></Translate>
+                </Label>
+                <Translate>
+                  {({ translate }) => (
+                    <Input
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder={translate(
+                        "registermodal.password_placeholder"
+                      )}
+                      className="mb-3"
+                      onChange={this.onChange}
+                    />
+                  )}
+                </Translate>
+
                 <Button className="button-form-top submit-register" block>
-                  Pronto
+                  <Translate id="registermodal.submitbutton"></Translate>
                 </Button>
               </FormGroup>
             </Form>
@@ -159,7 +196,9 @@ const mapStateToProps = state => ({
   error: state.error
 });
 
-export default connect(
-  mapStateToProps,
-  { register, clearErrors }
-)(RegisterModal);
+export default withLocalize(
+  connect(
+    mapStateToProps,
+    { register, clearErrors }
+  )(RegisterModal)
+);

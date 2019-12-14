@@ -396,6 +396,12 @@ time {
   margin-left: 10px;
 }
 
+.languages,
+.languages:hover {
+  background: #490d02;
+  padding: 1px 2px;
+}
+
 .register,
 .register:hover,
 .logout,
@@ -403,6 +409,26 @@ time {
   background: #faa9cb;
   color: #05050a;
   margin-left: 30px;
+}
+
+.language-modal {
+  border: 1px solid #05050a;
+  background-color: #faa9cb;
+  box-shadow: 3px 3px 5px #05050a !important;
+  padding: 0;
+  min-width: 0;
+}
+
+.language-modal button {
+  padding: 1px 2px;
+}
+
+.language-modal button:hover {
+  background-color: #fccbdf;
+}
+
+.language-modal button button {
+  background-color: transparent;
 }
 
 .greeting-inside-collapse {
@@ -631,6 +657,10 @@ time {
   border: none;
   border-bottom: 2px solid #05050a;
   background-color: #faa9cb;
+}
+
+.rdw-block-dropdown {
+  width: 160px;
 }
 
 .rdw-inline-wrapper .rdw-option-wrapper,
@@ -881,6 +911,21 @@ time {
   color: #05050a;
   font-family: "Rokkitt", serif;
   font-size: 15px;
+}
+
+@media (max-width: 370px) {
+  .modal-body input::-webkit-input-placeholder {
+    font-size: 12.5px;
+  }
+  .modal-body input::-moz-placeholder {
+    font-size: 12.5px;
+  }
+  .modal-body input:-ms-input-placeholder {
+    font-size: 12.5px;
+  }
+  .modal-body input:-moz-placeholder {
+    font-size: 12.5px;
+  }
 }
 
 .add-article-form .title-input::-webkit-input-placeholder  /* Chrome/Opera/Safari */

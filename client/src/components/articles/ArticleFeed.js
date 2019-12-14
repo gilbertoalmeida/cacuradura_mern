@@ -6,6 +6,8 @@ import { getArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 import ReactHtmlParser from "react-html-parser";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 class ArticleFeed extends Component {
   static propTypes = {
     getArticles: PropTypes.func.isRequired,
@@ -34,17 +36,11 @@ class ArticleFeed extends Component {
                     (new Date(date).getMonth() + 1) +
                     "/" +
                     new Date(date).getFullYear()}
-                  , por{" "}
+                  <Translate id="article.by"></Translate>{" "}
                   <Link to={`/users/${author._id}`} className="user-link link">
                     {author.username}
                   </Link>
                 </time>
-                {/* <Link className="link" to={`/articles/${_id}`}>
-                  <img
-                    src="/Assets/a-cacurice-vem.png"
-                    alt="Foto de um girassol murcho com o scripting de'A cacurice vem' por cima"
-                  ></img>
-                </Link> */}
                 <br />
                 <br />
                 <div className="article-body">{ReactHtmlParser(body)}</div>
@@ -61,7 +57,9 @@ const mapStateToProps = state => ({
   article: state.article
 });
 
-export default connect(
-  mapStateToProps,
-  { getArticles }
-)(ArticleFeed);
+export default withLocalize(
+  connect(
+    mapStateToProps,
+    { getArticles }
+  )(ArticleFeed)
+);
