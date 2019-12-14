@@ -27,7 +27,23 @@ class AuthNavBar extends Component {
   constructor(props) {
     super(props);
 
-    const chosenLanguage = window.localStorage.getItem("languageCode") || "en";
+    const browserLanguage =
+      window.navigator.userLanguage || window.navigator.language;
+
+    let firstVisitLanguage = "";
+
+    if (
+      browserLanguage === "pt" ||
+      browserLanguage === "pt-BR" ||
+      browserLanguage === "pt-PT"
+    ) {
+      firstVisitLanguage = "pt";
+    } else {
+      firstVisitLanguage = "en";
+    }
+
+    const openingLanguage =
+      window.localStorage.getItem("languageCode") || firstVisitLanguage;
 
     this.props.initialize({
       languages: [
@@ -38,7 +54,7 @@ class AuthNavBar extends Component {
       options: {
         renderToStaticMarkup,
         renderInnerHtml: true,
-        defaultLanguage: chosenLanguage
+        defaultLanguage: openingLanguage
       }
     });
   }

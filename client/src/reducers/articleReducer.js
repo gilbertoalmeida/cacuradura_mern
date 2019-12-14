@@ -1,5 +1,6 @@
 import {
-  GET_ARTICLES,
+  GET_ARTICLES_PT,
+  GET_ARTICLES_EN,
   GET_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
@@ -14,7 +15,13 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_ARTICLES:
+    case GET_ARTICLES_PT:
+      return {
+        ...state,
+        articles: action.payload,
+        loading: false
+      };
+    case GET_ARTICLES_EN:
       return {
         ...state,
         articles: action.payload,
