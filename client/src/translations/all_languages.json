@@ -52,7 +52,8 @@
     "body": [
       "Tell us how is being a cacura for you...",
       "Conta pra nós como é ser uma cacura pra você..."
-    ]
+    ],
+    "language": ["en", "pt"]
   },
   "user_page": {
     "owner_phrase": [
