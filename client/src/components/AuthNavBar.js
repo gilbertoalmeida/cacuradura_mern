@@ -188,7 +188,13 @@ class AuthNavBar extends Component {
           </Container>
           <Container style={{ display: "block" }}>
             {this.state.msg ? (
-              <Alert color="danger">{this.state.msg}</Alert>
+              <Translate>
+                {({ translate }) => (
+                  <Alert color="danger">
+                    {translate(`error_messages.${this.state.msg}`)}
+                  </Alert>
+                )}
+              </Translate>
             ) : null}{" "}
             {/* operator to show the alert only if there is an error */}
           </Container>

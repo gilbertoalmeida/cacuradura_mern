@@ -100,7 +100,13 @@ class RegisterModal extends Component {
           </ModalHeader>
           <ModalBody>
             {this.state.msg ? (
-              <Alert className="alert-danger">{this.state.msg}</Alert>
+              <Translate>
+                {({ translate }) => (
+                  <Alert color="danger">
+                    {translate(`error_messages.${this.state.msg}`)}
+                  </Alert>
+                )}
+              </Translate>
             ) : null}
             {/* operator to show the alert only is there is an error */}
             <Form onSubmit={this.onSubmit}>

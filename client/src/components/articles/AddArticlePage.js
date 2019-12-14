@@ -9,6 +9,8 @@ import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { stateToHTML } from "draft-js-export-html";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 class AddArticlePage extends Component {
   constructor(props) {
     super(props);
@@ -76,7 +78,7 @@ class AddArticlePage extends Component {
     //send the article
     this.props.addArticle(newArticle);
 
-    if (title && body) {
+    if (title && body !== "<p><br></p>") {
       this.props.history.push(`/users/${this.props.user._id}`);
       window.location.reload();
     }
@@ -90,14 +92,19 @@ class AddArticlePage extends Component {
         <div className="main-box-element post-article-wrap">
           <Form className="add-article-form" onSubmit={this.onSubmit}>
             <FormGroup>
-              <Input
-                type="text"
-                name="title"
-                id="title"
-                placeholder="Título..."
-                className="title-input"
-                onChange={this.titleonChange}
-              />
+              <Translate>
+                {({ translate }) => (
+                  <Input
+                    type="text"
+                    name="title"
+                    id="title"
+                    placeholder={translate("add_article_page.title")}
+                    className="title-input"
+                    onChange={this.titleonChange}
+                  />
+                )}
+              </Translate>
+
               <time dateTime={datenow}>
                 §}>{" "}
                 {new Date(datenow).getDate() +
@@ -113,48 +120,62 @@ class AddArticlePage extends Component {
                   {this.props.user.username}
                 </Link>{" "}
               </time>
-              <Editor
-                editorState={editorState}
-                onEditorStateChange={this.onEditorStateChange}
-                placeholder="Conta pra nós como é ser cacura pra você..."
-                localization={{
-                  locale: "pt"
-                }}
-                toolbar={{
-                  options: [
-                    "inline",
-                    "blockType",
-                    "list",
-                    "link",
-                    "emoji",
-                    "image",
-                    "remove",
-                    "history"
-                  ],
-                  inline: {
-                    options: ["bold", "italic", "underline", "strikethrough"]
-                  },
-                  blockType: {
-                    options: [
-                      "Normal",
-                      "H2",
-                      "H3",
-                      "H4",
-                      "H5",
-                      "H6",
-                      "Blockquote"
-                    ]
-                  },
-                  list: { inDropdown: true },
-                  textAlign: { inDropdown: true },
-                  link: { inDropdown: true },
-                  history: { inDropdown: true }
-                }}
-              />
+              <Translate>
+                {({ translate }) => (
+                  <Editor
+                    editorState={editorState}
+                    onEditorStateChange={this.onEditorStateChange}
+                    placeholder={translate("add_article_page.body")}
+                    localization={{
+                      locale: "pt"
+                    }}
+                    toolbar={{
+                      options: [
+                        "inline",
+                        "blockType",
+                        "list",
+                        "link",
+                        "emoji",
+                        "image",
+                        "remove",
+                        "history"
+                      ],
+                      inline: {
+                        options: [
+                          "bold",
+                          "italic",
+                          "underline",
+                          "strikethrough"
+                        ]
+                      },
+                      blockType: {
+                        options: [
+                          "Normal",
+                          "H2",
+                          "H3",
+                          "H4",
+                          "H5",
+                          "H6",
+                          "Blockquote"
+                        ]
+                      },
+                      list: { inDropdown: true },
+                      textAlign: { inDropdown: true },
+                      link: { inDropdown: true },
+                      history: { inDropdown: true }
+                    }}
+                  />
+                )}
+              </Translate>
+
               {this.state.msg ? (
-                <Alert className="add-article-alert alert-danger">
-                  {this.state.msg}
-                </Alert>
+                <Translate>
+                  {({ translate }) => (
+                    <Alert color="add-article-alert alert-danger">
+                      {translate(`error_messages.${this.state.msg}`)}
+                    </Alert>
+                  )}
+                </Translate>
               ) : null}
               {/* operator to show the alert only is there is an error */}
               <Button className="button-form-top submit-post-article" block>
@@ -174,7 +195,9 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(
-  mapStateToProps,
-  { addArticle, clearErrors }
-)(withRouter(AddArticlePage));
+export default withLocalize(
+  connect(
+    mapStateToProps,
+    { addArticle, clearErrors }
+  )(withRouter(AddArticlePage))
+);
