@@ -21,6 +21,8 @@ import { getUser } from "../../actions/userActions";
 import { getUserArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 import ReactHtmlParser from "react-html-parser";
 
 const UserPage = ({
@@ -49,12 +51,19 @@ const UserPage = ({
     <Fragment>
       <header className="App-header">
         <h1>
-          uma<span>cacura</span>
+          <Translate id="header.a(cacura)"></Translate>
+          <span>cacura</span>
         </h1>
+        <h2>
+          <Translate id="header.still_working"></Translate>
+        </h2>
       </header>
       <div className="main-box-element">
         <Link to={`/users/${user._id}`} className="article-title link">
-          Esse perfil é de: {user.username}
+          <Translate
+            id="user_page.owner_phrase"
+            data={{ owner: user.username }}
+          ></Translate>
         </Link>
         <br />
         <Nav tabs className="justify-content-center user-nav-tabs">
@@ -65,7 +74,7 @@ const UserPage = ({
                 toggle("1");
               }}
             >
-              Artigos
+              <Translate id="user_page.articles"></Translate>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -75,7 +84,7 @@ const UserPage = ({
                 toggle("2");
               }}
             >
-              Imagens
+              <Translate id="user_page.pictures"></Translate>
             </NavLink>
           </NavItem>
         </Nav>
@@ -108,7 +117,7 @@ const UserPage = ({
                             (new Date(date).getMonth() + 1) +
                             "/" +
                             new Date(date).getFullYear()}
-                          , por{" "}
+                          <Translate id="article.by"></Translate>{" "}
                           <Link
                             to={`/users/${author._id}`}
                             className="user-link link"
@@ -116,12 +125,6 @@ const UserPage = ({
                             {author.username}
                           </Link>
                         </time>
-                        {/* <Link className="link" to={`/articles/${_id}`}>
-                          <img
-                            src="/Assets/a-cacurice-vem.png"
-                            alt="Foto de um girassol murcho com o scripting de'A cacurice vem' por cima"
-                          ></img>
-                        </Link> */}
                         <br />
                         <br />
                         <div className="article-body">
@@ -172,7 +175,9 @@ const mapStateToProps = state => ({
   article: state.article
 });
 
-export default connect(
-  mapStateToProps,
-  { getUser, getUserArticles }
-)(UserPage);
+export default withLocalize(
+  connect(
+    mapStateToProps,
+    { getUser, getUserArticles }
+  )(UserPage)
+);

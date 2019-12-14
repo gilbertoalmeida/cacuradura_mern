@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { logout } from "../../actions/authActions";
 import PropTypes from "prop-types";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 class Logout extends Component {
   static propTypes = {
     logout: PropTypes.func.isRequired
@@ -22,14 +24,16 @@ class Logout extends Component {
           className="button-form-top logout"
           onClick={this.logoutProcedure}
         >
-          Deslogar
+          <Translate id="authnavbar.logoutbutton" />
         </Button>
       </Fragment>
     );
   }
 }
 
-export default connect(
-  null,
-  { logout }
-)(withRouter(Logout));
+export default withLocalize(
+  connect(
+    null,
+    { logout }
+  )(withRouter(Logout))
+);

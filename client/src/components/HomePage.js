@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 import ArticleFeed from "./articles/ArticleFeed";
 
 class HomePage extends Component {
@@ -11,9 +13,9 @@ class HomePage extends Component {
             Cacura<span>Dura</span>
           </h1>
           <h2>
-            Cacuras em formação
+            <Translate id="header.call1"></Translate>
             <br />
-            Acompanhe essa metamorfose
+            <Translate id="header.call2"></Translate>
           </h2>
         </header>
         <ArticleFeed />
@@ -22,4 +24,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default withLocalize(HomePage);
