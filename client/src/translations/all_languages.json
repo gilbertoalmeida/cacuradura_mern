@@ -47,6 +47,13 @@
   "article": {
     "by": [", by", ", por"]
   },
+  "add_article_page": {
+    "title": ["Title...", "Título..."],
+    "body": [
+      "Tell us how is being a cacura for you...",
+      "Conta pra nós como é ser uma cacura pra você..."
+    ]
+  },
   "user_page": {
     "owner_phrase": [
       "This is ${owner}'s profile",
@@ -54,5 +61,31 @@
     ],
     "articles": ["Articles", "Artigos"],
     "pictures": ["Pictures", "Fotos"]
+  },
+  "error_messages": {
+    "missing_credentials": [
+      "You have to fill in both fields, honey",
+      "Prencha os dois campos, fazendo o favor querida"
+    ],
+    "wrong_credentials": [
+      "Uh, that's a wrong cacura name or password",
+      "Ops, você errou o nome de cacura ou a senha"
+    ],
+    "missing_register_fields": [
+      "You have to fill in all the fields. Otherwise we wouldn't ask, darling",
+      "Tem que preencher tudo que tá aí embaixo, né? Se não eu nem perguntava, frô"
+    ],
+    "existing_email": [
+      "This email belongs to one of our cacuras already. Pls enter a new one",
+      "Esse email já é de uma cacura nossa. Por favor, escolha outro"
+    ],
+    "existing_username": [
+      "This cacura name is already used around here. Pls choose another one",
+      "Esse nome de cacura já está rodando por aqui. Por favor, escolha outro"
+    ],
+    "missing_title_text": [
+      "The article needs a title and a text, sweetie",
+      "O artigo precisa de um título e um texto, frô"
+    ]
   }
 }
