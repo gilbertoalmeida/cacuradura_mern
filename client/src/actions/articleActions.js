@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
-  GET_ARTICLES,
+  GET_ARTICLES_PT,
+  GET_ARTICLES_EN,
   GET_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
@@ -9,12 +10,23 @@ import {
 import { returnErrors } from "./errorActions";
 import { tokenConfig } from "./authActions";
 
-export const getArticles = () => dispatch => {
+export const getArticlesPT = () => dispatch => {
   axios
-    .get("/api/articles") //proxi in the package.json in react makes it not necessary to type the full path
+    .get("/api/articles/pt") //proxi in the package.json in react makes it not necessary to type the full path
     .then(res =>
       dispatch({
-        type: GET_ARTICLES,
+        type: GET_ARTICLES_PT,
+        payload: res.data
+      })
+    );
+};
+
+export const getArticlesEN = () => dispatch => {
+  axios
+    .get("/api/articles/en") //proxi in the package.json in react makes it not necessary to type the full path
+    .then(res =>
+      dispatch({
+        type: GET_ARTICLES_EN,
         payload: res.data
       })
     );
@@ -40,12 +52,19 @@ export const getUserArticles = id => dispatch => {
   );
 };
 
-export const addArticle = ({ title, body, author: { username, _id } }) => (
-  dispatch,
-  getState
-) => {
+export const addArticle = ({
+  title,
+  body,
+  language,
+  author: { username, _id }
+}) => (dispatch, getState) => {
   //Request body
-  const bbody = JSON.stringify({ title, body, author: { username, _id } });
+  const bbody = JSON.stringify({
+    title,
+    body,
+    language,
+    author: { username, _id }
+  });
 
   axios
     .post("/api/articles/add", bbody, tokenConfig(getState))
