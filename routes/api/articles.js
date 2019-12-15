@@ -8,11 +8,20 @@ const auth = require("../../middleware/auth");
 //Bringing Article Model
 const Article = require("../../models/Article");
 
-// @route   GET api/articles
-// @desc    Get All articles
+// @route   GET api/articles/pt
+// @desc    Get All portuguese articles that are marked as homepage
 // @access  Public
-router.get("/", (req, res) => {
-  Article.find({ homepage: true })
+router.get("/pt", (req, res) => {
+  Article.find({ homepage: true, language: "pt" })
+    .sort({ date: -1 })
+    .then(articles => res.json(articles));
+});
+
+// @route   GET api/articles/pt
+// @desc    Get All international articles that are marked as homepage
+// @access  Public
+router.get("/en", (req, res) => {
+  Article.find({ homepage: true, language: "en" })
     .sort({ date: -1 })
     .then(articles => res.json(articles));
 });
@@ -40,8 +49,6 @@ router.get("/user/:id", (req, res) => {
 router.post("/add", auth, (req, res) => {
   const { title, body } = req.body;
 
-  console.log("body: " + body);
-
   //Simple validation
   if (!title || body == "<p><br></p>") {
     return res.status(400).json({
@@ -52,6 +59,7 @@ router.post("/add", auth, (req, res) => {
   const newArticle = new Article({
     title,
     body,
+    language: req.body.language,
     author: {
       username: req.body.author.username,
       _id: req.body.author._id

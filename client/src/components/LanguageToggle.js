@@ -42,8 +42,6 @@ const LanguageToggle = ({
               onClick={() => {
                 setActiveLanguage(lang.code);
 
-                console.log(history.location.pathname);
-
                 if (history.location.pathname === "/") {
                   window.location.reload();
                 }

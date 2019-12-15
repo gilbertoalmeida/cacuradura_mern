@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, ListGroup, ListGroupItem } from "reactstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getArticles } from "../../actions/articleActions";
+import { getArticlesPT, getArticlesEN } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 import ReactHtmlParser from "react-html-parser";
 
@@ -10,12 +10,22 @@ import { withLocalize, Translate } from "react-localize-redux";
 
 class ArticleFeed extends Component {
   static propTypes = {
-    getArticles: PropTypes.func.isRequired,
+    getArticlesPT: PropTypes.func.isRequired,
+    getArticlesEN: PropTypes.func.isRequired,
     article: PropTypes.object.isRequired
   };
 
   componentDidMount() {
-    this.props.getArticles();
+    setTimeout(() => {
+      if (this.props.activeLanguage.code === "pt") {
+        this.props.getArticlesPT();
+      } else if (this.props.activeLanguage.code === "en") {
+        this.props.getArticlesEN();
+      }
+    }, 5);
+
+    /* THIS IS A HORRIBLE SOLUTION. I am waiting 5 miliseconds so that the props have the info on the
+    active language code, otherwise it is still undefined. Think about something more elegant later */
   }
 
   render() {
@@ -60,6 +70,6 @@ const mapStateToProps = state => ({
 export default withLocalize(
   connect(
     mapStateToProps,
-    { getArticles }
+    { getArticlesPT, getArticlesEN }
   )(ArticleFeed)
 );

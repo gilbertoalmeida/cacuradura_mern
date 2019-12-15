@@ -69,6 +69,7 @@ class AddArticlePage extends Component {
     const newArticle = {
       title,
       body,
+      language: this.props.activeLanguage.code,
       author: {
         username: this.props.user.username || "cacura não logada",
         _id: this.props.user._id || "cacura não logada"
