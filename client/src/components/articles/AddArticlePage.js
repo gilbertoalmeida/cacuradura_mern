@@ -100,6 +100,7 @@ class AddArticlePage extends Component {
                     name="title"
                     id="title"
                     placeholder={translate("add_article_page.title")}
+                    maxlength="60"
                     className="title-input"
                     onChange={this.titleonChange}
                   />
