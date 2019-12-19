@@ -75,8 +75,7 @@ header h2 {
 
 .main-box-element {
   margin: auto;
-  width: 760px;
-  text-align: justify;
+  width: 865px;
 }
 
 .main-box-element:not(.navbar):not(.post-article-wrap) {
@@ -101,14 +100,96 @@ header h2 {
   }
 }
 
-/* article elements */
+/* article feed */
 
-.article-list-group-item {
-  background-color: #f02d0a;
+.article-feed-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.article-feed-item {
+  background-color: transparent;
   border: none;
   padding: 0;
-  margin-bottom: 80px;
+  max-width: 350px;
+  max-height: 250px;
+  width: 350px;
+  height: 250px;
+  position: relative;
+  margin: 15px 5px;
 }
+
+.article-feed-item img {
+  width: 350px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 1em;
+}
+
+@media (max-width: 720px) {
+  .article-feed-item {
+    max-width: 310px;
+    max-height: 220px;
+    width: 310px;
+    height: 220px;
+  }
+
+  .article-feed-item img {
+    width: 310px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 720px) {
+  .article-feed-item {
+    max-width: 48vw;
+    max-height: 34vw;
+    width: 48vw;
+    height: 34vw;
+  }
+
+  .article-feed-item img {
+    width: 48vw;
+    height: 34vw;
+  }
+}
+
+@media (max-width: 550px) {
+  .article-feed-item {
+    max-width: 95vw;
+    max-height: 67vw;
+    width: 95vw;
+    height: 67vw;
+  }
+
+  .article-feed-item img {
+    width: 95vw;
+    height: 67vw;
+  }
+}
+
+.article-feed-img-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f02d0a26; /* 15% opacity */
+  z-index: 1;
+}
+
+.article-feed-item-text {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  padding: 15px 0 5px 5px;
+  background-image: linear-gradient(to top, #f02d0a, #f02d0a00);
+  z-index: 2;
+}
+
+/* article elements */
 
 .single-article {
   display: flex;
@@ -122,7 +203,6 @@ header h2 {
   text-transform: uppercase;
   width: fit-content;
   height: fit-content;
-  line-height: 0.8;
 }
 
 .article-title:hover {
@@ -230,6 +310,7 @@ time {
   background: none;
   font-family: "Rokkitt", serif;
   font-size: 25px;
+  text-align: justify;
 }
 
 .article-body ul li,
@@ -257,13 +338,13 @@ time {
 /* responsiveness of article elements */
 
 @media (max-width: 766px) {
-  .article-title {
+  /* .article-title {
     font-size: 22px;
   }
 
   time {
     font-size: 16px;
-  }
+  } */
 
   .article-body p,
   .article-body ul,
@@ -345,6 +426,19 @@ time {
 
 /* NavBar */
 
+.navbar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar-wrapper-brand-lang {
+  display: flex;
+  align-items: center;
+}
+
 .nav-item {
   text-align: right;
 }
@@ -359,7 +453,7 @@ time {
   border: none;
   border-radius: 5px 5px 0 0;
   border-bottom: 2px solid black;
-  background-color: #f02d0a;
+  background-color: #f02d0a !important;
   font-size: 17px;
   color: #05050a;
 }
@@ -370,6 +464,14 @@ time {
   box-shadow: none;
   border-bottom: 2px solid black;
   color: #05050a;
+}
+
+/* Change Autocomplete styles in Chrome*/
+.field-form-top:-webkit-autofill,
+.field-form-top:-webkit-autofill:hover,
+.field-form-top:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #faa9cb inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .button-form-top {
@@ -519,6 +621,14 @@ time {
 .modal-body input,
 .modal-body input:focus {
   background-color: #faa9cb;
+}
+
+/* Change Autocomplete styles in Chrome*/
+.modal-body input:-webkit-autofill,
+.modal-body input:-webkit-autofill:hover,
+.modal-body input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #f02d0a3d inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .add-article-form .title-input,

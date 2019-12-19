@@ -12,18 +12,20 @@ const Article = require("../../models/Article");
 // @desc    Get All portuguese articles that are marked as homepage
 // @access  Public
 router.get("/pt", (req, res) => {
-  Article.find({ homepage: true, language: "pt" })
-    .sort({ date: -1 })
-    .then(articles => res.json(articles));
+  Article.aggregate([
+    { $match: { homepage: true, language: "pt" } },
+    { $sample: { size: 4 } }
+  ]).then(articles => res.json(articles));
 });
 
 // @route   GET api/articles/pt
 // @desc    Get All international articles that are marked as homepage
 // @access  Public
 router.get("/en", (req, res) => {
-  Article.find({ homepage: true, language: "en" })
-    .sort({ date: -1 })
-    .then(articles => res.json(articles));
+  Article.aggregate([
+    { $match: { homepage: true, language: "en" } },
+    { $sample: { size: 4 } }
+  ]).then(articles => res.json(articles));
 });
 
 // @route   GET api/articles/:id
