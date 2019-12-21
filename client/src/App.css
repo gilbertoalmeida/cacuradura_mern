@@ -33,6 +33,24 @@ main {
   font-family: "Rokkitt", serif;
 }
 
+/* Removing the highlight from these elements when they are clicked */
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+/* the links of the page continue having an outline, bc the person 
+might want to select them with tab and press enter.
+I just changed it from the ugly default blue*/
+
+body *:focus {
+  outline-color: #05050a;
+  outline-offset: -0.15em;
+}
+
 body {
   background-color: #f02d0a;
   font-family: "Rokkitt", serif;
@@ -78,7 +96,7 @@ header h2 {
   width: 865px;
 }
 
-.main-box-element:not(.navbar):not(.post-article-wrap) {
+.main-box-element:not(.post-article-wrap) {
   margin-top: 30px;
 }
 
@@ -94,13 +112,25 @@ header h2 {
   }
 }
 
-@media (max-width: 865px) {
+@media (max-width: 880px) {
   .main-box-element {
     max-width: 100%;
   }
 }
 
 /* article feed */
+
+.article-feed-main-box-element {
+  margin: auto;
+  width: 865px;
+  margin-top: 30px;
+}
+
+@media (max-width: 880px) {
+  .article-feed-main-box-element {
+    max-width: 100%;
+  }
+}
 
 .article-feed-wrapper {
   display: flex;
@@ -189,44 +219,157 @@ header h2 {
   z-index: 2;
 }
 
-/* article elements */
-
-.single-article {
-  display: flex;
-  flex-direction: column;
-}
-
-.article-title {
+.article-feed-item-text .article-title {
   font-family: "Anton", sans-serif;
   font-size: 30px;
   color: #05050a;
   text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+.article-feed-item-text .article-title:hover {
+  color: #e69696;
+}
+
+.article-feed-item-text .user-link {
+  color: #e69696;
+  font-weight: bold;
   width: fit-content;
   height: fit-content;
 }
 
-.article-title:hover {
+.article-feed-item-text .user-link:hover {
   color: #e69696;
   text-decoration: underline;
 }
 
-time {
-  font-size: 20px;
+/* article elements */
+
+.article-page-main-box-element {
+  margin: auto;
+  width: 865px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #05050a;
+  border-right: 1px solid #05050a;
+}
+
+@media (max-width: 880px) {
+  .article-page-main-box-element {
+    max-width: 96%;
+    margin: auto;
+  }
+}
+
+.article-cover {
+  position: relative;
+}
+
+.article-cover img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.article-cover-img-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f02d0a26; /* 15% opacity */
+  z-index: 1;
+}
+
+.article-cover-img-text {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  padding: 30px 0 60px 10px;
+  background-image: linear-gradient(#05050a, #05050a00);
+  z-index: 2;
+}
+
+.article-cover-img-text .article-title {
+  font-family: "Anton", sans-serif;
+  font-size: 45px;
+  width: 55%;
+  color: #e69696;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 880px) {
+  .article-cover-img-text {
+    font-size: 5.6vw;
+    padding: 0.5em 0 1em 10px;
+  }
+
+  .article-cover-img-text .article-title {
+    font-size: 5.6vw;
+  }
+
+  .article-cover img {
+    max-height: 45vw;
+  }
+
+  .article-cover-img-text time {
+    max-width: 10vw;
+  }
+}
+
+.article-cover-img-text time {
+  color: #e69696;
+  font-size: 16px;
   font-family: "Rokkitt", serif;
 }
 
-.user-link {
-  color: #e69696;
+@media (max-width: 480px) {
+  .article-cover-img-text time {
+    font-size: 3vw;
+  }
+}
+
+.article-cover-img-text time p {
+  line-height: 0.9;
+}
+
+.article-cover-img-text time p:first-child {
+  padding-top: 20px;
+}
+
+.article-cover-img-text .user-link {
+  color: #f02d0a;
+  font-weight: bold;
   width: fit-content;
   height: fit-content;
 }
 
-.user-link:hover {
-  color: #e69696;
+.article-cover-img-text .user-link:hover {
+  color: #f02d0a;
   text-decoration: underline;
 }
 
-.link img,
+.article-body {
+  width: 95%;
+  margin: 10px auto;
+}
+
+.article-body p:first-child,
+.article-body h2:first-child,
+.article-body h3:first-child,
+.article-body h4:first-child,
+.article-body h5:first-child,
+.article-body h6:first-child,
+.article-body figure:first-child,
+.article-body blockquote:first-child,
+.article-body ul:first-child,
+.article-body ol:first-child {
+  border-top: solid #05050a 5px;
+  padding-top: 20px;
+}
+
 .article-body figure img {
   max-width: 80%;
   height: auto;
@@ -237,7 +380,6 @@ time {
   position: relative;
 }
 
-.link img:hover,
 .article-body figure img:hover {
   transform: scale(1.008);
 }
@@ -424,7 +566,18 @@ time {
   margin-top: 1rem;
 }
 
-/* NavBar */
+/* AuthNavBar */
+
+.authnavbar-main-box-element {
+  margin: auto;
+  width: 865px;
+}
+
+@media (max-width: 880px) {
+  .authnavbar-main-box-element {
+    max-width: 100%;
+  }
+}
 
 .navbar-wrapper {
   width: 100%;
@@ -531,6 +684,18 @@ time {
 
 .language-modal button button {
   background-color: transparent;
+}
+
+.authnavbar-greeting-username .user-link {
+  color: #e69696;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+}
+
+.authnavbar-greeting-username .user-link:hover {
+  color: #e69696;
+  text-decoration: underline;
 }
 
 .greeting-inside-collapse {
@@ -1074,30 +1239,3 @@ time {
 .pic-card {
   background-color: #faa9cb;
 }
-
-/* Removing the highlight from these elements when they are clicked */
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-}
-
-/* 
-This is for adding articles
-
-.form-line {
-  text-align: left;
-}
-
-.form-field {
-  width: 100%;
-  height: 40px;
-}
-
-#body-field {
-  height: 400px;
-}
-
- */
