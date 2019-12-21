@@ -115,7 +115,7 @@ class AuthNavBar extends Component {
             <span>
               <strong>
                 {user ? (
-                  <div>
+                  <div className="authnavbar-greeting-username">
                     <Translate id="authnavbar.greeting" />{" "}
                     <Link to={`/users/${user._id}`} className="user-link link">
                       {user.username}
@@ -135,7 +135,7 @@ class AuthNavBar extends Component {
               <span>
                 <strong>
                   {user ? (
-                    <div>
+                    <div className="authnavbar-greeting-username">
                       <Translate id="authnavbar.greeting" />{" "}
                       <Link
                         to={`/users/${user._id}`}
@@ -190,7 +190,7 @@ class AuthNavBar extends Component {
           fixed="top"
           style={{ backgroundColor: "#f02d0a70", flexFlow: "wrap" }}
           expand="md"
-          className="main-box-element navbar-dark"
+          className="authnavbar-main-box-element navbar-dark"
         >
           <div className="navbar-wrapper">
             <div className="navbar-wrapper-brand-lang">

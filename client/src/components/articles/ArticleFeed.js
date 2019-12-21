@@ -34,16 +34,18 @@ class ArticleFeed extends Component {
   render() {
     const { articles } = this.props.article; //pulling out articles from this.props.article, so that I dont have to write this.props.article.articles all the time
     return (
-      <div className="main-box-element">
+      <div className="article-feed-main-box-element">
         <ListGroup className="article-feed-wrapper">
           {articles.map(({ _id, title, date, author, feed_img }) => (
             <ListGroupItem key={_id} className="article-feed-item">
-              <img src={feed_img} onError={this.addDefaultSrc} alt="cat" />
+              <img src={feed_img} onError={this.addDefaultSrc} alt="" />
               <div className="article-feed-img-filter"></div>
               <div className="article-feed-item-text">
-                <Link to={`/articles/${_id}`} className="article-title link">
-                  <h3 className="article-title">{title}</h3>
-                </Link>
+                <h3 className="article-title">
+                  <Link to={`/articles/${_id}`} className="article-title link">
+                    {title}
+                  </Link>
+                </h3>
                 <time dateTime={date}>
                   §}>{" "}
                   {new Date(date).getDate() +
@@ -51,7 +53,7 @@ class ArticleFeed extends Component {
                     (new Date(date).getMonth() + 1) +
                     "/" +
                     new Date(date).getFullYear()}
-                  <Translate id="article.by"></Translate>{" "}
+                  , <Translate id="article.by"></Translate>{" "}
                   <Link to={`/users/${author._id}`} className="user-link link">
                     {author.username}
                   </Link>
