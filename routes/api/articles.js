@@ -49,7 +49,7 @@ router.get("/user/:id", (req, res) => {
 // @desc    Post an article to the database
 // @access  Private
 router.post("/add", auth, (req, res) => {
-  const { title, body } = req.body;
+  const { title, body, feed_img, language } = req.body;
 
   //Simple validation
   if (!title || body == "<p><br></p>") {
@@ -61,7 +61,8 @@ router.post("/add", auth, (req, res) => {
   const newArticle = new Article({
     title,
     body,
-    language: req.body.language,
+    feed_img,
+    language,
     author: {
       username: req.body.author.username,
       _id: req.body.author._id

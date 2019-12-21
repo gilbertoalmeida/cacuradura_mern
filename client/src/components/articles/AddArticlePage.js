@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -8,6 +8,7 @@ import { clearErrors } from "../../actions/errorActions";
 import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { stateToHTML } from "draft-js-export-html";
+import ChooseCoverPicModal from "./ChooseCoverPicModal";
 
 import { withLocalize, Translate } from "react-localize-redux";
 
@@ -20,7 +21,6 @@ class AddArticlePage extends Component {
 
   state = {
     body: "",
-    feed_img: null,
     msg: null
   };
 
@@ -32,7 +32,7 @@ class AddArticlePage extends Component {
     clearErrors: PropTypes.func.isRequired
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { error } = this.props; //extracting the errors imported from the map function below that transforms the state into a prop
     if (error !== prevProps.error) {
       //equal to the previous error
@@ -45,7 +45,7 @@ class AddArticlePage extends Component {
     }
   }
 
-  titleonChange = e => {
+  fieldsOnChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -58,9 +58,7 @@ class AddArticlePage extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const { title } = this.state; //form data
-
-    /* const title = "html do draft"; */
+    const { title, feed_img } = this.state;
 
     const editorState = this.state.editorState;
     const contentState = editorState.getCurrentContent();
@@ -70,6 +68,7 @@ class AddArticlePage extends Component {
     const newArticle = {
       title,
       body,
+      feed_img,
       language: this.props.activeLanguage.code,
       author: {
         username: this.props.user.username || "cacura não logada",
@@ -92,6 +91,10 @@ class AddArticlePage extends Component {
 
   render() {
     /* text are autoexpand START */
+
+    /* I NEED TO CHANGE THAT FOR ONE THAT IMMITATES THE SIZE OF A NORMAL DIV
+BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
+
     var autoExpand = function(field) {
       // Reset field height
       field.style.height = "1em";
@@ -123,96 +126,67 @@ class AddArticlePage extends Component {
     const { editorState } = this.state;
     let datenow = Date.now();
 
-    const with_img = (
-      <Fragment>
-        <div className="post-article-cover">
-          <img src={this.state.feed_img} onError={this.addDefaultSrc} alt="" />
-          <div className="post-article-cover-img-filter"></div>
-          <div className="post-article-cover-img-text">
-            <div className="post-article-title">
-              <Translate>
-                {({ translate }) => (
-                  <textarea
-                    type="text"
-                    name="title"
-                    id="title"
-                    placeholder={translate("add_article_page.title")}
-                    maxlength="60"
-                    className="title-textarea-with-img"
-                    onChange={this.titleonChange}
-                  />
-                )}
-              </Translate>
-              <time dateTime={datenow}>
-                <p>
-                  §}>{" "}
-                  {new Date(datenow).getDate() +
-                    "/" +
-                    (new Date(datenow).getMonth() + 1) +
-                    "/" +
-                    new Date(datenow).getFullYear()}
-                  ,
-                </p>
-                <p>
-                  <Translate id="article.by"></Translate>{" "}
-                  <Link
-                    to={`/users/${this.props.user._id}`}
-                    className="user-link link"
-                  >
-                    {this.props.user.username}
-                  </Link>{" "}
-                </p>
-              </time>
-            </div>
-          </div>
-        </div>
-      </Fragment>
-    );
-
-    const without_img = (
-      <Fragment>
-        <Translate>
-          {({ translate }) => (
-            <textarea
-              type="text"
-              name="title"
-              id="title"
-              placeholder={translate("add_article_page.title")}
-              maxlength="60"
-              className="title-textarea-without-img"
-              onChange={this.titleonChange}
-            />
-          )}
-        </Translate>
-        <time dateTime={datenow}>
-          §}>{" "}
-          {new Date(datenow).getDate() +
-            "/" +
-            (new Date(datenow).getMonth() + 1) +
-            "/" +
-            new Date(datenow).getFullYear()}
-          , <Translate id="article.by"></Translate>{" "}
-          <Link to={`/users/${this.props.user._id}`} className="user-link link">
-            {this.props.user.username}
-          </Link>{" "}
-        </time>
-      </Fragment>
-    );
-
     return (
       <div>
         <div className="post-article-main-box-element">
           <Form className="add-article-form" onSubmit={this.onSubmit}>
             <FormGroup>
-              {this.state.feed_img ? with_img : without_img}
+              <div className="post-article-cover">
+                <img
+                  src={this.state.feed_img}
+                  onError={this.addDefaultSrc}
+                  alt=""
+                  style={{ display: this.state.feed_img ? "block" : "none" }}
+                />
+                <div
+                  style={{ display: this.state.feed_img ? "block" : "none" }}
+                  className="post-article-cover-img-filter"
+                ></div>
+                <div
+                  className={`post-article-cover-${
+                    this.state.feed_img ? "img-text" : "text"
+                  } `}
+                >
+                  <div className="post-article-title">
+                    <Translate>
+                      {({ translate }) => (
+                        <textarea
+                          type="text"
+                          name="title"
+                          id="title"
+                          placeholder={translate("add_article_page.title")}
+                          maxLength="60"
+                          className={`title-textarea-with${
+                            this.state.feed_img ? "-img" : "out-img"
+                          }`}
+                          onChange={this.fieldsOnChange}
+                        />
+                      )}
+                    </Translate>
+                    <time dateTime={datenow}>
+                      <p>
+                        §}>{" "}
+                        {new Date(datenow).getDate() +
+                          "/" +
+                          (new Date(datenow).getMonth() + 1) +
+                          "/" +
+                          new Date(datenow).getFullYear()}
+                        ,
+                      </p>
+                      <p>
+                        <Translate id="article.by"></Translate>{" "}
+                        <Link
+                          to={`/users/${this.props.user._id}`}
+                          className="user-link link"
+                        >
+                          {this.props.user.username}
+                        </Link>{" "}
+                      </p>
+                    </time>
+                  </div>
+                </div>
+              </div>
 
-              <Input
-                type="text"
-                name="feed_img"
-                id="feed_img"
-                placeholder="Put the image here"
-                onChange={this.titleonChange}
-              />
               <Translate>
                 {({ translate }) => (
                   <Editor
@@ -260,6 +234,16 @@ class AddArticlePage extends Component {
                   />
                 )}
               </Translate>
+
+              <ChooseCoverPicModal />
+
+              <Input
+                type="text"
+                name="feed_img"
+                id="feed_img"
+                placeholder="pic"
+                onChange={this.fieldsOnChange}
+              />
 
               {this.state.msg ? (
                 <Translate>
