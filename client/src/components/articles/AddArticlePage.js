@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Fragment, Component } from "react";
 import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -20,6 +20,7 @@ class AddArticlePage extends Component {
 
   state = {
     body: "",
+    feed_img: null,
     msg: null
   };
 
@@ -85,43 +86,133 @@ class AddArticlePage extends Component {
     }
   };
 
+  addDefaultSrc(ev) {
+    ev.target.src = "https://pbs.twimg.com/media/Bw8Kiy4CAAAhcy6.jpg";
+  }
+
   render() {
+    /* text are autoexpand START */
+    var autoExpand = function(field) {
+      // Reset field height
+      field.style.height = "1em";
+
+      // Get the computed styles for the element
+      var computed = window.getComputedStyle(field);
+
+      // Calculate the height
+      var height =
+        parseInt(computed.getPropertyValue("border-top-width"), 10) +
+        parseInt(computed.getPropertyValue("padding-top"), 10) +
+        field.scrollHeight +
+        parseInt(computed.getPropertyValue("padding-bottom"), 10) +
+        parseInt(computed.getPropertyValue("border-bottom-width"), 10);
+
+      field.style.height = height + "px";
+    };
+
+    document.addEventListener(
+      "input",
+      function(event) {
+        if (event.target.tagName.toLowerCase() !== "textarea") return;
+        autoExpand(event.target);
+      },
+      false
+    );
+    /* text are autoexpand END */
+
     const { editorState } = this.state;
     let datenow = Date.now();
-    return (
-      <div>
-        <div className="main-box-element post-article-wrap">
-          <Form className="add-article-form" onSubmit={this.onSubmit}>
-            <FormGroup>
+
+    const with_img = (
+      <Fragment>
+        <div className="post-article-cover">
+          <img src={this.state.feed_img} onError={this.addDefaultSrc} alt="" />
+          <div className="post-article-cover-img-filter"></div>
+          <div className="post-article-cover-img-text">
+            <div className="post-article-title">
               <Translate>
                 {({ translate }) => (
-                  <Input
+                  <textarea
                     type="text"
                     name="title"
                     id="title"
                     placeholder={translate("add_article_page.title")}
                     maxlength="60"
-                    className="title-input"
+                    className="title-textarea-with-img"
                     onChange={this.titleonChange}
                   />
                 )}
               </Translate>
-
               <time dateTime={datenow}>
-                §}>{" "}
-                {new Date(datenow).getDate() +
-                  "/" +
-                  (new Date(datenow).getMonth() + 1) +
-                  "/" +
-                  new Date(datenow).getFullYear()}
-                <Translate id="article.by"></Translate>{" "}
-                <Link
-                  to={`/users/${this.props.user._id}`}
-                  className="user-link link"
-                >
-                  {this.props.user.username}
-                </Link>{" "}
+                <p>
+                  §}>{" "}
+                  {new Date(datenow).getDate() +
+                    "/" +
+                    (new Date(datenow).getMonth() + 1) +
+                    "/" +
+                    new Date(datenow).getFullYear()}
+                  ,
+                </p>
+                <p>
+                  <Translate id="article.by"></Translate>{" "}
+                  <Link
+                    to={`/users/${this.props.user._id}`}
+                    className="user-link link"
+                  >
+                    {this.props.user.username}
+                  </Link>{" "}
+                </p>
               </time>
+            </div>
+          </div>
+        </div>
+      </Fragment>
+    );
+
+    const without_img = (
+      <Fragment>
+        <Translate>
+          {({ translate }) => (
+            <textarea
+              type="text"
+              name="title"
+              id="title"
+              placeholder={translate("add_article_page.title")}
+              maxlength="60"
+              className="title-textarea-without-img"
+              onChange={this.titleonChange}
+            />
+          )}
+        </Translate>
+        <time dateTime={datenow}>
+          §}>{" "}
+          {new Date(datenow).getDate() +
+            "/" +
+            (new Date(datenow).getMonth() + 1) +
+            "/" +
+            new Date(datenow).getFullYear()}
+          , <Translate id="article.by"></Translate>{" "}
+          <Link to={`/users/${this.props.user._id}`} className="user-link link">
+            {this.props.user.username}
+          </Link>{" "}
+        </time>
+      </Fragment>
+    );
+
+    return (
+      <div>
+        <div className="post-article-main-box-element">
+          <Form className="add-article-form" onSubmit={this.onSubmit}>
+            <FormGroup>
+              {this.state.feed_img ? with_img : without_img}
+
+              <Input
+                type="text"
+                name="feed_img"
+                id="feed_img"
+                placeholder="Put the image here"
+                onChange={this.titleonChange}
+              />
               <Translate>
                 {({ translate }) => (
                   <Editor
