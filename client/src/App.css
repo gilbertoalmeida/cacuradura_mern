@@ -96,7 +96,7 @@ header h2 {
   width: 865px;
 }
 
-.main-box-element:not(.post-article-wrap) {
+.main-box-element {
   margin-top: 30px;
 }
 
@@ -243,7 +243,7 @@ header h2 {
   text-decoration: underline;
 }
 
-/* article elements */
+/* ArticlePage elements */
 
 .article-page-main-box-element {
   margin: auto;
@@ -634,19 +634,23 @@ header h2 {
   padding: 8px 13px;
   margin: 0;
   margin-bottom: 2px;
+  outline: none;
 }
 
-.button-form-top:focus {
+.button-form-top:focus,
+.button-form-top:active {
   outline: none;
   box-shadow: none;
 }
 
 .login,
 .login:hover,
+.login:active,
 .post-article,
-.post-article:hover {
-  background: #05050a;
-  color: #faa9cb;
+.post-article:hover,
+.post-article:active {
+  background-color: #05050a !important;
+  color: #faa9cb !important;
   margin-top: 1px; /* to align with register button  */
   margin-left: 10px;
 }
@@ -659,10 +663,12 @@ header h2 {
 
 .register,
 .register:hover,
+.register:active,
 .logout,
-.logout:hover {
-  background: #faa9cb;
-  color: #05050a;
+.logout:hover,
+.logout:active {
+  background-color: #faa9cb !important;
+  color: #05050a !important;
   margin-left: 30px;
 }
 
@@ -739,13 +745,10 @@ header h2 {
   }
 }
 
-.register-modal *,
-.post-article-wrap * {
-  font-family: "Rokkitt", serif;
-}
+/* RegisterModal */
 
-.post-article-wrap {
-  margin-top: 70px;
+.register-modal * {
+  font-family: "Rokkitt", serif;
 }
 
 .modal-header {
@@ -767,15 +770,7 @@ header h2 {
 }
 
 .modal-body input,
-.modal-body input:focus,
-.add-article-form .title-input,
-.add-article-form .title-input:focus,
-.DraftEditor-root,
-.DraftEditor-root:focus,
-.DraftEditor-editorContainer,
-.DraftEditor-editorContainer:focus,
-.public-DraftEditor-content,
-.public-DraftEditor-content:focus {
+.modal-body input:focus {
   box-shadow: none;
   outline: none;
   border: none;
@@ -796,8 +791,167 @@ header h2 {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-.add-article-form .title-input,
-.add-article-form .title-input:focus,
+.modal-body input,
+.modal-body input:focus {
+  border-radius: 5px 5px 0 0;
+  border-bottom: 2px solid black;
+}
+
+/* AddArticlePage */
+
+.post-article-main-box-element {
+  margin: auto;
+  margin-top: 70px;
+  width: 865px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #05050a;
+  border-right: 1px solid #05050a;
+}
+
+@media (max-width: 880px) {
+  .post-article-main-box-element {
+    max-width: 96%;
+    margin: auto;
+    margin-top: 70px;
+  }
+}
+
+/* Start of the paste */
+
+.post-article-cover {
+  position: relative;
+}
+
+.post-article-cover img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.post-article-cover-img-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f02d0a26; /* 15% opacity */
+  z-index: 1;
+}
+
+.post-article-cover-img-text {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  padding: 30px 0 60px 10px;
+  background-image: linear-gradient(#05050a, #05050a00);
+  z-index: 2;
+}
+
+.post-article-title .title-textarea-with-img,
+.post-article-title .title-textarea-with-img:focus {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-family: "Anton", sans-serif;
+  background: transparent;
+  height: 1.5em;
+  font-size: 45px;
+  width: 55%;
+  color: #e69696;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  resize: none;
+  overflow: hidden;
+}
+
+.add-article-form .title-textarea-without-img,
+.add-article-form .title-textarea-without-img:focus {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  font-family: "Anton", sans-serif;
+  font-size: 25px;
+  color: #05050c;
+  background-color: #f02d0a;
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  padding: 0;
+  height: 36px;
+  resize: none;
+  overflow: hidden;
+}
+
+@media (max-width: 880px) {
+  .post-article-cover-img-text {
+    font-size: 5.6vw;
+    padding: 0.5em 0 1em 10px;
+  }
+
+  .post-article-title .title-textarea-with-img,
+  .post-article-title .title-textarea-with-img:focus {
+    font-size: 5.6vw;
+  }
+
+  .post-article-cover img {
+    max-height: 45vw;
+  }
+
+  .post-article-cover-img-text time {
+    max-width: 10vw;
+  }
+}
+
+.post-article-cover-img-text time {
+  color: #e69696;
+  font-size: 16px;
+  font-family: "Rokkitt", serif;
+}
+
+@media (max-width: 480px) {
+  .post-article-cover-img-text time {
+    font-size: 3vw;
+  }
+}
+
+.post-article-cover-img-text time p {
+  line-height: 0.9;
+}
+
+.post-article-cover-img-text time p:first-child {
+  padding-top: 0px;
+}
+
+.post-article-cover-img-text .user-link {
+  color: #f02d0a;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+}
+
+.post-article-cover-img-text .user-link:hover {
+  color: #f02d0a;
+  text-decoration: underline;
+}
+
+/* End of the paste */
+
+.DraftEditor-root,
+.DraftEditor-root:focus,
+.DraftEditor-editorContainer,
+.DraftEditor-editorContainer:focus,
+.public-DraftEditor-content,
+.public-DraftEditor-content:focus {
+  box-shadow: none;
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
 .DraftEditor-root,
 .DraftEditor-root:focus,
 .DraftEditor-editorContainer,
@@ -805,12 +959,6 @@ header h2 {
 .public-DraftEditor-content,
 .public-DraftEditor-content:focus {
   background-color: #f02d0a;
-}
-
-.modal-body input,
-.modal-body input:focus {
-  border-radius: 5px 5px 0 0;
-  border-bottom: 2px solid black;
 }
 
 .public-DraftEditor-content,
@@ -823,18 +971,6 @@ header h2 {
   .public-DraftEditor-content:focus {
     font-size: 18px;
   }
-}
-
-.add-article-form .title-input,
-.add-article-form .title-input:focus {
-  font-family: "Anton", sans-serif;
-  font-size: 25px;
-  color: #05050c;
-  text-transform: uppercase;
-  margin-top: 15px;
-  margin-bottom: 0px;
-  padding: 0;
-  height: 36px;
 }
 
 .DraftEditor-root,
@@ -1203,32 +1339,60 @@ header h2 {
   }
 }
 
-.add-article-form .title-input::-webkit-input-placeholder  /* Chrome/Opera/Safari */
+.add-article-form .title-textarea-without-img::-webkit-input-placeholder  /* Chrome/Opera/Safari */
  {
   font-family: "Anton", sans-serif;
   font-size: 25px;
   color: #05050a8c;
   text-transform: uppercase;
 }
-.add-article-form .title-input::-moz-placeholder /* Firefox 19+ */
+.add-article-form .title-textarea-without-img::-moz-placeholder /* Firefox 19+ */
  {
   font-family: "Anton", sans-serif;
   font-size: 25px;
   color: #05050a8c;
   text-transform: uppercase;
 }
-.add-article-form .title-input:-ms-input-placeholder /* IE 10+ */
+.add-article-form .title-textarea-without-img:-ms-input-placeholder /* IE 10+ */
  {
   font-family: "Anton", sans-serif;
   font-size: 25px;
   color: #05050a8c;
   text-transform: uppercase;
 }
-.add-article-form .title-input:-moz-placeholder /* Firefox 18- */
+.add-article-form .title-textarea-without-img:-moz-placeholder /* Firefox 18- */
  {
   font-family: "Anton", sans-serif;
   font-size: 25px;
   color: #05050a8c;
+  text-transform: uppercase;
+}
+
+.post-article-title .title-textarea-with-img::-webkit-input-placeholder {
+  font-family: "Anton", sans-serif;
+  font-size: 45px;
+  color: #e696968c;
+  text-transform: uppercase;
+}
+
+.post-article-title .title-textarea-with-img::-moz-placeholder {
+  font-family: "Anton", sans-serif;
+  font-size: 45px;
+  color: #e696968c;
+  text-transform: uppercase;
+}
+
+.post-article-title .title-textarea-with-img:-ms-input-placeholder {
+  font-family: "Anton", sans-serif;
+  font-size: 45px;
+  color: #e696968c;
+  text-transform: uppercase;
+}
+
+.post-article-title .title-textarea-with-img:-moz-placeholder {
+  font-family: "Anton", sans-serif;
+  font-size: 45px;
+  color: #e696968c;
   text-transform: uppercase;
 }
 
