@@ -32,7 +32,7 @@ class AddArticlePage extends Component {
     clearErrors: PropTypes.func.isRequired
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     const { error } = this.props; //extracting the errors imported from the map function below that transforms the state into a prop
     if (error !== prevProps.error) {
       //equal to the previous error
@@ -47,6 +47,10 @@ class AddArticlePage extends Component {
 
   fieldsOnChange = e => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  writingPic = feed_img_modal => {
+    this.setState({ feed_img: feed_img_modal });
   };
 
   onEditorStateChange = editorState => {
@@ -175,12 +179,12 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                       </p>
                       <p>
                         <Translate id="article.by"></Translate>{" "}
-                        <Link
+                        {/* <Link
                           to={`/users/${this.props.user._id}`}
                           className="user-link link"
                         >
                           {this.props.user.username}
-                        </Link>{" "}
+                        </Link>{" "} */}
                       </p>
                     </time>
                   </div>
@@ -235,14 +239,9 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                 )}
               </Translate>
 
-              <ChooseCoverPicModal />
-
-              <Input
-                type="text"
-                name="feed_img"
-                id="feed_img"
-                placeholder="pic"
-                onChange={this.fieldsOnChange}
+              <ChooseCoverPicModal
+                feed_img={this.state.feed_img}
+                writingPic={this.writingPic}
               />
 
               {this.state.msg ? (
