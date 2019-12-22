@@ -840,7 +840,7 @@ header h2 {
 
 .post-article-cover-text {
   width: 100%;
-  padding: 0.5em 0 1em 10px;
+  padding-left: 10px;
 }
 
 .post-article-cover-img-text {
@@ -860,7 +860,8 @@ header h2 {
   box-shadow: none;
   font-family: "Anton", sans-serif;
   background: transparent;
-  height: 1.5em;
+  height: 67px;
+  max-height: 310px;
   font-size: 45px;
   width: 55%;
   color: #e69696;
@@ -877,6 +878,8 @@ header h2 {
   border: none;
   box-shadow: none;
   font-family: "Anton", sans-serif;
+  height: 67px;
+  max-height: 310px;
   font-size: 45px;
   color: #05050c;
   background-color: #f02d0a;
@@ -884,7 +887,6 @@ header h2 {
   margin-bottom: 0px;
   width: 100%;
   padding: 0;
-  height: 36px;
   resize: none;
   overflow: hidden;
 }
@@ -895,19 +897,26 @@ header h2 {
     padding: 0.5em 0 1em 10px;
   }
 
-  .post-article-title .title-textarea-with-img,
-  .post-article-title .title-textarea-with-img:focus,
-  .post-article-title .title-textarea-without-img,
-  .post-article-title .title-textarea-without-img:focus {
-    font-size: 5.6vw;
-  }
-
   .post-article-cover img {
     max-height: 45vw;
   }
 
   .post-article-cover-img-text time {
     max-width: 10vw;
+  }
+
+  .post-article-title .title-textarea-with-img,
+  .post-article-title .title-textarea-with-img:focus {
+    height: 8.3vw;
+    max-height: 33vw;
+    font-size: 5.6vw;
+  }
+
+  .post-article-title .title-textarea-without-img,
+  .post-article-title .title-textarea-without-img:focus {
+    height: 8.4vw;
+    max-height: 33vw;
+    font-size: 5.6vw;
   }
 }
 
@@ -959,9 +968,9 @@ header h2 {
 
 .rdw-editor-main {
   width: 95%;
-  margin: 10px auto;
+  margin: 5px auto;
   border-top: solid #05050a 5px;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .DraftEditor-root,
@@ -1056,6 +1065,10 @@ header h2 {
 
 .rdw-editor-toolbar {
   background-color: #f02d0a;
+  justify-content: center;
+  border: none;
+  padding: 0 5px 0;
+  margin-bottom: 0;
 }
 
 .rdw-inline-wrapper .rdw-option-wrapper:hover,
@@ -1149,11 +1162,6 @@ header h2 {
   border: 1px solid #c887a2;
   box-shadow: 1px 1px 0px #7d5465 inset !important;
   background-color: #e198b6 !important;
-}
-
-.rdw-editor-toolbar {
-  justify-content: center;
-  border: none;
 }
 
 .rdw-embedded-modal-header-label,
