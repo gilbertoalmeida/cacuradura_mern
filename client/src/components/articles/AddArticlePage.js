@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
+import { Button, Form, FormGroup, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
@@ -50,7 +50,31 @@ class AddArticlePage extends Component {
   };
 
   writingPic = feed_img_modal => {
-    this.setState({ feed_img: feed_img_modal });
+    /* What is happening here is interesting. So this function gets the img that the person added in the modal and updates
+    the state of this component with it. However, this changes the styling of the title of the article, since it is different
+    dependinf if a person adds or not pictures. So it happened that a title that was too big and had two lines with picture,
+    needed only only line without a pic (and viceversa). So I need to recaulculate the height of the textarea element (that 
+    expands automatically). So I copied the autoexpand code to the callback of setState (it takes some milisaconds to finish)
+    This is ugly, but I had to do it, bc I couldn't just call the function again here. I need to re-write this when I transform 
+    this component into a functional one. Maybe it can work better there.*/
+
+    this.setState({ feed_img: feed_img_modal }, () => {
+      let textarea = document.querySelector("textarea");
+      textarea.style.height = "1em";
+
+      // Get the computed styles for the element
+      var computed = window.getComputedStyle(textarea);
+
+      // Calculate the height
+      var height =
+        parseInt(computed.getPropertyValue("border-top-width"), 10) +
+        parseInt(computed.getPropertyValue("padding-top"), 10) +
+        textarea.scrollHeight +
+        parseInt(computed.getPropertyValue("padding-bottom"), 10) +
+        parseInt(computed.getPropertyValue("border-bottom-width"), 10);
+
+      textarea.style.height = height + "px";
+    });
   };
 
   onEditorStateChange = editorState => {
