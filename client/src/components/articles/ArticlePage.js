@@ -15,41 +15,62 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   //ver o que acontece quando chanma essa página com um id que nao existe
   // the loading page is kept bc article is null
 
+  function addDefaultSrc(ev) {
+    ev.target.src = "https://pbs.twimg.com/media/Bw8Kiy4CAAAhcy6.jpg";
+  }
+
   return loading || article === null ? (
     <header>
       <h1>Loading</h1>
     </header>
   ) : (
     <Fragment>
-      <header className="App-header">
-        <h1>
-          <Translate id="header.a(article)"></Translate>
-          <span>
-            <Translate id="header.article"></Translate>
-          </span>
-        </h1>
-        <h2>
-          <Translate id="header.still_working"></Translate>
-        </h2>
-      </header>
-      <div className="main-box-element single-article">
-        <Link to={`/articles/${article._id}`} className="article-title link">
-          {article.title}
-        </Link>
-        <time dateTime={article.date}>
-          §}>{" "}
-          {new Date(article.date).getDate() +
-            "/" +
-            (new Date(article.date).getMonth() + 1) +
-            "/" +
-            new Date(article.date).getFullYear()}
-          <Translate id="article.by"></Translate>{" "}
-          <Link to={`/users/${article.author._id}`} className="user-link link">
-            {article.author.username}
-          </Link>
-        </time>
-        <br />
-        <div className="article-body">{ReactHtmlParser(article.body)}</div>
+      <header className="App-header"></header>
+      {/* header just here to make the space of the authnavbar */}
+      <div className="article-page-main-box-element">
+        <div className="article-cover">
+          <img
+            src={article.feed_img}
+            onError={addDefaultSrc}
+            alt="cover of the article"
+            style={{
+              display: article.feed_img ? "block" : "none"
+            }}
+          />
+          <div
+            className="article-cover-img-filter"
+            style={{
+              display: article.feed_img ? "block" : "none"
+            }}
+          ></div>
+          <div
+            className={`article-cover-${
+              article.feed_img ? "img-text" : "text"
+            } `}
+          >
+            <div className="article-title">{article.title}</div>
+            <time dateTime={article.date}>
+              <p>
+                §}>{" "}
+                {new Date(article.date).getDate() +
+                  "/" +
+                  (new Date(article.date).getMonth() + 1) +
+                  "/" +
+                  new Date(article.date).getFullYear()}
+              </p>
+              <p>
+                <Translate id="article.by"></Translate>{" "}
+                <Link
+                  to={`/users/${article.author._id}`}
+                  className="user-link link"
+                >
+                  {article.author.username}
+                </Link>
+              </p>
+            </time>
+          </div>
+          <div className="article-body">{ReactHtmlParser(article.body)}</div>
+        </div>
       </div>
     </Fragment>
   );
