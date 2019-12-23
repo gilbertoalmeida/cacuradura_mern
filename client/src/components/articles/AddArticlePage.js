@@ -15,7 +15,10 @@ import { withLocalize, Translate } from "react-localize-redux";
 class AddArticlePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { editorState: EditorState.createEmpty() };
+    this.state = {
+      editorState: EditorState.createEmpty(),
+      coverImgLoading: false
+    };
     this.onChange = editorState => this.setState({ editorState });
   }
 
@@ -43,22 +46,46 @@ class AddArticlePage extends Component {
         this.setState({ msg: null });
       }
     }
+
+    window.addEventListener("resize", () => {
+      let textarea = document.querySelector("textarea");
+      textarea.style.height = "1em";
+
+      // Get the computed styles for the element
+      var computed = window.getComputedStyle(textarea);
+
+      // Calculate the height
+      var height =
+        parseInt(computed.getPropertyValue("border-top-width"), 10) +
+        parseInt(computed.getPropertyValue("padding-top"), 10) +
+        textarea.scrollHeight +
+        parseInt(computed.getPropertyValue("padding-bottom"), 10) +
+        parseInt(computed.getPropertyValue("border-bottom-width"), 10);
+
+      textarea.style.height = height + "px";
+    });
   }
 
   fieldsOnChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  writingPic = feed_img_modal => {
-    /* What is happening here is interesting. So this function gets the img that the person added in the modal and updates
-    the state of this component with it. However, this changes the styling of the title of the article, since it is different
-    dependinf if a person adds or not pictures. So it happened that a title that was too big and had two lines with picture,
-    needed only only line without a pic (and viceversa). So I need to recaulculate the height of the textarea element (that 
-    expands automatically). So I copied the autoexpand code to the callback of setState (it takes some milisaconds to finish)
-    This is ugly, but I had to do it, bc I couldn't just call the function again here. I need to re-write this when I transform 
-    this component into a functional one. Maybe it can work better there.*/
+  /* What is happening writingPic and setLoadingToFalse is interesting. So, the first function gets the img that the person added 
+  in the modal and updates the state of this component with it. However, this changes the styling of the title of the article, 
+  since it is different depending on if a person adds or not a cover picture. So it happened that a title that was too big and had 
+  two lines with picture, needed only one line without a pic (and viceversa). So I need to recaulculate the height of the textarea 
+  element (that expands automatically). The second function is called only when the img finishes loading. The styles change when
+  there is a feed_img AND it has been loaded. So I copied the autoexpand code to the callback of the second setState (since it takes 
+  some milisaconds to finish). This is ugly, but I had to do it, bc I couldn't just call the function again here. I need to re-write 
+  this when I transform this component into a functional one. Maybe it can work better there.
+  (and now it is repeated in componentdidmount to capture window resize too hahaha I need to re-write this!!)*/
 
-    this.setState({ feed_img: feed_img_modal }, () => {
+  writingPic = feed_img_modal => {
+    this.setState({ feed_img: feed_img_modal, coverImgLoading: true });
+  };
+
+  setLoadingToFalse = () => {
+    this.setState({ coverImgLoading: false }, () => {
       let textarea = document.querySelector("textarea");
       textarea.style.height = "1em";
 
@@ -163,16 +190,29 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                 <img
                   src={this.state.feed_img}
                   onError={this.addDefaultSrc}
+                  onLoad={this.setLoadingToFalse}
                   alt=""
-                  style={{ display: this.state.feed_img ? "block" : "none" }}
+                  style={{
+                    display:
+                      this.state.feed_img && !this.state.coverImgLoading
+                        ? "block"
+                        : "none"
+                  }}
                 />
                 <div
-                  style={{ display: this.state.feed_img ? "block" : "none" }}
                   className="post-article-cover-img-filter"
+                  style={{
+                    display:
+                      this.state.feed_img && !this.state.coverImgLoading
+                        ? "block"
+                        : "none"
+                  }}
                 ></div>
                 <div
                   className={`post-article-cover-${
-                    this.state.feed_img ? "img-text" : "text"
+                    this.state.feed_img && !this.state.coverImgLoading
+                      ? "img-text"
+                      : "text"
                   } `}
                 >
                   <div className="post-article-title">
@@ -185,7 +225,9 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                           placeholder={translate("add_article_page.title")}
                           maxLength="60"
                           className={`title-textarea-with${
-                            this.state.feed_img ? "-img" : "out-img"
+                            this.state.feed_img && !this.state.coverImgLoading
+                              ? "-img"
+                              : "out-img"
                           }`}
                           onChange={this.fieldsOnChange}
                         />
@@ -203,16 +245,20 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                       </p>
                       <p>
                         <Translate id="article.by"></Translate>{" "}
-                        {/* <Link
+                        <Link
                           to={`/users/${this.props.user._id}`}
                           className="user-link link"
                         >
                           {this.props.user.username}
-                        </Link>{" "} */}
+                        </Link>{" "}
                       </p>
                     </time>
                   </div>
                 </div>
+                <ChooseCoverPicModal
+                  feed_img={this.state.feed_img}
+                  writingPic={this.writingPic}
+                />
               </div>
 
               <Translate>
@@ -262,11 +308,6 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                   />
                 )}
               </Translate>
-
-              <ChooseCoverPicModal
-                feed_img={this.state.feed_img}
-                writingPic={this.writingPic}
-              />
 
               {this.state.msg ? (
                 <Translate>
