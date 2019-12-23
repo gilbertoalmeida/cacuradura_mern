@@ -7,7 +7,7 @@ import NotFound from "../NotFound";
 
 const Routes = () => {
   return (
-    <section className="container">
+    <section>
       <Switch>
         <Route exact path="/articles/addarticle" component={AddArticlePage} />
         <Route exact path="/articles/:id" component={ArticlePage} />

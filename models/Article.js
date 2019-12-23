@@ -19,6 +19,10 @@ let articleSchema = mongoose.Schema({
       required: true
     }
   },
+  feed_img: {
+    type: String,
+    required: false
+  },
   language: {
     type: String,
     required: true

@@ -12,18 +12,20 @@ const Article = require("../../models/Article");
 // @desc    Get All portuguese articles that are marked as homepage
 // @access  Public
 router.get("/pt", (req, res) => {
-  Article.find({ homepage: true, language: "pt" })
-    .sort({ date: -1 })
-    .then(articles => res.json(articles));
+  Article.aggregate([
+    { $match: { homepage: true, language: "pt" } },
+    { $sample: { size: 4 } }
+  ]).then(articles => res.json(articles));
 });
 
 // @route   GET api/articles/pt
 // @desc    Get All international articles that are marked as homepage
 // @access  Public
 router.get("/en", (req, res) => {
-  Article.find({ homepage: true, language: "en" })
-    .sort({ date: -1 })
-    .then(articles => res.json(articles));
+  Article.aggregate([
+    { $match: { homepage: true, language: "en" } },
+    { $sample: { size: 4 } }
+  ]).then(articles => res.json(articles));
 });
 
 // @route   GET api/articles/:id
@@ -47,7 +49,7 @@ router.get("/user/:id", (req, res) => {
 // @desc    Post an article to the database
 // @access  Private
 router.post("/add", auth, (req, res) => {
-  const { title, body } = req.body;
+  const { title, body, feed_img, language } = req.body;
 
   //Simple validation
   if (!title || body == "<p><br></p>") {
@@ -59,7 +61,8 @@ router.post("/add", auth, (req, res) => {
   const newArticle = new Article({
     title,
     body,
-    language: req.body.language,
+    feed_img,
+    language,
     author: {
       username: req.body.author.username,
       _id: req.body.author._id

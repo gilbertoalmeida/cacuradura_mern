@@ -115,8 +115,8 @@ class AuthNavBar extends Component {
             <span>
               <strong>
                 {user ? (
-                  <div>
-                    Oi,{" "}
+                  <div className="authnavbar-greeting-username">
+                    <Translate id="authnavbar.greeting" />{" "}
                     <Link to={`/users/${user._id}`} className="user-link link">
                       {user.username}
                     </Link>
@@ -135,7 +135,7 @@ class AuthNavBar extends Component {
               <span>
                 <strong>
                   {user ? (
-                    <div>
+                    <div className="authnavbar-greeting-username">
                       <Translate id="authnavbar.greeting" />{" "}
                       <Link
                         to={`/users/${user._id}`}
@@ -152,7 +152,10 @@ class AuthNavBar extends Component {
             </NavItem>
             <NavItem>
               <Link to={`/articles/addarticle`}>
-                <Button className="button-form-top post-article">
+                <Button
+                  onClick={this.toggle}
+                  className="button-form-top post-article"
+                >
                   <Translate id="authnavbar.postarticlebutton" />
                 </Button>
               </Link>
@@ -187,21 +190,23 @@ class AuthNavBar extends Component {
           fixed="top"
           style={{ backgroundColor: "#f02d0a70", flexFlow: "wrap" }}
           expand="md"
-          className="main-box-element navbar-dark"
+          className="authnavbar-main-box-element navbar-dark"
         >
-          <Container>
-            <NavbarBrand href="/">
-              <img
-                alt="favicon of the website"
-                src="/NavBarBrand.png"
-                width="32"
-                height="32"
-                className="d-inline-block align-top"
-              />
-            </NavbarBrand>
-            <LanguageToggle />
+          <div className="navbar-wrapper">
+            <div className="navbar-wrapper-brand-lang">
+              <NavbarBrand href="/">
+                <img
+                  alt="favicon of the website"
+                  src="/NavBarBrand.png"
+                  width="32"
+                  height="32"
+                  className="d-inline-block align-top"
+                />
+              </NavbarBrand>
+              <LanguageToggle />
+            </div>
             {isAuthenticated ? authLinks : guestLinks}
-          </Container>
+          </div>
           <Container style={{ display: "block" }}>
             {this.state.msg ? (
               <Translate>
