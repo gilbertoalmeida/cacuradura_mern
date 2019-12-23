@@ -29,9 +29,25 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
       {/* header just here to make the space of the authnavbar */}
       <div className="article-page-main-box-element">
         <div className="article-cover">
-          <img src={article.feed_img} onError={addDefaultSrc} alt="" />
-          <div className="article-cover-img-filter"></div>
-          <div className="article-cover-img-text">
+          <img
+            src={article.feed_img}
+            onError={addDefaultSrc}
+            alt="cover of the article"
+            style={{
+              display: article.feed_img ? "block" : "none"
+            }}
+          />
+          <div
+            className="article-cover-img-filter"
+            style={{
+              display: article.feed_img ? "block" : "none"
+            }}
+          ></div>
+          <div
+            className={`article-cover-${
+              article.feed_img ? "img-text" : "text"
+            } `}
+          >
             <div className="article-title">{article.title}</div>
             <time dateTime={article.date}>
               <p>
@@ -41,7 +57,6 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
                   (new Date(article.date).getMonth() + 1) +
                   "/" +
                   new Date(article.date).getFullYear()}
-                ,{" "}
               </p>
               <p>
                 <Translate id="article.by"></Translate>{" "}

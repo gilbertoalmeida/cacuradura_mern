@@ -55,13 +55,34 @@
     ],
     "language": ["en", "pt"]
   },
+  "choose_cover_pic_modal": {
+    "add_cover_img": ["cover image", "imagem de capa"],
+    "header": ["Paste the URL of a picture", "Coloque o URL de uma foto"],
+    "proportion": [
+      "The cover will have width = 2x height *",
+      "A capa terá largura = 2x altura *"
+    ],
+    "add_img": ["Add image", "Adicionar imagem"],
+    "asterisk": [
+      "* The image will fill this space maintaining proportions",
+      "* A image preencherá esse espaço mantendo as proporções"
+    ]
+  },
   "user_page": {
     "owner_phrase": [
       "This is ${owner}'s profile",
       "Esse é o perfil de ${owner}"
     ],
     "articles": ["Articles", "Artigos"],
-    "pictures": ["Pictures", "Fotos"]
+    "pictures": ["Pictures", "Fotos"],
+    "no_articles": [
+      "This cacura has not posted any articles yet",
+      "Essa cacura ainda não postou nenhum artigo"
+    ],
+    "article_design": [
+      "Still gonna make this look nice. I am just throwing the user articles here for now",
+      "Ainda vou fazer isso aqui ficar bonito. Por agora, só tô jogando os artigos da cacura aqui"
+    ]
   },
   "error_messages": {
     "missing_credentials": [

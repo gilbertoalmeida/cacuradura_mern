@@ -6,7 +6,6 @@ import {
   ModalBody,
   Form,
   FormGroup,
-  Label,
   Input
 } from "reactstrap";
 
@@ -23,11 +22,8 @@ function ChooseCoverPicModal({ writingPic }) {
 
   return (
     <div>
-      <Button
-        className="button-form-top register"
-        onClick={() => toggle(!modal)}
-      >
-        <Translate id="authnavbar.registerbutton"></Translate>
+      <Button className="button-add-cover-img" onClick={() => toggle(!modal)}>
+        <Translate id="choose_cover_pic_modal.add_cover_img"></Translate>
       </Button>
 
       <Modal
@@ -36,20 +32,17 @@ function ChooseCoverPicModal({ writingPic }) {
         toggle={() => toggle(!modal)}
       >
         <ModalHeader toggle={() => toggle(!modal)}>
-          <Translate id="registermodal.header"></Translate>
+          <Translate id="choose_cover_pic_modal.header"></Translate>
         </ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="name">
-                <Translate id="registermodal.name"></Translate>
-              </Label>
               <Translate>
                 {({ translate }) => (
                   <Input
                     type="text"
                     value={feed_img_modal}
-                    placeholder={translate("registermodal.name_placeholder")}
+                    placeholder={translate("choose_cover_pic_modal.proportion")}
                     onChange={e => setfeed_img_modal(e.target.value)}
                   />
                 )}
@@ -60,8 +53,11 @@ function ChooseCoverPicModal({ writingPic }) {
                 className="button-form-top submit-register"
                 block
               >
-                <Translate id="registermodal.submitbutton"></Translate>
+                <Translate id="choose_cover_pic_modal.add_img"></Translate>
               </Button>
+              <p>
+                <Translate id="choose_cover_pic_modal.asterisk" />
+              </p>
             </FormGroup>
           </Form>
         </ModalBody>

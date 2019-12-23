@@ -291,11 +291,24 @@ header h2 {
   z-index: 2;
 }
 
+.article-cover-text {
+  width: 100%;
+  padding: 10px;
+}
+
 .article-cover-img-text .article-title {
   font-family: "Anton", sans-serif;
   font-size: 45px;
   width: 55%;
   color: #e69696;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+.article-cover-text .article-title {
+  font-family: "Anton", sans-serif;
+  font-size: 45px;
+  color: #05050a;
   text-transform: uppercase;
   overflow-wrap: break-word;
 }
@@ -348,6 +361,18 @@ header h2 {
 
 .article-cover-img-text .user-link:hover {
   color: #f02d0a;
+  text-decoration: underline;
+}
+
+.article-cover-text .user-link {
+  color: #faa9cb;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+}
+
+.article-cover-text .user-link:hover {
+  color: #faa9cb;
   text-decoration: underline;
 }
 
@@ -480,14 +505,6 @@ header h2 {
 /* responsiveness of article elements */
 
 @media (max-width: 766px) {
-  /* .article-title {
-    font-size: 22px;
-  }
-
-  time {
-    font-size: 16px;
-  } */
-
   .article-body p,
   .article-body ul,
   .article-body ol {
@@ -658,7 +675,14 @@ header h2 {
 .languages,
 .languages:hover {
   background: #490d02;
-  padding: 1px 2px;
+  padding: 0px 2px;
+}
+
+@media (max-width: 767px) {
+  .languages,
+  .languages:hover {
+    padding: 0px 2px 1px 2px;
+  }
 }
 
 .register,
@@ -710,6 +734,7 @@ header h2 {
 
 .greeting-outside-collapse {
   font-size: 25px;
+  margin-right: 10px;
   display: none;
 }
 
@@ -962,6 +987,32 @@ header h2 {
 .post-article-cover-text .user-link:hover {
   color: #faa9cb;
   text-decoration: underline;
+}
+
+.button-add-cover-img {
+  border: none;
+  font-size: 18px;
+  padding: 0px 5px;
+  margin: 0;
+  outline: none;
+  background-color: #faa9cbb7 !important;
+  color: #05050a !important;
+  position: absolute;
+  bottom: 7px;
+  right: 20px;
+  z-index: 3;
+}
+
+@media (max-width: 480px) {
+  .button-add-cover-img {
+    font-size: 4vw;
+  }
+}
+
+.button-add-cover-img:focus,
+.button-add-cover-img:active {
+  outline: none;
+  box-shadow: none;
 }
 
 /* WYSIWYG Editor */
