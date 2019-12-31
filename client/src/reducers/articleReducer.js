@@ -2,6 +2,7 @@ import {
   GET_ARTICLES_PT,
   GET_ARTICLES_EN,
   GET_ARTICLE,
+  ADDING_THE_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
   GET_USER_ARTICLES
@@ -10,7 +11,8 @@ import {
 const initialState = {
   articles: [],
   article: null,
-  loading: false
+  loading: true,
+  posting: false
 };
 
 export default function(state = initialState, action) {
@@ -32,6 +34,11 @@ export default function(state = initialState, action) {
         ...state,
         article: action.payload,
         loading: false
+      };
+    case ADDING_THE_ARTICLE:
+      return {
+        ...state,
+        posting: true
       };
     case ADD_ARTICLE_SUCCESS:
       return {

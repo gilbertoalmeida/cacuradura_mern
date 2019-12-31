@@ -3,6 +3,7 @@ import {
   GET_ARTICLES_PT,
   GET_ARTICLES_EN,
   GET_ARTICLE,
+  ADDING_THE_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
   GET_USER_ARTICLES
@@ -69,13 +70,21 @@ export const addArticle = ({
   });
 
   axios
-    .post("/api/articles/add", bbody, tokenConfig(getState))
-    .then(res =>
+    .post(
+      "/api/articles/add",
+      bbody,
+      tokenConfig(getState),
+      dispatch({
+        type: ADDING_THE_ARTICLE
+      })
+    )
+    .then(res => {
+      window.location.href = `/users/${_id}`;
       dispatch({
         type: ADD_ARTICLE_SUCCESS,
         payload: res.data // this endpoint sends everything, including the token to the auth reducer
-      })
-    )
+      });
+    })
     .catch(err => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "ADD_ARTICLE_FAIL")
