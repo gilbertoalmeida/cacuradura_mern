@@ -45,7 +45,9 @@
     "submitbutton": ["Done", "Pronto"]
   },
   "article": {
-    "by": ["by", "por"]
+    "by": ["by", "por"],
+    "post": ["Post", "Postar"],
+    "posting": ["Posting...", "Postando..."]
   },
   "add_article_page": {
     "title": ["Title...", "Título..."],
