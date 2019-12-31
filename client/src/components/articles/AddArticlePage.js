@@ -31,6 +31,7 @@ class AddArticlePage extends Component {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
+    article: PropTypes.object.isRequired,
     addArticle: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
   };
@@ -134,10 +135,9 @@ class AddArticlePage extends Component {
     //send the article
     this.props.addArticle(newArticle);
 
-    if (title && body !== "<p><br></p>") {
-      this.props.history.push(`/users/${this.props.user._id}`);
-      window.location.reload();
-    }
+    /* CODE MOVED. This redirect code was moved to the axios request at articleActions. To make it wait for ADD_ARTICLE_SUCCESS
+    this.props.history.push(`/users/${this.props.user._id}`);
+      window.location.reload(); */
   };
 
   addDefaultSrc(ev) {
@@ -179,6 +179,7 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
     /* text are autoexpand END */
 
     const { editorState } = this.state;
+    const { posting } = this.props.article;
     let datenow = Date.now();
 
     return (
@@ -244,7 +245,7 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                         ,
                       </p>
                       <p>
-                        <Translate id="article.by"></Translate>{" "}
+                        <Translate id="article.by" />{" "}
                         <Link
                           to={`/users/${this.props.user._id}`}
                           className="user-link link"
@@ -320,7 +321,11 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
               ) : null}
               {/* operator to show the alert only is there is an error */}
               <Button className="button-form-top submit-post-article" block>
-                Postar
+                {posting ? (
+                  <Translate id="article.posting" />
+                ) : (
+                  <Translate id="article.post" />
+                )}
               </Button>
             </FormGroup>
           </Form>
@@ -333,7 +338,8 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
-  user: state.auth.user
+  user: state.auth.user,
+  article: state.article
 });
 
 export default withLocalize(
