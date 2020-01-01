@@ -14,7 +14,7 @@ const Article = require("../../models/Article");
 router.get("/pt", (req, res) => {
   Article.aggregate([
     { $match: { homepage: true, language: "pt" } },
-    { $sample: { size: 4 } }
+    { $sample: { size: 6 } }
   ]).then(articles => res.json(articles));
 });
 
@@ -24,7 +24,7 @@ router.get("/pt", (req, res) => {
 router.get("/en", (req, res) => {
   Article.aggregate([
     { $match: { homepage: true, language: "en" } },
-    { $sample: { size: 4 } }
+    { $sample: { size: 6 } }
   ]).then(articles => res.json(articles));
 });
 
