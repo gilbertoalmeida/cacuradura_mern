@@ -1,8 +1,11 @@
 import axios from "axios";
 import {
-  GET_ARTICLES_PT,
-  GET_ARTICLES_EN,
-  GET_ARTICLE,
+  GETTING_ARTICLES,
+  GET_ARTICLES_PT_SUCCESS,
+  GET_ARTICLES_EN_SUCCESS,
+  GETTING_THE_ARTICLE,
+  GET_ARTICLE_SUCCESS,
+  GET_ARTICLE_FAIL,
   ADDING_THE_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
@@ -13,10 +16,15 @@ import { tokenConfig } from "./authActions";
 
 export const getArticlesPT = () => dispatch => {
   axios
-    .get("/api/articles/pt") //proxi in the package.json in react makes it not necessary to type the full path
+    .get(
+      "/api/articles/pt",
+      dispatch({
+        type: GETTING_ARTICLES
+      })
+    ) //proxi in the package.json in react makes it not necessary to type the full path
     .then(res =>
       dispatch({
-        type: GET_ARTICLES_PT,
+        type: GET_ARTICLES_PT_SUCCESS,
         payload: res.data
       })
     );
@@ -24,24 +32,38 @@ export const getArticlesPT = () => dispatch => {
 
 export const getArticlesEN = () => dispatch => {
   axios
-    .get("/api/articles/en") //proxi in the package.json in react makes it not necessary to type the full path
+    .get(
+      "/api/articles/en",
+      dispatch({
+        type: GETTING_ARTICLES
+      })
+    ) //proxi in the package.json in react makes it not necessary to type the full path
     .then(res =>
       dispatch({
-        type: GET_ARTICLES_EN,
+        type: GET_ARTICLES_EN_SUCCESS,
         payload: res.data
       })
     );
 };
 
-export const getArticle = id => dispatch => {
-  axios
-    .get(`/api/articles/${id}`) //proxi in the package.json in react makes it not necessary to type the full path
-    .then(res =>
+export const getArticle = id => async dispatch => {
+  try {
+    const res = await axios.get(
+      `/api/articles/${id}`,
       dispatch({
-        type: GET_ARTICLE,
-        payload: res.data
+        type: GETTING_THE_ARTICLE
       })
-    );
+    ); //proxi in the package.json in react makes it not necessary to type the full path
+
+    dispatch({
+      type: GET_ARTICLE_SUCCESS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ARTICLE_FAIL
+    });
+  }
 };
 
 export const getUserArticles = id => dispatch => {

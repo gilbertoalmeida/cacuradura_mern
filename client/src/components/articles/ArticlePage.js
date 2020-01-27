@@ -19,9 +19,17 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
     ev.target.src = "https://pbs.twimg.com/media/Bw8Kiy4CAAAhcy6.jpg";
   }
 
-  return loading || article === null ? (
+  return loading ? (
     <header>
-      <h1>Loading</h1>
+      <h1>
+        <Translate id="article.loading" />
+      </h1>
+    </header>
+  ) : article === null ? (
+    <header>
+      <h1>
+        <Translate id="article.noarticle" />
+      </h1>
     </header>
   ) : (
     <Fragment>
@@ -59,7 +67,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
                   new Date(article.date).getFullYear()}
               </p>
               <p>
-                <Translate id="article.by"></Translate>{" "}
+                <Translate id="article.by" />{" "}
                 <Link
                   to={`/users/${article.author._id}`}
                   className="user-link link"
