@@ -31,8 +31,18 @@ router.get("/en", (req, res) => {
 // @route   GET api/articles/:id
 // @desc    Get one article by its id
 // @access  Public
-router.get("/:id", (req, res) => {
-  Article.findById(req.params.id).then(article => res.json(article));
+router.get("/:id", async (req, res) => {
+  try {
+    const article = await Article.findById(req.params.id);
+
+    if (!article) {
+      return res.status(404);
+    }
+
+    res.json(article);
+  } catch (err) {
+    res.status(500).send("Server Error");
+  }
 });
 
 // @route   GET api/articles/user/:id

@@ -47,7 +47,9 @@
   "article": {
     "by": ["by", "por"],
     "post": ["Post", "Postar"],
-    "posting": ["Posting...", "Postando..."]
+    "posting": ["Posting...", "Postando..."],
+    "loading": ["Loading", "Carregando"],
+    "noarticle": ["Article not found", "Artigo não encontrado"]
   },
   "add_article_page": {
     "title": ["Title...", "Título..."],

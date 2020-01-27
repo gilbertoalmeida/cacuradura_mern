@@ -553,7 +553,10 @@ header h2 {
 
 .article-body p a {
   color: #e69696;
+  font-weight: bold;
   text-decoration: none;
+  position: relative;
+  z-index: 10;
 }
 
 .article-body p a:hover {
@@ -1208,6 +1211,12 @@ header h2 {
   margin-top: 2rem;
 }
 
+.submit-post-article,
+.submit-post-article:hover {
+  margin: auto;
+  width: 95%;
+}
+
 /* wysiwyg editor */
 
 .public-DraftStyleDefault-block {
@@ -1433,6 +1442,12 @@ header h2 {
 
 .rdw-block-wrapper .rdw-dropdown-wrapper ul li:nth-child(7):after {
   content: close-quote;
+}
+
+.public-DraftEditor-content * {
+  color: inherit;
+  background-color: #f02d0a;
+  font-family: inherit;
 }
 
 .public-DraftEditor-content h2 {
