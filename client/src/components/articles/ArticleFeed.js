@@ -32,8 +32,17 @@ class ArticleFeed extends Component {
   }
 
   render() {
-    const { articles } = this.props.article; //pulling out articles from this.props.article, so that I dont have to write this.props.article.articles all the time
-    return (
+    const { articles, loading } = this.props.article; //pulling out articles from this.props.article, so that I dont have to write this.props.article.articles all the time
+    return loading ? (
+      <header>
+        {/* I took this off, bc the loading message here is really ugly. I have to do the real loading page scene
+        where loading squares appear in place. Maybe empty pink squares. And where the text is, there is a slight
+        darker backgroung, as a loading text */}
+        {/* <h1>
+          <Translate id="article.loading" />
+        </h1> */}
+      </header>
+    ) : (
       <div className="article-feed-main-box-element">
         <ListGroup className="article-feed-wrapper">
           {articles.map(({ _id, title, date, author, feed_img }) => (
