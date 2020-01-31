@@ -43,12 +43,27 @@ const UserPage = ({
     if (activeTab !== tab) setActiveTab(tab);
   };
 
+  const profile_img = [
+    "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+    "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+    "https://images.unsplash.com/photo-1497316730643-415fac54a2af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+    "https://upload.wikimedia.org/wikipedia/commons/5/59/That_Poppy_profile_picture.jpg",
+    "https://images.askmen.com/1080x540/2016/01/25-021526-facebook_profile_picture_affects_chances_of_getting_hired.jpg",
+    "https://kprofiles.com/wp-content/uploads/2019/12/20019643.jpg"
+  ];
+
   return loading || user === null ? (
     <header>
       <h1>Loading</h1>
     </header>
   ) : (
     <Fragment>
+      <div className="user-profile-main-box-element">
+        <img className="profile-pic-focus" src={profile_img[0]}></img>
+        <div className="profile-header">
+          <div className="user-profile-title">{user.username}</div>
+        </div>
+      </div>
       <header className="App-header">
         <h1>
           <Translate id="header.a(cacura)"></Translate>

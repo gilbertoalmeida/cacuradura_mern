@@ -152,6 +152,7 @@ class RegisterModal extends Component {
                       type="text"
                       name="username"
                       id="username"
+                      maxLength="18"
                       placeholder={translate(
                         "registermodal.username_placeholder"
                       )}
