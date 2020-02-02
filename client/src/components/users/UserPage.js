@@ -30,6 +30,7 @@ const UserPage = ({
   getUserArticles,
   user: { user },
   article: { articles, loading },
+  auth,
   match
 }) => {
   useEffect(() => {
@@ -38,6 +39,7 @@ const UserPage = ({
   }, [getUser, getUserArticles, match.params.id]);
 
   const [activeTab, setActiveTab] = useState("1");
+  const [pictureID, setPictureID] = useState(0);
 
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -59,11 +61,33 @@ const UserPage = ({
   ) : (
     <Fragment>
       <div className="user-profile-main-box-element">
-        <img className="profile-pic-focus" src={profile_img[0]}></img>
+        <img className="profile-pic-focus" src={profile_img[pictureID]}></img>
         <div className="profile-header">
           <div className="user-profile-title">{user.username}</div>
         </div>
       </div>
+      <div
+        onClick={() => {
+          setPictureID(pictureID - 1);
+        }}
+      >
+        Antes
+      </div>
+      <div
+        onClick={() => {
+          setPictureID(pictureID + 1);
+        }}
+      >
+        depois
+      </div>
+      {auth.isAuthenticated &&
+        auth.isLoading === false &&
+        auth.user._id === user._id && (
+          <Link to={`/users/edit_profile`}>
+            <Translate id="user_page.edit_profile"></Translate>
+          </Link>
+        )}
+
       <header className="App-header">
         <h1>
           <Translate id="header.a(cacura)"></Translate>
@@ -193,12 +217,15 @@ const UserPage = ({
 
 UserPage.propTypes = {
   getUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  article: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   user: state.user,
-  article: state.article
+  article: state.article,
+  auth: state.auth
 });
 
 export default withLocalize(

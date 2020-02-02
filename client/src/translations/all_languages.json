@@ -86,7 +86,8 @@
     "article_design": [
       "Still gonna make this look nice. I am just throwing the user articles here for now",
       "Ainda vou fazer isso aqui ficar bonito. Por agora, só tô jogando os artigos da cacura aqui"
-    ]
+    ],
+    "edit_profile": ["Edit profile", "Editar perfil"]
   },
   "error_messages": {
     "missing_credentials": [
