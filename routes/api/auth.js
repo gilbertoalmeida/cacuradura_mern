@@ -57,4 +57,28 @@ router.get("/user", auth, (req, res) => {
     .then(user => res.json(user));
 });
 
+// @route    POST api/users/edit
+// @desc     Update user profile
+// @access   Private
+
+router.post("/edit", auth, async (req, res) => {
+  const { name } = req.body;
+
+  //Profile Object
+  const profileFields = {};
+  profileFields.name = name;
+
+  try {
+    let foundAndEditedProfile = await User.findOneAndUpdate(
+      { _id: req.body.id },
+      profileFields,
+      { new: true, useFindAndModify: false }
+    );
+    res.json(foundAndEditedProfile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;
