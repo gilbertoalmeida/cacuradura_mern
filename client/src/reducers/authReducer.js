@@ -4,6 +4,8 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  EDIT_PROFILE_SUCCESS,
+  EDIT_PROFILE_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL
@@ -24,6 +26,7 @@ export default function(state = initialState, action) {
         isLoading: true
       };
     case USER_LOADED:
+    case EDIT_PROFILE_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
@@ -38,6 +41,10 @@ export default function(state = initialState, action) {
         ...action.payload, // contains the user and the token
         isAuthenticated: true,
         isLoading: false
+      };
+    case EDIT_PROFILE_FAIL:
+      return {
+        ...state
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:

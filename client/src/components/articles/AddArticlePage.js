@@ -79,7 +79,12 @@ class AddArticlePage extends Component {
   there is a feed_img AND it has been loaded. So I copied the autoexpand code to the callback of the second setState (since it takes 
   some milisaconds to finish). This is ugly, but I had to do it, bc I couldn't just call the function again here. I need to re-write 
   this when I transform this component into a functional one. Maybe it can work better there.
-  (and now it is repeated in componentdidmount to capture window resize too hahaha I need to re-write this!!)*/
+  (and now it is repeated in componentdidmount to capture window resize too hahaha I need to re-write this!!)
+  
+  I NEED TO USE EFFECT HOOK FOR THIS!!
+  It is basically componentdidmount and componentdidupdate together. I guess this is what i need here.
+
+  */
 
   writingPic = feed_img_modal => {
     this.setState({ feed_img: feed_img_modal, coverImgLoading: true });

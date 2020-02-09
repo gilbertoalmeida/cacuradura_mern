@@ -2,25 +2,23 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loadUser } from "../../actions/authActions";
+import { editProfile } from "../../actions/authActions";
+
+const initialFormState = {
+  name: ""
+};
 
 const EditProfile = ({
   auth: { isAuthenticated, isLoading, user },
-  loadUser
+  editProfile
 }) => {
-  const [formData, setFormData] = useState({
-    name: ""
-  });
+  const [formData, setFormData] = useState(initialFormState);
 
   useEffect(() => {
-    /* Calling this here was making the action be called non-stop. I wanted to make sure that
-    there is a user inside auth, but maybe this is not necessary */
-    /* loadUser(); */
-
     setFormData({
       name: isLoading || !user.name ? "" : user.name
     });
-  }, [isLoading, loadUser]);
+  }, [isLoading, user]);
 
   const { name } = formData;
 
@@ -29,7 +27,7 @@ const EditProfile = ({
 
   const onSubmit = e => {
     e.preventDefault();
-    /* createProfile(formData, history, true); */
+    editProfile(formData, user._id);
   };
 
   return (
@@ -60,8 +58,8 @@ const EditProfile = ({
 };
 
 EditProfile.propTypes = {
-  loadUser: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  editProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -70,5 +68,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loadUser }
+  { editProfile }
 )(withRouter(EditProfile));

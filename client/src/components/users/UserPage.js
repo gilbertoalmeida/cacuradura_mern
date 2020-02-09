@@ -61,7 +61,11 @@ const UserPage = ({
   ) : (
     <Fragment>
       <div className="user-profile-main-box-element">
-        <img className="profile-pic-focus" src={profile_img[pictureID]}></img>
+        <img
+          className="profile-pic-focus"
+          src={profile_img[pictureID]}
+          alt="profile pic"
+        ></img>
         <div className="profile-header">
           <div className="user-profile-title">{user.username}</div>
         </div>

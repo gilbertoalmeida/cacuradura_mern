@@ -7,6 +7,8 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  EDIT_PROFILE_SUCCESS,
+  EDIT_PROFILE_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL
@@ -89,6 +91,33 @@ export const login = ({ username, password }) => dispatch => {
       );
       dispatch({
         type: LOGIN_FAIL
+      });
+    });
+};
+
+//Edit User Profile
+export const editProfile = ({ name }, id) => (dispatch, getState) => {
+  //Request body
+  const body = JSON.stringify({ id, name });
+
+  axios
+    .post("/api/auth/edit", body, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: EDIT_PROFILE_SUCCESS,
+        payload: res.data // this endpoint sends everything, including the token to the auth reducer
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(
+          err.response.data,
+          err.response.status,
+          "EDIT_PROFILE_FAIL"
+        )
+      );
+      dispatch({
+        type: EDIT_PROFILE_FAIL
       });
     });
 };
