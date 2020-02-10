@@ -52,34 +52,39 @@ const UserPage = ({
   ) : (
     <Fragment>
       <div className="user-profile-main-box-element">
-        <img
-          className="profile-pic-focus"
-          src={user.profile_pictures[pictureID]}
-          alt="profile pic"
-        ></img>
+        <div className="profile-pic-container">
+          <img
+            className="profile-pic-focus"
+            src={user.profile_pictures[pictureID]}
+            alt="profile pic"
+          ></img>
+          <div className="profile-pic-nav-arrows">
+            {pictureID === 0 ? null : (
+              <img
+                className="back-arrow"
+                src="/Assets/back_pic.png"
+                alt="left back arrow"
+                onClick={() => {
+                  setPictureID(pictureID - 1);
+                }}
+              />
+            )}
+            {pictureID === user.profile_pictures.length - 1 ? null : (
+              <img
+                className="next-arrow"
+                src="/Assets/next_pic.png"
+                alt="right next arrow"
+                onClick={() => {
+                  setPictureID(pictureID + 1);
+                }}
+              />
+            )}
+          </div>
+        </div>
         <div className="profile-header">
           <div className="user-profile-title">{user.username}</div>
         </div>
       </div>
-      {pictureID === 0 ? null : (
-        <div
-          onClick={() => {
-            setPictureID(pictureID - 1);
-          }}
-        >
-          Antes
-        </div>
-      )}
-      {pictureID === user.profile_pictures.length - 1 ? null : (
-        <div
-          onClick={() => {
-            console.log(user.profile_pictures.length);
-            setPictureID(pictureID + 1);
-          }}
-        >
-          depois
-        </div>
-      )}
 
       {auth.isAuthenticated &&
         auth.isLoading === false &&
