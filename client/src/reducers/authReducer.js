@@ -15,7 +15,7 @@ const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   isLoading: false,
-  user: null
+  loggedUser: null
 };
 
 export default function(state = initialState, action) {
@@ -31,14 +31,15 @@ export default function(state = initialState, action) {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user: action.payload
+        loggedUser: action.payload
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       localStorage.setItem("token", action.payload.token); //comes from the authActions
       return {
         ...state,
-        ...action.payload, // contains the user and the token
+        token: action.payload.token,
+        loggedUser: action.payload, // contains the user and the token
         isAuthenticated: true,
         isLoading: false
       };
@@ -54,7 +55,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         token: null,
-        user: null,
+        loggedUser: null,
         isAuthenticated: false,
         isLoading: false
       };

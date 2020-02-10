@@ -66,7 +66,7 @@ router.post("/", (req, res) => {
 // @desc    Get one user by its id
 // @access  Public
 router.get("/:id", (req, res) => {
-  User.findById(req.params.id).then(user => res.json(user));
+  User.findById(req.params.id).then(loadedUser => res.json(loadedUser));
 });
 
 module.exports = router;
