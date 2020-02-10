@@ -1710,6 +1710,11 @@ header h2 {
   max-height: 35px;
 }
 
+.back-arrow:hover,
+.next-arrow:hover {
+  cursor: pointer;
+}
+
 .profile-header {
   width: 460px;
   height: 400px;

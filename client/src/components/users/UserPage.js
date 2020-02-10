@@ -28,7 +28,7 @@ import ReactHtmlParser from "react-html-parser";
 const UserPage = ({
   getUser,
   getUserArticles,
-  user: { user },
+  user: { loadedUser },
   article: { articles, loading },
   auth,
   match
@@ -45,7 +45,7 @@ const UserPage = ({
     if (activeTab !== tab) setActiveTab(tab);
   };
 
-  return loading || user === null ? (
+  return loading || loadedUser === null ? (
     <header>
       <h1>Loading</h1>
     </header>
@@ -55,7 +55,7 @@ const UserPage = ({
         <div className="profile-pic-container">
           <img
             className="profile-pic-focus"
-            src={user.profile_pictures[pictureID]}
+            src={loadedUser.profile_pictures[pictureID]}
             alt="profile pic"
           ></img>
           <div className="profile-pic-nav-arrows">
@@ -69,7 +69,7 @@ const UserPage = ({
                 }}
               />
             )}
-            {pictureID === user.profile_pictures.length - 1 ? null : (
+            {pictureID === loadedUser.profile_pictures.length - 1 ? null : (
               <img
                 className="next-arrow"
                 src="/Assets/next_pic.png"
@@ -82,13 +82,13 @@ const UserPage = ({
           </div>
         </div>
         <div className="profile-header">
-          <div className="user-profile-title">{user.username}</div>
+          <div className="user-profile-title">{loadedUser.username}</div>
         </div>
       </div>
 
       {auth.isAuthenticated &&
         auth.isLoading === false &&
-        auth.user._id === user._id && (
+        auth.loggedUser._id === loadedUser._id && (
           <Link to={`/users/edit_profile`}>
             <Translate id="user_page.edit_profile"></Translate>
           </Link>
@@ -104,10 +104,10 @@ const UserPage = ({
         </h2>
       </header>
       <div className="main-box-element">
-        <Link to={`/users/${user._id}`} className="article-title link">
+        <Link to={`/users/${loadedUser._id}`} className="article-title link">
           <Translate
             id="user_page.owner_phrase"
-            data={{ owner: user.username }}
+            data={{ owner: loadedUser.username }}
           ></Translate>
         </Link>
         <br />

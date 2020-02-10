@@ -101,7 +101,7 @@ export const addArticle = ({
       })
     )
     .then(res => {
-      window.location.href = `/users/${_id}`;
+      window.location.href = `/users/${_id}`; //redirects to the userpage of who posted the article
       dispatch({
         type: ADD_ARTICLE_SUCCESS,
         payload: res.data // this endpoint sends everything, including the token to the auth reducer

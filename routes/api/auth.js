@@ -20,27 +20,26 @@ router.post("/", (req, res) => {
   }
 
   //Check for existing user
-  User.findOne({ username: username }).then(user => {
-    if (!user) return res.status(400).json({ msg: "wrong_credentials" }); //this is now not the error message itself, but part of the id of the translation
+  User.findOne({ username: username }).then(loggedUser => {
+    if (!loggedUser) return res.status(400).json({ msg: "wrong_credentials" }); //this is now not the error message itself, but part of the id of the translation
 
     //Validade the password
-    bcrypt.compare(password, user.password).then(isMatch => {
+    bcrypt.compare(password, loggedUser.password).then(isMatch => {
       if (!isMatch) return res.status(400).json({ msg: "wrong_credentials" });
 
       jwt.sign(
-        { _id: user._id }, // payload. I am sending the user id to verify actions later
+        { _id: loggedUser._id }, // payload. I am sending the user id to verify actions later
         config.get("jwtSecret"),
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
           res.json({
             token: token,
-            user: {
-              _id: user._id,
-              name: user.name,
-              username: user.username,
-              email: user.email
-            }
+            _id: loggedUser._id,
+            name: loggedUser.name,
+            username: loggedUser.username,
+            profile_pictures: loggedUser.profile_pictures,
+            email: loggedUser.email
           });
         }
       );
