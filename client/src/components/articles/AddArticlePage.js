@@ -30,7 +30,7 @@ class AddArticlePage extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
     article: PropTypes.object.isRequired,
     addArticle: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
@@ -79,7 +79,12 @@ class AddArticlePage extends Component {
   there is a feed_img AND it has been loaded. So I copied the autoexpand code to the callback of the second setState (since it takes 
   some milisaconds to finish). This is ugly, but I had to do it, bc I couldn't just call the function again here. I need to re-write 
   this when I transform this component into a functional one. Maybe it can work better there.
-  (and now it is repeated in componentdidmount to capture window resize too hahaha I need to re-write this!!)*/
+  (and now it is repeated in componentdidmount to capture window resize too hahaha I need to re-write this!!)
+  
+  I NEED TO USE EFFECT HOOK FOR THIS!!
+  It is basically componentdidmount and componentdidupdate together. I guess this is what i need here.
+
+  */
 
   writingPic = feed_img_modal => {
     this.setState({ feed_img: feed_img_modal, coverImgLoading: true });
@@ -127,8 +132,8 @@ class AddArticlePage extends Component {
       feed_img,
       language: this.props.activeLanguage.code,
       author: {
-        username: this.props.user.username || "cacura não logada",
-        _id: this.props.user._id || "cacura não logada"
+        username: this.props.auth.loggedUser.username || "cacura não logada",
+        _id: this.props.auth.loggedUser._id || "cacura não logada"
       }
     };
 
@@ -141,7 +146,8 @@ class AddArticlePage extends Component {
   };
 
   addDefaultSrc(ev) {
-    ev.target.src = "https://pbs.twimg.com/media/Bw8Kiy4CAAAhcy6.jpg";
+    ev.target.src =
+      "https://lh3.googleusercontent.com/g1geQPY-XS-ULU80VXCyAlG2aqEwkIPdbAZcfdLlMHqdqcU36658P6v_beNBW7UTN9Q5zqVbsGr87NjqtiNh8aXqAtllrsTrE47fSpEgh1eCpK4FgjaftXSS0ijWG43RQhrZVVCTCKtC25gEpg43Ag_CnjSlZzPZmtJW0Mxwf0LkBfhbZt690KngyeWt-6uf2o8zjl2hxZAOxIARUl-NiXaIlZ0nlM_s-mA_OOSr89itUv7e5um2zFGyD39X6wUrulHjttqyaNRDMCnNbNAZ_LGsYQo2zR5CnjZhiZJWt0PkAJ80Ui7GerZLUYw4TQuwSnkT9ipozb3E0V7s9I64-2ZqE5-zoHbPoqpEdMZ_6NI-TitQA0jFMttcVdfiVkXhbT4JM-SSdW_p99iwM0uzRTgknq3mXdYKbTvEDX3xS-n55UhTk7qOz5OIZCVAO54q4B4paEyxuaByJaSOSPyj6Yud0qf9U-VtrJ2bbqrGnvGhoFBce0sEUSyxCzVm5_iqv80iKf3gXpeeyaImoVorCUBDqiCqbrSATKoLqcDLqsbvbWSK44-SnMmB39oMgHfs3Riab50d0faSQfDRAXfinkynILVcoeTiwtRcxt8rEfi_fpbzpXQeyYFg9eHFHkHgNUTE47ITCxKNGdehoktpm5COQ-QXG4rA6WFL1fqFaMjh5CaIv0MFNA=w1319-h660-no";
   }
 
   render() {
@@ -182,7 +188,17 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
     const { posting } = this.props.article;
     let datenow = Date.now();
 
-    return (
+    const { isAuthenticated, loggedUser } = this.props.auth;
+
+    return !isAuthenticated ? (
+      <header>
+        <h1>Please login</h1>
+      </header>
+    ) : !loggedUser ? (
+      <header>
+        <h1>Loading</h1>
+      </header>
+    ) : (
       <div>
         <div className="post-article-main-box-element">
           <Form className="add-article-form" onSubmit={this.onSubmit}>
@@ -247,10 +263,10 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                       <p>
                         <Translate id="article.by" />{" "}
                         <Link
-                          to={`/users/${this.props.user._id}`}
+                          to={`/users/${loggedUser._id}`}
                           className="user-link link"
                         >
-                          {this.props.user.username}
+                          {loggedUser.username}
                         </Link>{" "}
                       </p>
                     </time>
@@ -338,7 +354,7 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
-  user: state.auth.user,
+  auth: state.auth,
   article: state.article
 });
 

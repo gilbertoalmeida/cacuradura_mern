@@ -4,6 +4,8 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  EDIT_PROFILE_SUCCESS,
+  EDIT_PROFILE_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL
@@ -13,7 +15,7 @@ const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   isLoading: false,
-  user: null
+  loggedUser: null
 };
 
 export default function(state = initialState, action) {
@@ -24,20 +26,26 @@ export default function(state = initialState, action) {
         isLoading: true
       };
     case USER_LOADED:
+    case EDIT_PROFILE_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user: action.payload
+        loggedUser: action.payload
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       localStorage.setItem("token", action.payload.token); //comes from the authActions
       return {
         ...state,
-        ...action.payload, // contains the user and the token
+        token: action.payload.token,
+        loggedUser: action.payload, // contains the user and the token
         isAuthenticated: true,
         isLoading: false
+      };
+    case EDIT_PROFILE_FAIL:
+      return {
+        ...state
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:
@@ -47,7 +55,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         token: null,
-        user: null,
+        loggedUser: null,
         isAuthenticated: false,
         isLoading: false
       };
