@@ -2,9 +2,6 @@
   "header": {
     "call1": ["Cacuras in the making", "Cacuras em formação"],
     "call2": ["Follow this metamorphose", "Acompanhe essa metamorfose"],
-    "a(article)": ["an", "um"],
-    "a(cacura)": ["a", "uma"],
-    "article": ["article", "artigo"],
     "still_working": [
       "I'm still working on the design of this page. Chill out",
       "Ainda não terminei o design dessa página. Relaxe"
