@@ -105,7 +105,7 @@ class AuthNavBar extends Component {
   };
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated, loggedUser } = this.props.auth;
 
     const authLinks = (
       <Fragment>
@@ -114,11 +114,14 @@ class AuthNavBar extends Component {
             {/* Using two greetings bc I can't make the greeting be outside of the collape, but still be next to the buttons. So I am using two types and hidding each of them depending if the collapse happened or not */}
             <span>
               <strong>
-                {user ? (
+                {loggedUser ? (
                   <div className="authnavbar-greeting-username">
                     <Translate id="authnavbar.greeting" />{" "}
-                    <Link to={`/users/${user._id}`} className="user-link link">
-                      {user.username}
+                    <Link
+                      to={`/users/${loggedUser._id}`}
+                      className="user-link link"
+                    >
+                      {loggedUser.username}
                     </Link>
                   </div>
                 ) : (
@@ -134,14 +137,14 @@ class AuthNavBar extends Component {
             <NavItem className="greeting-inside-collapse">
               <span>
                 <strong>
-                  {user ? (
+                  {loggedUser ? (
                     <div className="authnavbar-greeting-username">
                       <Translate id="authnavbar.greeting" />{" "}
                       <Link
-                        to={`/users/${user._id}`}
+                        to={`/users/${loggedUser._id}`}
                         className="user-link link"
                       >
-                        {user.username}
+                        {loggedUser.username}
                       </Link>
                     </div>
                   ) : (

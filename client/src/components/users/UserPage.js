@@ -28,8 +28,9 @@ import ReactHtmlParser from "react-html-parser";
 const UserPage = ({
   getUser,
   getUserArticles,
-  user: { user },
+  user: { loadedUser },
   article: { articles, loading },
+  auth,
   match
 }) => {
   useEffect(() => {
@@ -38,17 +39,61 @@ const UserPage = ({
   }, [getUser, getUserArticles, match.params.id]);
 
   const [activeTab, setActiveTab] = useState("1");
+  const [pictureID, setPictureID] = useState(0);
 
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
-  return loading || user === null ? (
+  return loading || loadedUser === null ? (
     <header>
       <h1>Loading</h1>
     </header>
   ) : (
     <Fragment>
+      <div className="user-profile-main-box-element">
+        <div className="profile-pic-container">
+          <img
+            className="profile-pic-focus"
+            src={loadedUser.profile_pictures[pictureID]}
+            alt="profile pic"
+          ></img>
+          <div className="profile-pic-nav-arrows">
+            {pictureID === 0 ? null : (
+              <img
+                className="back-arrow"
+                src="/Assets/back_pic.png"
+                alt="left back arrow"
+                onClick={() => {
+                  setPictureID(pictureID - 1);
+                }}
+              />
+            )}
+            {pictureID === loadedUser.profile_pictures.length - 1 ? null : (
+              <img
+                className="next-arrow"
+                src="/Assets/next_pic.png"
+                alt="right next arrow"
+                onClick={() => {
+                  setPictureID(pictureID + 1);
+                }}
+              />
+            )}
+          </div>
+        </div>
+        <div className="profile-header">
+          <div className="user-profile-title">{loadedUser.username}</div>
+        </div>
+      </div>
+
+      {auth.isAuthenticated &&
+        auth.isLoading === false &&
+        auth.loggedUser._id === loadedUser._id && (
+          <Link to={`/users/edit_profile`}>
+            <Translate id="user_page.edit_profile"></Translate>
+          </Link>
+        )}
+
       <header className="App-header">
         <h1>
           <Translate id="header.a(cacura)"></Translate>
@@ -59,10 +104,10 @@ const UserPage = ({
         </h2>
       </header>
       <div className="main-box-element">
-        <Link to={`/users/${user._id}`} className="article-title link">
+        <Link to={`/users/${loadedUser._id}`} className="article-title link">
           <Translate
             id="user_page.owner_phrase"
-            data={{ owner: user.username }}
+            data={{ owner: loadedUser.username }}
           ></Translate>
         </Link>
         <br />
@@ -178,12 +223,15 @@ const UserPage = ({
 
 UserPage.propTypes = {
   getUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  article: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   user: state.user,
-  article: state.article
+  article: state.article,
+  auth: state.auth
 });
 
 export default withLocalize(
