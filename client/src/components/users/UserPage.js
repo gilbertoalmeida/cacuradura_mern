@@ -30,6 +30,10 @@ const UserPage = ({
     if (activeTab !== tab) setActiveTab(tab);
   };
 
+  function addDefaultSrc(ev) {
+    ev.target.src = "/Assets/img_load_fail.png";
+  }
+
   return loading || loadedUser === null ? (
     <header>
       <h1>Loading</h1>
@@ -41,6 +45,7 @@ const UserPage = ({
           <img
             className="profile-pic-focus"
             src={loadedUser.profile_pictures[pictureID]}
+            onError={addDefaultSrc}
             alt="profile pic"
           ></img>
           <div className="profile-pic-nav-arrows">
@@ -68,16 +73,38 @@ const UserPage = ({
         </div>
         <div className="profile-header">
           <div className="user-profile-title">{loadedUser.username}</div>
+          <div className="user-profile-counters">
+            <div className="some-counter"></div>
+            <div className="article-counter">
+              <Translate id="user_page.articles" /> <br />
+              <span>{articles.length}</span>{" "}
+            </div>
+            <div className="another-counter"></div>
+          </div>
+          <div className="user-profile-buttons">
+            {auth.isAuthenticated &&
+            auth.isLoading === false &&
+            auth.loggedUser._id === loadedUser._id ? (
+              <Link to={`/users/edit_profile`}>
+                <button className="profile-buttons edit-profile-button">
+                  <Translate id="user_page.edit_profile"></Translate>
+                </button>
+              </Link>
+            ) : (
+              <button
+                className="profile-buttons send-message-button"
+                onClick={() => {
+                  alert(
+                    "Not done yet!! Will come in a later build of the site, if I don't change my mind 😅"
+                  );
+                }}
+              >
+                Message/testimonials?
+              </button>
+            )}
+          </div>
         </div>
       </div>
-
-      {auth.isAuthenticated &&
-        auth.isLoading === false &&
-        auth.loggedUser._id === loadedUser._id && (
-          <Link to={`/users/edit_profile`}>
-            <Translate id="user_page.edit_profile"></Translate>
-          </Link>
-        )}
 
       <div className="main-box-element">
         <Nav tabs className="justify-content-center user-nav-tabs">
@@ -88,7 +115,7 @@ const UserPage = ({
                 toggle("1");
               }}
             >
-              <Translate id="user_page.articles"></Translate>
+              <Translate id="user_page.articles" />
             </NavLink>
           </NavItem>
         </Nav>
