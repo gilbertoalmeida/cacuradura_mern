@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { Label } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { editProfile } from "../../actions/authActions";
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 const initialFormState = {
   name: "",
-  new_profile_pic: ""
+  new_profile_pic: "",
+  profile_pictures: []
 };
 
 const EditProfile = ({
@@ -19,12 +23,12 @@ const EditProfile = ({
   useEffect(() => {
     setFormData({
       name: !isAuthenticated || !loggedUser ? "" : loggedUser.name,
-      new_profile_pic: ""
+      new_profile_pic: "",
+      profile_pictures: []
     });
     setProfilePicsArray(
       !isAuthenticated || !loggedUser ? [] : loggedUser.profile_pictures
     );
-    console.log("effect");
   }, [isAuthenticated, loggedUser]);
 
   const { name } = formData;
@@ -44,9 +48,13 @@ const EditProfile = ({
     setProfilePicsArray(profilePicsArray => [...profilePicsArray, newpic]);
   };
 
+  const deletePicOfArray = picture => {
+    setProfilePicsArray(profilePicsArray.filter(e => e !== picture));
+  };
+
   const onSubmit = e => {
     e.preventDefault();
-    editProfile(formData, loggedUser._id);
+    editProfile(formData, profilePicsArray, loggedUser._id);
   };
 
   return !isAuthenticated ? (
@@ -59,42 +67,73 @@ const EditProfile = ({
     </header>
   ) : (
     <div className="edit-profile-main-box-element">
-      <h1 className="">Edit Your Profile</h1>
-      <p className="">
-        <i className="" /> Add some changes to your profile
-      </p>
-      {/* <small>* = required field</small> */}
-      <form className="form" onSubmit={e => onSubmit(e)}>
-        <div className="form-group">
+      <div className="edit-profile-header">
+        <h5 className="edit-profile-title">
+          <Translate id="edit_profile.title" />
+        </h5>
+        <Link to={`/users/${loggedUser._id}`}>
+          <div className="edit-profile-cancel">X</div>
+        </Link>
+      </div>
+      <div className="edit-profile-body">
+        <form className="edit-profile-form" onSubmit={e => onSubmit(e)}>
+          <Label for="name">
+            <Translate id="edit_profile.name" />
+          </Label>
           <input
+            className="edit-profile-form-input"
             type="text"
             placeholder="Name"
             name="name"
             value={name}
             onChange={e => onChange(e)}
           />
-        </div>
-        {profilePicsArray.map(picture => (
-          <img
-            className="profile-pics-thumbnail"
-            src={picture}
-            onError={addDefaultSrc}
-            alt="profile pictures"
-          />
-        ))}
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Add a profile pic"
-            name="new_profile_pic"
-            onChange={e => onChange(e)}
-          />
-        </div>
-        <button onClick={addPicToArray}>Add the pic</button>
+          <Label for="profile_pictures">
+            <Translate id="edit_profile.profile_pictures" />
+          </Label>
 
-        <input type="submit" className="btn btn-primary my-1" />
-        <Link to="/">Homepage</Link>
-      </form>
+          <div className="edit-profile-pictures-container">
+            {profilePicsArray.map(picture => (
+              <div key={picture} className="profile-pics-thumbnail-container">
+                <img
+                  className="profile-pics-thumbnail"
+                  src={picture}
+                  onError={addDefaultSrc}
+                  alt="profile pictures"
+                />
+                <div
+                  className="profile-pics-thumbnail-delete"
+                  onClick={e => deletePicOfArray(picture)}
+                >
+                  X
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="edit-profile-add-pictures">
+            <input
+              type="text"
+              placeholder="Add the link to a profile pic"
+              name="new_profile_pic"
+              onChange={e => onChange(e)}
+            />
+            <button onClick={addPicToArray}>Add</button>
+          </div>
+
+          <Translate>
+            {({ translate }) => (
+              <input
+                type="submit"
+                className="edit-profile-button-submit"
+                value={translate("edit_profile.submit")}
+              />
+            )}
+          </Translate>
+
+          <Link to="/">Homepage</Link>
+        </form>
+      </div>
     </div>
   );
 };
@@ -108,7 +147,9 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { editProfile }
-)(withRouter(EditProfile));
+export default withLocalize(
+  connect(
+    mapStateToProps,
+    { editProfile }
+  )(withRouter(EditProfile))
+);

@@ -86,6 +86,12 @@
     ],
     "edit_profile": ["Edit profile", "Editar perfil"]
   },
+  "edit_profile": {
+    "title": ["Edit your profile", "Edite seu perfil"],
+    "name": ["Name", "Nome"],
+    "profile_pictures": ["Profile pictures", "Fotos de perfil"],
+    "submit": ["Submit", "Atualizar"]
+  },
   "error_messages": {
     "missing_credentials": [
       "You have to fill in both fields, honey",
