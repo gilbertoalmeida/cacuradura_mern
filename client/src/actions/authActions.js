@@ -96,9 +96,12 @@ export const login = ({ username, password }) => dispatch => {
 };
 
 //Edit User Profile
-export const editProfile = ({ name }, id) => (dispatch, getState) => {
+export const editProfile = ({ name }, profilePicsArray, id) => (
+  dispatch,
+  getState
+) => {
   //Request body
-  const body = JSON.stringify({ id, name });
+  const body = JSON.stringify({ id, name, profilePicsArray });
 
   axios
     .post("/api/auth/edit", body, tokenConfig(getState))
