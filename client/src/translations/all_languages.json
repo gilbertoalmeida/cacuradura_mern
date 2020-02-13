@@ -90,7 +90,9 @@
     "title": ["Edit your profile", "Edite seu perfil"],
     "name": ["Name", "Nome"],
     "profile_pictures": ["Profile pictures", "Fotos de perfil"],
-    "submit": ["Submit", "Atualizar"]
+    "add_pic_placeholder": ["Link to a new picture", "Link de uma nova foto"],
+    "add_picture": ["Add", "Adicionar"],
+    "submit": ["Save changes", "Salvar"]
   },
   "error_messages": {
     "missing_credentials": [

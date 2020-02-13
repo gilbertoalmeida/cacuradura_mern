@@ -19,6 +19,9 @@ const EditProfile = ({
 }) => {
   const [formData, setFormData] = useState({ initialFormState });
   const [profilePicsArray, setProfilePicsArray] = useState([]);
+  const [addPicDisabled, setAddPicDisabled] = useState(true);
+
+  const { name, new_profile_pic } = formData;
 
   useEffect(() => {
     setFormData({
@@ -31,7 +34,13 @@ const EditProfile = ({
     );
   }, [isAuthenticated, loggedUser]);
 
-  const { name } = formData;
+  useEffect(() => {
+    if (profilePicsArray.length >= 9 || new_profile_pic === "") {
+      setAddPicDisabled(true);
+    } else {
+      setAddPicDisabled(false);
+    }
+  }, [profilePicsArray, new_profile_pic]);
 
   const addDefaultSrc = ev => {
     ev.target.src = "/Assets/img_load_fail.png";
@@ -43,9 +52,11 @@ const EditProfile = ({
   const addPicToArray = e => {
     e.preventDefault();
 
-    let newpic = formData.new_profile_pic;
-
-    setProfilePicsArray(profilePicsArray => [...profilePicsArray, newpic]);
+    setProfilePicsArray(profilePicsArray => [
+      ...profilePicsArray,
+      new_profile_pic
+    ]);
+    setFormData({ new_profile_pic: "" });
   };
 
   const deletePicOfArray = picture => {
@@ -112,13 +123,26 @@ const EditProfile = ({
           </div>
 
           <div className="edit-profile-add-pictures">
-            <input
-              type="text"
-              placeholder="Add the link to a profile pic"
-              name="new_profile_pic"
-              onChange={e => onChange(e)}
-            />
-            <button onClick={addPicToArray}>Add</button>
+            <Translate>
+              {({ translate }) => (
+                <input
+                  className="add-picture-input"
+                  type="text"
+                  placeholder={translate("edit_profile.add_pic_placeholder")}
+                  name="new_profile_pic"
+                  value={new_profile_pic}
+                  onChange={e => onChange(e)}
+                />
+              )}
+            </Translate>
+
+            <button
+              disabled={addPicDisabled}
+              className="add-picture-button"
+              onClick={addPicToArray}
+            >
+              <Translate id="edit_profile.add_picture" />
+            </button>
           </div>
 
           <Translate>
@@ -130,8 +154,6 @@ const EditProfile = ({
               />
             )}
           </Translate>
-
-          <Link to="/">Homepage</Link>
         </form>
       </div>
     </div>
