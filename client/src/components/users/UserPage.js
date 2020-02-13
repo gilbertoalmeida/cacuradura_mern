@@ -1,29 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
-  Card,
-  CardTitle,
-  CardText,
-  Row,
-  Col,
-  Container,
-  ListGroup,
-  ListGroupItem
-} from "reactstrap";
+import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
 import classnames from "classnames";
 import { getUser } from "../../actions/userActions";
 import { getUserArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
-
 import { withLocalize, Translate } from "react-localize-redux";
 
-import ReactHtmlParser from "react-html-parser";
+import UserArticleFeed from "./UserArticleFeed.js";
 
 const UserPage = ({
   getUser,
@@ -45,6 +30,10 @@ const UserPage = ({
     if (activeTab !== tab) setActiveTab(tab);
   };
 
+  function addDefaultSrc(ev) {
+    ev.target.src = "/Assets/img_load_fail.png";
+  }
+
   return loading || loadedUser === null ? (
     <header>
       <h1>Loading</h1>
@@ -53,11 +42,22 @@ const UserPage = ({
     <Fragment>
       <div className="user-profile-main-box-element">
         <div className="profile-pic-container">
-          <img
-            className="profile-pic-focus"
-            src={loadedUser.profile_pictures[pictureID]}
-            alt="profile pic"
-          ></img>
+          {loadedUser.profile_pictures.length === 0 ? (
+            <img
+              className="profile-pic-focus"
+              src="/Assets/no_profile_pic.png"
+              onError={addDefaultSrc}
+              alt="profile pic"
+            />
+          ) : (
+            <img
+              className="profile-pic-focus"
+              src={loadedUser.profile_pictures[pictureID]}
+              onError={addDefaultSrc}
+              alt="profile pic"
+            />
+          )}
+
           <div className="profile-pic-nav-arrows">
             {pictureID === 0 ? null : (
               <img
@@ -69,7 +69,8 @@ const UserPage = ({
                 }}
               />
             )}
-            {pictureID === loadedUser.profile_pictures.length - 1 ? null : (
+            {pictureID === loadedUser.profile_pictures.length - 1 ||
+            loadedUser.profile_pictures.length === 0 ? null : (
               <img
                 className="next-arrow"
                 src="/Assets/next_pic.png"
@@ -83,34 +84,40 @@ const UserPage = ({
         </div>
         <div className="profile-header">
           <div className="user-profile-title">{loadedUser.username}</div>
+          <div className="user-profile-counters">
+            <div className="some-counter"></div>
+            <div className="article-counter">
+              <Translate id="user_page.articles" /> <br />
+              <span>{articles.length}</span>{" "}
+            </div>
+            <div className="another-counter"></div>
+          </div>
+          <div className="user-profile-buttons">
+            {auth.isAuthenticated &&
+            auth.isLoading === false &&
+            auth.loggedUser._id === loadedUser._id ? (
+              <Link to={`/users/edit_profile`}>
+                <button className="profile-buttons edit-profile-button">
+                  <Translate id="user_page.edit_profile"></Translate>
+                </button>
+              </Link>
+            ) : (
+              <button
+                className="profile-buttons send-message-button"
+                onClick={() => {
+                  alert(
+                    "Not done yet!! Will come in a later build of the site, if I don't change my mind 😅"
+                  );
+                }}
+              >
+                Message/testimonials?
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
-      {auth.isAuthenticated &&
-        auth.isLoading === false &&
-        auth.loggedUser._id === loadedUser._id && (
-          <Link to={`/users/edit_profile`}>
-            <Translate id="user_page.edit_profile"></Translate>
-          </Link>
-        )}
-
-      <header className="App-header">
-        <h1>
-          <Translate id="header.a(cacura)"></Translate>
-          <span>cacura</span>
-        </h1>
-        <h2>
-          <Translate id="header.still_working"></Translate>
-        </h2>
-      </header>
       <div className="main-box-element">
-        <Link to={`/users/${loadedUser._id}`} className="article-title link">
-          <Translate
-            id="user_page.owner_phrase"
-            data={{ owner: loadedUser.username }}
-          ></Translate>
-        </Link>
-        <br />
         <Nav tabs className="justify-content-center user-nav-tabs">
           <NavItem className="user-nav-item">
             <NavLink
@@ -119,23 +126,13 @@ const UserPage = ({
                 toggle("1");
               }}
             >
-              <Translate id="user_page.articles"></Translate>
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === "2" })}
-              onClick={() => {
-                toggle("2");
-              }}
-            >
-              <Translate id="user_page.pictures"></Translate>
+              <Translate id="user_page.articles" />
             </NavLink>
           </NavItem>
         </Nav>
         <TabContent activeTab={activeTab}>
           <TabPane tabId="1">
-            <Container>
+            <Fragment>
               {articles.length === 0 ? (
                 <header>
                   <h2> {"><((((º>"}</h2>
@@ -145,75 +142,9 @@ const UserPage = ({
                   </h2>
                 </header>
               ) : (
-                <>
-                  <header>
-                    <h2>
-                      <Translate id="user_page.article_design" />{" "}
-                    </h2>
-                  </header>
-
-                  <ListGroup>
-                    {articles.map(({ _id, title, date, author, body }) => (
-                      <ListGroupItem
-                        key={_id}
-                        className="article-list-group-item"
-                      >
-                        <div>
-                          <Link
-                            to={`/articles/${_id}`}
-                            className="article-title link"
-                          >
-                            <h3 className="article-title">{title}</h3>
-                          </Link>
-                          <time dateTime={date}>
-                            §}>{" "}
-                            {new Date(date).getDate() +
-                              "/" +
-                              (new Date(date).getMonth() + 1) +
-                              "/" +
-                              new Date(date).getFullYear()}
-                            <Translate id="article.by"></Translate>{" "}
-                            <Link
-                              to={`/users/${author._id}`}
-                              className="user-link link"
-                            >
-                              {author.username}
-                            </Link>
-                          </time>
-                          <br />
-                          <br />
-                          <div className="article-body">
-                            {ReactHtmlParser(body)}
-                          </div>
-                        </div>
-                      </ListGroupItem>
-                    ))}
-                  </ListGroup>
-                </>
+                <UserArticleFeed loadedUserID={loadedUser._id} />
               )}
-            </Container>
-          </TabPane>
-          <TabPane tabId="2">
-            <Row>
-              <Col sm="6">
-                <Card body className="pic-card">
-                  <CardTitle>Primeira foto</CardTitle>
-                  <CardText>
-                    Uma foto pretenciosa com um leve filtro vermelho, tipo a que
-                    tá nos artigos.
-                  </CardText>
-                </Card>
-              </Col>
-              <Col sm="6">
-                <Card body className="pic-card">
-                  <CardTitle>Segunda foto</CardTitle>
-                  <CardText>
-                    Um nudez artístico. <br></br> SIM! <br></br> Será permitida
-                    nudez aqui <br></br> mORRE INSTAGRAM!
-                  </CardText>
-                </Card>
-              </Col>
-            </Row>
+            </Fragment>
           </TabPane>
         </TabContent>
       </div>

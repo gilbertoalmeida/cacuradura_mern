@@ -114,15 +114,16 @@ router.get("/user", auth, (req, res) => {
 // @access   Private
 
 router.post("/edit", auth, async (req, res) => {
-  const { name } = req.body;
+  const { id, name, profilePicsArray } = req.body;
 
   //Profile Object
   const profileFields = {};
   profileFields.name = name;
+  profileFields.profile_pictures = profilePicsArray;
 
   try {
     let foundAndEditedProfile = await User.findOneAndUpdate(
-      { _id: req.body.id },
+      { _id: id },
       profileFields,
       { new: true, useFindAndModify: false }
     );
