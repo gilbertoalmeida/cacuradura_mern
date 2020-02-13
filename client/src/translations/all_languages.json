@@ -2,9 +2,6 @@
   "header": {
     "call1": ["Cacuras in the making", "Cacuras em formação"],
     "call2": ["Follow this metamorphose", "Acompanhe essa metamorfose"],
-    "a(article)": ["an", "um"],
-    "a(cacura)": ["a", "uma"],
-    "article": ["article", "artigo"],
     "still_working": [
       "I'm still working on the design of this page. Chill out",
       "Ainda não terminei o design dessa página. Relaxe"
@@ -88,6 +85,14 @@
       "Ainda vou fazer isso aqui ficar bonito. Por agora, só tô jogando os artigos da cacura aqui"
     ],
     "edit_profile": ["Edit profile", "Editar perfil"]
+  },
+  "edit_profile": {
+    "title": ["Edit your profile", "Edite seu perfil"],
+    "name": ["Name", "Nome"],
+    "profile_pictures": ["Profile pictures", "Fotos de perfil"],
+    "add_pic_placeholder": ["Link to a new picture", "Link de uma nova foto"],
+    "add_picture": ["Add", "Adicionar"],
+    "submit": ["Save changes", "Salvar"]
   },
   "error_messages": {
     "missing_credentials": [
