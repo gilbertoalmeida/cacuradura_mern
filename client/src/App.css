@@ -1864,9 +1864,11 @@ header h2 {
   text-align: center;
 }
 
-.edit-profile-cancel:hover {
+.edit-profile-cancel:hover,
+.edit-profile-header a:hover {
   color: #05050a;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .edit-profile-body {
@@ -1941,6 +1943,31 @@ header h2 {
   cursor: pointer;
 }
 
+.edit-profile-add-pictures {
+  display: flex;
+  margin: 20px auto;
+}
+
+.add-picture-input {
+  background-color: #faa9cb;
+  padding: 0 10px;
+  width: 350px;
+  border-radius: 5px;
+  border-bottom: 2px solid black;
+}
+
+.add-picture-button {
+  margin-left: 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 20px;
+  outline: none;
+  background-color: #05050a;
+  color: #faa9cb;
+}
+
 @media (max-width: 880px) {
   .edit-profile-main-box-element {
     max-width: 96%;
@@ -1957,11 +1984,30 @@ header h2 {
     right: 1vw;
     font-size: 20px;
   }
+
+  .add-picture-input {
+    width: 35vw;
+    font-size: 2vw;
+  }
+
+  .add-picture-button {
+    margin-left: 2vw;
+    font-size: 2vw;
+    padding: 8px 20px;
+  }
 }
 
 @media (max-width: 600px) {
   .profile-pics-thumbnail-delete {
     font-size: 16px;
+  }
+
+  .add-picture-input {
+    font-size: 3vw;
+  }
+
+  .add-picture-button {
+    font-size: 3vw;
   }
 }
 
@@ -1970,6 +2016,7 @@ header h2 {
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
+  margin-top: 20px;
   padding: 8px 40px;
   outline: none;
   background-color: #05050a;

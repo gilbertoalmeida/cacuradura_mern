@@ -42,12 +42,22 @@ const UserPage = ({
     <Fragment>
       <div className="user-profile-main-box-element">
         <div className="profile-pic-container">
-          <img
-            className="profile-pic-focus"
-            src={loadedUser.profile_pictures[pictureID]}
-            onError={addDefaultSrc}
-            alt="profile pic"
-          ></img>
+          {loadedUser.profile_pictures.length === 0 ? (
+            <img
+              className="profile-pic-focus"
+              src="/Assets/no_profile_pic.png"
+              onError={addDefaultSrc}
+              alt="profile pic"
+            />
+          ) : (
+            <img
+              className="profile-pic-focus"
+              src={loadedUser.profile_pictures[pictureID]}
+              onError={addDefaultSrc}
+              alt="profile pic"
+            />
+          )}
+
           <div className="profile-pic-nav-arrows">
             {pictureID === 0 ? null : (
               <img
@@ -59,7 +69,8 @@ const UserPage = ({
                 }}
               />
             )}
-            {pictureID === loadedUser.profile_pictures.length - 1 ? null : (
+            {pictureID === loadedUser.profile_pictures.length - 1 ||
+            loadedUser.profile_pictures.length === 0 ? null : (
               <img
                 className="next-arrow"
                 src="/Assets/next_pic.png"
