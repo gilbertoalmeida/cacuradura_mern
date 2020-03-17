@@ -41,6 +41,10 @@ const Footer = () => {
             </Button>
           </Form>
         </div>
+        <div className="footer-container__links">
+          Links <br />
+          Still have no links rs
+        </div>
         <div className="footer-container__social-media">
           <div className="footer-container__social-media__insta">
             <a href="https://www.instagram.com/cacuradura/" target="_blank">
@@ -67,7 +71,6 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="footer-container__links">Links</div>
       </div>
     </div>
   );

@@ -2029,6 +2029,7 @@ header h2 {
   position: relative;
   background-color: #05050af8;
   height: 40vh;
+  max-height: 300px;
   margin-top: 100px;
   color: #faa9cb;
 }
@@ -2046,6 +2047,10 @@ header h2 {
 .footer-container__social-media,
 .footer-container__links {
   margin: 20px;
+}
+
+.footer-container__article-search {
+  min-width: 150px;
 }
 
 .footer-container__article-search__form {
@@ -2102,4 +2107,20 @@ header h2 {
 .footer-container__social-media__mail img {
   width: 100%;
   margin: auto;
+}
+
+@media (max-width: 400px) {
+  .footer-container__vertical-center {
+    flex-wrap: wrap;
+  }
+
+  .footer-container__links {
+    display: none;
+  }
+}
+
+@media (max-width: 308px) {
+  .footer-container__social-media {
+    display: flex;
+  }
 }
