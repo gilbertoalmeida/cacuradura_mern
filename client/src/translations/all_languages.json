@@ -15,7 +15,7 @@
     "registerbutton": ["Sign in", "Registre-se"],
     "username_placeholder": ["cacura name", "nome de cacura"],
     "password_placeholder": ["password", "senha"],
-    "lang_icon": ["/uk_flag.png", "/brazil_flag.png"]
+    "lang_icon": ["/Assets/uk_flag.png", "/Assets/brazil_flag.png"]
   },
   "registermodal": {
     "header": ["Tell us who you are:", "Conta pra nós quem você é:"],

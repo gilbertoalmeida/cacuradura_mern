@@ -41,7 +41,32 @@ const Footer = () => {
             </Button>
           </Form>
         </div>
-        <div className="footer-container__social-media">Social Media</div>
+        <div className="footer-container__social-media">
+          <div className="footer-container__social-media__insta">
+            <a href="https://www.instagram.com/cacuradura/" target="_blank">
+              <img
+                src="/Assets/insta_icon.png"
+                alt="icon for sending an email"
+              />
+            </a>
+          </div>
+          <div className="footer-container__social-media__twitter">
+            <a href="https://twitter.com/cacuradura" target="_blank">
+              <img
+                src="/Assets/twitter_icon.png"
+                alt="icon for sending an email"
+              />
+            </a>
+          </div>
+          <div className="footer-container__social-media__mail">
+            <a href="mailto:cacuradura@gmail.com">
+              <img
+                src="/Assets/mail_icon.png"
+                alt="icon for sending an email"
+              />
+            </a>
+          </div>
+        </div>
         <div className="footer-container__links">Links</div>
       </div>
     </div>
