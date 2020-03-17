@@ -2085,3 +2085,21 @@ header h2 {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+.footer-container__social-media__insta a,
+.footer-container__social-media__twitter a,
+.footer-container__social-media__mail a {
+  background-color: #faa9cb;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 4px 5px;
+  width: 30px;
+  margin: 5px;
+}
+
+.footer-container__social-media__insta img,
+.footer-container__social-media__twitter img,
+.footer-container__social-media__mail img {
+  width: 100%;
+  margin: auto;
+}

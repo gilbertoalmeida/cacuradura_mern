@@ -9,12 +9,7 @@ import { withRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { withLocalize, Translate } from "react-localize-redux";
 
-const LanguageToggle = ({
-  props,
-  languages,
-  activeLanguage,
-  setActiveLanguage
-}) => {
+const LanguageToggle = ({ languages, activeLanguage, setActiveLanguage }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
@@ -48,7 +43,7 @@ const LanguageToggle = ({
               }}
             >
               <img
-                src={`/${lang.icon}`}
+                src={`/Assets/${lang.icon}`}
                 alt="country flag for language selection"
                 width="30px"
                 height="18px"
