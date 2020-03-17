@@ -56,6 +56,11 @@
     ],
     "language": ["en", "pt"]
   },
+  "article_search": {
+    "call_to_action": ["Search for an article:", "Procure um artigo:"],
+    "input_placeholder": ["use keywords", "use palavras-chave"],
+    "search_button": ["Search", "Procurar"]
+  },
   "choose_cover_pic_modal": {
     "add_cover_img": ["cover image", "imagem de capa"],
     "header": ["Paste the URL of a picture", "Coloque o URL de uma foto"],
