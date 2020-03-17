@@ -6,6 +6,7 @@ import { LocalizeProvider } from "react-localize-redux";
 
 import AuthNavBar from "./components/AuthNavBar";
 import HomePage from "./components/HomePage";
+import Footer from "./components/Footer";
 import Routes from "./components/routing/Routes";
 
 import { loadUser } from "./actions/authActions";
@@ -33,6 +34,7 @@ class App extends Component {
                   <Route exact path="/" component={HomePage} />
                   <Route component={Routes} />
                 </Switch>
+                <Footer />
               </div>
             </Fragment>
           </Router>

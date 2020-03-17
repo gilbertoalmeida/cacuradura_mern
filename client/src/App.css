@@ -2022,3 +2022,66 @@ header h2 {
   background-color: #05050a;
   color: #faa9cb;
 }
+
+/* Footer */
+
+.footer-container {
+  position: relative;
+  background-color: #05050af8;
+  height: 40vh;
+  margin-top: 100px;
+  color: #faa9cb;
+}
+
+.footer-container__vertical-center {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.footer-container__article-search,
+.footer-container__social-media,
+.footer-container__links {
+  margin: 20px;
+}
+
+.footer-container__article-search__form {
+}
+
+.footer-container__article-search__form__input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #faa9cb;
+  border-radius: 0;
+}
+
+.footer-container__article-search__form__input:focus {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #faa9cb;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.footer-container__article-search__form__button {
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 3px 13px;
+  margin: 0;
+  margin-bottom: 2px;
+  outline: none;
+  background-color: #faa9cb !important;
+  color: #05050a !important;
+}
+
+.footer-container__article-search__form__button:focus,
+.footer-container__article-search__form__button:active {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
