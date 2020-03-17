@@ -47,7 +47,11 @@ const Footer = () => {
         </div>
         <div className="footer-container__social-media">
           <div className="footer-container__social-media__insta">
-            <a href="https://www.instagram.com/cacuradura/" target="_blank">
+            <a
+              href="https://www.instagram.com/cacuradura/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img
                 src="/Assets/insta_icon.png"
                 alt="icon for sending an email"
@@ -55,7 +59,11 @@ const Footer = () => {
             </a>
           </div>
           <div className="footer-container__social-media__twitter">
-            <a href="https://twitter.com/cacuradura" target="_blank">
+            <a
+              href="https://twitter.com/cacuradura"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img
                 src="/Assets/twitter_icon.png"
                 alt="icon for sending an email"
