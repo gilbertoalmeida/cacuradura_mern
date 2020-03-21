@@ -1134,6 +1134,63 @@ header h2 {
   box-shadow: none;
 }
 
+.choose-img-modal__header {
+  border-bottom: 1px solid #05050a;
+}
+
+.choose-img-modal__header,
+.choose-img-modal__body {
+  background-color: #faa9cb;
+}
+
+.choose-img-modal__header .modal-title {
+  font-family: "Anton", sans-serif;
+}
+
+.choose-img-modal__body label {
+  margin-top: 0.5rem;
+  font-size: 25px;
+}
+
+.choose-img-modal__body input,
+.choose-img-modal__body input:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  color: #05050a;
+  box-shadow: none;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 2px solid black;
+  background-color: #faa9cb;
+}
+
+.choose-img-modal__submit-button {
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 8px 13px;
+  margin: 0;
+  margin-bottom: 2px;
+  outline: none;
+  background-color: #05050a;
+  color: #faa9cb;
+  font-size: 17px;
+  margin-top: 2rem;
+}
+
+.choose-img-modal__submit-button:hover,
+.choose-img-modal__submit-button:focus,
+.choose-img-modal__submit-button:active {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: #05050a;
+  color: #faa9cb;
+  font-size: 17px;
+  margin-top: 2rem;
+}
+
 /* WYSIWYG Editor */
 
 .rdw-editor-main {

@@ -31,10 +31,13 @@ function ChooseCoverPicModal({ writingPic }) {
         isOpen={modal}
         toggle={() => toggle(!modal)}
       >
-        <ModalHeader toggle={() => toggle(!modal)}>
+        <ModalHeader
+          className="choose-img-modal__header"
+          toggle={() => toggle(!modal)}
+        >
           <Translate id="choose_cover_pic_modal.header"></Translate>
         </ModalHeader>
-        <ModalBody>
+        <ModalBody className="choose-img-modal__body">
           <Form>
             <FormGroup>
               <Translate>
@@ -50,7 +53,7 @@ function ChooseCoverPicModal({ writingPic }) {
 
               <Button
                 onClick={() => changePic(feed_img_modal)}
-                className="button-form-top submit-register"
+                className="choose-img-modal__submit-button"
                 block
               >
                 <Translate id="choose_cover_pic_modal.add_img"></Translate>
