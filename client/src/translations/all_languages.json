@@ -12,13 +12,17 @@
     "postarticlebutton": ["Post an article", "Postar um artigo"],
     "logoutbutton": ["Log out", "Sair"],
     "loginbutton": ["Log in", "Entrar"],
-    "registerbutton": ["Sign up", "Registre-se"],
+    "register_button": ["Sign up", "Registre-se"],
     "username_placeholder": ["cacura name", "nome de cacura"],
     "password_placeholder": ["password", "senha"],
     "lang_icon": ["/Assets/uk_flag.png", "/Assets/brazil_flag.png"]
   },
   "registermodal": {
     "header": ["Tell us who you are:", "Conta pra nós quem você é:"],
+    "already_registered_msg": [
+      "Already have an account? Log in through the top menu",
+      "Já tem um perfil? Entre pelo menu superior"
+    ],
     "name": ["Name", "Nome"],
     "email": ["Email", "Email"],
     "username": ["Cacura Name", "Nome de Cacura"],

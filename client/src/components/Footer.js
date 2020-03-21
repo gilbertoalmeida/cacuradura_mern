@@ -3,8 +3,10 @@ import { Button, Form, FormGroup, Input } from "reactstrap";
 import { withLocalize, Translate } from "react-localize-redux";
 import { Link } from "react-router-dom";
 import RegisterModal from "./auth/RegisterModal";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const Footer = () => {
+const Footer = ({ auth: { loggedUser } }) => {
   const [articleSearchInput, setArticleSearchInput] = useState("");
 
   const onSubmit = e => {
@@ -44,10 +46,14 @@ const Footer = () => {
               </Button>
             </Form>
           </div>
-          <div className="footer-container__registration">
-            <Translate id="footer.sign_up_question" />
-            <RegisterModal />
-          </div>
+          {!loggedUser ? (
+            <div className="footer-container__registration">
+              <Translate id="footer.sign_up_question" />
+              <RegisterModal />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="footer-container__links">
           <div className="footer-container__links__privacy-policy">
@@ -100,4 +106,12 @@ const Footer = () => {
   );
 };
 
-export default withLocalize(Footer);
+Footer.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default withLocalize(connect(mapStateToProps)(Footer));

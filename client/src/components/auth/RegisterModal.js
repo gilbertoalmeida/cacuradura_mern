@@ -87,7 +87,7 @@ class RegisterModal extends Component {
     return (
       <div>
         <Button className="button-form-top register" onClick={this.toggle}>
-          <Translate id="authnavbar.registerbutton"></Translate>
+          <Translate id="authnavbar.register_button"></Translate>
         </Button>
 
         <Modal
@@ -95,10 +95,10 @@ class RegisterModal extends Component {
           isOpen={this.state.modal}
           toggle={this.toggle}
         >
-          <ModalHeader toggle={this.toggle}>
+          <ModalHeader className="register-modal__header" toggle={this.toggle}>
             <Translate id="registermodal.header"></Translate>
           </ModalHeader>
-          <ModalBody>
+          <ModalBody className="register-modal__body">
             {this.state.msg ? (
               <Translate>
                 {({ translate }) => (
@@ -109,6 +109,12 @@ class RegisterModal extends Component {
               </Translate>
             ) : null}
             {/* operator to show the alert only is there is an error */}
+            <div
+              onClick={this.toggle}
+              className="register-modal__body__already_registered_msg"
+            >
+              <Translate id="registermodal.already_registered_msg" />
+            </div>
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Label for="name">
