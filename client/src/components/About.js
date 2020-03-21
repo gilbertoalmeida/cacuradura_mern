@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { withLocalize, Translate } from "react-localize-redux";
 
 const About = () => {
+  window.scrollTo(0, 0);
   return (
     <Fragment>
       <header className="App-header"></header>
