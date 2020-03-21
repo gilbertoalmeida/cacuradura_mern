@@ -13,9 +13,9 @@ class HomePage extends Component {
             Cacura<span>Dura</span>
           </h1>
           <h2>
-            <Translate id="header.call1"></Translate>
+            <Translate id="header.call1" />
             <br />
-            <Translate id="header.call2"></Translate>
+            <Translate id="header.call2" />
           </h2>
         </header>
         <ArticleFeed />
