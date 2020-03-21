@@ -2028,32 +2028,52 @@ header h2 {
 .footer-container {
   position: relative;
   background-color: #05050af8;
-  height: 40vh;
-  max-height: 300px;
+  height: 350px;
   margin-top: 100px;
   color: #faa9cb;
 }
 
 .footer-container__vertical-center {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: auto;
+  width: 865px;
   position: relative;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
-.footer-container__article-search,
+@media (max-width: 880px) {
+  .footer-container__vertical-center {
+    max-width: 96%;
+    margin: auto;
+  }
+}
+
+.footer-container__first-divider,
 .footer-container__social-media,
 .footer-container__links {
-  margin: 20px;
+  margin: 30px;
 }
 
-.footer-container__article-search {
+.footer-container__first-divider {
   min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
 }
 
-.footer-container__article-search__form {
+.footer-container__registration {
+  margin-top: 30px;
+}
+
+.footer-container__registration button,
+.footer-container__registration button:hover,
+.footer-container__registration button:active {
+  margin-left: 0;
+  margin-top: 10px;
+  padding: 3px 13px;
 }
 
 .footer-container__article-search__form__input {
@@ -2078,7 +2098,6 @@ header h2 {
   font-weight: bold;
   padding: 3px 13px;
   margin: 0;
-  margin-bottom: 2px;
   outline: none;
   background-color: #faa9cb !important;
   color: #05050a !important;
@@ -2120,18 +2139,36 @@ header h2 {
 }
 
 @media (max-width: 400px) {
+  .footer-container {
+    height: 470px;
+  }
+
   .footer-container__vertical-center {
-    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: center;
   }
 
-  .footer-container__links {
-    display: none;
+  .footer-container__article-search__form {
+    display: flex;
+    justify-content: center;
   }
-}
 
-@media (max-width: 308px) {
+  .footer-container__article-search__form button {
+    margin: 11px 0 15px 5px;
+  }
+
+  .footer-container__article-search__form__input {
+    width: 150px;
+    margin: auto;
+  }
+
   .footer-container__social-media {
     display: flex;
+    justify-content: center;
+  }
+
+  .footer-container__links::before {
+    content: "*****";
   }
 }
 
