@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
         <div className="footer-container__links">
           <div className="footer-container__links__privacy-policy">
-            <Link to="/privacy-policy">
+            <Link to="/privacy_policy">
               <Translate id="footer.privacy_policy" />
             </Link>
           </div>

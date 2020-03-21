@@ -2151,23 +2151,92 @@ header h2 {
   border-right: 1px solid #05050a;
 }
 
+.about-title {
+  font-family: "Anton", sans-serif;
+  color: #faa9cb;
+  background-color: #05050a;
+  font-size: 100px;
+  padding: 20px;
+  margin: 0 10px;
+}
+
 @media (max-width: 880px) {
   .about-page-main-box-element {
     max-width: 96%;
     margin: auto;
   }
+
+  .about-title {
+    font-size: 10vw;
+  }
 }
 
-.about-title {
+.about-body {
+  border-top: solid #05050a 5px;
+  padding-top: 20px;
+  width: 95%;
+  margin: 10px auto;
+  background: none;
+  font-family: "Rokkitt", serif;
+  font-size: 25px;
+  text-align: justify;
+}
+
+@media (max-width: 880px) {
+  .about-body {
+    font-size: 18px;
+  }
+}
+
+/* Privacy Policy page */
+
+.privacy-page-main-box-element {
+  margin: auto;
+  width: 865px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-left: 1px solid #05050a;
+  border-right: 1px solid #05050a;
+}
+
+.privacy-title {
   font-family: "Anton", sans-serif;
   color: #faa9cb;
   background-color: #05050a;
-  font-size: 10vw;
+  font-size: 100px;
   padding: 20px;
   margin: 0 10px;
 }
 
-.about-body {
+@media (max-width: 880px) {
+  .privacy-page-main-box-element {
+    max-width: 96%;
+    margin: auto;
+  }
+
+  .privacy-title {
+    font-size: 10vw;
+  }
+}
+
+.privacy-body {
+  border-top: solid #05050a 5px;
+  padding-top: 20px;
   width: 95%;
   margin: 10px auto;
+  background: none;
+  font-family: "Rokkitt", serif;
+  font-size: 25px;
+  text-align: justify;
+}
+
+@media (max-width: 880px) {
+  .privacy-body {
+    font-size: 18px;
+  }
 }
