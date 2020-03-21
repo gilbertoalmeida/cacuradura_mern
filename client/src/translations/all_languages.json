@@ -61,6 +61,14 @@
     "input_placeholder": ["use keywords", "use palavras-chave"],
     "search_button": ["Search", "Procurar"]
   },
+  "footer": {
+    "privacy_policy": ["Privacy Policy", "Privacidade"],
+    "about": ["About", "Sobre"],
+    "about_text": [
+      "CACURADURA started as a personal blog of a homossexual that noticed he was becoming old. But later he realized he didn't want to create content all the time and that the topic was too big for his own experiences alone, so he decided to transform it in a social network, where people can share their experiences about growing old as LGBTQ+",
+      "CACURADURA começou como um blog pessoal de um gay que notou que ele estava ficando velho. Mas depois ele percebeu que não queria criar conteúdo todo o tempo e que o tópico era muito grande para suas experiências pessoais sozinhas. <br> <br> Então ele decidiu transformá-lo em uma rede social, onde as pessoas podem compartilhar suas experiências sobre envelhecer enquanto LGBTQ+"
+    ]
+  },
   "choose_cover_pic_modal": {
     "add_cover_img": ["cover image", "imagem de capa"],
     "header": ["Paste the URL of a picture", "Coloque o URL de uma foto"],

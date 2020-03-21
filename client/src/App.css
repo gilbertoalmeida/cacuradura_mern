@@ -2091,6 +2091,16 @@ header h2 {
   box-shadow: none;
 }
 
+.footer-container__links a {
+  color: #faa9cb;
+  font-weight: bold;
+}
+
+.footer-container__links a:hover {
+  color: #f02d0a;
+  text-decoration: none;
+}
+
 .footer-container__social-media__insta a,
 .footer-container__social-media__twitter a,
 .footer-container__social-media__mail a {
@@ -2123,4 +2133,41 @@ header h2 {
   .footer-container__social-media {
     display: flex;
   }
+}
+
+/* About page */
+
+.about-page-main-box-element {
+  margin: auto;
+  width: 865px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-left: 1px solid #05050a;
+  border-right: 1px solid #05050a;
+}
+
+@media (max-width: 880px) {
+  .about-page-main-box-element {
+    max-width: 96%;
+    margin: auto;
+  }
+}
+
+.about-title {
+  font-family: "Anton", sans-serif;
+  color: #faa9cb;
+  background-color: #05050a;
+  font-size: 10vw;
+  padding: 20px;
+  margin: 0 10px;
+}
+
+.about-body {
+  width: 95%;
+  margin: 10px auto;
 }
