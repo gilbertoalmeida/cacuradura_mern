@@ -858,32 +858,43 @@ header h2 {
   }
 }
 
-/* RegisterModal */
+/* Register Modal */
 
 .register-modal * {
   font-family: "Rokkitt", serif;
 }
 
-.modal-header {
+.register-modal__header {
   border-bottom: 1px solid #05050a;
 }
 
-.modal-header,
-.modal-body {
+.register-modal__header,
+.register-modal__body {
   background-color: #faa9cb;
 }
 
-.modal-title {
+.register-modal__header .modal-title {
   font-family: "Anton", sans-serif;
 }
 
-.modal-body label {
+.register-modal__body__already_registered_msg {
+  text-align: center;
+  color: #05050aa4;
+  font-size: 14px;
+}
+
+.register-modal__body__already_registered_msg:hover {
+  cursor: pointer;
+  color: #05050a;
+}
+
+.register-modal__body label {
   margin-top: 0.5rem;
   font-size: 25px;
 }
 
-.modal-body input,
-.modal-body input:focus {
+.register-modal__body input,
+.register-modal__body input:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
   outline: none;
@@ -896,9 +907,9 @@ header h2 {
 }
 
 /* Change Autocomplete styles in Chrome*/
-.modal-body input:-webkit-autofill,
-.modal-body input:-webkit-autofill:hover,
-.modal-body input:-webkit-autofill:focus {
+.register-modal__body input:-webkit-autofill,
+.register-modal__body input:-webkit-autofill:hover,
+.register-modal__body input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #f02d0a3d inset;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
