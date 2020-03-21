@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import { withLocalize, Translate } from "react-localize-redux";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const [articleSearchInput, setArticleSearchInput] = useState("");
@@ -42,8 +43,16 @@ const Footer = () => {
           </Form>
         </div>
         <div className="footer-container__links">
-          Links <br />
-          Still have no links rs
+          <div className="footer-container__links__privacy-policy">
+            <Link to="/privacy-policy">
+              <Translate id="footer.privacy_policy" />
+            </Link>
+          </div>
+          <div className="footer-container__links__about">
+            <Link to="/about">
+              <Translate id="footer.about" />
+            </Link>
+          </div>
         </div>
         <div className="footer-container__social-media">
           <div className="footer-container__social-media__insta">
