@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import { withLocalize, Translate } from "react-localize-redux";
 import { Link } from "react-router-dom";
+import RegisterModal from "./auth/RegisterModal";
 
 const Footer = () => {
   const [articleSearchInput, setArticleSearchInput] = useState("");
@@ -15,32 +16,38 @@ const Footer = () => {
   return (
     <div className="footer-container">
       <div className="footer-container__vertical-center">
-        <div className="footer-container__article-search">
-          <Translate id="article_search.call_to_action" />
-          <Form
-            onSubmit={onSubmit}
-            className="footer-container__article-search__form"
-          >
-            <FormGroup>
-              <Translate>
-                {({ translate }) => (
-                  <Input
-                    type="text"
-                    name="articleSearchInput"
-                    value={articleSearchInput}
-                    placeholder={translate("article_search.input_placeholder")}
-                    onChange={e => {
-                      setArticleSearchInput(e.target.value);
-                    }}
-                    className="footer-container__article-search__form__input"
-                  />
-                )}
-              </Translate>
-            </FormGroup>
-            <Button className="footer-container__article-search__form__button">
-              <Translate id="article_search.search_button" />
-            </Button>
-          </Form>
+        <div className="footer-container__first-divider">
+          <div className="footer-container__article-search">
+            <Translate id="footer.search_call_to_action" />
+            <Form
+              onSubmit={onSubmit}
+              className="footer-container__article-search__form"
+            >
+              <FormGroup>
+                <Translate>
+                  {({ translate }) => (
+                    <Input
+                      type="text"
+                      name="articleSearchInput"
+                      value={articleSearchInput}
+                      placeholder={translate("footer.search_input_placeholder")}
+                      onChange={e => {
+                        setArticleSearchInput(e.target.value);
+                      }}
+                      className="footer-container__article-search__form__input"
+                    />
+                  )}
+                </Translate>
+              </FormGroup>
+              <Button className="footer-container__article-search__form__button">
+                <Translate id="footer.search_button" />
+              </Button>
+            </Form>
+          </div>
+          <div className="footer-container__registration">
+            <Translate id="footer.sign_up_question" />
+            <RegisterModal />
+          </div>
         </div>
         <div className="footer-container__links">
           <div className="footer-container__links__privacy-policy">
