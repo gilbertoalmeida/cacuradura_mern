@@ -1,13 +1,21 @@
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.23, autoprefixer: v9.7.3) */
 
 /* 
-Hex background red: #c42f15
-Hex strong red: #f02d0a
+Hex background strong red: #c42f15
+Hex lighter red: #f02d0a
+User links are light and become stronger with hover
+
+Hex light pink from DURA : #faa9cb
+Hex stronger pink: #e69696
+User links are stronger and become light with hover
+
+Hex preto : #05050a
+
 Hex : #9b2d0f
 Hex : #780f05
 Hex : #3c0505
-Hex : #05050a
- */
+
+*/
 
 header,
 footer,
@@ -400,7 +408,7 @@ header h2 {
 }
 
 .article-cover-text .user-link {
-  color: #faa9cb;
+  color: #e69696;
   font-weight: bold;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -412,7 +420,7 @@ header h2 {
 
 .article-cover-text .user-link:hover {
   color: #faa9cb;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .article-body {
@@ -793,8 +801,8 @@ header h2 {
 }
 
 .authnavbar-greeting-username .user-link:hover {
-  color: #e69696;
-  text-decoration: underline;
+  color: #faa9cb;
+  text-decoration: none;
 }
 
 .greeting-inside-collapse {
@@ -1080,7 +1088,7 @@ header h2 {
 }
 
 .post-article-cover-text .user-link {
-  color: #faa9cb;
+  color: #e69696;
   font-weight: bold;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -1092,7 +1100,7 @@ header h2 {
 
 .post-article-cover-text .user-link:hover {
   color: #faa9cb;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .button-add-cover-img {
@@ -1835,7 +1843,11 @@ header h2 {
 }
 
 .edit-profile-button {
-  background-color: #c42f15;
+  background-color: #c42f159f;
+}
+
+.edit-profile-button:hover {
+  background-color: #c42f15e0;
 }
 
 @media (max-width: 880px) {
@@ -1994,9 +2006,23 @@ header h2 {
   object-fit: cover;
   margin: 15px;
   border-radius: 10px;
+  -webkit-filter: grayscale(80%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(80%);
   -webkit-box-shadow: 0px 0px 2vw -0.6vw #faa9cb;
   -moz-box-shadow: 0px 0px 2vw -0.6vw #faa9cb;
   box-shadow: 0px 0px 2vw -0.6vw #faa9cb;
+}
+
+.profile-pic-thumbnail-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 80%;
+  margin: 15px;
+  border-radius: 10px;
+  background-color: #c42f1526; /* 15% opacity */
+  z-index: 1;
 }
 
 .profile-pics-thumbnail-delete {
@@ -2021,7 +2047,7 @@ header h2 {
   background-color: #faa9cb;
   padding: 0 10px;
   width: 350px;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   border-bottom: 2px solid black;
 }
 
