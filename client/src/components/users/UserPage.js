@@ -57,7 +57,7 @@ const UserPage = ({
               alt="profile pic"
             />
           )}
-
+          <div className="profile-pic-filter"></div>
           <div className="profile-pic-nav-arrows">
             {pictureID === 0 ? null : (
               <img
