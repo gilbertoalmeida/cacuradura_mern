@@ -744,14 +744,6 @@ header h2 {
   margin-left: 10px;
 }
 
-.post-article:hover,
-.post-article:active {
-  background-color: #05050a !important;
-  color: #e69696 !important;
-  margin-top: 1px; /* to align with register button  */
-  margin-left: 10px;
-}
-
 .languages,
 .languages:hover {
   background: #490d02;
