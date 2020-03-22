@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getArticle } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 import ReactHtmlParser from "react-html-parser";
+import CommentsSection from "./CommentsSection";
 
 import { withLocalize, Translate } from "react-localize-redux";
 
@@ -11,9 +12,6 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   useEffect(() => {
     getArticle(match.params.id);
   }, [getArticle, match.params.id]);
-
-  //ver o que acontece quando chanma essa página com um id que nao existe
-  // the loading page is kept bc article is null
 
   function addDefaultSrc(ev) {
     ev.target.src = "/Assets/img_load_fail.png";
@@ -79,6 +77,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
           </div>
           <div className="article-body">{ReactHtmlParser(article.body)}</div>
         </div>
+        <CommentsSection articleID={match.params.id} />
       </div>
     </Fragment>
   );

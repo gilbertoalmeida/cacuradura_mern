@@ -52,6 +52,13 @@
     "loading": ["Loading", "Carregando"],
     "noarticle": ["Article not found", "Artigo não encontrado"]
   },
+  "comments_section": {
+    "input": [
+      "Try not to be the jerk of the comment section",
+      "Tente não ser o babaca dos comentários"
+    ],
+    "submit_button": ["Post", "Postar"]
+  },
   "add_article_page": {
     "title": ["Title...", "Título..."],
     "body": [
