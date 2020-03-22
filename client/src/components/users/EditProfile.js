@@ -112,6 +112,7 @@ const EditProfile = ({
                   onError={addDefaultSrc}
                   alt="profile pictures"
                 />
+                <div className="profile-pic-thumbnail-filter"></div>
                 <div
                   className="profile-pics-thumbnail-delete"
                   onClick={e => deletePicOfArray(picture)}
