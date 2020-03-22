@@ -191,37 +191,39 @@ class AuthNavBar extends Component {
       <div>
         <Navbar
           fixed="top"
-          style={{ backgroundColor: "#f02d0a70", flexFlow: "wrap" }}
+          style={{ backgroundColor: "#c42f1570", flexFlow: "wrap" }}
           expand="md"
-          className="authnavbar-main-box-element navbar-dark"
+          className="navbar-dark"
         >
-          <div className="navbar-wrapper">
-            <div className="navbar-wrapper-brand-lang">
-              <NavbarBrand href="/">
-                <img
-                  alt="favicon of the website"
-                  src="/NavBarBrand.png"
-                  width="32"
-                  height="32"
-                  className="d-inline-block align-top"
-                />
-              </NavbarBrand>
-              <LanguageToggle />
+          <div className="authnavbar-main-box-element">
+            <div className="navbar-wrapper">
+              <div className="navbar-wrapper-brand-lang">
+                <NavbarBrand href="/">
+                  <img
+                    alt="favicon of the website"
+                    src="/NavBarBrand.png"
+                    width="32"
+                    height="32"
+                    className="d-inline-block align-top"
+                  />
+                </NavbarBrand>
+                <LanguageToggle />
+              </div>
+              {isAuthenticated ? authLinks : guestLinks}
             </div>
-            {isAuthenticated ? authLinks : guestLinks}
+            <Container style={{ display: "block" }}>
+              {this.state.msg ? (
+                <Translate>
+                  {({ translate }) => (
+                    <Alert color="danger">
+                      {translate(`error_messages.${this.state.msg}`)}
+                    </Alert>
+                  )}
+                </Translate>
+              ) : null}{" "}
+              {/* operator to show the alert only if there is an error */}
+            </Container>
           </div>
-          <Container style={{ display: "block" }}>
-            {this.state.msg ? (
-              <Translate>
-                {({ translate }) => (
-                  <Alert color="danger">
-                    {translate(`error_messages.${this.state.msg}`)}
-                  </Alert>
-                )}
-              </Translate>
-            ) : null}{" "}
-            {/* operator to show the alert only if there is an error */}
-          </Container>
         </Navbar>
       </div>
     );
