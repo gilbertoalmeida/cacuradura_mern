@@ -569,7 +569,56 @@ header h2 {
   }
 }
 
-/* User page elements */
+/* CommentSection elements */
+
+.add-comment-form__textarea {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  min-height: 100px;
+  width: 90%;
+  margin: auto;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: #faa9cb;
+  font-size: 17px;
+  color: #05050a;
+}
+
+.add-comment-form__textarea:focus {
+  background-color: #faa9cb;
+  outline: none;
+  -webkit-box-shadow: none;
+  border: 1px solid black;
+  box-shadow: none;
+  color: #05050a;
+}
+
+.add-comment-form__submit-button-container {
+  text-align: right;
+}
+
+.add-comment-form__submit-button {
+  border: none;
+  margin-right: 5%;
+  margin-left: 5%;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 3px 13px;
+  outline: none;
+  background-color: #05050a !important;
+  color: #e69696 !important;
+}
+
+.add-comment-form__submit-button:focus,
+.add-comment-form__submit-button:active {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* UserPage elements */
 
 .nav-tabs {
   border-bottom: 2px solid #faa9cb;
@@ -1571,7 +1620,8 @@ header h2 {
 
 .modal-body input::-webkit-input-placeholder,
  .field-form-top::-webkit-input-placeholder,
- .rdw-embedded-modal-link-input::-webkit-input-placeholder /* Chrome/Opera/Safari */
+ .rdw-embedded-modal-link-input::-webkit-input-placeholder,
+ .add-comment-form__textarea::-webkit-input-placeholder /* Chrome/Opera/Safari */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
@@ -1579,7 +1629,8 @@ header h2 {
 }
 .modal-body input::-moz-placeholder,
  .field-form-top::-moz-placeholder,
- .rdw-embedded-modal-link-input::-moz-placeholder /* Firefox 19+ */
+ .rdw-embedded-modal-link-input::-moz-placeholder,
+ .add-comment-form__textarea::-moz-placeholder /* Firefox 19+ */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
@@ -1587,7 +1638,8 @@ header h2 {
 }
 .modal-body input:-ms-input-placeholder,
  .field-form-top:-ms-input-placeholder,
- .rdw-embedded-modal-link-input:-ms-input-placeholder /* IE 10+ */
+ .rdw-embedded-modal-link-input:-ms-input-placeholder,
+ .add-comment-form__textarea:-ms-input-placeholder /* IE 10+ */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
@@ -1595,7 +1647,8 @@ header h2 {
 }
 .modal-body input:-moz-placeholder,
  .field-form-top:-moz-placeholder,
- .rdw-embedded-modal-link-input:-moz-placeholder /* Firefox 18- */
+ .rdw-embedded-modal-link-input:-moz-placeholder,
+ .add-comment-form__textarea:-moz-placeholder /* Firefox 18- */
  {
   color: #05050a;
   font-family: "Rokkitt", serif;
