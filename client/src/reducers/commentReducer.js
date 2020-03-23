@@ -5,7 +5,8 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  posting: false
+  posting: false,
+  posting_failed: false
 };
 
 export default function(state = initialState, action) {
@@ -13,7 +14,8 @@ export default function(state = initialState, action) {
     case ADDING_THE_COMMENT:
       return {
         ...state,
-        posting: true
+        posting: true,
+        posting_failed: false
       };
     case ADD_COMMENT_SUCCESS:
       return {
@@ -23,7 +25,8 @@ export default function(state = initialState, action) {
     case ADD_COMMENT_FAIL:
       return {
         ...state,
-        posting: false
+        posting: false,
+        posting_failed: true
       };
     default:
       return state;

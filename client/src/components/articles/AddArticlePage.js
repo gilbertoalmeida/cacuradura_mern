@@ -184,7 +184,7 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
     /* text are autoexpand END */
 
     const { editorState } = this.state;
-    const { posting } = this.props.article;
+    const { posting, posting_failed } = this.props.article;
     let datenow = Date.now();
 
     const { isAuthenticated, loggedUser } = this.props.auth;
@@ -335,13 +335,22 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                 </Translate>
               ) : null}
               {/* operator to show the alert only is there is an error */}
-              <Button className="button-form-top submit-post-article" block>
-                {posting ? (
-                  <Translate id="article.posting" />
-                ) : (
-                  <Translate id="article.post" />
-                )}
-              </Button>
+              {posting_failed ? (
+                <Button
+                  className="button-form-top submit-post-article-failed"
+                  block
+                >
+                  <Translate id="article.posting_failed" />
+                </Button>
+              ) : (
+                <Button className="button-form-top submit-post-article" block>
+                  {posting ? (
+                    <Translate id="article.posting" />
+                  ) : (
+                    <Translate id="article.post" />
+                  )}
+                </Button>
+              )}
             </FormGroup>
           </Form>
         </div>

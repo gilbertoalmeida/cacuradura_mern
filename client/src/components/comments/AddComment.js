@@ -70,13 +70,19 @@ const AddComment = ({
           ) : null}
           {/* operator to show the alert only is there is an error */}
           <div className="add-comment-form__submit-button-container">
-            <Button className="add-comment-form__submit-button">
-              {comment.posting ? (
-                <Translate id="comments_section.posting" />
-              ) : (
-                <Translate id="comments_section.submit_button" />
-              )}
-            </Button>
+            {comment.posting_failed ? (
+              <Button className="add-comment-form__submit-button-failed">
+                <Translate id="comments_section.posting_failed" />
+              </Button>
+            ) : (
+              <Button className="add-comment-form__submit-button">
+                {comment.posting ? (
+                  <Translate id="comments_section.posting" />
+                ) : (
+                  <Translate id="comments_section.submit_button" />
+                )}
+              </Button>
+            )}
           </div>
         </Form>
       </div>

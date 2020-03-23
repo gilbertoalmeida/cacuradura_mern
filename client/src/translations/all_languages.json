@@ -49,6 +49,11 @@
     "by": ["by", "por"],
     "post": ["Post", "Postar"],
     "posting": ["Posting...", "Postando..."],
+    "posting_failed": [
+      "Posting failed. Try again?",
+      "Postagem falhou. Tentar de novo?"
+    ],
+    "posting_success": ["Posted !", "Postado !"],
     "loading": ["Loading", "Carregando"],
     "noarticle": ["Article not found", "Artigo não encontrado"]
   },
@@ -58,7 +63,11 @@
       "Tente não ser o babaca dos comentários"
     ],
     "submit_button": ["Post", "Postar"],
-    "posting": ["Posting...", "Postando..."]
+    "posting": ["Posting...", "Postando..."],
+    "posting_failed": [
+      "Commenting failed. Try again?",
+      "Comentário falhou. Tentar de novo?"
+    ]
   },
   "add_article_page": {
     "title": ["Title...", "Título..."],

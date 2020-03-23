@@ -618,6 +618,25 @@ header h2 {
   box-shadow: none;
 }
 
+.add-comment-form__submit-button-failed {
+  border: none;
+  margin-right: 5%;
+  margin-left: 5%;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 3px 13px;
+  outline: none;
+  background-color: #05050a !important;
+  color: #721c24 !important;
+}
+
+.add-comment-form__submit-button-failed:focus,
+.add-comment-form__submit-button-failed:active {
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 /* UserPage elements */
 
 .nav-tabs {
@@ -1318,6 +1337,16 @@ header h2 {
 
 .submit-post-article,
 .submit-post-article:hover {
+  margin: auto;
+  width: 95%;
+}
+
+.submit-post-article-failed,
+.submit-post-article-failed:hover {
+  background-color: #05050a;
+  color: #721c24;
+  font-size: 17px;
+  margin-top: 2rem;
   margin: auto;
   width: 95%;
 }
