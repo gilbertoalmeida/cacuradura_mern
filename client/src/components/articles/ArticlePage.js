@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getArticle } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 import ReactHtmlParser from "react-html-parser";
-import CommentsSection from "./CommentsSection";
+import CommentsSection from "../comments/CommentsSection";
 
 import { withLocalize, Translate } from "react-localize-redux";
 

@@ -8,9 +8,6 @@ import {
   ADDING_THE_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
-  ADDING_THE_COMMENT,
-  ADD_COMMENT_SUCCESS,
-  ADD_COMMENT_FAIL,
   GET_USER_ARTICLES
 } from "../actions/types";
 
@@ -18,8 +15,7 @@ const initialState = {
   articles: [],
   article: null,
   loading: false,
-  posting: false,
-  posting_comment: false
+  posting: false
 };
 
 export default function(state = initialState, action) {
@@ -73,21 +69,6 @@ export default function(state = initialState, action) {
         ...state,
         article: null,
         posting: false
-      };
-    case ADDING_THE_COMMENT:
-      return {
-        ...state,
-        posting_comment: true
-      };
-    case ADD_COMMENT_SUCCESS:
-      return {
-        ...state,
-        posting_comment: false
-      };
-    case ADD_COMMENT_FAIL:
-      return {
-        ...state,
-        posting_comment: false
       };
     case GET_USER_ARTICLES:
       return {
