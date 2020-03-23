@@ -2,7 +2,10 @@ import axios from "axios";
 import {
   ADDING_THE_COMMENT,
   ADD_COMMENT_SUCCESS,
-  ADD_COMMENT_FAIL
+  ADD_COMMENT_FAIL,
+  GETTING_THE_COMMENTS,
+  GET_COMMENTS_SUCCESS,
+  GET_COMMENTS_FAIL
 } from "./types";
 import { returnErrors } from "./errorActions";
 import { tokenConfig } from "./authActions";
@@ -29,7 +32,6 @@ export const addComment = ({
       })
     )
     .then(res => {
-      /* window.location.href = `/users/${_id}`; */ //redirects to the userpage of who posted the article
       dispatch({
         type: ADD_COMMENT_SUCCESS,
         payload: res.data // this endpoint sends everything, including the token to the auth reducer
@@ -43,4 +45,24 @@ export const addComment = ({
         type: ADD_COMMENT_FAIL
       });
     });
+};
+
+export const getComments = id => async dispatch => {
+  try {
+    const res = await axios.get(
+      `/api/comments/${id}`,
+      dispatch({
+        type: GETTING_THE_COMMENTS
+      })
+    ); //proxi in the package.json in react makes it not necessary to type the full path
+
+    dispatch({
+      type: GET_COMMENTS_SUCCESS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_COMMENTS_FAIL
+    });
+  }
 };

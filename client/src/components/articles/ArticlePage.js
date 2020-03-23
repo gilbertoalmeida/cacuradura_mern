@@ -77,7 +77,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
           </div>
           <div className="article-body">{ReactHtmlParser(article.body)}</div>
         </div>
-        <CommentsSection articleID={match.params.id} />
+        <CommentsSection articleID={match.params.id} match={match} />
       </div>
     </Fragment>
   );
