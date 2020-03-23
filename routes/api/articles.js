@@ -8,6 +8,9 @@ const auth = require("../../middleware/auth");
 //Bringing Article Model
 const Article = require("../../models/Article");
 
+//Bringing Comment Model
+const Comment = require("../../models/Comment");
+
 // @route   GET api/articles/pt
 // @desc    Get All portuguese articles that are marked as homepage
 // @access  Public
@@ -83,6 +86,39 @@ router.post("/add", auth, (req, res) => {
 
   res.json({
     newArticle
+  });
+});
+
+// @route   POST api/articles/add
+// @desc    Post an article to the database
+// @access  Private
+router.post("/add_comment", auth, (req, res) => {
+  const {
+    articleID,
+    author: { username, _id },
+    comment
+  } = req.body;
+
+  //Simple validation
+  if (!comment) {
+    return res.status(400).json({
+      msg: "missing_comment" //this is now not the error message itself, but part of the id of the translation
+    });
+  }
+
+  const newComment = new Comment({
+    articleID,
+    author: {
+      username: username,
+      _id: _id
+    },
+    comment_text: comment
+  });
+
+  newComment.save();
+
+  res.json({
+    newComment
   });
 });
 

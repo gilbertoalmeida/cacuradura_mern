@@ -57,7 +57,8 @@
       "Try not to be the jerk of the comment section",
       "Tente não ser o babaca dos comentários"
     ],
-    "submit_button": ["Post", "Postar"]
+    "submit_button": ["Post", "Postar"],
+    "posting": ["Posting...", "Postando..."]
   },
   "add_article_page": {
     "title": ["Title...", "Título..."],
@@ -148,6 +149,10 @@
     "missing_title_text": [
       "The article needs a title and a text, sweetie",
       "O artigo precisa de um título e um texto, frô"
+    ],
+    "missing_comment": [
+      "An empty comment won't do ;)",
+      "Um comentário vazio não vai rolar ;)"
     ]
   }
 }
