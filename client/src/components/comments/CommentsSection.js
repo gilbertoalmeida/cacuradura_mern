@@ -1,15 +1,14 @@
 import React, { Fragment } from "react";
-import { withLocalize, Translate } from "react-localize-redux";
 import Comments from "./Comments";
 import AddComment from "./AddComment";
 
-const CommentsSection = ({ articleID }) => {
+const CommentsSection = ({ articleID, match }) => {
   return (
     <Fragment>
-      <Comments />
+      <Comments match={match} />
       <AddComment articleID={articleID} />
     </Fragment>
   );
 };
 
-export default withLocalize(CommentsSection);
+export default CommentsSection;

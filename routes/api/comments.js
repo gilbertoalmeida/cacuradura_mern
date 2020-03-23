@@ -41,4 +41,14 @@ router.post("/add", auth, (req, res) => {
   });
 });
 
+// @route   GET api/comments/:id
+// @desc    Get all comments from an article by its id
+// @access  Public
+router.get("/:id", (req, res) => {
+  let query = { articleID: req.params.id };
+  Comment.find(query)
+    .sort({ date: -1 })
+    .then(comments => res.json(comments));
+});
+
 module.exports = router;
