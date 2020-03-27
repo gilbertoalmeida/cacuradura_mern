@@ -1,0 +1,87 @@
+import React from "react";
+
+export const prettyDateNoHours = date => {
+  let crudeDate;
+  let finalDate;
+  let crudeMonth;
+  let finalMonth;
+  crudeDate = new Date(date).getDate();
+  if (crudeDate < 10) {
+    finalDate = "0" + crudeDate;
+  } else {
+    finalDate = crudeDate;
+  }
+
+  crudeMonth = new Date(date).getMonth() + 1;
+  if (crudeMonth < 10) {
+    finalMonth = "0" + crudeMonth;
+  } else {
+    finalMonth = crudeMonth;
+  }
+
+  return finalDate + "." + finalMonth + "." + new Date(date).getFullYear();
+};
+
+export const prettyDateHours = date => {
+  let crudeDate;
+  let finalDate;
+  let crudeMonth;
+  let finalMonth;
+  crudeDate = new Date(date).getDate();
+  if (crudeDate < 10) {
+    finalDate = "0" + crudeDate;
+  } else {
+    finalDate = crudeDate;
+  }
+
+  crudeMonth = new Date(date).getMonth() + 1;
+  if (crudeMonth < 10) {
+    finalMonth = "0" + crudeMonth;
+  } else {
+    finalMonth = crudeMonth;
+  }
+
+  return (
+    finalDate +
+    "." +
+    finalMonth +
+    "." +
+    new Date(date).getFullYear() +
+    " " +
+    new Date(date).getHours() +
+    ":" +
+    new Date(date).getMinutes()
+  );
+};
+
+export const prettyDateElapsed = date => {
+  let commentDate = new Date(date);
+  let commentMiliseconds = commentDate.getTime();
+  let nowMiliseconds = Date.now();
+  let elapsedMiliseconds = nowMiliseconds - commentMiliseconds;
+  let shownElapsedTime;
+
+  if (elapsedMiliseconds < 3600000) {
+    shownElapsedTime = Math.floor(elapsedMiliseconds / 6000);
+    return shownElapsedTime + " " + "minutes";
+  } else if (elapsedMiliseconds < 86400000) {
+    shownElapsedTime = Math.floor(elapsedMiliseconds / 3600000);
+    return shownElapsedTime + " " + "hours";
+  } else if (elapsedMiliseconds < 604800000) {
+    shownElapsedTime = Math.floor(elapsedMiliseconds / 86400000);
+    return shownElapsedTime + " " + "days";
+  } else if (elapsedMiliseconds < 31536000000) {
+    shownElapsedTime = Math.floor(elapsedMiliseconds / 604800000);
+    return shownElapsedTime + " " + "weeks";
+  } else {
+    shownElapsedTime = Math.floor(elapsedMiliseconds / 31536000000);
+    return shownElapsedTime + " " + "years";
+  }
+
+  /* 1s = 1000 
+  1min = 60000
+  1h = 3600000
+  1day = 86400000
+  7days = 604800000
+  1year = 31536000000 */
+};
