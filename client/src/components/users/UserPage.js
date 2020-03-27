@@ -34,6 +34,8 @@ const UserPage = ({
     ev.target.src = "/Assets/img_load_fail.png";
   }
 
+  window.scrollTo(0, 0);
+
   return loading || loadedUser === null ? (
     <header>
       <h1>Loading</h1>
