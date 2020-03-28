@@ -73,7 +73,7 @@ const Comments = ({
               )}
 
               <Collapse isOpen={commentIDWithActiveReply === comments[key]._id}>
-                <ReplyToComment />
+                <ReplyToComment commentID={comments[key]._id} />
               </Collapse>
             </div>
           ))}

@@ -1,37 +1,32 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
 import { withLocalize, Translate } from "react-localize-redux";
-import { clearErrors } from "../../actions/errorActions";
+import { addReply } from "../../actions/commentActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 const ReplyToComment = ({
-  articleID,
   auth: { loggedUser },
   comment,
   error,
-  clearErrors
+  addReply,
+  commentID
 }) => {
-  const [commentValue, setCommentValue] = useState("");
-
-  useEffect(() => {
-    clearErrors();
-  }, [clearErrors, loggedUser]);
+  const [replyValue, setReplyValue] = useState("");
 
   const onSubmit = e => {
     e.preventDefault();
 
-    const newComment = {
-      articleID,
+    const newReply = {
       author: {
         username: loggedUser.username,
         _id: loggedUser._id,
         picture: loggedUser.profile_pictures[0]
       },
-      comment: commentValue
+      reply: replyValue
     };
 
-    console.log(newComment);
+    addReply(newReply, commentID);
   };
 
   return loggedUser ? (
@@ -45,10 +40,10 @@ const ReplyToComment = ({
                   type="input"
                   name="username"
                   id="username"
-                  value={commentValue}
+                  value={replyValue}
                   placeholder={translate("comments_section.input")}
                   onChange={e => {
-                    setCommentValue(e.target.value);
+                    setReplyValue(e.target.value);
                   }}
                   className="add-reply-form__input"
                 />
@@ -95,7 +90,7 @@ ReplyToComment.propTypes = {
   auth: PropTypes.object.isRequired,
   comment: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
-  clearErrors: PropTypes.func.isRequired
+  addReply: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -107,6 +102,6 @@ const mapStateToProps = state => ({
 export default withLocalize(
   connect(
     mapStateToProps,
-    { clearErrors }
+    { addReply }
   )(ReplyToComment)
 );

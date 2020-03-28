@@ -2,6 +2,9 @@ import {
   ADDING_THE_COMMENT,
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAIL,
+  ADDING_THE_REPLY,
+  ADD_REPLY_SUCCESS,
+  ADD_REPLY_FAIL,
   GETTING_THE_COMMENTS,
   GET_COMMENTS_SUCCESS,
   GET_COMMENTS_FAIL
@@ -12,7 +15,9 @@ const initialState = {
   loading: false,
   loading_failed: false,
   posting: false,
-  posting_failed: false
+  posting_failed: false,
+  replying: false,
+  replying_failed: false
 };
 
 export default function(state = initialState, action) {
@@ -34,6 +39,23 @@ export default function(state = initialState, action) {
         ...state,
         posting: false,
         posting_failed: true
+      };
+    case ADDING_THE_REPLY:
+      return {
+        ...state,
+        replying: true,
+        replying_failed: false
+      };
+    case ADD_REPLY_SUCCESS:
+      return {
+        ...state,
+        replying: false
+      };
+    case ADD_REPLY_FAIL:
+      return {
+        ...state,
+        replying: false,
+        replying_failed: true
       };
     case GETTING_THE_COMMENTS:
       return {
