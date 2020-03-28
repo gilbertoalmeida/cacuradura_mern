@@ -45,6 +45,50 @@ router.post("/add", auth, (req, res) => {
   });
 });
 
+// @route   POST api/comments/add-reply
+// @desc    Post a reply to a comment in an article
+// @access  Private
+router.post("/add-reply", auth, async (req, res) => {
+  const {
+    commentID,
+    author: { username, _id, picture },
+    reply
+  } = req.body;
+
+  //Simple validation
+  if (!reply) {
+    return res.status(400).json({
+      msg: "missing_comment" //this is now not the error message itself, but part of the id of the translation
+    });
+  }
+
+  const newReply = {
+    $push: {
+      replies: {
+        author: {
+          username,
+          _id,
+          picture
+        },
+        reply_text: reply
+      }
+    }
+  };
+
+  try {
+    let foundAndUpdatedComment = await Comment.update(
+      { _id: commentID },
+      newReply
+    );
+    res.json({
+      foundAndUpdatedComment
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @route   GET api/comments/:id
 // @desc    Get all comments from an article by its id, and then get the picture of the user that left each comment
 // @access  Public
