@@ -34,6 +34,7 @@ const AddComment = ({
     };
 
     addComment(newComment);
+    setCommentValue("");
   };
 
   return loggedUser ? (
@@ -47,6 +48,7 @@ const AddComment = ({
                   type="textarea"
                   name="username"
                   id="username"
+                  maxlength="400"
                   value={commentValue}
                   placeholder={translate("comments_section.input")}
                   onChange={e => {
@@ -57,7 +59,7 @@ const AddComment = ({
               )}
             </Translate>
           </FormGroup>
-          {error.msg.msg ? (
+          {error.msg.msg && comment.posting_failed ? (
             <Translate>
               {({ translate }) => (
                 <Alert

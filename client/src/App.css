@@ -584,13 +584,18 @@ header h2 {
 }
 
 .comments-section__comments {
-  margin: 10px 12px;
-  border-top: solid #05050a 5px;
+  margin: 0 12px;
+  padding-bottom: 15px;
+  border-bottom: solid #05050a 5px;
 }
 
 .comments-section__comments__single {
   padding: 15px 0;
   border-bottom: 1px solid #faa9cb69;
+}
+
+.comments-section__comments__single:last-child {
+  border-bottom: none;
 }
 
 .comments-section__comments__single__content {
@@ -639,6 +644,16 @@ header h2 {
 .comments-section__comments__single__content__text .user-link:hover {
   color: #e69696;
   text-decoration: none;
+}
+
+.add-comment-form {
+  margin: 10px 12px 0px 12px;
+  padding-top: 10px;
+  border-top: solid #05050a 5px;
+}
+
+.add-comment-form .form-group {
+  margin-bottom: 5px;
 }
 
 .add-comment-form__textarea {
@@ -821,6 +836,10 @@ header h2 {
   padding: 10px 0;
   border-bottom: 1px solid #faa9cb69;
   margin-left: 65px;
+}
+
+.comments-section__comments__replies__single:last-child {
+  border-bottom: none;
 }
 
 .comments-section__comments__replies__single__content {

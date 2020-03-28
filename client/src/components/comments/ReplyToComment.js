@@ -27,6 +27,7 @@ const ReplyToComment = ({
     };
 
     addReply(newReply, commentID);
+    setReplyValue("");
   };
 
   return loggedUser ? (
@@ -40,6 +41,7 @@ const ReplyToComment = ({
                   type="input"
                   name="username"
                   id="username"
+                  maxlength="400"
                   autoComplete="off"
                   value={replyValue}
                   placeholder={translate("comments_section.input")}
@@ -51,7 +53,7 @@ const ReplyToComment = ({
               )}
             </Translate>
           </FormGroup>
-          {error.msg.msg ? (
+          {error.msg.msg && comment.replying_failed ? (
             <Translate>
               {({ translate }) => (
                 <Alert
@@ -65,13 +67,13 @@ const ReplyToComment = ({
           ) : null}
           {/* operator to show the alert only is there is an error */}
           <div className="add-reply-form__submit-button-container">
-            {comment.posting_failed ? (
+            {comment.replying_failed ? (
               <Button className="add-reply-form__submit-button-failed">
                 <Translate id="comments_section.posting_failed" />
               </Button>
             ) : (
               <Button className="add-reply-form__submit-button">
-                {comment.posting ? (
+                {comment.replying ? (
                   <Translate id="comments_section.posting" />
                 ) : (
                   <Translate id="comments_section.submit_button" />

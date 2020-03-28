@@ -4,10 +4,11 @@ import AddComment from "./AddComment";
 
 const CommentsSection = ({ articleID, match }) => {
   return (
-    <Fragment>
-      <Comments match={match} />
+    <div className="comments-section">
+      <div className="comments-section__header">Comments</div>
       <AddComment articleID={articleID} />
-    </Fragment>
+      <Comments match={match} />
+    </div>
   );
 };
 
