@@ -110,8 +110,11 @@ const Comments = ({
                 >
                   <div className="comments-section__comments__replies">
                     {comments[key].replies.map(
-                      ({ author, reply_text, posted }) => (
-                        <div className="comments-section__comments__replies__single">
+                      ({ author, reply_text, posted }, index) => (
+                        <div
+                          key={index}
+                          className="comments-section__comments__replies__single"
+                        >
                           <div className="comments-section__comments__replies__single__content">
                             <Link to={`/users/${author._id}`}>
                               <div className="comments-section__comments__replies__single__content__img">

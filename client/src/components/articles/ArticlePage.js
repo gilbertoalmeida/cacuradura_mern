@@ -14,6 +14,8 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
     getArticle(match.params.id);
   }, [getArticle, match.params.id]);
 
+  window.scrollTo(0, 0);
+
   function addDefaultSrc(ev) {
     ev.target.src = "/Assets/img_load_fail.png";
   }

@@ -98,7 +98,7 @@ export const addReply = (newReply, commentID) => (dispatch, getState) => {
     })
     .catch(err => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, "ADD_COMMENT_FAIL")
+        returnErrors(err.response.data, err.response.status, "ADD_REPLY_FAIL")
       );
       dispatch({
         type: ADD_REPLY_FAIL

@@ -48,7 +48,7 @@ const AddComment = ({
                   type="textarea"
                   name="username"
                   id="username"
-                  maxlength="400"
+                  maxLength="400"
                   value={commentValue}
                   placeholder={translate("comments_section.input")}
                   onChange={e => {

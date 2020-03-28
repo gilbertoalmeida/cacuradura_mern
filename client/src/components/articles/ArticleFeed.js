@@ -16,6 +16,7 @@ class ArticleFeed extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     setTimeout(() => {
       if (this.props.activeLanguage.code === "pt") {
         this.props.getArticlesPT();
