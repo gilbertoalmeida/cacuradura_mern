@@ -39,8 +39,7 @@ const Comments = ({
   };
 
   return (
-    <div className="comments-section">
-      <div className="comments-section__header">Comments</div>
+    <div className="comments-section-comments">
       {loading ? (
         <div>loading</div>
       ) : (
