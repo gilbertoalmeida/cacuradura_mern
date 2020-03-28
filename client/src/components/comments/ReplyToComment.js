@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
 import { withLocalize, Translate } from "react-localize-redux";
 import { addReply } from "../../actions/commentActions";

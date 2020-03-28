@@ -70,7 +70,8 @@ router.post("/add-reply", auth, async (req, res) => {
           _id,
           picture
         },
-        reply_text: reply
+        reply_text: reply,
+        posted: new Date()
       }
     }
   };

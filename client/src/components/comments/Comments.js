@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withLocalize, Translate } from "react-localize-redux";
+import { withLocalize } from "react-localize-redux";
 import { Link } from "react-router-dom";
 import { getComments } from "../../actions/commentActions";
 import { prettyDateHours } from "../../Utils/Utils";
