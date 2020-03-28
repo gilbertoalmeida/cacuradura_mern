@@ -77,7 +77,7 @@ router.post("/add-reply", auth, async (req, res) => {
   };
 
   try {
-    let foundAndUpdatedComment = await Comment.update(
+    let foundAndUpdatedComment = await Comment.updateOne(
       { _id: commentID },
       newReply
     );

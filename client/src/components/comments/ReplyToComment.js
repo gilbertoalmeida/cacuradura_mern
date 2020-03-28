@@ -40,6 +40,7 @@ const ReplyToComment = ({
                   type="input"
                   name="username"
                   id="username"
+                  autoComplete="off"
                   value={replyValue}
                   placeholder={translate("comments_section.input")}
                   onChange={e => {
