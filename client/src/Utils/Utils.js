@@ -1,5 +1,3 @@
-import React from "react";
-
 export const prettyDateNoHours = date => {
   let crudeDate;
   let finalDate;
@@ -27,6 +25,10 @@ export const prettyDateHours = date => {
   let finalDate;
   let crudeMonth;
   let finalMonth;
+  let crudeHour;
+  let finalHour;
+  let crudeMinute;
+  let finalMinute;
   crudeDate = new Date(date).getDate();
   if (crudeDate < 10) {
     finalDate = "0" + crudeDate;
@@ -41,6 +43,20 @@ export const prettyDateHours = date => {
     finalMonth = crudeMonth;
   }
 
+  crudeHour = new Date(date).getHours();
+  if (crudeHour < 10) {
+    finalHour = "0" + crudeHour;
+  } else {
+    finalHour = crudeHour;
+  }
+
+  crudeMinute = new Date(date).getMinutes() + 1;
+  if (crudeMinute < 10) {
+    finalMinute = "0" + crudeMinute;
+  } else {
+    finalMinute = crudeMinute;
+  }
+
   return (
     finalDate +
     "." +
@@ -48,9 +64,9 @@ export const prettyDateHours = date => {
     "." +
     new Date(date).getFullYear() +
     " " +
-    new Date(date).getHours() +
+    finalHour +
     ":" +
-    new Date(date).getMinutes()
+    finalMinute
   );
 };
 
@@ -63,19 +79,19 @@ export const prettyDateElapsed = date => {
 
   if (elapsedMiliseconds < 3600000) {
     shownElapsedTime = Math.floor(elapsedMiliseconds / 6000);
-    return shownElapsedTime + " " + "minutes";
+    return `${shownElapsedTime} minutes`;
   } else if (elapsedMiliseconds < 86400000) {
     shownElapsedTime = Math.floor(elapsedMiliseconds / 3600000);
-    return shownElapsedTime + " " + "hours";
+    return `${shownElapsedTime} hours`;
   } else if (elapsedMiliseconds < 604800000) {
     shownElapsedTime = Math.floor(elapsedMiliseconds / 86400000);
-    return shownElapsedTime + " " + "days";
+    return `${shownElapsedTime} days`;
   } else if (elapsedMiliseconds < 31536000000) {
     shownElapsedTime = Math.floor(elapsedMiliseconds / 604800000);
-    return shownElapsedTime + " " + "weeks";
+    return `${shownElapsedTime} weeks`;
   } else {
     shownElapsedTime = Math.floor(elapsedMiliseconds / 31536000000);
-    return shownElapsedTime + " " + "years";
+    return `${shownElapsedTime} years`;
   }
 
   /* 1s = 1000 

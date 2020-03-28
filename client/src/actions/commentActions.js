@@ -12,13 +12,13 @@ import { tokenConfig } from "./authActions";
 
 export const addComment = ({
   articleID,
-  author: { username, _id },
+  author: { username, _id, picture },
   comment
 }) => (dispatch, getState) => {
   //Request body
   const bbody = JSON.stringify({
     articleID,
-    author: { username, _id },
+    author: { username, _id, picture },
     comment
   });
 
@@ -55,7 +55,6 @@ export const getComments = id => async dispatch => {
         type: GETTING_THE_COMMENTS
       })
     ); //proxi in the package.json in react makes it not necessary to type the full path
-
     dispatch({
       type: GET_COMMENTS_SUCCESS,
       payload: res.data

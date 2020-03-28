@@ -9,6 +9,7 @@ import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { stateToHTML } from "draft-js-export-html";
 import ChooseCoverPicModal from "./ChooseCoverPicModal";
+import { prettyDateNoHours } from "../../Utils/Utils";
 
 import { withLocalize, Translate } from "react-localize-redux";
 
@@ -250,15 +251,7 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                       )}
                     </Translate>
                     <time dateTime={datenow}>
-                      <p>
-                        §}>{" "}
-                        {new Date(datenow).getDate() +
-                          "/" +
-                          (new Date(datenow).getMonth() + 1) +
-                          "/" +
-                          new Date(datenow).getFullYear()}
-                        ,
-                      </p>
+                      <p>§}> {prettyDateNoHours(datenow)},</p>
                       <p>
                         <Translate id="article.by" />{" "}
                         <Link

@@ -8,13 +8,16 @@ const auth = require("../../middleware/auth");
 //Bringing Comment Model
 const Comment = require("../../models/Comment");
 
+//Bringing User Model
+const User = require("../../models/User");
+
 // @route   POST api/comments/add
 // @desc    Post a comment to an article in the database
 // @access  Private
 router.post("/add", auth, (req, res) => {
   const {
     articleID,
-    author: { username, _id },
+    author: { username, _id, picture },
     comment
   } = req.body;
 
@@ -28,8 +31,9 @@ router.post("/add", auth, (req, res) => {
   const newComment = new Comment({
     articleID,
     author: {
-      username: username,
-      _id: _id
+      username,
+      _id,
+      picture
     },
     comment_text: comment
   });
@@ -42,13 +46,43 @@ router.post("/add", auth, (req, res) => {
 });
 
 // @route   GET api/comments/:id
-// @desc    Get all comments from an article by its id
+// @desc    Get all comments from an article by its id, and then get the picture of the user that left each comment
 // @access  Public
-router.get("/:id", (req, res) => {
+
+router.get("/:id", async (req, res) => {
+  let commentsWithPicture = [];
   let query = { articleID: req.params.id };
-  Comment.find(query)
-    .sort({ date: -1 })
-    .then(comments => res.json(comments));
+  try {
+    let comments = await Comment.find(query);
+
+    for (let i = 0; i < comments.length; i++) {
+      try {
+        let loadedCommentPicture = await User.findById(comments[i].author._id, {
+          profile_pictures: 1
+        });
+        let commentWithPicture = {
+          author: {
+            username: comments[i].author.username,
+            _id: comments[i].author._id,
+            picture: loadedCommentPicture.profile_pictures[0]
+          },
+          replies: comments[i].replies,
+          _id: comments[i]._id,
+          articleID: comments[i].articleID,
+          comment_text: comments[i].comment_text,
+          posted: comments[i].posted
+        };
+        commentsWithPicture.push(commentWithPicture);
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+      }
+    }
+    res.json(commentsWithPicture);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 });
 
 module.exports = router;
