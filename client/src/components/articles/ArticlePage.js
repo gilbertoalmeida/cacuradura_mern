@@ -5,6 +5,7 @@ import { getArticle } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 import ReactHtmlParser from "react-html-parser";
 import CommentsSection from "../comments/CommentsSection";
+import { prettyDateNoHours } from "../../Utils/Utils";
 
 import { withLocalize, Translate } from "react-localize-redux";
 
@@ -56,14 +57,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
           >
             <div className="article-title">{article.title}</div>
             <time dateTime={article.date}>
-              <p>
-                §}>{" "}
-                {new Date(article.date).getDate() +
-                  "/" +
-                  (new Date(article.date).getMonth() + 1) +
-                  "/" +
-                  new Date(article.date).getFullYear()}
-              </p>
+              <p>§}> {prettyDateNoHours(article.date)}</p>
               <p>
                 <Translate id="article.by" />{" "}
                 <Link

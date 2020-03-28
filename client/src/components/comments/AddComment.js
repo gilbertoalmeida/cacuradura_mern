@@ -18,7 +18,7 @@ const AddComment = ({
 
   useEffect(() => {
     clearErrors();
-  }, [clearErrors]);
+  }, [clearErrors, loggedUser]);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -27,7 +27,8 @@ const AddComment = ({
       articleID,
       author: {
         username: loggedUser.username,
-        _id: loggedUser._id
+        _id: loggedUser._id,
+        picture: loggedUser.profile_pictures[0]
       },
       comment: commentValue
     };

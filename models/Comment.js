@@ -17,6 +17,9 @@ let commentSchema = mongoose.Schema({
     _id: {
       type: String,
       required: true
+    },
+    picture: {
+      type: String
     }
   },
   comment_text: {

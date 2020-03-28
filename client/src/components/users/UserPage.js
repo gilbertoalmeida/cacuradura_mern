@@ -44,21 +44,16 @@ const UserPage = ({
     <Fragment>
       <div className="user-profile-main-box-element">
         <div className="profile-pic-container">
-          {loadedUser.profile_pictures.length === 0 ? (
-            <img
-              className="profile-pic-focus"
-              src="/Assets/no_profile_pic.png"
-              onError={addDefaultSrc}
-              alt="profile pic"
-            />
-          ) : (
-            <img
-              className="profile-pic-focus"
-              src={loadedUser.profile_pictures[pictureID]}
-              onError={addDefaultSrc}
-              alt="profile pic"
-            />
-          )}
+          <img
+            className="profile-pic-focus"
+            src={
+              loadedUser.profile_pictures.length === 0
+                ? "/Assets/no_profile_pic.png"
+                : loadedUser.profile_pictures[pictureID]
+            }
+            onError={addDefaultSrc}
+            alt="profile pic"
+          />
           <div className="profile-pic-filter"></div>
           <div className="profile-pic-nav-arrows">
             {pictureID === 0 ? null : (
