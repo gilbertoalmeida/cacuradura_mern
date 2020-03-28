@@ -49,7 +49,8 @@ export default function(state = initialState, action) {
     case ADD_REPLY_SUCCESS:
       return {
         ...state,
-        replying: false
+        replying: false,
+        comments: action.payload
       };
     case ADD_REPLY_FAIL:
       return {

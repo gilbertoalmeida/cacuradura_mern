@@ -77,13 +77,78 @@ router.post("/add-reply", auth, async (req, res) => {
   };
 
   try {
+    /* This is the part that updates the entry in the database */
     let foundAndUpdatedComment = await Comment.updateOne(
       { _id: commentID },
       newReply
     );
-    res.json({
-      foundAndUpdatedComment
-    });
+
+    /* From here down I am just getting all the comments, with all the comment user pictures and reply
+      user pictures again. The reason is being able to update the state to this when the person reply to a 
+      comment. maybe I can find something better in the future. mas é o que tem pra hoje... */
+
+    let commentsWithPicture = [];
+    let query = { articleID: req.params.id };
+    try {
+      let comments = await Comment.find(query);
+
+      for (let i = 0; i < comments.length; i++) {
+        try {
+          let repliesWithPicture = [];
+          let loadedCommentPicture = await User.findById(
+            comments[i].author._id,
+            {
+              profile_pictures: 1
+            }
+          );
+
+          for (let z = 0; z < comments[i].replies.length; z++) {
+            try {
+              let loadedReplyPicture = await User.findById(
+                comments[i].replies[z].author._id,
+                {
+                  profile_pictures: 1
+                }
+              );
+              let replyWithPicture = {
+                author: {
+                  username: comments[i].replies[z].author.username,
+                  _id: comments[i].replies[z].author._id,
+                  picture: loadedReplyPicture.profile_pictures[0]
+                },
+                reply_text: comments[i].replies[z].reply_text,
+                posted: comments[i].replies[z].posted
+              };
+              repliesWithPicture.push(replyWithPicture);
+            } catch (err) {
+              console.error(err.message);
+              res.status(500).send("Server Error");
+            }
+          }
+
+          let commentWithPicture = {
+            author: {
+              username: comments[i].author.username,
+              _id: comments[i].author._id,
+              picture: loadedCommentPicture.profile_pictures[0]
+            },
+            replies: repliesWithPicture,
+            _id: comments[i]._id,
+            articleID: comments[i].articleID,
+            comment_text: comments[i].comment_text,
+            posted: comments[i].posted
+          };
+          commentsWithPicture.push(commentWithPicture);
+        } catch (err) {
+          console.error(err.message);
+          res.status(500).send("Server Error");
+        }
+      }
+      res.json(commentsWithPicture);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -93,7 +158,6 @@ router.post("/add-reply", auth, async (req, res) => {
 // @route   GET api/comments/:id
 // @desc    Get all comments from an article by its id, and then get the picture of the user that left each comment
 // @access  Public
-
 router.get("/:id", async (req, res) => {
   let commentsWithPicture = [];
   let query = { articleID: req.params.id };
@@ -102,16 +166,42 @@ router.get("/:id", async (req, res) => {
 
     for (let i = 0; i < comments.length; i++) {
       try {
+        let repliesWithPicture = [];
         let loadedCommentPicture = await User.findById(comments[i].author._id, {
           profile_pictures: 1
         });
+
+        for (let z = 0; z < comments[i].replies.length; z++) {
+          try {
+            let loadedReplyPicture = await User.findById(
+              comments[i].replies[z].author._id,
+              {
+                profile_pictures: 1
+              }
+            );
+            let replyWithPicture = {
+              author: {
+                username: comments[i].replies[z].author.username,
+                _id: comments[i].replies[z].author._id,
+                picture: loadedReplyPicture.profile_pictures[0]
+              },
+              reply_text: comments[i].replies[z].reply_text,
+              posted: comments[i].replies[z].posted
+            };
+            repliesWithPicture.push(replyWithPicture);
+          } catch (err) {
+            console.error(err.message);
+            res.status(500).send("Server Error");
+          }
+        }
+
         let commentWithPicture = {
           author: {
             username: comments[i].author.username,
             _id: comments[i].author._id,
             picture: loadedCommentPicture.profile_pictures[0]
           },
-          replies: comments[i].replies,
+          replies: repliesWithPicture,
           _id: comments[i]._id,
           articleID: comments[i].articleID,
           comment_text: comments[i].comment_text,
