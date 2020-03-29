@@ -50,6 +50,7 @@ router.post("/add", auth, (req, res) => {
 // @access  Private
 router.post("/add-reply", auth, async (req, res) => {
   const {
+    articleID,
     commentID,
     author: { username, _id, picture },
     reply
@@ -88,7 +89,7 @@ router.post("/add-reply", auth, async (req, res) => {
       comment. maybe I can find something better in the future. mas é o que tem pra hoje... */
 
     let commentsWithPicture = [];
-    let query = { articleID: req.params.id };
+    let query = { articleID: articleID };
     try {
       let comments = await Comment.find(query);
 
