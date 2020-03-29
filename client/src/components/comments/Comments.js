@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withLocalize } from "react-localize-redux";
+import { withLocalize, Translate } from "react-localize-redux";
 import { Link } from "react-router-dom";
 import { getComments } from "../../actions/commentActions";
 import { prettyDateHours } from "../../Utils/Utils";
@@ -39,9 +39,15 @@ const Comments = ({
   };
 
   return (
-    <div className="comments-section-comments">
+    <div className="comments-section__comments-container">
       {loading ? (
-        <div>loading</div>
+        <div className="comments-section__loading">
+          <Translate id="comments_section.loading" />
+        </div>
+      ) : comments.length < 1 ? (
+        <div className="comments-section__no-comments">
+          {"><((((º>"} <br /> <Translate id="comments_section.no_comments" />
+        </div>
       ) : (
         <div className="comments-section__comments">
           {Object.keys(comments)
@@ -75,22 +81,30 @@ const Comments = ({
                 </div>
 
                 <div className="comments-section__comments__single__buttons">
-                  <div
-                    className="comments-section__comments__single__show-replies-button"
-                    onClick={() => {
-                      showReplies(comments[key]._id);
-                    }}
-                  >
-                    {`Show replies (${comments[key].replies.length})`}
-                  </div>
-                  <div>|</div>
+                  {comments[key].replies.length < 1 ? (
+                    ""
+                  ) : (
+                    <div className="comments-section__comments__single__buttons-with-replies">
+                      <div
+                        className="comments-section__comments__single__show-replies-button"
+                        onClick={() => {
+                          showReplies(comments[key]._id);
+                        }}
+                      >
+                        <Translate id="comments_section.show_replies" />
+                        {` (${comments[key].replies.length})`}
+                      </div>
+                      <div>|</div>
+                    </div>
+                  )}
+
                   <div
                     className="comments-section__comments__single__reply-button"
                     onClick={() => {
                       showReplyInput(comments[key]._id);
                     }}
                   >
-                    Reply
+                    <Translate id="comments_section.reply" />
                   </div>
                 </div>
 
@@ -101,7 +115,7 @@ const Comments = ({
                     <ReplyToComment commentID={comments[key]._id} />
                   ) : (
                     <div className="comments-section__comments__single__no-auth">
-                      Login to reply
+                      <Translate id="comments_section.no_auth_no_reply" />
                     </div>
                   )}
                 </Collapse>

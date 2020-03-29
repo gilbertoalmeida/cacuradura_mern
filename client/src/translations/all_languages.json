@@ -58,6 +58,22 @@
     "noarticle": ["Article not found", "Artigo não encontrado"]
   },
   "comments_section": {
+    "header": ["Comments", "Comentários"],
+    "loading": ["Loading comments...", "Carregando comentários..."],
+    "no_comments": [
+      "This article has no comments yet.<br>Be the first!",
+      "Esse artigo não tem nenhum comentário ainda.<br>Seja o primeiro!"
+    ],
+    "show_replies": ["Show replies", "mostrar respostas"],
+    "reply": ["Reply", "Responder"],
+    "no_auth_no_comment": [
+      "xx- Login to comment -xx",
+      "xx- Faça login pra commentar -xx"
+    ],
+    "no_auth_no_reply": [
+      "xx- Login to reply -xx",
+      "xx- Faça login pra responder -xx"
+    ],
     "input": [
       "Try not to be the jerk of the comment section",
       "Tente não ser o babaca dos comentários"
