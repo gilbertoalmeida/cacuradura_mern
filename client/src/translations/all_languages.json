@@ -49,8 +49,41 @@
     "by": ["by", "por"],
     "post": ["Post", "Postar"],
     "posting": ["Posting...", "Postando..."],
+    "posting_failed": [
+      "Posting failed. Try again?",
+      "Postagem falhou. Tentar de novo?"
+    ],
+    "posting_success": ["Posted !", "Postado !"],
     "loading": ["Loading", "Carregando"],
     "noarticle": ["Article not found", "Artigo não encontrado"]
+  },
+  "comments_section": {
+    "header": ["Comments", "Comentários"],
+    "loading": ["Loading comments...", "Carregando comentários..."],
+    "no_comments": [
+      "This article has no comments yet.<br>Be the first!",
+      "Esse artigo não tem nenhum comentário ainda.<br>Seja o primeiro!"
+    ],
+    "show_replies": ["Show replies", "mostrar respostas"],
+    "reply": ["Reply", "Responder"],
+    "no_auth_no_comment": [
+      "xx- Login to comment -xx",
+      "xx- Faça login pra commentar -xx"
+    ],
+    "no_auth_no_reply": [
+      "xx- Login to reply -xx",
+      "xx- Faça login pra responder -xx"
+    ],
+    "input": [
+      "Try not to be the jerk of the comment section",
+      "Tente não ser o babaca dos comentários"
+    ],
+    "submit_button": ["Post", "Postar"],
+    "posting": ["Posting...", "Postando..."],
+    "posting_failed": [
+      "Commenting failed. Try again?",
+      "Comentário falhou. Tentar de novo?"
+    ]
   },
   "add_article_page": {
     "title": ["Title...", "Título..."],
@@ -141,6 +174,10 @@
     "missing_title_text": [
       "The article needs a title and a text, sweetie",
       "O artigo precisa de um título e um texto, frô"
+    ],
+    "missing_comment": [
+      "An empty comment won't do ;)",
+      "Um comentário vazio não vai rolar ;)"
     ]
   }
 }
