@@ -12,9 +12,8 @@ import { withLocalize, Translate } from "react-localize-redux";
 const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   useEffect(() => {
     getArticle(match.params.id);
+    window.scrollTo(0, 0);
   }, [getArticle, match.params.id]);
-
-  window.scrollTo(0, 0);
 
   function addDefaultSrc(ev) {
     ev.target.src = "/Assets/img_load_fail.png";

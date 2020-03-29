@@ -66,7 +66,7 @@ const AddComment = ({
             ) : (
               <div className="add-comment-form__textarea-no-auth-filter">
                 <div className="add-comment-form__textarea-no-auth-filter__verticle-center">
-                  xx- Login to comment -xx
+                  <Translate id="comments_section.no_auth_no_comment" />
                 </div>
               </div>
             )}

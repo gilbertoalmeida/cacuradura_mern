@@ -21,6 +21,7 @@ const UserPage = ({
   useEffect(() => {
     getUser(match.params.id);
     getUserArticles(match.params.id);
+    window.scrollTo(0, 0);
   }, [getUser, getUserArticles, match.params.id]);
 
   const [activeTab, setActiveTab] = useState("1");
@@ -33,8 +34,6 @@ const UserPage = ({
   function addDefaultSrc(ev) {
     ev.target.src = "/Assets/img_load_fail.png";
   }
-
-  window.scrollTo(0, 0);
 
   return loading || loadedUser === null ? (
     <header>
