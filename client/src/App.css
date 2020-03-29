@@ -653,6 +653,7 @@ header h2 {
 }
 
 .add-comment-form .form-group {
+  position: relative;
   margin-bottom: 5px;
 }
 
@@ -670,6 +671,10 @@ header h2 {
   color: #05050a;
 }
 
+.add-comment-form__textarea:disabled {
+  background-color: #faa9cb;
+}
+
 .add-comment-form__textarea:focus {
   background-color: #faa9cb;
   outline: none;
@@ -677,6 +682,30 @@ header h2 {
   border: 1px solid black;
   box-shadow: none;
   color: #05050a;
+}
+
+.add-comment-form__textarea-no-auth-filter {
+  position: absolute;
+  top: 0;
+  left: 5%;
+  width: 90%;
+  height: 65px;
+  border-radius: 5px;
+  background-color: #565d6857;
+}
+
+.add-comment-form__textarea-no-auth-filter__verticle-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #05050aa4;
+  font-size: 14px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 1px;
 }
 
 .add-comment-form__submit-button-container {

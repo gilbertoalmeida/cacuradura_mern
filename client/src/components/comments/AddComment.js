@@ -37,7 +37,7 @@ const AddComment = ({
     setCommentValue("");
   };
 
-  return loggedUser ? (
+  return (
     <Fragment>
       <div>
         <Form onSubmit={onSubmit} className="add-comment-form">
@@ -50,14 +50,26 @@ const AddComment = ({
                   id="username"
                   maxLength="400"
                   value={commentValue}
-                  placeholder={translate("comments_section.input")}
+                  placeholder={
+                    loggedUser ? translate("comments_section.input") : ""
+                  }
                   onChange={e => {
                     setCommentValue(e.target.value);
                   }}
                   className="add-comment-form__textarea"
+                  disabled={!loggedUser}
                 />
               )}
             </Translate>
+            {loggedUser ? (
+              ""
+            ) : (
+              <div className="add-comment-form__textarea-no-auth-filter">
+                <div className="add-comment-form__textarea-no-auth-filter__verticle-center">
+                  xx- Login to comment -xx
+                </div>
+              </div>
+            )}
           </FormGroup>
           {error.msg.msg && comment.posting_failed ? (
             <Translate>
@@ -78,7 +90,10 @@ const AddComment = ({
                 <Translate id="comments_section.posting_failed" />
               </Button>
             ) : (
-              <Button className="add-comment-form__submit-button">
+              <Button
+                className="add-comment-form__submit-button"
+                disabled={!loggedUser}
+              >
                 {comment.posting ? (
                   <Translate id="comments_section.posting" />
                 ) : (
@@ -90,8 +105,6 @@ const AddComment = ({
         </Form>
       </div>
     </Fragment>
-  ) : (
-    ""
   );
 };
 
