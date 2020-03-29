@@ -69,13 +69,17 @@ export const addComment = ({
     });
 };
 
-export const addReply = (newReply, commentID) => (dispatch, getState) => {
+export const addReply = (newReply, commentID, articleID) => (
+  dispatch,
+  getState
+) => {
   const {
     author: { username, _id, picture },
     reply
   } = newReply;
   //Request body
   const bbody = JSON.stringify({
+    articleID,
     commentID,
     author: { username, _id, picture },
     reply

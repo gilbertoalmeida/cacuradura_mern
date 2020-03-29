@@ -10,7 +10,9 @@ const ReplyToComment = ({
   comment,
   error,
   addReply,
-  commentID
+  commentID,
+  articleID,
+  setCommentIDWithActiveReplies
 }) => {
   const [replyValue, setReplyValue] = useState("");
 
@@ -26,8 +28,9 @@ const ReplyToComment = ({
       reply: replyValue
     };
 
-    addReply(newReply, commentID);
+    addReply(newReply, commentID, articleID);
     setReplyValue("");
+    setCommentIDWithActiveReplies(commentID);
   };
 
   return loggedUser ? (

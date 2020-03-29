@@ -112,7 +112,13 @@ const Comments = ({
                   isOpen={commentIDWithActiveReplyInput === comments[key]._id}
                 >
                   {loggedUser ? (
-                    <ReplyToComment commentID={comments[key]._id} />
+                    <ReplyToComment
+                      commentID={comments[key]._id}
+                      articleID={match.params.id}
+                      setCommentIDWithActiveReplies={
+                        setCommentIDWithActiveReplies
+                      }
+                    />
                   ) : (
                     <div className="comments-section__comments__single__no-auth">
                       <Translate id="comments_section.no_auth_no_reply" />
