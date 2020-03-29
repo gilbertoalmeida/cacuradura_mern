@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 import { getArticle } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 import ReactHtmlParser from "react-html-parser";
+import CommentsSection from "../comments/CommentsSection";
+import { prettyDateNoHours } from "../../Utils/Utils";
 
 import { withLocalize, Translate } from "react-localize-redux";
 
 const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   useEffect(() => {
     getArticle(match.params.id);
+    window.scrollTo(0, 0);
   }, [getArticle, match.params.id]);
-
-  //ver o que acontece quando chanma essa página com um id que nao existe
-  // the loading page is kept bc article is null
 
   function addDefaultSrc(ev) {
     ev.target.src = "/Assets/img_load_fail.png";
@@ -58,14 +58,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
           >
             <div className="article-title">{article.title}</div>
             <time dateTime={article.date}>
-              <p>
-                §}>{" "}
-                {new Date(article.date).getDate() +
-                  "/" +
-                  (new Date(article.date).getMonth() + 1) +
-                  "/" +
-                  new Date(article.date).getFullYear()}
-              </p>
+              <p>§}> {prettyDateNoHours(article.date)}</p>
               <p>
                 <Translate id="article.by" />{" "}
                 <Link
@@ -79,6 +72,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
           </div>
           <div className="article-body">{ReactHtmlParser(article.body)}</div>
         </div>
+        <CommentsSection articleID={match.params.id} match={match} />
       </div>
     </Fragment>
   );

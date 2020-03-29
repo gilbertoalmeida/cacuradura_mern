@@ -15,7 +15,8 @@ const initialState = {
   articles: [],
   article: null,
   loading: false,
-  posting: false
+  posting: false,
+  posting_failed: false
 };
 
 export default function(state = initialState, action) {
@@ -56,18 +57,21 @@ export default function(state = initialState, action) {
     case ADDING_THE_ARTICLE:
       return {
         ...state,
-        posting: true
+        posting: true,
+        posting_failed: false
       };
     case ADD_ARTICLE_SUCCESS:
       return {
         ...state,
-        article: action.payload
+        article: action.payload,
+        posting_failed: false
       };
     case ADD_ARTICLE_FAIL:
       return {
         ...state,
         article: null,
-        posting: false
+        posting: false,
+        posting_failed: true
       };
     case GET_USER_ARTICLES:
       return {

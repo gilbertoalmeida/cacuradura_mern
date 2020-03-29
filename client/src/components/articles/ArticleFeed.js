@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getArticlesPT, getArticlesEN } from "../../actions/articleActions";
 import PropTypes from "prop-types";
+import { prettyDateNoHours } from "../../Utils/Utils";
 
 import { withLocalize, Translate } from "react-localize-redux";
 
@@ -15,6 +16,7 @@ class ArticleFeed extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     setTimeout(() => {
       if (this.props.activeLanguage.code === "pt") {
         this.props.getArticlesPT();
@@ -56,13 +58,8 @@ class ArticleFeed extends Component {
                   </Link>
                 </h3>
                 <time dateTime={date}>
-                  §}>{" "}
-                  {new Date(date).getDate() +
-                    "/" +
-                    (new Date(date).getMonth() + 1) +
-                    "/" +
-                    new Date(date).getFullYear()}
-                  , <Translate id="article.by"></Translate>{" "}
+                  §}> {prettyDateNoHours(date)},{" "}
+                  <Translate id="article.by"></Translate>{" "}
                   <Link to={`/users/${author._id}`} className="user-link link">
                     {author.username}
                   </Link>
