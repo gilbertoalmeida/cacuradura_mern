@@ -26,6 +26,7 @@ export default function(state = initialState, action) {
     case GETTING_ARTICLES:
       return {
         ...state,
+        articles: null,
         loading: true
       };
     case GET_ARTICLES_PT_SUCCESS:
@@ -43,6 +44,7 @@ export default function(state = initialState, action) {
     case GETTING_THE_ARTICLE:
       return {
         ...state,
+        article: null,
         loading: true
       };
     case GET_ARTICLE_SUCCESS:
@@ -78,6 +80,7 @@ export default function(state = initialState, action) {
     case GETTING_USER_ARTICLES:
       return {
         ...state,
+        articles: null,
         loading: true
       };
     case GET_USER_ARTICLES_SUCCESS:
