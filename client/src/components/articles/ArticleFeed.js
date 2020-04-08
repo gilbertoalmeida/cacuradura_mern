@@ -3,7 +3,7 @@ import { ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import { prettyDateNoHours } from "../../Utils/Utils";
 import { withLocalize, Translate } from "react-localize-redux";
-import EmptyArticleFeed from "./EmptyArticleFeed";
+import LoadingArticleFeed from "./LoadingArticleFeed";
 
 const ArticleFeed = ({ articles }) => {
   const addDefaultSrc = ev => {
@@ -11,7 +11,7 @@ const ArticleFeed = ({ articles }) => {
   };
 
   return !articles ? (
-    <EmptyArticleFeed />
+    <LoadingArticleFeed />
   ) : (
     <div className="article-feed-main-box-element">
       <ListGroup className="article-feed-wrapper">

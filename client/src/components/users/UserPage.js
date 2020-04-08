@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { withLocalize, Translate } from "react-localize-redux";
 
 import ArticleFeed from "../articles/ArticleFeed";
+import LoadingUserPage from "./LoadingUserPage";
 
 const UserPage = ({
   getUser,
@@ -38,58 +39,8 @@ const UserPage = ({
     ev.target.src = "/Assets/img_load_fail.png";
   }
 
-  return !articles || loading || loadedUser === null ? (
-    <Fragment>
-      <div className="user-profile-main-box-element">
-        <div className="profile-pic-container">
-          <img
-            className="profile-pic-focus"
-            src=""
-            onError={addDefaultSrc}
-            alt="profile pic"
-          />
-          <div className="profile-pic-filter"></div>
-        </div>
-        <div className="profile-header">
-          <div className="user-profile-title">USERNAME</div>
-          <div className="user-profile-counters">
-            <div className="some-counter"></div>
-            <div className="article-counter">
-              <Translate id="user_page.articles" /> <br />
-              <span>N. ARTICLES</span>{" "}
-            </div>
-            <div className="another-counter"></div>
-          </div>
-          <div className="user-profile-buttons">
-            <button className="profile-buttons send-message-button">
-              Button
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="main-box-element">
-        <Nav tabs className="justify-content-center user-nav-tabs">
-          <NavItem className="user-nav-item">
-            <NavLink
-              className={classnames({ active: activeTab === "1" })}
-              onClick={() => {
-                toggle("1");
-              }}
-            >
-              <Translate id="user_page.articles" />
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={activeTab}>
-          <TabPane tabId="1">
-            <Fragment>
-              <ArticleFeed articles={articles} />
-            </Fragment>
-          </TabPane>
-        </TabContent>
-      </div>
-    </Fragment>
+  return !loadedUser ? (
+    <LoadingUserPage />
   ) : (
     <Fragment>
       <div className="user-profile-main-box-element">
@@ -135,7 +86,7 @@ const UserPage = ({
             <div className="some-counter"></div>
             <div className="article-counter">
               <Translate id="user_page.articles" /> <br />
-              <span>{articles.length}</span>{" "}
+              <span>{articles ? articles.length : ""}</span>{" "}
             </div>
             <div className="another-counter"></div>
           </div>
@@ -180,7 +131,9 @@ const UserPage = ({
         <TabContent activeTab={activeTab}>
           <TabPane tabId="1">
             <Fragment>
-              {articles.length === 0 ? (
+              {!articles ? (
+                <ArticleFeed articles={articles} />
+              ) : articles.length === 0 ? (
                 <header>
                   <h2> {"><((((º>"}</h2>
                   <h2>

@@ -1,7 +1,7 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 
-const EmptyArticleFeed = () => {
+const LoadingArticleFeed = () => {
   const loading_img = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -15,7 +15,7 @@ const EmptyArticleFeed = () => {
               alt=""
             />
             <div className="article-feed__item__img-filter"></div>
-            <div className="article-feed__item__fake-text">
+            <div className="article-feed__item__loading-text">
               <h3 className="article-title">&nbsp;</h3>
               <h3 className="article-title">&nbsp;</h3>
               <time>&nbsp;</time>
@@ -27,4 +27,4 @@ const EmptyArticleFeed = () => {
   );
 };
 
-export default EmptyArticleFeed;
+export default LoadingArticleFeed;
