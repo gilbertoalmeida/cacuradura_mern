@@ -54,7 +54,7 @@
       "Postagem falhou. Tentar de novo?"
     ],
     "posting_success": ["Posted !", "Postado !"],
-    "loading": ["Loading", "Carregando"],
+    "loading": ["Loading...", "Carregando..."],
     "noarticle": ["Article not found", "Artigo não encontrado"]
   },
   "comments_section": {

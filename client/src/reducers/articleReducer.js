@@ -12,7 +12,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  articles: [],
+  articles: null,
   article: null,
   loading: false,
   posting: false,

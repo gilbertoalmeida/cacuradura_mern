@@ -20,23 +20,36 @@ const UserArticleFeed = ({
     ev.target.src = "/Assets/img_load_fail.png";
   }
 
-  return loading ? (
-    <header>
-      {/* I took this off, bc the loading message here is really ugly. I have to do the real loading page scene
-        where loading squares appear in place. Maybe empty pink squares. And where the text is, there is a slight
-        darker backgroung, as a loading text */}
-      {/* <h1>
-          <Translate id="article.loading" />
-        </h1> */}
-    </header>
+  const loading_img = [1, 2, 3, 4, 5, 6];
+
+  return !articles ? (
+    <div className="article-feed-main-box-element">
+      <ListGroup className="article-feed-wrapper">
+        {loading_img.map((img, index) => (
+          <ListGroupItem key={index} className="article-feed__item">
+            <img
+              style={{ opacity: "0.35" }}
+              src="https://i.imgur.com/QIEpaf6.png"
+              alt=""
+            />
+            <div className="article-feed__item__img-filter"></div>
+            <div className="article-feed__item__fake-text">
+              <h3 className="article-title">&nbsp;</h3>
+              <h3 className="article-title">&nbsp;</h3>
+              <time>&nbsp;</time>
+            </div>
+          </ListGroupItem>
+        ))}
+      </ListGroup>
+    </div>
   ) : (
     <div className="article-feed-main-box-element">
       <ListGroup className="article-feed-wrapper">
         {articles.map(({ _id, title, date, author, feed_img }) => (
-          <ListGroupItem key={_id} className="article-feed-item">
+          <ListGroupItem key={_id} className="article-feed__item">
             <img src={feed_img} onError={addDefaultSrc} alt="" />
-            <div className="article-feed-img-filter"></div>
-            <div className="article-feed-item-text">
+            <div className="article-feed__img-filter"></div>
+            <div className="article-feed__item__text">
               <h3 className="article-title">
                 <Link to={`/articles/${_id}`} className="article-title link">
                   {title}
