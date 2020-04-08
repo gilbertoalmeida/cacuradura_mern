@@ -14,6 +14,7 @@ export default function(state = initialState, action) {
     case GETTING_THE_USER:
       return {
         ...state,
+        loadedUser: null,
         loading: true
       };
     case GET_USER_SUCCESS:
