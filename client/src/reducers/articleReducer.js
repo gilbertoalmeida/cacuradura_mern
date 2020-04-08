@@ -8,7 +8,9 @@ import {
   ADDING_THE_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
-  GET_USER_ARTICLES
+  GETTING_USER_ARTICLES,
+  GET_USER_ARTICLES_SUCCESS,
+  GET_USER_ARTICLES_FAIL
 } from "../actions/types";
 
 const initialState = {
@@ -73,10 +75,21 @@ export default function(state = initialState, action) {
         posting: false,
         posting_failed: true
       };
-    case GET_USER_ARTICLES:
+    case GETTING_USER_ARTICLES:
+      return {
+        ...state,
+        loading: true
+      };
+    case GET_USER_ARTICLES_SUCCESS:
       return {
         ...state,
         articles: action.payload,
+        loading: false
+      };
+    case GET_USER_ARTICLES_FAIL:
+      return {
+        ...state,
+        articles: null,
         loading: false
       };
     default:

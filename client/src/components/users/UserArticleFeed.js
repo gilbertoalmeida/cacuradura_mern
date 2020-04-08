@@ -1,21 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getUserArticles } from "../../actions/articleActions";
-import PropTypes from "prop-types";
 
 import { withLocalize, Translate } from "react-localize-redux";
 
-const UserArticleFeed = ({
-  loadedUserID,
-  getUserArticles,
-  article: { articles, loading }
-}) => {
-  useEffect(() => {
-    getUserArticles(loadedUserID);
-  }, [getUserArticles, loadedUserID]);
-
+const UserArticleFeed = ({ articles }) => {
   function addDefaultSrc(ev) {
     ev.target.src = "/Assets/img_load_fail.png";
   }
@@ -75,17 +64,4 @@ const UserArticleFeed = ({
   );
 };
 
-UserArticleFeed.propTypes = {
-  article: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  article: state.article
-});
-
-export default withLocalize(
-  connect(
-    mapStateToProps,
-    { getUserArticles }
-  )(UserArticleFeed)
-);
+export default withLocalize(UserArticleFeed);
