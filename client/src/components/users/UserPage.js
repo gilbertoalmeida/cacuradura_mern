@@ -8,7 +8,7 @@ import { getUserArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 import { withLocalize, Translate } from "react-localize-redux";
 
-import UserArticleFeed from "./UserArticleFeed.js";
+import ArticleFeed from "../articles/ArticleFeed";
 
 const UserPage = ({
   getUser,
@@ -84,7 +84,7 @@ const UserPage = ({
         <TabContent activeTab={activeTab}>
           <TabPane tabId="1">
             <Fragment>
-              <UserArticleFeed articles={articles} />
+              <ArticleFeed articles={articles} />
             </Fragment>
           </TabPane>
         </TabContent>
@@ -189,7 +189,7 @@ const UserPage = ({
                   </h2>
                 </header>
               ) : (
-                <UserArticleFeed articles={articles} />
+                <ArticleFeed articles={articles} />
               )}
             </Fragment>
           </TabPane>

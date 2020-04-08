@@ -6,15 +6,12 @@ import {
   DropdownItem
 } from "reactstrap";
 import { withRouter } from "react-router-dom";
-import { createBrowserHistory } from "history";
 import { withLocalize, Translate } from "react-localize-redux";
 
-const LanguageToggle = ({ languages, activeLanguage, setActiveLanguage }) => {
+const LanguageToggle = ({ languages, setActiveLanguage }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
-
-  const history = createBrowserHistory();
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
@@ -36,10 +33,6 @@ const LanguageToggle = ({ languages, activeLanguage, setActiveLanguage }) => {
             <div
               onClick={() => {
                 setActiveLanguage(lang.code);
-
-                if (history.location.pathname === "/") {
-                  window.location.reload();
-                }
               }}
             >
               <img
