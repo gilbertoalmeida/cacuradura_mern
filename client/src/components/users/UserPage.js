@@ -20,9 +20,12 @@ const UserPage = ({
 }) => {
   useEffect(() => {
     getUser(match.params.id);
-    getUserArticles(match.params.id);
     window.scrollTo(0, 0);
   }, [getUser, getUserArticles, match.params.id]);
+
+  useEffect(() => {
+    getUserArticles(match.params.id);
+  }, [getUserArticles, match.params.id]);
 
   const [activeTab, setActiveTab] = useState("1");
   const [pictureID, setPictureID] = useState(0);
@@ -35,10 +38,58 @@ const UserPage = ({
     ev.target.src = "/Assets/img_load_fail.png";
   }
 
-  return loading || loadedUser === null ? (
-    <header>
-      <h1>Loading</h1>
-    </header>
+  return !articles || loading || loadedUser === null ? (
+    <Fragment>
+      <div className="user-profile-main-box-element">
+        <div className="profile-pic-container">
+          <img
+            className="profile-pic-focus"
+            src=""
+            onError={addDefaultSrc}
+            alt="profile pic"
+          />
+          <div className="profile-pic-filter"></div>
+        </div>
+        <div className="profile-header">
+          <div className="user-profile-title">USERNAME</div>
+          <div className="user-profile-counters">
+            <div className="some-counter"></div>
+            <div className="article-counter">
+              <Translate id="user_page.articles" /> <br />
+              <span>N. ARTICLES</span>{" "}
+            </div>
+            <div className="another-counter"></div>
+          </div>
+          <div className="user-profile-buttons">
+            <button className="profile-buttons send-message-button">
+              Button
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="main-box-element">
+        <Nav tabs className="justify-content-center user-nav-tabs">
+          <NavItem className="user-nav-item">
+            <NavLink
+              className={classnames({ active: activeTab === "1" })}
+              onClick={() => {
+                toggle("1");
+              }}
+            >
+              <Translate id="user_page.articles" />
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={activeTab}>
+          <TabPane tabId="1">
+            <Fragment>
+              <UserArticleFeed articles={articles} />
+            </Fragment>
+          </TabPane>
+        </TabContent>
+      </div>
+    </Fragment>
   ) : (
     <Fragment>
       <div className="user-profile-main-box-element">
@@ -138,7 +189,7 @@ const UserPage = ({
                   </h2>
                 </header>
               ) : (
-                <UserArticleFeed loadedUserID={loadedUser._id} />
+                <UserArticleFeed articles={articles} />
               )}
             </Fragment>
           </TabPane>

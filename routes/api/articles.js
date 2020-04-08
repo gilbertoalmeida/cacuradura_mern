@@ -48,11 +48,19 @@ router.get("/:id", async (req, res) => {
 // @route   GET api/articles/user/:id
 // @desc    Get all articles from one user by its id
 // @access  Public
-router.get("/user/:id", (req, res) => {
+router.get("/user/:id", async (req, res) => {
   let query = { "author._id": req.params.id };
-  Article.find(query)
-    .sort({ date: -1 })
-    .then(articles => res.json(articles));
+  try {
+    const articles = await Article.find(query);
+
+    if (!articles) {
+      return res.status(404);
+    }
+
+    res.json(articles);
+  } catch (err) {
+    res.status(500).send("Server Error");
+  }
 });
 
 // @route   POST api/articles/add
