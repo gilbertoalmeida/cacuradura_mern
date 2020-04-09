@@ -32,7 +32,6 @@ const UserPage = ({
 
   const [activeTab, setActiveTab] = useState("1");
   const [pictureID, setPictureID] = useState(0);
-  const [profileImgLoading, setProfileImgLoading] = useState(false);
 
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -59,7 +58,6 @@ const UserPage = ({
 
   const profileImgLoaded = () => {
     const spinnerDiv = document.getElementById("spinner");
-    setProfileImgLoading(false);
     clearInterval(spinnerInterval);
     spinnerDiv.innerText = pictureID + 1;
   };
@@ -92,7 +90,6 @@ const UserPage = ({
                 className="back-arrow"
                 onClick={() => {
                   setPictureID(pictureID - 1);
-                  setProfileImgLoading(true);
                   spinning();
                 }}
               >
@@ -120,7 +117,6 @@ const UserPage = ({
                 className="next-arrow"
                 onClick={() => {
                   setPictureID(pictureID + 1);
-                  setProfileImgLoading(true);
                   spinning();
                 }}
               >
