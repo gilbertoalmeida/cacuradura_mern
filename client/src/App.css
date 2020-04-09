@@ -2176,49 +2176,34 @@ header h2 {
   z-index: 1;
 }
 
-.profile-pic-nav-arrows {
+.profile-pic-nav-arrows-container {
   position: absolute;
-  display: flex;
-  justify-content: space-around;
-  padding: 0 40px;
+  padding-top: 150px;
   bottom: 5px;
   left: -5px;
-  border-radius: 0 0 10px 10px;
-  z-index: 100;
   width: 100%;
-  /* background-color: #faa9cbab; */
-  -webkit-box-shadow: 0px -1px 10px -5px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 0px -1px 10px -5px rgba(0, 0, 0, 1);
-  box-shadow: 0px -1px 10px -7px rgba(0, 0, 0, 1);
+  border-radius: 0 0 10px 10px;
   background-image: -webkit-gradient(
     linear,
     left top,
     left bottom,
-    from(#faa9cbab),
-    to(#faa9cbab)
+    from(#05050a00),
+    to(#05050a)
   );
-  background-image: -o-linear-gradient(#faa9cb93, #faa9cbab);
-  background-image: linear-gradient(#faa9cb62, #faa9cb9f);
+  background-image: -o-linear-gradient(#05050a00, #05050a);
+  background-image: linear-gradient(#05050a00, #05050a5d);
 }
 
-.arrows {
+.profile-pic-nav-arrows {
   position: relative;
-}
-
-.back-arrow {
-  max-height: 15px;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-.next-arrow {
-  max-height: 15px;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-around;
+  padding: 0 120px;
+  border-radius: 0 0 10px 10px;
+  z-index: 100;
+  width: 100%;
+  font-size: 20px;
+  color: #faa9cb;
 }
 
 .back-arrow:hover,
@@ -2226,8 +2211,12 @@ header h2 {
   cursor: pointer;
 }
 
+.back-arrow,
+.next-arrow {
+  line-height: 1.6;
+}
+
 .picture-number {
-  font-size: 20px;
   display: flex;
 }
 
@@ -2353,6 +2342,22 @@ header h2 {
     left: -0.6vw;
   }
 
+  .profile-pic-nav-arrows-container {
+    padding-top: 12vw;
+    bottom: 0.6vw;
+    left: -0.6vw;
+  }
+
+  .profile-pic-nav-arrows {
+    padding: 0 18%;
+    font-size: 18px;
+  }
+
+  .back-arrow,
+  .next-arrow {
+    line-height: 1.7;
+  }
+
   .profile-header {
     width: 53.5%;
     height: 100%;
@@ -2397,24 +2402,6 @@ header h2 {
   .user-profile-loading-button {
     font-size: 4vw;
     width: 16vw;
-  }
-}
-
-@media (max-width: 500px) {
-  .profile-pic-nav-arrows {
-    bottom: -9vw;
-  }
-
-  .back-arrow {
-    max-height: 10px;
-  }
-
-  .picture-number {
-    font-size: 15px;
-  }
-
-  .next-arrow {
-    max-height: 10px;
   }
 }
 
