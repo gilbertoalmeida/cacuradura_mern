@@ -82,31 +82,29 @@ const UserPage = ({
             alt="profile pic"
           />
           <div className="profile-pic-filter"></div>
-          <div className="profile-pic-nav-arrows">
-            <div className="arrows">
-              <img
+          <div className="profile-pic-nav-arrows-container">
+            <div className="profile-pic-nav-arrows">
+              <div
                 style={{
                   opacity: pictureID === 0 ? "0" : "1",
                   pointerEvents: pictureID === 0 ? "none" : ""
                 }}
                 className="back-arrow"
-                src="/Assets/back_pic.png"
-                alt="left back arrow"
                 onClick={() => {
                   setPictureID(pictureID - 1);
                   setProfileImgLoading(true);
                   spinning();
                 }}
-              />
-            </div>
-            <div className="picture-number">
-              <div id="spinner"></div>
-              <div style={{ margin: "0 5px 0 5px" }}>/</div>
-              <div>{loadedUser.profile_pictures.length}</div>
-            </div>
+              >
+                ❮❮
+              </div>
+              <div className="picture-number">
+                <div id="spinner"></div>
+                <div style={{ margin: "0 5px 0 5px" }}>/</div>
+                <div>{loadedUser.profile_pictures.length}</div>
+              </div>
 
-            <div className="arrows">
-              <img
+              <div
                 style={{
                   opacity:
                     pictureID === loadedUser.profile_pictures.length - 1 ||
@@ -120,20 +118,14 @@ const UserPage = ({
                       : ""
                 }}
                 className="next-arrow"
-                src="/Assets/next_pic.png"
-                alt="right next arrow"
                 onClick={() => {
                   setPictureID(pictureID + 1);
                   setProfileImgLoading(true);
                   spinning();
                 }}
-                disabled={
-                  pictureID === loadedUser.profile_pictures.length - 1 ||
-                  loadedUser.profile_pictures.length === 0
-                    ? true
-                    : false
-                }
-              />
+              >
+                ❯❯
+              </div>
             </div>
           </div>
         </div>
