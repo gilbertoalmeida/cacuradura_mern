@@ -11,6 +11,8 @@ import { withLocalize, Translate } from "react-localize-redux";
 import ArticleFeed from "../articles/ArticleFeed";
 import LoadingUserPage from "./LoadingUserPage";
 
+let spinnerInterval;
+
 const UserPage = ({
   getUser,
   getUserArticles,
@@ -30,6 +32,7 @@ const UserPage = ({
 
   const [activeTab, setActiveTab] = useState("1");
   const [pictureID, setPictureID] = useState(0);
+  const [profileImgLoading, setProfileImgLoading] = useState(false);
 
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -38,6 +41,28 @@ const UserPage = ({
   function addDefaultSrc(ev) {
     ev.target.src = "/Assets/img_load_fail.png";
   }
+
+  const spinner = {
+    interval: 80,
+    frames: ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+  };
+
+  const spinning = () => {
+    const spinnerDiv = document.getElementById("spinner");
+    let i = 0;
+    spinnerInterval = setInterval(() => {
+      requestAnimationFrame(() => {
+        spinnerDiv.innerText = spinner.frames[++i % spinner.frames.length];
+      });
+    }, spinner.interval);
+  };
+
+  const profileImgLoaded = () => {
+    const spinnerDiv = document.getElementById("spinner");
+    setProfileImgLoading(false);
+    clearInterval(spinnerInterval);
+    spinnerDiv.innerText = pictureID + 1;
+  };
 
   return !loadedUser ? (
     <LoadingUserPage />
@@ -53,31 +78,63 @@ const UserPage = ({
                 : loadedUser.profile_pictures[pictureID]
             }
             onError={addDefaultSrc}
+            onLoad={profileImgLoaded}
             alt="profile pic"
           />
           <div className="profile-pic-filter"></div>
           <div className="profile-pic-nav-arrows">
-            {pictureID === 0 ? null : (
+            <div className="arrows">
               <img
+                style={{
+                  opacity: pictureID === 0 ? "0" : "1",
+                  pointerEvents: pictureID === 0 ? "none" : ""
+                }}
                 className="back-arrow"
                 src="/Assets/back_pic.png"
                 alt="left back arrow"
                 onClick={() => {
                   setPictureID(pictureID - 1);
+                  setProfileImgLoading(true);
+                  spinning();
                 }}
               />
-            )}
-            {pictureID === loadedUser.profile_pictures.length - 1 ||
-            loadedUser.profile_pictures.length === 0 ? null : (
+            </div>
+            <div className="picture-number">
+              <div id="spinner"></div>
+              <div style={{ margin: "0 5px 0 5px" }}>/</div>
+              <div>{loadedUser.profile_pictures.length}</div>
+            </div>
+
+            <div className="arrows">
               <img
+                style={{
+                  opacity:
+                    pictureID === loadedUser.profile_pictures.length - 1 ||
+                    loadedUser.profile_pictures.length === 0
+                      ? "0"
+                      : "1",
+                  pointerEvents:
+                    pictureID === loadedUser.profile_pictures.length - 1 ||
+                    loadedUser.profile_pictures.length === 0
+                      ? "none"
+                      : ""
+                }}
                 className="next-arrow"
                 src="/Assets/next_pic.png"
                 alt="right next arrow"
                 onClick={() => {
                   setPictureID(pictureID + 1);
+                  setProfileImgLoading(true);
+                  spinning();
                 }}
+                disabled={
+                  pictureID === loadedUser.profile_pictures.length - 1 ||
+                  loadedUser.profile_pictures.length === 0
+                    ? true
+                    : false
+                }
               />
-            )}
+            </div>
           </div>
         </div>
         <div className="profile-header">
@@ -114,7 +171,6 @@ const UserPage = ({
           </div>
         </div>
       </div>
-
       <div className="main-box-element">
         <Nav tabs className="justify-content-center user-nav-tabs">
           <NavItem className="user-nav-item">
