@@ -6,8 +6,9 @@ import PropTypes from "prop-types";
 import ReactHtmlParser from "react-html-parser";
 import CommentsSection from "../comments/CommentsSection";
 import { prettyDateNoHours } from "../../Utils/Utils";
-
 import { withLocalize, Translate } from "react-localize-redux";
+
+import LoadingArticlePage from "./LoadingArticlePage";
 
 const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   useEffect(() => {
@@ -19,12 +20,8 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
     ev.target.src = "/Assets/img_load_fail.png";
   }
 
-  return loading ? (
-    <header>
-      <h1>
-        <Translate id="article.loading" />
-      </h1>
-    </header>
+  return loading && article === null ? (
+    <LoadingArticlePage />
   ) : article === null ? (
     <header>
       <h1>
@@ -70,8 +67,8 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
               </p>
             </time>
           </div>
-          <div className="article-body">{ReactHtmlParser(article.body)}</div>
         </div>
+        <div className="article-body">{ReactHtmlParser(article.body)}</div>
         <CommentsSection articleID={match.params.id} match={match} />
       </div>
     </Fragment>

@@ -382,6 +382,58 @@ header h2 {
   overflow-wrap: break-word;
 }
 
+.article-cover-img-text time {
+  color: #e69696;
+  font-size: 16px;
+  font-family: "Rokkitt", serif;
+}
+
+.article-cover-img-text-loading {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  padding: 30px 0 60px 10px;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#05050a),
+    to(#05050a00)
+  );
+  background-image: -o-linear-gradient(#05050a, #05050a00);
+  background-image: linear-gradient(#05050a, #05050a00);
+  z-index: 2;
+}
+
+.article-cover-img-text-loading .article-title {
+  font-family: "Anton", sans-serif;
+  font-size: 45px;
+  border-radius: 45px;
+  width: 55%;
+  background-color: #e69696;
+}
+
+.article-cover-img-text-loading .article-title:nth-child(2) {
+  margin-top: 10px;
+  width: 35%;
+}
+
+.article-cover-img-text-loading .article-time {
+  font-size: 12px;
+  border-radius: 45px;
+  width: 15%;
+  background-color: #e69696;
+  margin-top: 20px;
+}
+
+.article-cover-img-text-loading .article-author {
+  font-size: 12px;
+  border-radius: 45px;
+  width: 10%;
+  background-color: #e69696;
+  margin-top: 5px;
+}
+
 @media (max-width: 880px) {
   .article-cover-img-text {
     font-size: 5.6vw;
@@ -399,12 +451,19 @@ header h2 {
   .article-cover-img-text time {
     max-width: 10vw;
   }
-}
 
-.article-cover-img-text time {
-  color: #e69696;
-  font-size: 16px;
-  font-family: "Rokkitt", serif;
+  .article-cover-img-text-loading {
+    padding: 3vw 0 60px 10px;
+  }
+
+  .article-cover-img-text-loading .article-title {
+    font-size: 5.6vw;
+  }
+
+  .article-cover-img-text-loading .article-time,
+  .article-cover-img-text-loading .article-author {
+    font-size: 1.5vw;
+  }
 }
 
 @media (max-width: 480px) {
