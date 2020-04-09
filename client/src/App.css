@@ -2178,26 +2178,57 @@ header h2 {
 
 .profile-pic-nav-arrows {
   position: absolute;
-  bottom: 5.5%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 40px;
+  bottom: 5px;
+  left: -5px;
+  border-radius: 0 0 10px 10px;
   z-index: 100;
   width: 100%;
+  /* background-color: #faa9cbab; */
+  -webkit-box-shadow: 0px -1px 10px -5px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px -1px 10px -5px rgba(0, 0, 0, 1);
+  box-shadow: 0px -1px 10px -7px rgba(0, 0, 0, 1);
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#faa9cbab),
+    to(#faa9cbab)
+  );
+  background-image: -o-linear-gradient(#faa9cb93, #faa9cbab);
+  background-image: linear-gradient(#faa9cb62, #faa9cb9f);
+}
+
+.arrows {
+  position: relative;
 }
 
 .back-arrow {
+  max-height: 15px;
   position: absolute;
-  left: 20%;
-  max-height: 35px;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .next-arrow {
+  max-height: 15px;
   position: absolute;
-  left: 65%;
-  max-height: 35px;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .back-arrow:hover,
 .next-arrow:hover {
   cursor: pointer;
+}
+
+.picture-number {
+  font-size: 20px;
+  display: flex;
 }
 
 .profile-header {
@@ -2322,14 +2353,6 @@ header h2 {
     left: -0.6vw;
   }
 
-  .back-arrow {
-    max-height: 4vw;
-  }
-
-  .next-arrow {
-    max-height: 4vw;
-  }
-
   .profile-header {
     width: 53.5%;
     height: 100%;
@@ -2374,6 +2397,24 @@ header h2 {
   .user-profile-loading-button {
     font-size: 4vw;
     width: 16vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .profile-pic-nav-arrows {
+    bottom: -9vw;
+  }
+
+  .back-arrow {
+    max-height: 10px;
+  }
+
+  .picture-number {
+    font-size: 15px;
+  }
+
+  .next-arrow {
+    max-height: 10px;
   }
 }
 
