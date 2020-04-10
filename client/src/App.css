@@ -1348,6 +1348,12 @@ header h2 {
   color: #05050a;
 }
 
+@media (max-width: 500px) {
+  .register-modal__body__already_registered_msg {
+    font-size: 11px;
+  }
+}
+
 .register-modal__body label {
   margin-top: 0.5rem;
   font-size: 25px;
@@ -1373,6 +1379,20 @@ header h2 {
   -webkit-box-shadow: 0 0 0px 1000px #faa9cb inset;
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+.register-modal__body__privicy_policy {
+  text-align: center;
+}
+
+.register-modal__body__privicy_policy a {
+  color: #05050a;
+  font-size: 16px;
+}
+
+.register-modal__body__privicy_policy a:hover {
+  color: #f02d0a;
+  text-decoration: none;
 }
 
 /* AddArticlePage */
@@ -2944,6 +2964,19 @@ header h2 {
   .privacy-body {
     font-size: 18px;
   }
+}
+
+.privacy-body__register-call-to-action {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.privacy-body__register-call-to-action button,
+.privacy-body__register-call-to-action button:hover,
+.privacy-body__register-call-to-action button:active {
+  padding: 10px 80px;
+  font-size: 20px;
+  margin-left: 0;
 }
 
 /* ArticleNotFound page */

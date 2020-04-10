@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 
@@ -167,6 +168,14 @@ const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
               </Button>
             </FormGroup>
           </Form>
+          <div
+            onClick={toggle}
+            className="register-modal__body__privicy_policy"
+          >
+            <Link to="/privacy_policy">
+              <Translate id="general.privacy_policy" />
+            </Link>
+          </div>
         </ModalBody>
       </Modal>
     </div>

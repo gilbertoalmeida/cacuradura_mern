@@ -1,6 +1,7 @@
 {
   "general": {
-    "back_to_homepage": ["Back to homepage", "Voltar pra página inicial"]
+    "back_to_homepage": ["Back to homepage", "Voltar pra página inicial"],
+    "privacy_policy": ["Privacy policy", "Política de privacidade"]
   },
   "header": {
     "call1": ["Cacuras in the making", "Cacuras em formação"],
