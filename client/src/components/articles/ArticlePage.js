@@ -21,9 +21,9 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
     ev.target.src = "/Assets/img_load_fail.png";
   }
 
-  return loading && article === null ? (
+  return loading && !article ? (
     <LoadingArticlePage />
-  ) : article === null ? (
+  ) : !article ? (
     <ArticleNotFound />
   ) : (
     <Fragment>

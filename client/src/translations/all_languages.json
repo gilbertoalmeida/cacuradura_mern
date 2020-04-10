@@ -147,7 +147,12 @@
       "Still gonna make this look nice. I am just throwing the user articles here for now",
       "Ainda vou fazer isso aqui ficar bonito. Por agora, só tô jogando os artigos da cacura aqui"
     ],
-    "edit_profile": ["Edit profile", "Editar perfil"]
+    "edit_profile": ["Edit profile", "Editar perfil"],
+    "user_not_found": ["Cacura not found", "Cacura não encontrada"],
+    "user_not_found_text": [
+      "Wrong link or the profile of this cacura was deleted.<br>You'll have to hunt somewhere else :/",
+      "Link errado ou o perfil dessa cacura foi apagado<br>Cê vai ter que caçar em outro lugar :/"
+    ]
   },
   "edit_profile": {
     "title": ["Edit your profile", "Edite seu perfil"],
