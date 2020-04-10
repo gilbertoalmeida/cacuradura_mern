@@ -10,14 +10,15 @@ import { withLocalize, Translate } from "react-localize-redux";
 
 import ArticleFeed from "../articles/ArticleFeed";
 import LoadingUserPage from "./LoadingUserPage";
+import UserNotFound from "./UserNotFound";
 
 let spinnerInterval;
 
 const UserPage = ({
   getUser,
   getUserArticles,
-  user: { loadedUser },
-  article: { articles, loading },
+  user: { loadedUser, loading },
+  article: { articles },
   auth,
   match
 }) => {
@@ -62,8 +63,10 @@ const UserPage = ({
     spinnerDiv.innerText = pictureID + 1;
   };
 
-  return !loadedUser ? (
+  return loading && !loadedUser ? (
     <LoadingUserPage />
+  ) : !loadedUser ? (
+    <UserNotFound />
   ) : (
     <Fragment>
       <div className="user-profile-main-box-element">
