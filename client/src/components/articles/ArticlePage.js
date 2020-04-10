@@ -9,6 +9,7 @@ import { prettyDateNoHours } from "../../Utils/Utils";
 import { withLocalize, Translate } from "react-localize-redux";
 
 import LoadingArticlePage from "./LoadingArticlePage";
+import ArticleNotFound from "./ArticleNotFound";
 
 const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   useEffect(() => {
@@ -23,11 +24,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   return loading && article === null ? (
     <LoadingArticlePage />
   ) : article === null ? (
-    <header>
-      <h1>
-        <Translate id="article.noarticle" />
-      </h1>
-    </header>
+    <ArticleNotFound />
   ) : (
     <Fragment>
       <header className="App-header"></header>

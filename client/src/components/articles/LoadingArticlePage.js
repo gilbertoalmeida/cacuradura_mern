@@ -20,7 +20,6 @@ const LoadingArticlePage = () => {
             <div className="article-time">&nbsp;</div>
             <div className="article-author">&nbsp;</div>
           </div>
-          <div className="article-body-loading">&nbsp;</div>
         </div>
       </div>
     </Fragment>
