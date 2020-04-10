@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { withLocalize, Translate } from "react-localize-redux";
+import RegisterModal from "./auth/RegisterModal";
 
 const PrivacyPolicy = () => {
   window.scrollTo(0, 0);
@@ -13,6 +14,9 @@ const PrivacyPolicy = () => {
         </div>
         <div className="privacy-body">
           <Translate id="footer.privacy_policy_text" />
+          <div className="privacy-body__register-call-to-action">
+            <RegisterModal />
+          </div>
         </div>
       </div>
     </Fragment>
