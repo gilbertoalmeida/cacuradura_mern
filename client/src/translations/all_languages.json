@@ -1,4 +1,7 @@
 {
+  "general": {
+    "back_to_homepage": ["Back to homepage", "Voltar pra página inicial"]
+  },
   "header": {
     "call1": ["Cacuras in the making", "Cacuras em formação"],
     "call2": ["Follow this metamorphosis", "Acompanhe essa metamorfose"],
@@ -55,7 +58,11 @@
     ],
     "posting_success": ["Posted !", "Postado !"],
     "loading": ["Loading...", "Carregando..."],
-    "noarticle": ["Article not found", "Artigo não encontrado"]
+    "article_not_found": ["Article not found", "Artigo não encontrado"],
+    "article_not_found_text": [
+      "Wrong link or this article was deleted.<br>You missed out :/",
+      "Link errado ou esse artigo foi apagado<br>Cê ficou de fora :/"
+    ]
   },
   "comments_section": {
     "header": ["Comments", "Comentários"],

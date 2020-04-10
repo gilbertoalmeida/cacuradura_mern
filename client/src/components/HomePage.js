@@ -1,41 +1,31 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getArticlesPT, getArticlesEN } from "../actions/articleActions";
 
-import { withLocalize, Translate } from "react-localize-redux";
+import {
+  withLocalize,
+  Translate,
+  getActiveLanguage
+} from "react-localize-redux";
 
 import ArticleFeed from "./articles/ArticleFeed";
 
 const HomePage = ({
-  activeLanguage,
   article: { articles },
   getArticlesEN,
-  getArticlesPT
+  getArticlesPT,
+  chosenLanguage
 }) => {
   window.scrollTo(0, 0);
 
-  /* Using this custom hook to know if it is the first render. */
-  const useIsFirstRender = () => {
-    const isFirstRenderRef = useRef(true);
-    useEffect(() => {
-      isFirstRenderRef.current = false;
-    }, []);
-    return isFirstRenderRef.current;
-  };
-
-  const isFirstRender = useIsFirstRender();
-
   useEffect(() => {
-    if (isFirstRender) {
-    } else {
-      if (activeLanguage.code === "pt") {
-        getArticlesPT();
-      } else if (activeLanguage.code === "en") {
-        getArticlesEN();
-      }
+    if (chosenLanguage === "pt") {
+      getArticlesPT();
+    } else if (chosenLanguage === "en") {
+      getArticlesEN();
     }
-  }, [getArticlesEN, getArticlesPT, activeLanguage, isFirstRender]);
+  }, [getArticlesEN, getArticlesPT, chosenLanguage]);
 
   return (
     <div>
@@ -57,16 +47,18 @@ const HomePage = ({
 HomePage.propTypes = {
   getArticlesPT: PropTypes.func.isRequired,
   getArticlesEN: PropTypes.func.isRequired,
+  getActiveLanguage: PropTypes.func.isRequired,
   article: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  article: state.article
+  article: state.article,
+  chosenLanguage: getActiveLanguage(state.localize).code
 });
 
 export default withLocalize(
   connect(
     mapStateToProps,
-    { getArticlesPT, getArticlesEN }
+    { getArticlesPT, getArticlesEN, getActiveLanguage }
   )(HomePage)
 );
