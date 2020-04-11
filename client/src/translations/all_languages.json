@@ -1,6 +1,7 @@
 {
   "general": {
-    "back_to_homepage": ["Back to homepage", "Voltar pra página inicial"]
+    "back_to_homepage": ["Back to homepage", "Voltar pra página inicial"],
+    "privacy_policy": ["Privacy policy", "Política de privacidade"]
   },
   "header": {
     "call1": ["Cacuras in the making", "Cacuras em formação"],
@@ -186,6 +187,14 @@
     "missing_title_text": [
       "The article needs a title and a text, sweetie",
       "O artigo precisa de um título e um texto, frô"
+    ],
+    "max_characters": [
+      "You reached the maximum number of characters in an article. Chill",
+      "Você atingiu o limite de characteres de um artigo. Relaxe"
+    ],
+    "max_characters_posted": [
+      "The text you want to post exceeds the maximum number of characters in an article. Chill",
+      "O texto que você quer copiar excede o limite de characteres de um artigo. Relaxe"
     ],
     "missing_comment": [
       "An empty comment won't do ;)",

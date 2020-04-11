@@ -11,13 +11,13 @@ import {
 
 import { withLocalize, Translate } from "react-localize-redux";
 
-function ChooseCoverPicModal({ writingPic }) {
+function ChooseCoverImgModal({ coverImgInState }) {
   const [modal, toggle] = useState(false);
-  const [feed_img_modal, setfeed_img_modal] = useState("");
+  const [coverImgModal, setCoverImgModal] = useState("");
 
-  const changePic = feed_img_modal => {
+  const changePic = coverImgModal => {
     toggle(!modal);
-    writingPic(feed_img_modal);
+    coverImgInState(coverImgModal);
   };
 
   return (
@@ -44,15 +44,15 @@ function ChooseCoverPicModal({ writingPic }) {
                 {({ translate }) => (
                   <Input
                     type="text"
-                    value={feed_img_modal}
+                    value={coverImgModal}
                     placeholder={translate("choose_cover_pic_modal.proportion")}
-                    onChange={e => setfeed_img_modal(e.target.value)}
+                    onChange={e => setCoverImgModal(e.target.value)}
                   />
                 )}
               </Translate>
 
               <Button
-                onClick={() => changePic(feed_img_modal)}
+                onClick={() => changePic(coverImgModal)}
                 className="choose-img-modal__submit-button"
                 block
               >
@@ -69,4 +69,4 @@ function ChooseCoverPicModal({ writingPic }) {
   );
 }
 
-export default withLocalize(ChooseCoverPicModal);
+export default withLocalize(ChooseCoverImgModal);
