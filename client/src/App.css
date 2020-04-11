@@ -1224,7 +1224,6 @@ header h2 {
   font-weight: bold;
   padding: 8px 13px;
   margin: 0;
-  margin-bottom: 2px;
   outline: none;
 }
 
@@ -1257,6 +1256,10 @@ header h2 {
   .languages,
   .languages:hover {
     padding: 0px 2px 1px 2px;
+  }
+
+  .post-article {
+    margin-bottom: 4px;
   }
 }
 
@@ -1435,6 +1438,15 @@ header h2 {
   text-decoration: none;
 }
 
+.submit-register,
+.submit-register:hover,
+.submit-register:active {
+  background-color: #05050a !important;
+  color: #faa9cb !important;
+  font-size: 17px;
+  margin-top: 2rem !important;
+}
+
 /* AddArticlePage */
 
 .post-article-main-box-element {
@@ -1458,6 +1470,10 @@ header h2 {
     margin: auto;
     margin-top: 70px;
   }
+}
+
+.add-article-form .form-group {
+  margin-bottom: 0;
 }
 
 .post-article-cover {
@@ -1713,20 +1729,25 @@ header h2 {
   margin-top: 2rem;
 }
 
-.submit-register,
-.submit-register:hover,
-.submit-register:active,
+.post-article-button-alert-wrapper {
+  margin: auto;
+  width: 95%;
+  padding-bottom: 20px;
+  border-bottom: solid #05050a 5px;
+}
+
 .submit-post-article,
 .submit-post-article:hover,
 .submit-post-article:active {
   background-color: #05050a !important;
   color: #faa9cb !important;
   font-size: 17px;
-  margin-top: 2rem !important;
+  margin: 30px 0;
 }
 
-.submit-post-article,
-.submit-post-article:hover {
+.posting-failed,
+.posting-failed:hover,
+.posting-failed:active {
   margin: auto;
   width: 95%;
 }
@@ -1736,7 +1757,6 @@ header h2 {
   background-color: #05050a !important;
   color: #721c24 !important;
   font-size: 17px;
-  margin-top: 2rem !important;
   margin: auto;
   width: 95%;
 }
@@ -1812,13 +1832,16 @@ header h2 {
 }
 
 .rdw-editor-toolbar {
-  background-color: #c42f15;
+  background-color: transparent;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
   border: none;
-  padding: 0 5px 0;
   margin-bottom: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 80px;
+  z-index: 1000;
 }
 
 .rdw-inline-wrapper .rdw-option-wrapper:hover,
