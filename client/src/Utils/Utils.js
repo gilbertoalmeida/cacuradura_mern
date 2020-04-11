@@ -101,3 +101,22 @@ export const prettyDateElapsed = date => {
   7days = 604800000
   1year = 31536000000 */
 };
+
+export const resizeTitleTextarea = textarea => {
+  if (textarea) {
+    textarea.style.height = "1em";
+
+    // Get the computed styles for the element
+    var computed = window.getComputedStyle(textarea);
+
+    // Calculate the height
+    var height =
+      parseInt(computed.getPropertyValue("border-top-width"), 10) +
+      parseInt(computed.getPropertyValue("padding-top"), 10) +
+      textarea.scrollHeight +
+      parseInt(computed.getPropertyValue("padding-bottom"), 10) +
+      parseInt(computed.getPropertyValue("border-bottom-width"), 10);
+
+    textarea.style.height = height + "px";
+  }
+};
