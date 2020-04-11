@@ -106,7 +106,8 @@ header h2 {
 
 /* responsiveness of main description and box organization */
 
-@media (max-width: 766px) {
+@media (max-width: 730px) {
+  /* picked this size, so that iphones plus and X would still have the big size while landscape */
   header h1 {
     font-size: 19vw;
   }
@@ -580,30 +581,34 @@ header h2 {
 }
 
 .article-body h2 {
-  margin-top: 0.5em;
+  margin-top: 25px;
+  font-size: 40px;
 }
 
 .article-body h3 {
-  margin-top: 0.4em;
+  margin-top: 20px;
+  font-size: 35px;
 }
 
 .article-body h4 {
-  margin-top: 0.3em;
+  margin-top: 15px;
+  font-size: 30px;
 }
 
 .article-body h5 {
-  margin-top: 0.2em;
+  margin-top: 15px;
+  font-size: 30px;
+  color: #474d55;
 }
 
 .article-body h6 {
-  margin-top: 0.1em;
-  color: #565d68;
+  color: #474d55;
 }
 
 .article-body blockquote {
   font-family: "Rokkitt", serif;
   font-style: italic;
-  font-size: 1.3em;
+  font-size: 35px;
   border-left: 5px solid #05050a;
   margin: 0.5em;
   padding-left: 15px;
@@ -612,7 +617,7 @@ header h2 {
 }
 
 .article-body blockquote:before {
-  font-size: 4em;
+  font-size: 140px;
   color: #05050a57;
   content: open-quote;
   position: absolute;
@@ -659,13 +664,47 @@ header h2 {
   text-decoration: underline;
 }
 
+.article-body p br {
+  content: "A" !important;
+  display: block !important;
+  margin-bottom: 28px !important;
+}
+
 /* responsiveness of article elements */
 
-@media (max-width: 766px) {
+@media (max-width: 730px) {
+  /* picked this size, so that iphones plus and X would still have the big size while landscape */
   .article-body p,
   .article-body ul,
   .article-body ol {
     font-size: 18px;
+  }
+
+  .article-body h2 {
+    font-size: 30px;
+  }
+
+  .article-body h3 {
+    font-size: 26px;
+  }
+
+  .article-body h4 {
+    font-size: 22px;
+  }
+
+  .article-body h5 {
+    font-size: 22px;
+  }
+
+  .article-body blockquote {
+    font-size: 25px;
+    margin: 0.3em;
+  }
+
+  .article-body blockquote:before {
+    font-size: 100px;
+    top: -0.45em;
+    left: -0.05em;
   }
 }
 
@@ -1185,15 +1224,14 @@ header h2 {
   font-weight: bold;
   padding: 8px 13px;
   margin: 0;
-  margin-bottom: 2px;
   outline: none;
 }
 
 .button-form-top:focus,
 .button-form-top:active {
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  outline: none !important;
+  -webkit-box-shadow: 0 !important;
+  box-shadow: none !important;
 }
 
 .login,
@@ -1218,6 +1256,10 @@ header h2 {
   .languages,
   .languages:hover {
     padding: 0px 2px 1px 2px;
+  }
+
+  .post-article {
+    margin-bottom: 4px;
   }
 }
 
@@ -1280,6 +1322,7 @@ header h2 {
 }
 
 @media (max-width: 766px) {
+  /* size where the hamburger menu appears */
   .greeting-inside-collapse {
     display: none;
   }
@@ -1348,6 +1391,12 @@ header h2 {
   color: #05050a;
 }
 
+@media (max-width: 500px) {
+  .register-modal__body__already_registered_msg {
+    font-size: 11px;
+  }
+}
+
 .register-modal__body label {
   margin-top: 0.5rem;
   font-size: 25px;
@@ -1375,6 +1424,29 @@ header h2 {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+.register-modal__body__privicy_policy {
+  text-align: center;
+}
+
+.register-modal__body__privicy_policy a {
+  color: #05050a;
+  font-size: 16px;
+}
+
+.register-modal__body__privicy_policy a:hover {
+  color: #f02d0a;
+  text-decoration: none;
+}
+
+.submit-register,
+.submit-register:hover,
+.submit-register:active {
+  background-color: #05050a !important;
+  color: #faa9cb !important;
+  font-size: 17px;
+  margin-top: 2rem !important;
+}
+
 /* AddArticlePage */
 
 .post-article-main-box-element {
@@ -1400,6 +1472,10 @@ header h2 {
   }
 }
 
+.add-article-form .form-group {
+  margin-bottom: 0;
+}
+
 .post-article-cover {
   position: relative;
 }
@@ -1407,6 +1483,8 @@ header h2 {
 .post-article-cover img {
   width: 100%;
   max-height: 400px;
+  -webkit-filter: grayscale(80%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(80%);
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: 50% 30%;
@@ -1633,8 +1711,8 @@ header h2 {
   margin: 0;
   margin-bottom: 2px;
   outline: none;
-  background-color: #05050a;
-  color: #faa9cb;
+  background-color: #05050a !important;
+  color: #faa9cb !important;
   font-size: 17px;
   margin-top: 2rem;
 }
@@ -1645,10 +1723,42 @@ header h2 {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  background-color: #05050a;
-  color: #faa9cb;
+  background-color: #05050a !important;
+  color: #faa9cb !important;
   font-size: 17px;
   margin-top: 2rem;
+}
+
+.post-article-button-alert-wrapper {
+  margin: auto;
+  width: 95%;
+  padding-bottom: 20px;
+  border-bottom: solid #05050a 5px;
+}
+
+.submit-post-article,
+.submit-post-article:hover,
+.submit-post-article:active {
+  background-color: #05050a !important;
+  color: #faa9cb !important;
+  font-size: 17px;
+  margin: 30px 0;
+}
+
+.posting-failed,
+.posting-failed:hover,
+.posting-failed:active {
+  margin: auto;
+  width: 95%;
+}
+
+.submit-post-article-failed,
+.submit-post-article-failed:hover {
+  background-color: #05050a !important;
+  color: #721c24 !important;
+  font-size: 17px;
+  margin: auto;
+  width: 95%;
 }
 
 /* WYSIWYG Editor */
@@ -1682,18 +1792,6 @@ header h2 {
   background-color: #c42f15;
 }
 
-.public-DraftEditor-content,
-.public-DraftEditor-content:focus {
-  font-size: 25px;
-}
-
-@media (max-width: 766px) {
-  .public-DraftEditor-content,
-  .public-DraftEditor-content:focus {
-    font-size: 18px;
-  }
-}
-
 .DraftEditor-root,
 .DraftEditor-root:focus {
   padding: 5px 0px;
@@ -1711,43 +1809,8 @@ header h2 {
 
 .public-DraftEditorPlaceholder-root {
   z-index: 2;
-  font-size: 25px;
   color: #05050a8c;
 }
-
-@media (max-width: 766px) {
-  .public-DraftEditorPlaceholder-root {
-    font-size: 18px;
-  }
-}
-
-.submit-register,
-.submit-register:hover,
-.submit-post-article,
-.submit-post-article:hover {
-  background-color: #05050a;
-  color: #faa9cb;
-  font-size: 17px;
-  margin-top: 2rem;
-}
-
-.submit-post-article,
-.submit-post-article:hover {
-  margin: auto;
-  width: 95%;
-}
-
-.submit-post-article-failed,
-.submit-post-article-failed:hover {
-  background-color: #05050a;
-  color: #721c24;
-  font-size: 17px;
-  margin-top: 2rem;
-  margin: auto;
-  width: 95%;
-}
-
-/* wysiwyg editor */
 
 .public-DraftStyleDefault-block {
   margin: 0;
@@ -1769,13 +1832,16 @@ header h2 {
 }
 
 .rdw-editor-toolbar {
-  background-color: #c42f15;
+  background-color: transparent;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
   border: none;
-  padding: 0 5px 0;
   margin-bottom: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 80px;
+  z-index: 1000;
 }
 
 .rdw-inline-wrapper .rdw-option-wrapper:hover,
@@ -1868,6 +1934,10 @@ header h2 {
   background-color: #e198b6 !important;
 }
 
+.rdw-dropdown-optionwrapper {
+  overflow-y: auto;
+}
+
 .rdw-dropdownoption-active {
   border: 1px solid #c887a2;
   -webkit-box-shadow: 1px 1px 0px #7d5465 inset !important;
@@ -1931,30 +2001,31 @@ header h2 {
 }
 
 .rdw-block-wrapper .rdw-dropdown-wrapper ul li:nth-child(2) {
-  font-size: 1.95em;
+  font-size: 40px;
 }
 
 .rdw-block-wrapper .rdw-dropdown-wrapper ul li:nth-child(3) {
-  font-size: 1.75em;
+  font-size: 35px;
 }
 
 .rdw-block-wrapper .rdw-dropdown-wrapper ul li:nth-child(4) {
-  font-size: 1.5em;
+  font-size: 30px;
 }
 
 .rdw-block-wrapper .rdw-dropdown-wrapper ul li:nth-child(5) {
-  font-size: 1.25em;
+  font-size: 30px;
+  color: #474d55;
 }
 
 .rdw-block-wrapper .rdw-dropdown-wrapper ul li:nth-child(6) {
-  color: #565d68;
+  color: #474d55;
 }
 
 .rdw-block-wrapper .rdw-dropdown-wrapper ul li:nth-child(7) {
   font-style: italic;
   font-size: 1.3em;
   border-left: 5px solid #05050a;
-  margin: 0.5em;
+  margin: 0.5em 0;
   padding-left: 10px;
   position: relative;
   z-index: 1;
@@ -1964,10 +2035,11 @@ header h2 {
   font-size: 3.5em;
   position: absolute;
   z-index: 2;
-  top: -0.4em;
+  top: 0.1em;
   left: -0.1em;
   color: #05050a57;
   content: open-quote;
+  line-height: 0.5em;
 }
 
 .rdw-block-wrapper .rdw-dropdown-wrapper ul li:nth-child(7):after {
@@ -1977,28 +2049,38 @@ header h2 {
 .public-DraftEditor-content * {
   color: inherit;
   background-color: #c42f15;
-  font-family: inherit;
+}
+
+.DraftEditor-root {
+  font-size: 25px;
+  background: none;
+  font-family: "Rokkitt", serif;
+  text-align: justify;
 }
 
 .public-DraftEditor-content h2 {
-  margin-top: 0.5em;
+  margin-top: 25px;
+  font-size: 40px;
 }
 
 .public-DraftEditor-content h3 {
-  margin-top: 0.4em;
+  margin-top: 20px;
+  font-size: 35px;
 }
 
 .public-DraftEditor-content h4 {
-  margin-top: 0.3em;
+  margin-top: 15px;
+  font-size: 30px;
 }
 
 .public-DraftEditor-content h5 {
-  margin-top: 0.2em;
+  margin-top: 15px;
+  font-size: 30px;
+  color: #474d55;
 }
 
 .public-DraftEditor-content h6 {
-  margin-top: 0.1em;
-  color: #565d68;
+  color: #474d55;
 }
 
 .public-DraftStyleDefault-ol,
@@ -2008,14 +2090,14 @@ header h2 {
 
 .rdw-editor-main blockquote {
   font-style: italic;
-  font-size: 1.3em;
+  font-size: 35px;
   border-left: 5px solid #05050a;
   margin: 0.5em;
   padding-left: 15px;
 }
 
 .rdw-editor-main blockquote div:before {
-  font-size: 4em;
+  font-size: 140px;
   position: absolute;
   top: -0.4em;
   left: -0.25em;
@@ -2025,6 +2107,40 @@ header h2 {
 
 .rdw-editor-main blockquote div:after {
   content: close-quote;
+}
+
+@media (max-width: 730px) {
+  /* picked this size, so that iphones plus and X would still have the big size while landscape */
+  .DraftEditor-root {
+    font-size: 18px;
+  }
+
+  .public-DraftEditor-content h2 {
+    font-size: 30px;
+  }
+
+  .public-DraftEditor-content h3 {
+    font-size: 26px;
+  }
+
+  .public-DraftEditor-content h4 {
+    font-size: 22px;
+  }
+
+  .public-DraftEditor-content h5 {
+    font-size: 22px;
+  }
+
+  .rdw-editor-main blockquote {
+    font-size: 25px;
+    margin: 0.3em;
+  }
+
+  .rdw-editor-main blockquote:before {
+    font-size: 100px;
+    top: -0.45em;
+    left: -0.05em;
+  }
 }
 
 .rdw-link-decorator-wrapper a {
@@ -2617,8 +2733,8 @@ header h2 {
   font-weight: bold;
   padding: 8px 20px;
   outline: none;
-  background-color: #05050a;
-  color: #faa9cb;
+  background-color: #05050a !important;
+  color: #faa9cb !important;
 }
 
 @media (max-width: 880px) {
@@ -2672,8 +2788,8 @@ header h2 {
   margin-top: 20px;
   padding: 8px 40px;
   outline: none;
-  background-color: #05050a;
-  color: #faa9cb;
+  background-color: #05050a !important;
+  color: #faa9cb !important;
 }
 
 /* Footer */
@@ -2944,6 +3060,19 @@ header h2 {
   .privacy-body {
     font-size: 18px;
   }
+}
+
+.privacy-body__register-call-to-action {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.privacy-body__register-call-to-action button,
+.privacy-body__register-call-to-action button:hover,
+.privacy-body__register-call-to-action button:active {
+  padding: 10px 80px;
+  font-size: 20px;
+  margin-left: 0;
 }
 
 /* ArticleNotFound page */

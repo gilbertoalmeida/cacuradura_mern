@@ -91,7 +91,7 @@ export const addArticle = ({
   title,
   body,
   language,
-  feed_img,
+  coverImg,
   author: { username, _id }
 }) => (dispatch, getState) => {
   //Request body
@@ -99,7 +99,7 @@ export const addArticle = ({
     title,
     body,
     language,
-    feed_img,
+    coverImg,
     author: { username, _id }
   });
 

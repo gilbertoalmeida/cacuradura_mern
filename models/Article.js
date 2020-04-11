@@ -19,7 +19,7 @@ let articleSchema = mongoose.Schema({
       required: true
     }
   },
-  feed_img: {
+  coverImg: {
     type: String,
     required: false
   },
