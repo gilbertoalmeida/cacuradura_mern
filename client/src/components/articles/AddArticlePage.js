@@ -9,7 +9,7 @@ import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { stateToHTML } from "draft-js-export-html";
 import ChooseCoverImgModal from "./ChooseCoverImgModal";
-import { prettyDateNoHours } from "../../Utils/Utils";
+import { prettyDateNoHours, useWindowDimensions } from "../../Utils/Utils";
 import {
   withLocalize,
   Translate,
@@ -132,6 +132,8 @@ const AddArticlePage = ({
 
   const dateNow = Date.now();
 
+  const { width } = useWindowDimensions();
+
   return !isAuthenticated ? (
     <header>
       <h1>Please login</h1>
@@ -224,6 +226,7 @@ const AddArticlePage = ({
                       "history"
                     ],
                     inline: {
+                      inDropdown: width < 340 ? true : false,
                       options: ["bold", "italic", "underline", "strikethrough"]
                     },
                     blockType: {
