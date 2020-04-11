@@ -659,6 +659,12 @@ header h2 {
   text-decoration: underline;
 }
 
+.article-body p br {
+  content: "A" !important;
+  display: block !important;
+  margin-bottom: 28px !important;
+}
+
 /* responsiveness of article elements */
 
 @media (max-width: 766px) {
@@ -1191,9 +1197,9 @@ header h2 {
 
 .button-form-top:focus,
 .button-form-top:active {
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  outline: none !important;
+  -webkit-box-shadow: 0 !important;
+  box-shadow: none !important;
 }
 
 .login,
@@ -1653,8 +1659,8 @@ header h2 {
   margin: 0;
   margin-bottom: 2px;
   outline: none;
-  background-color: #05050a;
-  color: #faa9cb;
+  background-color: #05050a !important;
+  color: #faa9cb !important;
   font-size: 17px;
   margin-top: 2rem;
 }
@@ -1665,8 +1671,8 @@ header h2 {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  background-color: #05050a;
-  color: #faa9cb;
+  background-color: #05050a !important;
+  color: #faa9cb !important;
   font-size: 17px;
   margin-top: 2rem;
 }
@@ -1743,12 +1749,14 @@ header h2 {
 
 .submit-register,
 .submit-register:hover,
+.submit-register:active,
 .submit-post-article,
-.submit-post-article:hover {
-  background-color: #05050a;
-  color: #faa9cb;
+.submit-post-article:hover,
+.submit-post-article:active {
+  background-color: #05050a !important;
+  color: #faa9cb !important;
   font-size: 17px;
-  margin-top: 2rem;
+  margin-top: 2rem !important;
 }
 
 .submit-post-article,
@@ -1759,10 +1767,10 @@ header h2 {
 
 .submit-post-article-failed,
 .submit-post-article-failed:hover {
-  background-color: #05050a;
-  color: #721c24;
+  background-color: #05050a !important;
+  color: #721c24 !important;
   font-size: 17px;
-  margin-top: 2rem;
+  margin-top: 2rem !important;
   margin: auto;
   width: 95%;
 }
@@ -2637,8 +2645,8 @@ header h2 {
   font-weight: bold;
   padding: 8px 20px;
   outline: none;
-  background-color: #05050a;
-  color: #faa9cb;
+  background-color: #05050a !important;
+  color: #faa9cb !important;
 }
 
 @media (max-width: 880px) {
@@ -2692,8 +2700,8 @@ header h2 {
   margin-top: 20px;
   padding: 8px 40px;
   outline: none;
-  background-color: #05050a;
-  color: #faa9cb;
+  background-color: #05050a !important;
+  color: #faa9cb !important;
 }
 
 /* Footer */

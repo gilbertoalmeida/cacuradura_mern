@@ -32,22 +32,22 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
       <div className="article-page-main-box-element">
         <div className="article-cover">
           <img
-            src={article.feed_img}
+            src={article.coverImg}
             onError={addDefaultSrc}
             alt="cover of the article"
             style={{
-              display: article.feed_img ? "block" : "none"
+              display: article.coverImg ? "block" : "none"
             }}
           />
           <div
             className="article-cover-img-filter"
             style={{
-              display: article.feed_img ? "block" : "none"
+              display: article.coverImg ? "block" : "none"
             }}
           ></div>
           <div
             className={`article-cover-${
-              article.feed_img ? "img-text" : "text"
+              article.coverImg ? "img-text" : "text"
             } `}
           >
             <div className="article-title">{article.title}</div>

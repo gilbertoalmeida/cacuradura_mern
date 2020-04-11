@@ -15,9 +15,9 @@ const ArticleFeed = ({ articles }) => {
   ) : (
     <div className="article-feed-main-box-element">
       <ListGroup className="article-feed-wrapper">
-        {articles.map(({ _id, title, date, author, feed_img }) => (
+        {articles.map(({ _id, title, date, author, coverImg }) => (
           <ListGroupItem key={_id} className="article-feed__item">
-            <img src={feed_img} onError={addDefaultSrc} alt="" />
+            <img src={coverImg} onError={addDefaultSrc} alt="" />
             <div className="article-feed__item__img-filter"></div>
             <div className="article-feed__item__text">
               <h3 className="article-title">
