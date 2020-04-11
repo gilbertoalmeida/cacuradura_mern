@@ -171,6 +171,34 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
     setEditorState(editorState);
   };
 
+  const maxNumberOfCharacters = 18000;
+  /* Medium recomends 6 minutes articles. At a 275 words/minute rate.
+  This adds to 1650.
+  I want to allow until double the recomendations = 3300 words
+  English avarages in 4.79 letters per word. I will use 5,5 due to the spaces
+  This totals my kinda slightly objective limit of 18000 characteres*/
+
+  const handleBeforeInput = val => {
+    /* limits number of characters when typing */
+    const textLength = editorState.getCurrentContent().getPlainText().length;
+    if (val && textLength >= maxNumberOfCharacters) {
+      setErrorMsg("max_characters");
+      return "handled";
+    }
+    return "not-handled";
+  };
+
+  const handlePastedText = val => {
+    /* limits number of characters when pasting */
+    const textLength = editorState.getCurrentContent().getPlainText().length;
+    if (val.length + textLength >= maxNumberOfCharacters) {
+      setErrorMsg("max_characters_posted");
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return !isAuthenticated ? (
     <header>
       <h1>Please login</h1>
@@ -245,6 +273,8 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
                 <Editor
                   editorState={editorState}
                   onEditorStateChange={onEditorStateChange}
+                  handleBeforeInput={handleBeforeInput}
+                  handlePastedText={handlePastedText}
                   placeholder={translate("add_article_page.body")}
                   localization={{
                     locale: translate("add_article_page.language")
@@ -293,7 +323,7 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
               </Translate>
             ) : null}
             {/* operator to show the alert only is there is an error */}
-            {errorMsg && !posting ? (
+            {errorMsg && posting_failed ? (
               <Button
                 className="button-form-top submit-post-article-failed"
                 block
