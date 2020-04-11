@@ -9,12 +9,11 @@ import { withLocalize, Translate } from "react-localize-redux";
 
 const initialFormState = {
   name: "",
-  new_profile_pic: "",
-  profile_pictures: []
+  new_profile_pic: ""
 };
 
 const EditProfile = ({
-  auth: { isAuthenticated, loggedUser },
+  auth: { isAuthenticated, loggedUser, token },
   editProfile
 }) => {
   const [formData, setFormData] = useState({ initialFormState });
@@ -24,10 +23,10 @@ const EditProfile = ({
   const { name, new_profile_pic } = formData;
 
   useEffect(() => {
+    /* avoiding problems with getting to this page without being logged in */
     setFormData({
       name: !isAuthenticated || !loggedUser ? "" : loggedUser.name,
-      new_profile_pic: "",
-      profile_pictures: []
+      new_profile_pic: ""
     });
     setProfilePicsArray(
       !isAuthenticated || !loggedUser ? [] : loggedUser.profile_pictures
@@ -56,11 +55,12 @@ const EditProfile = ({
       ...profilePicsArray,
       new_profile_pic
     ]);
-    setFormData({ new_profile_pic: "" });
+    setFormData({ ...formData, new_profile_pic: "" });
   };
 
-  const deletePicOfArray = picture => {
-    setProfilePicsArray(profilePicsArray.filter(e => e !== picture));
+  const deletePicOfArray = index => {
+    let toBeRemoved = profilePicsArray.splice(index, 1);
+    setProfilePicsArray(profilePicsArray.filter(e => e !== toBeRemoved));
   };
 
   const onSubmit = e => {
@@ -68,7 +68,7 @@ const EditProfile = ({
     editProfile(formData, profilePicsArray, loggedUser._id);
   };
 
-  return !isAuthenticated ? (
+  return !isAuthenticated && !token ? (
     <PleaseLogin />
   ) : (
     <div className="edit-profile-main-box-element">
@@ -76,7 +76,7 @@ const EditProfile = ({
         <h5 className="edit-profile-title">
           <Translate id="edit_profile.title" />
         </h5>
-        <Link to={`/users/${loggedUser._id}`}>
+        <Link to={`/${isAuthenticated ? "users/" + loggedUser._id : ""}`}>
           <div className="edit-profile-cancel">X</div>
         </Link>
       </div>
@@ -98,8 +98,8 @@ const EditProfile = ({
           </Label>
 
           <div className="edit-profile-pictures-container">
-            {profilePicsArray.map(picture => (
-              <div key={picture} className="profile-pics-thumbnail-container">
+            {profilePicsArray.map((picture, index) => (
+              <div key={index} className="profile-pics-thumbnail-container">
                 <img
                   className="profile-pics-thumbnail"
                   src={picture}
@@ -109,7 +109,7 @@ const EditProfile = ({
                 <div className="profile-pic-thumbnail-filter"></div>
                 <div
                   className="profile-pics-thumbnail-delete"
-                  onClick={e => deletePicOfArray(picture)}
+                  onClick={e => deletePicOfArray(index)}
                 >
                   X
                 </div>

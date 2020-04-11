@@ -4,8 +4,13 @@
     "privacy_policy": ["Privacy policy", "Política de privacidade"],
     "please_login": ["Got a profile?", "Cê tem um perfil?"],
     "please_login_text": [
-      "Use the form below to login or to register",
+      "Use the form below to login or to sign up",
       "Use o formulário abaixo pra entrar ou se registrar"
+    ],
+    "not_found": ["Nothing here 🤷🏽", "Nada aqui 🤷🏽"],
+    "not_found_text": [
+      "This page doesn't exist.<br>You will have to hunt somewhere else..",
+      "Essa página não existe.<br>Você vai ter que caçar em outro lugar.."
     ]
   },
   "header": {
@@ -27,7 +32,10 @@
     "lang_icon": ["/Assets/uk_flag.png", "/Assets/brazil_flag.png"]
   },
   "registermodal": {
-    "header": ["Tell us who you are:", "Conta pra nós quem você é:"],
+    "header": [
+      "Tell us who you wanna be:",
+      "Conta pra nós quem você quer ser:"
+    ],
     "already_registered_msg": [
       "Already have an account? Log in through the top menu",
       "Já tem um perfil? Entre pelo menu superior"
@@ -45,8 +53,8 @@
       "Não mandaremos nada que você não peça"
     ],
     "username_placeholder": [
-      "An unreal, non-official one, to use around here",
-      "Um irreal, não oficial, pra usar por aqui"
+      "Just how you will be called around here",
+      "Como você será chamado por aqui"
     ],
     "password_placeholder": [
       "Don't make a mistake, we won't confirm it",
@@ -178,8 +186,8 @@
       "Ops, você errou o nome de cacura ou a senha"
     ],
     "missing_register_fields": [
-      "You have to fill in all the fields. Otherwise we wouldn't ask, darling",
-      "Tem que preencher tudo que tá aí embaixo, né? Se não eu nem perguntava, frô"
+      "Please fill in all the fields",
+      "Preencha todos os campos, por favor"
     ],
     "existing_email": [
       "This email belongs to one of our cacuras already. Pls enter a new one",
