@@ -15,6 +15,9 @@ import {
   Translate,
   getActiveLanguage
 } from "react-localize-redux";
+import { resizeTitleTextarea } from "../../Utils/Utils";
+
+let resizeEventListener = null;
 
 const AddArticlePage = ({
   error,
@@ -42,38 +45,19 @@ const AddArticlePage = ({
     }
   }, [error]);
 
-  window.addEventListener("resize", () => {
-    let textarea = document.querySelector("textarea");
-    textarea.style.height = "1em";
+  if (resizeEventListener === null) {
+    /* If I don't check for this, it adds a new event listener on every render, and it becomes an 
+    exponential problem.*/
+    resizeEventListener = window.addEventListener("resize", () => {
+      let textarea = document.querySelector("textarea");
+      resizeTitleTextarea(textarea);
+    });
+  }
 
-    // Get the computed styles for the element
-    var computed = window.getComputedStyle(textarea);
-
-    // Calculate the height
-    var height =
-      parseInt(computed.getPropertyValue("border-top-width"), 10) +
-      parseInt(computed.getPropertyValue("padding-top"), 10) +
-      textarea.scrollHeight +
-      parseInt(computed.getPropertyValue("padding-bottom"), 10) +
-      parseInt(computed.getPropertyValue("border-bottom-width"), 10);
-
-    textarea.style.height = height + "px";
-  });
-
-  /* What is happening coverImgInState and setLoadingToFalse is interesting. So, the first function gets the img that the person added 
-  in the modal and updates the state of this component with it. However, this changes the styling of the title of the article, 
-  since it is different depending on if a person adds or not a cover picture. So it happened that a title that was too big and had 
-  two lines with picture, needed only one line without a pic (and viceversa). So I need to recaulculate the height of the textarea 
-  element (that expands automatically). The second function is called only when the img finishes loading. The styles change when
-  there is a feed_img AND it has been loaded. So I copied the autoexpand code to the callback of the second setState (since it takes 
-  some milisaconds to finish). This is ugly, but I had to do it, bc I couldn't just call the function again here. I need to re-write 
-  this when I transform this component into a functional one. Maybe it can work better there.
-  (and now it is repeated in componentdidmount to capture window resize too hahaha I need to re-write this!!)
-  
-  I NEED TO USE EFFECT HOOK FOR THIS!!
-  It is basically componentdidmount and componentdidupdate together. I guess this is what i need here.
-
-  */
+  useEffect(() => {
+    let textareaTitulo = document.querySelector("textarea");
+    resizeTitleTextarea(textareaTitulo);
+  }, [articleTitle, coverImgLoading]);
 
   const coverImgInState = coverImgModal => {
     setCoverImg(coverImgModal);
@@ -83,24 +67,6 @@ const AddArticlePage = ({
   const setLoadingToFalse = () => {
     setCoverImgLoading(false);
   };
-
-  useEffect(() => {
-    let textarea = document.querySelector("textarea");
-    textarea.style.height = "1em";
-
-    // Get the computed styles for the element
-    var computed = window.getComputedStyle(textarea);
-
-    // Calculate the height
-    var height =
-      parseInt(computed.getPropertyValue("border-top-width"), 10) +
-      parseInt(computed.getPropertyValue("padding-top"), 10) +
-      textarea.scrollHeight +
-      parseInt(computed.getPropertyValue("padding-bottom"), 10) +
-      parseInt(computed.getPropertyValue("border-bottom-width"), 10);
-
-    textarea.style.height = height + "px";
-  }, [coverImgLoading]);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -131,41 +97,6 @@ const AddArticlePage = ({
   const addDefaultSrc = ev => {
     ev.target.src = "/Assets/img_load_fail.png";
   };
-
-  /* text are autoexpand START */
-
-  /* I NEED TO CHANGE THAT FOR ONE THAT IMMITATES THE SIZE OF A NORMAL DIV
-BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
-
-  var autoExpand = function(field) {
-    // Reset field height
-    field.style.height = "1em";
-
-    // Get the computed styles for the element
-    var computed = window.getComputedStyle(field);
-
-    // Calculate the height
-    var height =
-      parseInt(computed.getPropertyValue("border-top-width"), 10) +
-      parseInt(computed.getPropertyValue("padding-top"), 10) +
-      field.scrollHeight +
-      parseInt(computed.getPropertyValue("padding-bottom"), 10) +
-      parseInt(computed.getPropertyValue("border-bottom-width"), 10);
-
-    field.style.height = height + "px";
-  };
-
-  document.addEventListener(
-    "input",
-    function(event) {
-      if (event.target.tagName.toLowerCase() !== "textarea") return;
-      autoExpand(event.target);
-    },
-    false
-  );
-  /* text are autoexpand END */
-
-  const dateNow = Date.now();
 
   const onEditorStateChange = editorState => {
     setEditorState(editorState);
@@ -198,6 +129,8 @@ BECAUSE I HAVE MANY PROBLEMS WHEN THE PERSON CHANGES THE SIZE WHILE USING */
       return false;
     }
   };
+
+  const dateNow = Date.now();
 
   return !isAuthenticated ? (
     <header>
