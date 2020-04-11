@@ -3277,3 +3277,58 @@ header h2 {
   color: #faa9cb;
   text-decoration: none;
 }
+
+/* NotFound page */
+
+.not-found-main-box-element {
+  margin: auto;
+  width: 865px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-left: 1px solid #05050a;
+  border-right: 1px solid #05050a;
+}
+
+.not-found-title {
+  font-family: "Anton", sans-serif;
+  color: #faa9cb;
+  background-color: #05050a;
+  font-size: 100px;
+  padding: 20px;
+  margin: 0 10px;
+}
+
+@media (max-width: 880px) {
+  .not-found-main-box-element {
+    max-width: 96%;
+    margin: auto;
+  }
+
+  .not-found-title {
+    font-size: 10vw;
+  }
+}
+
+.not-found-body {
+  border-top: solid #05050a 5px;
+  border-bottom: solid #05050a 5px;
+  padding: 20px 0;
+  width: 95%;
+  margin: 10px auto;
+  margin-bottom: 0;
+  background: none;
+  font-family: "Rokkitt", serif;
+  font-size: 25px;
+  text-align: justify;
+}
+
+@media (max-width: 880px) {
+  .not-found-body {
+    font-size: 18px;
+  }
+}
