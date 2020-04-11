@@ -198,14 +198,16 @@ class AuthNavBar extends Component {
           <div className="authnavbar-main-box-element">
             <div className="navbar-wrapper">
               <div className="navbar-wrapper-brand-lang">
-                <NavbarBrand href="/">
-                  <img
-                    alt="favicon of the website"
-                    src="/NavBarBrand.png"
-                    width="32"
-                    height="32"
-                    className="d-inline-block align-top"
-                  />
+                <NavbarBrand>
+                  <Link to="/">
+                    <img
+                      alt="favicon of the website"
+                      src="/NavBarBrand.png"
+                      width="32"
+                      height="32"
+                      className="d-inline-block align-top"
+                    />
+                  </Link>
                 </NavbarBrand>
                 <LanguageToggle />
               </div>
