@@ -16,6 +16,7 @@ import {
   getActiveLanguage
 } from "react-localize-redux";
 import { resizeTitleTextarea } from "../../Utils/Utils";
+import PleaseLogin from "../PleaseLogin";
 
 let resizeEventListener = null;
 
@@ -131,17 +132,10 @@ const AddArticlePage = ({
   };
 
   const dateNow = Date.now();
-
   const { width } = useWindowDimensions();
 
   return !isAuthenticated ? (
-    <header>
-      <h1>Please login</h1>
-    </header>
-  ) : !loggedUser ? (
-    <header>
-      <h1>Loading</h1>
-    </header>
+    <PleaseLogin />
   ) : (
     <div>
       <div className="post-article-main-box-element">
