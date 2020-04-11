@@ -246,32 +246,39 @@ const AddArticlePage = ({
               )}
             </Translate>
 
-            {errorMsg ? (
-              <Translate>
-                {({ translate }) => (
-                  <Alert color="add-article-alert alert-danger">
-                    {translate(`error_messages.${errorMsg}`)}
-                  </Alert>
-                )}
-              </Translate>
-            ) : null}
-            {/* operator to show the alert only is there is an error */}
-            {errorMsg && posting_failed ? (
-              <Button
-                className="button-form-top submit-post-article-failed"
-                block
-              >
-                <Translate id="article.posting_failed" />
-              </Button>
-            ) : (
-              <Button className="button-form-top submit-post-article" block>
-                {posting ? (
-                  <Translate id="article.posting" />
-                ) : (
-                  <Translate id="article.post" />
-                )}
-              </Button>
-            )}
+            <div className="post-article-button-alert-wrapper">
+              {errorMsg ? (
+                <Translate>
+                  {({ translate }) => (
+                    <Alert color="add-article-alert alert-danger">
+                      {translate(`error_messages.${errorMsg}`)}
+                    </Alert>
+                  )}
+                </Translate>
+              ) : null}
+              {/* operator to show the alert only is there is an error */}
+              {errorMsg && posting_failed ? (
+                <Button
+                  className="button-form-top submit-post-article-failed"
+                  block
+                >
+                  <Translate id="article.posting_failed" />
+                </Button>
+              ) : (
+                <Button
+                  className={`button-form-top submit-post-article ${
+                    errorMsg ? "posting-failed" : ""
+                  }`}
+                  block
+                >
+                  {posting ? (
+                    <Translate id="article.posting" />
+                  ) : (
+                    <Translate id="article.post" />
+                  )}
+                </Button>
+              )}
+            </div>
           </FormGroup>
         </Form>
       </div>
