@@ -4,7 +4,7 @@ import { Label } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { editProfile } from "../../actions/authActions";
-
+import PleaseLogin from "../PleaseLogin";
 import { withLocalize, Translate } from "react-localize-redux";
 
 const initialFormState = {
@@ -69,13 +69,7 @@ const EditProfile = ({
   };
 
   return !isAuthenticated ? (
-    <header>
-      <h1>Please login</h1>
-    </header>
-  ) : !loggedUser ? (
-    <header>
-      <h1>Loading</h1>
-    </header>
+    <PleaseLogin />
   ) : (
     <div className="edit-profile-main-box-element">
       <div className="edit-profile-header">
