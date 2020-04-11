@@ -132,7 +132,7 @@ class AuthNavBar extends Component {
           </NavItem>
         </Nav>
         <NavbarToggler onClick={this.toggle}></NavbarToggler>
-        <Collapse isOpen={this.state.isOpen} navbar>
+        <Collapse isOpen={this.state.isOpen} onClick={this.toggle} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem className="greeting-inside-collapse">
               <span>
@@ -155,10 +155,7 @@ class AuthNavBar extends Component {
             </NavItem>
             <NavItem>
               <Link to={`/articles/addarticle`}>
-                <Button
-                  onClick={this.toggle}
-                  className="button-form-top post-article"
-                >
+                <Button className="button-form-top post-article">
                   <Translate id="authnavbar.postarticlebutton" />
                 </Button>
               </Link>
