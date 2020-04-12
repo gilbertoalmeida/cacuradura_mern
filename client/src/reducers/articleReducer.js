@@ -8,11 +8,13 @@ import {
   ADDING_THE_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
-  GET_USER_ARTICLES
+  GETTING_USER_ARTICLES,
+  GET_USER_ARTICLES_SUCCESS,
+  GET_USER_ARTICLES_FAIL
 } from "../actions/types";
 
 const initialState = {
-  articles: [],
+  articles: null,
   article: null,
   loading: false,
   posting: false,
@@ -24,6 +26,7 @@ export default function(state = initialState, action) {
     case GETTING_ARTICLES:
       return {
         ...state,
+        articles: null,
         loading: true
       };
     case GET_ARTICLES_PT_SUCCESS:
@@ -41,6 +44,7 @@ export default function(state = initialState, action) {
     case GETTING_THE_ARTICLE:
       return {
         ...state,
+        article: null,
         loading: true
       };
     case GET_ARTICLE_SUCCESS:
@@ -73,10 +77,22 @@ export default function(state = initialState, action) {
         posting: false,
         posting_failed: true
       };
-    case GET_USER_ARTICLES:
+    case GETTING_USER_ARTICLES:
+      return {
+        ...state,
+        articles: null,
+        loading: true
+      };
+    case GET_USER_ARTICLES_SUCCESS:
       return {
         ...state,
         articles: action.payload,
+        loading: false
+      };
+    case GET_USER_ARTICLES_FAIL:
+      return {
+        ...state,
+        articles: null,
         loading: false
       };
     default:

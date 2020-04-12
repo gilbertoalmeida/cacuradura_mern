@@ -1,4 +1,18 @@
 {
+  "general": {
+    "back_to_homepage": ["Back to homepage", "Voltar pra página inicial"],
+    "privacy_policy": ["Privacy policy", "Política de privacidade"],
+    "please_login": ["Got a profile?", "Cê tem um perfil?"],
+    "please_login_text": [
+      "Use the form below to login or to sign up",
+      "Use o formulário abaixo pra entrar ou se registrar"
+    ],
+    "not_found": ["Nothing here 🤷🏽", "Nada aqui 🤷🏽"],
+    "not_found_text": [
+      "This page doesn't exist.<br>You will have to hunt somewhere else..",
+      "Essa página não existe.<br>Você vai ter que caçar em outro lugar.."
+    ]
+  },
   "header": {
     "call1": ["Cacuras in the making", "Cacuras em formação"],
     "call2": ["Follow this metamorphosis", "Acompanhe essa metamorfose"],
@@ -18,7 +32,10 @@
     "lang_icon": ["/Assets/uk_flag.png", "/Assets/brazil_flag.png"]
   },
   "registermodal": {
-    "header": ["Tell us who you are:", "Conta pra nós quem você é:"],
+    "header": [
+      "Tell us who you wanna be:",
+      "Conta pra nós quem você quer ser:"
+    ],
     "already_registered_msg": [
       "Already have an account? Log in through the top menu",
       "Já tem um perfil? Entre pelo menu superior"
@@ -36,8 +53,8 @@
       "Não mandaremos nada que você não peça"
     ],
     "username_placeholder": [
-      "An unreal, non-official one, to use around here",
-      "Um irreal, não oficial, pra usar por aqui"
+      "Just how you will be called around here",
+      "Como você será chamado por aqui"
     ],
     "password_placeholder": [
       "Don't make a mistake, we won't confirm it",
@@ -54,8 +71,12 @@
       "Postagem falhou. Tentar de novo?"
     ],
     "posting_success": ["Posted !", "Postado !"],
-    "loading": ["Loading", "Carregando"],
-    "noarticle": ["Article not found", "Artigo não encontrado"]
+    "loading": ["Loading...", "Carregando..."],
+    "article_not_found": ["Article not found", "Artigo não encontrado"],
+    "article_not_found_text": [
+      "Wrong link or this article was deleted.<br>You missed out :/",
+      "Link errado ou esse artigo foi apagado<br>Cê ficou de fora :/"
+    ]
   },
   "comments_section": {
     "header": ["Comments", "Comentários"],
@@ -140,11 +161,20 @@
       "Still gonna make this look nice. I am just throwing the user articles here for now",
       "Ainda vou fazer isso aqui ficar bonito. Por agora, só tô jogando os artigos da cacura aqui"
     ],
-    "edit_profile": ["Edit profile", "Editar perfil"]
+    "edit_profile": ["Edit profile", "Editar perfil"],
+    "user_not_found": ["Cacura not found", "Cacura não encontrada"],
+    "user_not_found_text": [
+      "Wrong link or the profile of this cacura was deleted.<br>You'll have to hunt somewhere else :/",
+      "Link errado ou o perfil dessa cacura foi apagado<br>Cê vai ter que caçar em outro lugar :/"
+    ]
   },
   "edit_profile": {
     "title": ["Edit your profile", "Edite seu perfil"],
-    "name": ["Name", "Nome"],
+    "username": ["Cacura Name", "Nome de Cacura"],
+    "username_placeholder": [
+      "How you are known around here",
+      "Como você é conhecido por aqui"
+    ],
     "profile_pictures": ["Profile pictures", "Fotos de perfil"],
     "add_pic_placeholder": ["Link to a new picture", "Link de uma nova foto"],
     "add_picture": ["Add", "Adicionar"],
@@ -160,8 +190,8 @@
       "Ops, você errou o nome de cacura ou a senha"
     ],
     "missing_register_fields": [
-      "You have to fill in all the fields. Otherwise we wouldn't ask, darling",
-      "Tem que preencher tudo que tá aí embaixo, né? Se não eu nem perguntava, frô"
+      "Please fill in all the fields",
+      "Preencha todos os campos, por favor"
     ],
     "existing_email": [
       "This email belongs to one of our cacuras already. Pls enter a new one",
@@ -174,6 +204,14 @@
     "missing_title_text": [
       "The article needs a title and a text, sweetie",
       "O artigo precisa de um título e um texto, frô"
+    ],
+    "max_characters": [
+      "You reached the maximum number of characters in an article. Chill",
+      "Você atingiu o limite de characteres de um artigo. Relaxe"
+    ],
+    "max_characters_posted": [
+      "The text you want to post exceeds the maximum number of characters in an article. Chill",
+      "O texto que você quer copiar excede o limite de characteres de um artigo. Relaxe"
     ],
     "missing_comment": [
       "An empty comment won't do ;)",

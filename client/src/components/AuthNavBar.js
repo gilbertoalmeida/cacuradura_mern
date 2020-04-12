@@ -132,7 +132,7 @@ class AuthNavBar extends Component {
           </NavItem>
         </Nav>
         <NavbarToggler onClick={this.toggle}></NavbarToggler>
-        <Collapse isOpen={this.state.isOpen} navbar>
+        <Collapse isOpen={this.state.isOpen} onClick={this.toggle} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem className="greeting-inside-collapse">
               <span>
@@ -155,10 +155,7 @@ class AuthNavBar extends Component {
             </NavItem>
             <NavItem>
               <Link to={`/articles/addarticle`}>
-                <Button
-                  onClick={this.toggle}
-                  className="button-form-top post-article"
-                >
+                <Button className="button-form-top post-article">
                   <Translate id="authnavbar.postarticlebutton" />
                 </Button>
               </Link>
@@ -198,14 +195,16 @@ class AuthNavBar extends Component {
           <div className="authnavbar-main-box-element">
             <div className="navbar-wrapper">
               <div className="navbar-wrapper-brand-lang">
-                <NavbarBrand href="/">
-                  <img
-                    alt="favicon of the website"
-                    src="/NavBarBrand.png"
-                    width="32"
-                    height="32"
-                    className="d-inline-block align-top"
-                  />
+                <NavbarBrand>
+                  <Link to="/">
+                    <img
+                      alt="favicon of the website"
+                      src="/NavBarBrand.png"
+                      width="32"
+                      height="32"
+                      className="d-inline-block align-top"
+                    />
+                  </Link>
                 </NavbarBrand>
                 <LanguageToggle />
               </div>
