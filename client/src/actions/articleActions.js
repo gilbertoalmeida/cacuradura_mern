@@ -9,7 +9,9 @@ import {
   ADDING_THE_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
-  GET_USER_ARTICLES
+  GETTING_USER_ARTICLES,
+  GET_USER_ARTICLES_SUCCESS,
+  GET_USER_ARTICLES_FAIL
 } from "./types";
 import { returnErrors } from "./errorActions";
 import { tokenConfig } from "./authActions";
@@ -66,20 +68,30 @@ export const getArticle = id => async dispatch => {
   }
 };
 
-export const getUserArticles = id => dispatch => {
-  axios.get(`/api/articles/user/${id}`).then(res =>
+export const getUserArticles = id => async dispatch => {
+  try {
+    const res = await axios.get(
+      `/api/articles/user/${id}`,
+      dispatch({
+        type: GETTING_USER_ARTICLES
+      })
+    ); //proxi in the package.json in react makes it not necessary to type the full path
     dispatch({
-      type: GET_USER_ARTICLES,
+      type: GET_USER_ARTICLES_SUCCESS,
       payload: res.data
-    })
-  );
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_USER_ARTICLES_FAIL
+    });
+  }
 };
 
 export const addArticle = ({
   title,
   body,
   language,
-  feed_img,
+  coverImg,
   author: { username, _id }
 }) => (dispatch, getState) => {
   //Request body
@@ -87,7 +99,7 @@ export const addArticle = ({
     title,
     body,
     language,
-    feed_img,
+    coverImg,
     author: { username, _id }
   });
 

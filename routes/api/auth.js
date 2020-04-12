@@ -12,49 +12,42 @@ const User = require("../../models/User");
 // @desc    Register new user
 // @access  Public
 router.post("/register", (req, res) => {
-  const { name, email, username, password } = req.body;
+  const { username, password } = req.body;
 
   //Simple validation
-  if (!name || !email || !username || !password) {
+  if (!username || !password) {
     return res.status(400).json({
       msg: "missing_register_fields" //this is now not the error message itself, but part of the id of the translation
     });
   }
 
   //Check for existing user
-  User.findOne({ email: email }).then(user => {
-    if (user) return res.status(400).json({ msg: "existing_email" }); //check if its safe to say whats in the translation file
-    User.findOne({ username: username }).then(user => {
-      if (user) return res.status(400).json({ msg: "existing_username" }); //check if its safe to say whats in the translation file
-      const newUser = new User({
-        name,
-        email,
-        username,
-        password
-      });
+  User.findOne({ username: username }).then(user => {
+    if (user) return res.status(400).json({ msg: "existing_username" }); //check if its safe to say whats in the translation file
+    const newUser = new User({
+      username,
+      password
+    });
 
-      //Create salt and hash
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser.save().then(user => {
-            jwt.sign(
-              { _id: user._id }, // payload. I am sending the user id to verify actions later
-              config.get("jwtSecret"),
-              { expiresIn: 360000 },
-              (err, token) => {
-                if (err) throw err;
-                res.json({
-                  token: token,
-                  _id: user._id,
-                  name: user.name,
-                  username: user.username,
-                  email: user.email
-                });
-              }
-            );
-          });
+    //Create salt and hash
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err;
+        newUser.password = hash;
+        newUser.save().then(user => {
+          jwt.sign(
+            { _id: user._id }, // payload. I am sending the user id to verify actions later
+            config.get("jwtSecret"),
+            { expiresIn: 360000 },
+            (err, token) => {
+              if (err) throw err;
+              res.json({
+                token: token,
+                _id: user._id,
+                username: user.username
+              });
+            }
+          );
         });
       });
     });
@@ -89,7 +82,6 @@ router.post("/", (req, res) => {
           res.json({
             token: token,
             _id: loggedUser._id,
-            name: loggedUser.name,
             username: loggedUser.username,
             profile_pictures: loggedUser.profile_pictures,
             email: loggedUser.email
@@ -114,20 +106,31 @@ router.get("/user", auth, (req, res) => {
 // @access   Private
 
 router.post("/edit", auth, async (req, res) => {
-  const { id, name, profilePicsArray } = req.body;
+  const { id, username, profilePicsArray } = req.body;
 
   //Profile Object
-  const profileFields = {};
-  profileFields.name = name;
-  profileFields.profile_pictures = profilePicsArray;
+  const profileFields = {
+    username,
+    profile_pictures: profilePicsArray
+  };
 
+  //check if the username exists
   try {
-    let foundAndEditedProfile = await User.findOneAndUpdate(
-      { _id: id },
-      profileFields,
-      { new: true, useFindAndModify: false }
-    );
-    res.json(foundAndEditedProfile);
+    let existingUser = await User.findOne({ username: username });
+    if (existingUser && existingUser._id != id) {
+      return res.status(400).json({ msg: "existing_username" }); //check if its safe to say whats in the translation file
+    }
+    try {
+      let foundAndEditedProfile = await User.findOneAndUpdate(
+        { _id: id },
+        profileFields,
+        { new: true, useFindAndModify: false }
+      );
+      res.json(foundAndEditedProfile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

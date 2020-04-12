@@ -1,13 +1,22 @@
 import axios from "axios";
-import { GET_USER } from "./types";
+import { GETTING_THE_USER, GET_USER_SUCCESS, GET_USER_FAIL } from "./types";
 
-export const getUser = id => dispatch => {
-  axios
-    .get(`/api/users/${id}`) //proxi in the package.json in react makes it not necessary to type the full path
-    .then(res =>
+export const getUser = id => async dispatch => {
+  try {
+    const res = await axios.get(
+      `/api/users/${id}`,
       dispatch({
-        type: GET_USER,
-        payload: res.data
+        type: GETTING_THE_USER
       })
     );
+
+    dispatch({
+      type: GET_USER_SUCCESS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_USER_FAIL
+    });
+  }
 };

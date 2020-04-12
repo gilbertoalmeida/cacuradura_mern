@@ -6,8 +6,10 @@ import PropTypes from "prop-types";
 import ReactHtmlParser from "react-html-parser";
 import CommentsSection from "../comments/CommentsSection";
 import { prettyDateNoHours } from "../../Utils/Utils";
-
 import { withLocalize, Translate } from "react-localize-redux";
+
+import LoadingArticlePage from "./LoadingArticlePage";
+import ArticleNotFound from "./ArticleNotFound";
 
 const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
   useEffect(() => {
@@ -19,18 +21,10 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
     ev.target.src = "/Assets/img_load_fail.png";
   }
 
-  return loading ? (
-    <header>
-      <h1>
-        <Translate id="article.loading" />
-      </h1>
-    </header>
-  ) : article === null ? (
-    <header>
-      <h1>
-        <Translate id="article.noarticle" />
-      </h1>
-    </header>
+  return loading && !article ? (
+    <LoadingArticlePage />
+  ) : !article ? (
+    <ArticleNotFound />
   ) : (
     <Fragment>
       <header className="App-header"></header>
@@ -38,22 +32,22 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
       <div className="article-page-main-box-element">
         <div className="article-cover">
           <img
-            src={article.feed_img}
+            src={article.coverImg}
             onError={addDefaultSrc}
             alt="cover of the article"
             style={{
-              display: article.feed_img ? "block" : "none"
+              display: article.coverImg ? "block" : "none"
             }}
           />
           <div
             className="article-cover-img-filter"
             style={{
-              display: article.feed_img ? "block" : "none"
+              display: article.coverImg ? "block" : "none"
             }}
           ></div>
           <div
             className={`article-cover-${
-              article.feed_img ? "img-text" : "text"
+              article.coverImg ? "img-text" : "text"
             } `}
           >
             <div className="article-title">{article.title}</div>
@@ -70,8 +64,8 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
               </p>
             </time>
           </div>
-          <div className="article-body">{ReactHtmlParser(article.body)}</div>
         </div>
+        <div className="article-body">{ReactHtmlParser(article.body)}</div>
         <CommentsSection articleID={match.params.id} match={match} />
       </div>
     </Fragment>
