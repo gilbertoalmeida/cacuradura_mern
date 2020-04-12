@@ -6,26 +6,43 @@ import { connect } from "react-redux";
 import { editProfile } from "../../actions/authActions";
 import PleaseLogin from "../PleaseLogin";
 import { withLocalize, Translate } from "react-localize-redux";
+import { Alert } from "reactstrap";
+import { clearErrors } from "../../actions/errorActions";
 
 const initialFormState = {
-  name: "",
+  username: "",
   new_profile_pic: ""
 };
 
 const EditProfile = ({
   auth: { isAuthenticated, loggedUser, token },
-  editProfile
+  error,
+  editProfile,
+  clearErrors
 }) => {
   const [formData, setFormData] = useState({ initialFormState });
   const [profilePicsArray, setProfilePicsArray] = useState([]);
   const [addPicDisabled, setAddPicDisabled] = useState(true);
+  const [errorMsg, setErrorMsg] = useState(null);
 
-  const { name, new_profile_pic } = formData;
+  const { username, new_profile_pic } = formData;
+
+  useEffect(() => {
+    clearErrors();
+  }, [clearErrors]);
+
+  useEffect(() => {
+    if (error.id === "EDIT_PROFILE_FAIL") {
+      setErrorMsg(error.msg.msg); //comes from the routes in the backend
+    } else {
+      setErrorMsg(null);
+    }
+  }, [error]);
 
   useEffect(() => {
     /* avoiding problems with getting to this page without being logged in */
     setFormData({
-      name: !isAuthenticated || !loggedUser ? "" : loggedUser.name,
+      username: !isAuthenticated || !loggedUser ? "" : loggedUser.username,
       new_profile_pic: ""
     });
     setProfilePicsArray(
@@ -82,17 +99,24 @@ const EditProfile = ({
       </div>
       <div className="edit-profile-body">
         <form className="edit-profile-form" onSubmit={e => onSubmit(e)}>
-          <Label for="name">
-            <Translate id="edit_profile.name" />
+          <Label for="username">
+            <Translate id="edit_profile.username" />
           </Label>
-          <input
-            className="edit-profile-form-input"
-            type="text"
-            placeholder="Name"
-            name="name"
-            value={name}
-            onChange={e => onChange(e)}
-          />
+
+          <Translate>
+            {({ translate }) => (
+              <input
+                className="edit-profile-form-input"
+                type="text"
+                name="username"
+                maxLength="18"
+                value={username}
+                placeholder={translate("edit_profile.username_placeholder")}
+                onChange={e => onChange(e)}
+              />
+            )}
+          </Translate>
+
           <Label for="profile_pictures">
             <Translate id="edit_profile.profile_pictures" />
           </Label>
@@ -139,7 +163,15 @@ const EditProfile = ({
               <Translate id="edit_profile.add_picture" />
             </button>
           </div>
-
+          {errorMsg ? (
+            <Translate>
+              {({ translate }) => (
+                <Alert color="danger">
+                  {translate(`error_messages.${errorMsg}`)}
+                </Alert>
+              )}
+            </Translate>
+          ) : null}
           <Translate>
             {({ translate }) => (
               <input
@@ -157,16 +189,19 @@ const EditProfile = ({
 
 EditProfile.propTypes = {
   editProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  error: PropTypes.object.isRequired,
+  clearErrors: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  error: state.error
 });
 
 export default withLocalize(
   connect(
     mapStateToProps,
-    { editProfile }
+    { editProfile, clearErrors }
   )(withRouter(EditProfile))
 );

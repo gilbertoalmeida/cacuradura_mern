@@ -59,8 +59,12 @@ const UserPage = ({
 
   const profileImgLoaded = () => {
     const spinnerDiv = document.getElementById("spinner");
-    clearInterval(spinnerInterval);
-    spinnerDiv.innerText = pictureID + 1;
+    if (loadedUser.profile_pictures.length === 0) {
+      spinnerDiv.innerText = 0;
+    } else {
+      clearInterval(spinnerInterval);
+      spinnerDiv.innerText = pictureID + 1;
+    }
   };
 
   return loading && !loadedUser ? (

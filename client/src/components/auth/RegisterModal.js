@@ -21,8 +21,6 @@ import { withLocalize, Translate } from "react-localize-redux";
 const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
   const [modal, setModal] = useState(false);
   const [registerForm, setRegisterForm] = useState({
-    name: "",
-    email: "",
     username: "",
     password: ""
   });
@@ -76,16 +74,6 @@ const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
           <Translate id="registermodal.header"></Translate>
         </ModalHeader>
         <ModalBody className="register-modal__body">
-          {errorMsg ? (
-            <Translate>
-              {({ translate }) => (
-                <Alert color="danger">
-                  {translate(`error_messages.${errorMsg}`)}
-                </Alert>
-              )}
-            </Translate>
-          ) : null}
-          {/* operator to show the alert only is there is an error */}
           <div
             onClick={toggle}
             className="register-modal__body__already_registered_msg"
@@ -94,38 +82,6 @@ const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
           </div>
           <Form onSubmit={onSubmit}>
             <FormGroup>
-              <Label for="name">
-                <Translate id="registermodal.name"></Translate>
-              </Label>
-              <Translate>
-                {({ translate }) => (
-                  <Input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder={translate("registermodal.name_placeholder")}
-                    className="mb-3"
-                    onChange={onChange}
-                  />
-                )}
-              </Translate>
-
-              <Label for="email">
-                <Translate id="registermodal.email"></Translate>
-              </Label>
-              <Translate>
-                {({ translate }) => (
-                  <Input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder={translate("registermodal.email_placeholder")}
-                    className="mb-3"
-                    onChange={onChange}
-                  />
-                )}
-              </Translate>
-
               <Label for="username">
                 <Translate id="registermodal.username"></Translate>
               </Label>
@@ -162,7 +118,15 @@ const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
                   />
                 )}
               </Translate>
-
+              {errorMsg ? (
+                <Translate>
+                  {({ translate }) => (
+                    <Alert color="danger">
+                      {translate(`error_messages.${errorMsg}`)}
+                    </Alert>
+                  )}
+                </Translate>
+              ) : null}
               <Button className="button-form-top submit-register" block>
                 <Translate id="registermodal.submitbutton"></Translate>
               </Button>

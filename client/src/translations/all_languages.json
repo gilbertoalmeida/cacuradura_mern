@@ -170,7 +170,11 @@
   },
   "edit_profile": {
     "title": ["Edit your profile", "Edite seu perfil"],
-    "name": ["Name", "Nome"],
+    "username": ["Cacura Name", "Nome de Cacura"],
+    "username_placeholder": [
+      "How you are known around here",
+      "Como você é conhecido por aqui"
+    ],
     "profile_pictures": ["Profile pictures", "Fotos de perfil"],
     "add_pic_placeholder": ["Link to a new picture", "Link de uma nova foto"],
     "add_picture": ["Add", "Adicionar"],
