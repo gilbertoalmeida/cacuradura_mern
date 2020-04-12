@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 let userSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: false
   },
   register_date: {
     type: Date,
@@ -11,12 +11,13 @@ let userSchema = mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
+    required: false,
     unique: true
   },
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   password: {
     type: String,
@@ -25,7 +26,7 @@ let userSchema = mongoose.Schema({
   profile_pictures: {
     type: Array,
     default: [],
-    required: true
+    required: false
   }
 });
 

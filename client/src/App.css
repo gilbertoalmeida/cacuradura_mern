@@ -1143,6 +1143,12 @@ header h2 {
   margin-top: 1rem;
 }
 
+@media (max-width: 500px) {
+  .alert {
+    font-size: 4vw;
+  }
+}
+
 /* AuthNavBar */
 
 .authnavbar-main-box-element {
@@ -1839,7 +1845,7 @@ header h2 {
   margin-bottom: 0;
   position: -webkit-sticky;
   position: sticky;
-  top: 80px;
+  top: 60px;
   z-index: 1000;
 }
 
@@ -2713,7 +2719,7 @@ header h2 {
 
 .edit-profile-add-pictures {
   display: flex;
-  margin: 20px auto;
+  margin: 20px auto 40px auto;
 }
 
 .add-picture-input {
@@ -2741,7 +2747,8 @@ header h2 {
     max-width: 96%;
   }
 
-  .profile-pics-thumbnail {
+  .profile-pics-thumbnail,
+  .profile-pic-thumbnail-filter {
     width: 15vw;
     height: 15vw;
     margin: 2vw;
@@ -2784,7 +2791,6 @@ header h2 {
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
-  margin-top: 20px;
   padding: 8px 40px;
   outline: none;
   background-color: #05050a !important;
