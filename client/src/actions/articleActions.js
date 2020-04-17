@@ -68,10 +68,10 @@ export const getArticle = id => async dispatch => {
   }
 };
 
-export const getUserArticles = id => async dispatch => {
+export const getUserArticles = username => async dispatch => {
   try {
     const res = await axios.get(
-      `/api/articles/user/${id}`,
+      `/api/articles/user/${username}`,
       dispatch({
         type: GETTING_USER_ARTICLES
       })

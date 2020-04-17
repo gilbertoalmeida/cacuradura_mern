@@ -55,7 +55,7 @@ const Comments = ({
             .map((key, index) => (
               <div key={index} className="comments-section__comments__single">
                 <div className="comments-section__comments__single__content">
-                  <Link to={`/users/${comments[key].author._id}`}>
+                  <Link to={`/users/${comments[key].author.username}`}>
                     <div className="comments-section__comments__single__content__img">
                       <img
                         src={
@@ -70,7 +70,7 @@ const Comments = ({
                   </Link>
                   <div className="comments-section__comments__single__content__text">
                     <Link
-                      to={`/users/${comments[key].author._id}`}
+                      to={`/users/${comments[key].author.username}`}
                       className="user-link link"
                     >
                       {comments[key].author.username}
@@ -136,7 +136,7 @@ const Comments = ({
                           className="comments-section__comments__replies__single"
                         >
                           <div className="comments-section__comments__replies__single__content">
-                            <Link to={`/users/${author._id}`}>
+                            <Link to={`/users/${author.username}`}>
                               <div className="comments-section__comments__replies__single__content__img">
                                 <img
                                   src={
@@ -151,7 +151,7 @@ const Comments = ({
                             </Link>
                             <div className="comments-section__comments__replies__single__content__text">
                               <Link
-                                to={`/users/${author._id}`}
+                                to={`/users/${author.username}`}
                                 className="user-link link"
                               >
                                 {author.username}

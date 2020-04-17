@@ -23,13 +23,13 @@ const UserPage = ({
   match
 }) => {
   useEffect(() => {
-    getUser(match.params.id);
+    getUser(match.params.username);
     window.scrollTo(0, 0);
-  }, [getUser, getUserArticles, match.params.id]);
+  }, [getUser, getUserArticles, match.params.username]);
 
   useEffect(() => {
-    getUserArticles(match.params.id);
-  }, [getUserArticles, match.params.id]);
+    getUserArticles(match.params.username);
+  }, [getUserArticles, match.params.username]);
 
   const [activeTab, setActiveTab] = useState("1");
   const [pictureID, setPictureID] = useState(0);
