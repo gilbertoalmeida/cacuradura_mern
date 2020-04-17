@@ -83,8 +83,7 @@ router.post("/", (req, res) => {
             token: token,
             _id: loggedUser._id,
             username: loggedUser.username,
-            profile_pictures: loggedUser.profile_pictures,
-            email: loggedUser.email
+            profile_pictures: loggedUser.profile_pictures
           });
         }
       );
