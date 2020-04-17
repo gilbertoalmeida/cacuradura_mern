@@ -56,7 +56,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
               <p>
                 <Translate id="article.by" />{" "}
                 <Link
-                  to={`/users/${article.author._id}`}
+                  to={`/users/${article.author.username}`}
                   className="user-link link"
                 >
                   {article.author.username}

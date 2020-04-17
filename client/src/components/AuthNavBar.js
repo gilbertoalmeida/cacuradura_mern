@@ -118,7 +118,7 @@ class AuthNavBar extends Component {
                   <div className="authnavbar-greeting-username">
                     <Translate id="authnavbar.greeting" />{" "}
                     <Link
-                      to={`/users/${loggedUser._id}`}
+                      to={`/users/${loggedUser.username}`}
                       className="user-link link"
                     >
                       {loggedUser.username}
@@ -141,7 +141,7 @@ class AuthNavBar extends Component {
                     <div className="authnavbar-greeting-username">
                       <Translate id="authnavbar.greeting" />{" "}
                       <Link
-                        to={`/users/${loggedUser._id}`}
+                        to={`/users/${loggedUser.username}`}
                         className="user-link link"
                       >
                         {loggedUser.username}

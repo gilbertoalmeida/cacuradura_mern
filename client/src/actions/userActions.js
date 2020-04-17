@@ -1,10 +1,10 @@
 import axios from "axios";
 import { GETTING_THE_USER, GET_USER_SUCCESS, GET_USER_FAIL } from "./types";
 
-export const getUser = id => async dispatch => {
+export const getUser = username => async dispatch => {
   try {
     const res = await axios.get(
-      `/api/users/${id}`,
+      `/api/users/${username}`,
       dispatch({
         type: GETTING_THE_USER
       })
