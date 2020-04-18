@@ -2419,6 +2419,7 @@ header h2 {
 .user-profile-title {
   font-family: "Anton", sans-serif;
   font-size: 45px;
+  height: 3em;
   color: #faa9cb;
   text-align: center;
   margin: 20px;
@@ -2430,7 +2431,7 @@ header h2 {
   display: flex;
   justify-content: space-around;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 40px;
 }
 
 .article-counter {
@@ -2556,6 +2557,7 @@ header h2 {
 
   .user-profile-title {
     font-size: 4.5vw;
+    margin: 2vw;
   }
 
   .user-profile-loading-title {
@@ -2564,7 +2566,7 @@ header h2 {
   }
 
   .user-profile-counters {
-    margin-top: 10vw;
+    margin-top: 4vw;
   }
 
   .article-counter {

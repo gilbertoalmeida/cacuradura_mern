@@ -109,7 +109,7 @@ const EditProfile = ({
                 className="edit-profile-form-input"
                 type="text"
                 name="username"
-                maxLength="18"
+                maxLength="30"
                 value={username}
                 placeholder={translate("edit_profile.username_placeholder")}
                 onChange={e => onChange(e)}

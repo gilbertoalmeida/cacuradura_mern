@@ -112,7 +112,7 @@ export const editProfile = ({ username }, profilePicsArray, id) => (
   axios
     .post("/api/auth/edit", body, tokenConfig(getState))
     .then(res => {
-      window.location.href = `/users/${id}`; //redirects to the userpage of who posted the article
+      window.location.href = `/users/${username}`; //redirects to the userpage of who posted the article
       dispatch({
         type: EDIT_PROFILE_SUCCESS,
         payload: res.data // this endpoint sends everything, including the token to the auth reducer

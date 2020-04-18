@@ -91,7 +91,7 @@ const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
                     type="text"
                     name="username"
                     id="username"
-                    maxLength="18"
+                    maxLength="30"
                     placeholder={translate(
                       "registermodal.username_placeholder"
                     )}
