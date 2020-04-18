@@ -222,8 +222,12 @@
       "Escolha um nome de cacura sem espaços"
     ],
     "small_username": [
-      "The cacura name shoud have at least 4 letters",
+      "The cacura name should have at least 4 letters",
       "O nome de cacura tem que ter pelo menos 4 letras"
+    ],
+    "big_username": [
+      "The cacura name shouldn't have more than 18 letters",
+      "O nome de cacura não deve ter mais que 18 letras"
     ]
   }
 }

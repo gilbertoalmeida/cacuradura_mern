@@ -39,6 +39,10 @@ router.post("/register", async (req, res) => {
     return res.status(400).json({
       msg: "small_username"
     });
+  } else if (usernameWithoutSpaces.length > 30) {
+    return res.status(400).json({
+      msg: "big_username"
+    });
   }
 
   try {
