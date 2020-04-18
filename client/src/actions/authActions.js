@@ -10,6 +10,7 @@ import {
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAIL,
   LOGOUT_SUCCESS,
+  REGISTERING,
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from "./types";
@@ -36,7 +37,7 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 //Register User
-export const register = ({ username, password }) => dispatch => {
+export const register = ({ username, password }) => async dispatch => {
   // Headers
   const config = {
     headers: {
@@ -47,22 +48,27 @@ export const register = ({ username, password }) => dispatch => {
   //Request body
   const body = JSON.stringify({ username, password });
 
-  axios
-    .post("/api/auth/register", body, config)
-    .then(res =>
+  try {
+    const res = await axios.post(
+      "/api/auth/register",
+      body,
+      config,
       dispatch({
-        type: REGISTER_SUCCESS,
-        payload: res.data // this endpoint sends everything, including the token to the auth reducer
+        type: REGISTERING
       })
-    )
-    .catch(err => {
-      dispatch(
-        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
-      );
-      dispatch({
-        type: REGISTER_FAIL
-      });
+    );
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data
     });
+  } catch (err) {
+    dispatch(
+      returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
+    );
+    dispatch({
+      type: REGISTER_FAIL
+    });
+  }
 };
 
 // Login User
