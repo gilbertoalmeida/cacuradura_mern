@@ -216,6 +216,14 @@
     "missing_comment": [
       "An empty comment won't do ;)",
       "Um comentário vazio não vai rolar ;)"
+    ],
+    "whitespaces_username": [
+      "Choose a cacura name wihtout white spaces",
+      "Escolha um nome de cacura sem espaços"
+    ],
+    "small_username": [
+      "The cacura name shoud have at least 4 letters",
+      "O nome de cacura tem que ter pelo menos 4 letras"
     ]
   }
 }

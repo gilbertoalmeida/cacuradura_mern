@@ -7,12 +7,14 @@ import {
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAIL,
   LOGOUT_SUCCESS,
+  REGISTERING,
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from "../actions/types";
 
 const initialState = {
   token: localStorage.getItem("token"),
+  registering: false,
   isAuthenticated: null,
   isLoading: false,
   loggedUser: null
@@ -33,6 +35,11 @@ export default function(state = initialState, action) {
         isLoading: false,
         loggedUser: action.payload
       };
+    case REGISTERING:
+      return {
+        ...state,
+        registering: true
+      };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       localStorage.setItem("token", action.payload.token); //comes from the authActions
@@ -41,7 +48,8 @@ export default function(state = initialState, action) {
         token: action.payload.token,
         loggedUser: action.payload, // contains the user and the token
         isAuthenticated: true,
-        isLoading: false
+        isLoading: false,
+        registering: false
       };
     case EDIT_PROFILE_FAIL:
       return {
@@ -57,7 +65,8 @@ export default function(state = initialState, action) {
         token: null,
         loggedUser: null,
         isAuthenticated: false,
-        isLoading: false
+        isLoading: false,
+        registering: false
       };
     default:
       return state;
