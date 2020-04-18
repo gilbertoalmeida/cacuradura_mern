@@ -202,7 +202,7 @@ header h2 {
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 570px) {
   .article-feed__item {
     max-width: 95vw;
     max-height: 67vw;
@@ -1186,6 +1186,11 @@ header h2 {
   align-items: center;
 }
 
+.navbar-toggler {
+  padding: 0.25rem 0.35rem;
+  border-radius: 10px;
+}
+
 .nav-item {
   text-align: right;
 }
@@ -1276,7 +1281,7 @@ header h2 {
 .logout:active {
   background-color: #faa9cb !important;
   color: #05050a !important;
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 .language-modal {
@@ -1300,28 +1305,38 @@ header h2 {
   background-color: transparent;
 }
 
-.authnavbar-greeting-username .user-link {
-  color: #e69696;
-  font-weight: bold;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+.authnavbar__profile-pic-container {
+  position: relative;
+  height: 38px; /* this value is the height of the buttons of the AuthNavBar */
+  width: 38px;
 }
 
-.authnavbar-greeting-username .user-link:hover {
-  color: #faa9cb;
-  text-decoration: none;
+.authnavbar__profile-pic {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -webkit-filter: grayscale(80%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(80%);
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 25px -6px #faa9cb;
+  -moz-box-shadow: 0px 0px 25px -6px #faa9cb;
+  box-shadow: 0px 0px 25px -6px #faa9cb;
 }
 
-.greeting-inside-collapse {
-  font-size: 25px;
+.authnavbar__profile-pic-filter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #c42f1519; /* 10% opacity */
+  z-index: 1;
 }
 
 .greeting-outside-collapse {
-  font-size: 25px;
   margin-right: 10px;
   display: none;
 }
