@@ -102,7 +102,7 @@ export const login = ({ username, password }) => dispatch => {
 };
 
 //Edit User Profile
-export const editProfile = ({ username }, profilePicsArray, id) => (
+export const editProfile = (username, profilePicsArray, id) => (
   dispatch,
   getState
 ) => {

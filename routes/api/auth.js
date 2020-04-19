@@ -136,19 +136,33 @@ router.get("/user", auth, (req, res) => {
 router.post("/edit", auth, async (req, res) => {
   const { id, username, profilePicsArray } = req.body;
 
-  //Profile Object
-  const profileFields = {
-    username,
-    profile_pictures: profilePicsArray
-  };
+  //removing everything that isn't a letter, number or . or _
+  // then trimming white spaces
+  usernameEdited = username
+    .replace(/[^a-zA-Z0-9_.]/gi, "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "");
+
+  if (usernameEdited.length > 30) {
+    return res.status(400).json({
+      msg: "big_username"
+    });
+  }
 
   //check if the username exists
   try {
-    let existingUser = await User.findOne({ username: username });
+    let existingUser = await User.findOne({ username: usernameEdited });
     if (existingUser && existingUser._id != id) {
       return res.status(400).json({ msg: "existing_username" }); //check if its safe to say whats in the translation file
     }
     try {
+      //Profile Object
+      const profileFields = {
+        username: usernameEdited,
+        profile_pictures: profilePicsArray
+      };
+
       let foundAndEditedProfile = await User.findOneAndUpdate(
         { _id: id },
         profileFields,
