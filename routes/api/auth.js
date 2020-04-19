@@ -35,6 +35,16 @@ router.post("/register", async (req, res) => {
     });
   }
 
+  if (password.length < 8) {
+    return res.status(400).json({
+      msg: "small_password"
+    });
+  } else if (password.length > 50) {
+    return res.status(400).json({
+      msg: "big_password"
+    });
+  }
+
   try {
     //checking if username exists
     let existingUser = await User.findOne({ username: usernameEdited });

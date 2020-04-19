@@ -232,6 +232,14 @@
     "big_username": [
       "The cacura name shouldn't have more than 30 characters",
       "O nome de cacura não deve ter mais que 30 caracteres"
+    ],
+    "small_password": [
+      "The password should have at least 8 characters",
+      "A senha deve ter pelo menos 8 caracteres"
+    ],
+    "big_password": [
+      "The cacura name shouldn't have more than 30 characters",
+      "O nome de cacura não deve ter mais que 30 caracteres"
     ]
   }
 }
