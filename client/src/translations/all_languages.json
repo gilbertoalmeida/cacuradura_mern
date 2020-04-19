@@ -68,7 +68,9 @@
     "password-min-msg": ["at least 6 characters", "pelo menos 6 caracteres"],
     "username-max-msg": ["max. 30 characters", "máx. 30 caracteres"],
     "password-max-msg": ["max. 50 characters", "máx. 50 caracteres"],
-    "submitbutton": ["Done", "Pronto"]
+    "submit_button": ["Done", "Pronto"],
+    "try_again_button": ["Try again", "Tentar de novo"],
+    "registering_button": ["processing...", "processando..."]
   },
   "article": {
     "by": ["by", "por"],
@@ -186,9 +188,15 @@
     "profile_pictures": ["Profile pictures", "Fotos de perfil"],
     "add_pic_placeholder": ["Link to a new picture", "Link de uma nova foto"],
     "add_picture": ["Add", "Adicionar"],
-    "submit": ["Save changes", "Salvar"]
+    "submit_button": ["Save changes", "Salvar"],
+    "editing_button": ["Saving...", "Salvando..."],
+    "try_again_button": ["Try again", "Tentar de novo"]
   },
   "error_messages": {
+    "server_error": [
+      "Server error. Pls try again later<br>💀💀💀",
+      "Erro no servidor. Por favor tente de novo<br>💀💀💀"
+    ],
     "missing_credentials": [
       "You have to fill in both fields, honey",
       "Prencha os dois campos, fazendo o favor querida"

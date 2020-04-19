@@ -4,6 +4,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  EDITING_PROFILE,
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAIL,
   LOGOUT_SUCCESS,
@@ -15,6 +16,7 @@ import {
 const initialState = {
   token: localStorage.getItem("token"),
   registering: false,
+  editing_profile: false,
   isAuthenticated: null,
   isLoading: false,
   loggedUser: null
@@ -33,12 +35,18 @@ export default function(state = initialState, action) {
         ...state,
         isAuthenticated: true,
         isLoading: false,
+        editing_profile: false,
         loggedUser: action.payload
       };
     case REGISTERING:
       return {
         ...state,
         registering: true
+      };
+    case EDITING_PROFILE:
+      return {
+        ...state,
+        editing_profile: true
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
@@ -53,7 +61,8 @@ export default function(state = initialState, action) {
       };
     case EDIT_PROFILE_FAIL:
       return {
-        ...state
+        ...state,
+        editing_profile: false
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:
