@@ -9,23 +9,18 @@ import { withLocalize, Translate } from "react-localize-redux";
 import { Alert } from "reactstrap";
 import { clearErrors } from "../../actions/errorActions";
 
-const initialFormState = {
-  username: "",
-  new_profile_pic: ""
-};
-
 const EditProfile = ({
   auth: { isAuthenticated, loggedUser, token },
   error,
   editProfile,
   clearErrors
 }) => {
-  const [formData, setFormData] = useState({ initialFormState });
+  const [username, setUsername] = useState("");
+  const [usernameMsg, setUsernameMsg] = useState(null);
+  const [newProfilePic, setNewProfilePic] = useState("");
   const [profilePicsArray, setProfilePicsArray] = useState([]);
   const [addPicDisabled, setAddPicDisabled] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
-
-  const { username, new_profile_pic } = formData;
 
   useEffect(() => {
     clearErrors();
@@ -41,38 +36,60 @@ const EditProfile = ({
 
   useEffect(() => {
     /* avoiding problems with getting to this page without being logged in */
-    setFormData({
-      username: !isAuthenticated || !loggedUser ? "" : loggedUser.username,
-      new_profile_pic: ""
-    });
+    setUsername(!isAuthenticated || !loggedUser ? "" : loggedUser.username);
     setProfilePicsArray(
       !isAuthenticated || !loggedUser ? [] : loggedUser.profile_pictures
     );
   }, [isAuthenticated, loggedUser]);
 
   useEffect(() => {
-    if (profilePicsArray.length >= 9 || new_profile_pic === "") {
+    if (profilePicsArray.length >= 9 || newProfilePic === "") {
       setAddPicDisabled(true);
     } else {
       setAddPicDisabled(false);
     }
-  }, [profilePicsArray, new_profile_pic]);
+  }, [profilePicsArray, newProfilePic]);
 
   const addDefaultSrc = ev => {
     ev.target.src = "/Assets/img_load_fail.png";
   };
 
-  const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChangeUsername = e => {
+    let editedUsername = e.target.value
+      .replace(/[^a-zA-Z0-9_.]/gi, "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "");
+
+    if (editedUsername !== e.target.value) {
+      setUsernameMsg("username-wrong-msg");
+    } else {
+      setUsernameMsg(null);
+    }
+
+    setUsername(editedUsername);
+  };
+
+  useEffect(() => {
+    if (username.length === 30) {
+      setUsernameMsg("username-max-msg");
+    } else {
+      setUsernameMsg(null);
+    }
+  }, [username]);
+
+  const onChangePictures = e => {
+    setNewProfilePic(e.target.value);
+  };
 
   const addPicToArray = e => {
     e.preventDefault();
 
     setProfilePicsArray(profilePicsArray => [
       ...profilePicsArray,
-      new_profile_pic
+      newProfilePic
     ]);
-    setFormData({ ...formData, new_profile_pic: "" });
+    setNewProfilePic("");
   };
 
   const deletePicOfArray = index => {
@@ -82,7 +99,7 @@ const EditProfile = ({
 
   const onSubmit = e => {
     e.preventDefault();
-    editProfile(formData, profilePicsArray, loggedUser._id);
+    editProfile(username, profilePicsArray, loggedUser._id);
   };
 
   return !isAuthenticated && !token ? (
@@ -93,7 +110,7 @@ const EditProfile = ({
         <h5 className="edit-profile-title">
           <Translate id="edit_profile.title" />
         </h5>
-        <Link to={`/${isAuthenticated ? "users/" + loggedUser._id : ""}`}>
+        <Link to={`/${isAuthenticated ? "users/" + loggedUser.username : ""}`}>
           <div className="edit-profile-cancel">X</div>
         </Link>
       </div>
@@ -106,18 +123,24 @@ const EditProfile = ({
           <Translate>
             {({ translate }) => (
               <input
+                style={{ borderColor: usernameMsg ? "#f02d0a" : "#05050a" }}
                 className="edit-profile-form-input"
                 type="text"
                 name="username"
                 maxLength="30"
                 value={username}
                 placeholder={translate("edit_profile.username_placeholder")}
-                onChange={e => onChange(e)}
+                onChange={e => onChangeUsername(e)}
               />
             )}
           </Translate>
+          {usernameMsg ? (
+            <div className="input-msg">
+              <Translate id={`registermodal.${usernameMsg}`} />
+            </div>
+          ) : null}
 
-          <Label for="profile_pictures">
+          <Label className="mt-4" for="profile_pictures">
             <Translate id="edit_profile.profile_pictures" />
           </Label>
 
@@ -149,8 +172,8 @@ const EditProfile = ({
                   type="text"
                   placeholder={translate("edit_profile.add_pic_placeholder")}
                   name="new_profile_pic"
-                  value={new_profile_pic}
-                  onChange={e => onChange(e)}
+                  value={newProfilePic}
+                  onChange={e => onChangePictures(e)}
                 />
               )}
             </Translate>
