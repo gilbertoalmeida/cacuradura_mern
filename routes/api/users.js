@@ -7,9 +7,10 @@ const User = require("../../models/User");
 // @route   GET api/users/:id
 // @desc    Get one user by its id
 // @access  Public
-router.get("/:id", async (req, res) => {
+router.get("/:username", async (req, res) => {
+  let query = { username: req.params.username };
   try {
-    const user = await User.findById(req.params.id, { password: 0 });
+    const user = await User.findOne(query, { password: 0 });
 
     if (!user) {
       return res.status(404);

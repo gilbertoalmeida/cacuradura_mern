@@ -1,5 +1,5 @@
 import axios from "axios";
-import { returnErrors } from "./errorActions";
+import { returnErrors, clearErrors } from "./errorActions";
 
 import {
   USER_LOADING,
@@ -7,9 +7,11 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  EDITING_PROFILE,
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAIL,
   LOGOUT_SUCCESS,
+  REGISTERING,
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from "./types";
@@ -36,7 +38,7 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 //Register User
-export const register = ({ username, password }) => dispatch => {
+export const register = ({ username, password }) => async dispatch => {
   // Headers
   const config = {
     headers: {
@@ -47,22 +49,28 @@ export const register = ({ username, password }) => dispatch => {
   //Request body
   const body = JSON.stringify({ username, password });
 
-  axios
-    .post("/api/auth/register", body, config)
-    .then(res =>
+  try {
+    const res = await axios.post(
+      "/api/auth/register",
+      body,
+      config,
       dispatch({
-        type: REGISTER_SUCCESS,
-        payload: res.data // this endpoint sends everything, including the token to the auth reducer
+        type: REGISTERING
       })
-    )
-    .catch(err => {
-      dispatch(
-        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
-      );
-      dispatch({
-        type: REGISTER_FAIL
-      });
+    );
+    dispatch(clearErrors());
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data
     });
+  } catch (err) {
+    dispatch(
+      returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
+    );
+    dispatch({
+      type: REGISTER_FAIL
+    });
+  }
 };
 
 // Login User
@@ -96,34 +104,36 @@ export const login = ({ username, password }) => dispatch => {
 };
 
 //Edit User Profile
-export const editProfile = ({ username }, profilePicsArray, id) => (
+export const editProfile = (username, profilePicsArray, id) => async (
   dispatch,
   getState
 ) => {
   //Request body
   const body = JSON.stringify({ id, username, profilePicsArray });
 
-  axios
-    .post("/api/auth/edit", body, tokenConfig(getState))
-    .then(res => {
-      window.location.href = `/users/${id}`; //redirects to the userpage of who posted the article
+  try {
+    const res = await axios.post(
+      "/api/auth/edit",
+      body,
+      tokenConfig(getState),
       dispatch({
-        type: EDIT_PROFILE_SUCCESS,
-        payload: res.data // this endpoint sends everything, including the token to the auth reducer
-      });
-    })
-    .catch(err => {
-      dispatch(
-        returnErrors(
-          err.response.data,
-          err.response.status,
-          "EDIT_PROFILE_FAIL"
-        )
-      );
-      dispatch({
-        type: EDIT_PROFILE_FAIL
-      });
+        type: EDITING_PROFILE
+      })
+    );
+    dispatch(clearErrors());
+    window.location.href = `/users/${username}`; //redirects to the userpage of who posted the article
+    dispatch({
+      type: EDIT_PROFILE_SUCCESS,
+      payload: res.data
     });
+  } catch (err) {
+    dispatch(
+      returnErrors(err.response.data, err.response.status, "EDIT_PROFILE_FAIL")
+    );
+    dispatch({
+      type: EDIT_PROFILE_FAIL
+    });
+  }
 };
 
 // Logout User

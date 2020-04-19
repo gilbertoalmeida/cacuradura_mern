@@ -9,11 +9,6 @@ let userSchema = mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  email: {
-    type: String,
-    required: false,
-    unique: true
-  },
   username: {
     type: String,
     required: true,

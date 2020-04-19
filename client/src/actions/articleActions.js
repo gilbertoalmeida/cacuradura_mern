@@ -68,10 +68,10 @@ export const getArticle = id => async dispatch => {
   }
 };
 
-export const getUserArticles = id => async dispatch => {
+export const getUserArticles = username => async dispatch => {
   try {
     const res = await axios.get(
-      `/api/articles/user/${id}`,
+      `/api/articles/user/${username}`,
       dispatch({
         type: GETTING_USER_ARTICLES
       })
@@ -113,7 +113,7 @@ export const addArticle = ({
       })
     )
     .then(res => {
-      window.location.href = `/users/${_id}`; //redirects to the userpage of who posted the article
+      window.location.href = `/users/${username}`; //redirects to the userpage of who posted the article
       dispatch({
         type: ADD_ARTICLE_SUCCESS,
         payload: res.data // this endpoint sends everything, including the token to the auth reducer

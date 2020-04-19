@@ -57,10 +57,20 @@
       "Como você será chamado por aqui"
     ],
     "password_placeholder": [
-      "Don't make a mistake, we won't confirm it",
-      "Não erre, porque aqui não tem confirmar"
+      "Between 6 - 50 characters",
+      "Entre 6 - 50 caracteres"
     ],
-    "submitbutton": ["Done", "Pronto"]
+    "username-wrong-msg": [
+      "keep it among letters, numbers, . or _",
+      "use apenas letras, números, . ou _"
+    ],
+    "username-empty-msg": ["choose a cacura name", "escolha um nome de cacura"],
+    "password-min-msg": ["at least 6 characters", "pelo menos 6 caracteres"],
+    "username-max-msg": ["max. 30 characters", "máx. 30 caracteres"],
+    "password-max-msg": ["max. 50 characters", "máx. 50 caracteres"],
+    "submit_button": ["Done", "Pronto"],
+    "try_again_button": ["Try again", "Tentar de novo"],
+    "registering_button": ["processing...", "processando..."]
   },
   "article": {
     "by": ["by", "por"],
@@ -124,8 +134,8 @@
     ],
     "privacy_policy": ["Privacy", "Privacidade"],
     "privacy_policy_text": [
-      "We are, of course, committed to respecting your privacy!!<br><br>The information required to register a new profile is used only for carrying out the request and will be stored in a private database. The only publicly available information from the registration form is your <i>cacura name</i>, which is used to identify your profile in the site.<br><br>Your name and email are only visible by the database owner, but are not used for anything other than the registration process. We also won’t send you any unwanted emails. Your password is protected using a <i>hashing</i> function and cannot be visible by ANYONE.<br><br>Further information added to your profile, like pictures and articles, are public and visible to all visitors of the website. It is your choice how much to share.<br><br>If you want your data to be completely deleted from our database, please contact us.<br><br>We will NEVER share or sell ANY of your information ;)<br>How dare we!",
-      "Nós estamos, evidentemente, preocupados com a sua privacidade!!<br><br>As informações necessárias para registrar um novo perfil são apenas utilizadas para finalizar a ação e são armazenadas numa base de dados privada. A única informação publicamente disponível do formulário de registro é o <i>nome de cacura</i>, que é usado para identificar o seu perfil pelo site.<br><br>Seu nome e email somente são visíveis para o dono da base de dados, mas não são usados para nada além do processo de registro. Nós também não enviaremos nenhum email indesejado. Sua senha é protegida usando uma função do tipo <i>hash</i> e não é visível para NINGUÉM.<br><br>Outras informações adicionadas ao seu perfil, como fotos e artigos, são públicas e visíveis para todos os visitantes do site. É de sua escolha o quanto compartilhar.<br><br>Se você desejar que seus dados sejam completamente deletados de nossa base de dados, por favor nos contate.<br><br>Nós NUNCA distribuiremos nem venderemos NENHUMA informação sua ;)<br>Como ousaríamos!"
+      "We are, of course, committed to respecting your privacy!!<br><br>The information required to register a new profile is the minimum necessary for the creation of a user and will not be attached to any of your personal data in any way.<br><br>The only publicly available information from the registration form is your <i>cacura name</i>, which is used to identify your profile in the site. Your password is protected using a <i>hashing</i> function and cannot be visible by ANYONE.<br><br>Further information added to your profile, like pictures and articles, are public and visible to all visitors of the website. It is your choice how much to share.<br><br>If you want your data to be completely deleted from our database, please contact us.<br><br>We will NEVER share or sell ANY of this info ;)<br>How dare we!",
+      "Nós estamos, evidentemente, preocupados com a sua privacidade!!<br><br>As informações necessárias para registrar um novo perfil são as mínimas para a criação de um usuário e não serão relacionadas a nenhum dado pessoal seu de nenhuma maneira.<br><br>A única informação publicamente disponível do formulário de registro é o <i>nome de cacura</i>, que é usado para identificar o seu perfil pelo site. A sua senha é protegida usando uma função do tipo <i>hash</i> e não é visível para NINGUÉM.<br><br>Outras informações adicionadas ao seu perfil, como fotos e artigos, são públicas e visíveis para todos os visitantes do site. É de sua escolha o quanto compartilhar.<br><br>Se você desejar que seus dados sejam completamente deletados de nossa base de dados, por favor nos contate.<br><br>Nós NUNCA distribuiremos nem venderemos NENHUMA informação sua ;)<br>Como ousaríamos!"
     ],
     "about": ["About", "Sobre"],
     "about_text": [
@@ -178,9 +188,15 @@
     "profile_pictures": ["Profile pictures", "Fotos de perfil"],
     "add_pic_placeholder": ["Link to a new picture", "Link de uma nova foto"],
     "add_picture": ["Add", "Adicionar"],
-    "submit": ["Save changes", "Salvar"]
+    "submit_button": ["Save changes", "Salvar"],
+    "editing_button": ["Saving...", "Salvando..."],
+    "try_again_button": ["Try again", "Tentar de novo"]
   },
   "error_messages": {
+    "server_error": [
+      "Server error. Pls try again later<br>💀💀💀",
+      "Erro no servidor. Por favor tente de novo<br>💀💀💀"
+    ],
     "missing_credentials": [
       "You have to fill in both fields, honey",
       "Prencha os dois campos, fazendo o favor querida"
@@ -216,6 +232,22 @@
     "missing_comment": [
       "An empty comment won't do ;)",
       "Um comentário vazio não vai rolar ;)"
+    ],
+    "whitespaces_username": [
+      "Choose a cacura name wihtout white spaces",
+      "Escolha um nome de cacura sem espaços"
+    ],
+    "big_username": [
+      "The cacura name shouldn't have more than 30 characters",
+      "O nome de cacura não deve ter mais que 30 caracteres"
+    ],
+    "small_password": [
+      "The password should have at least 6 characters",
+      "A senha deve ter pelo menos 6 caracteres"
+    ],
+    "big_password": [
+      "The cacura name shouldn't have more than 30 characters",
+      "O nome de cacura não deve ter mais que 30 caracteres"
     ]
   }
 }

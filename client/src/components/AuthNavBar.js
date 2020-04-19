@@ -104,6 +104,10 @@ class AuthNavBar extends Component {
     });
   };
 
+  addDefaultSrc = ev => {
+    ev.target.src = "/Assets/img_load_fail.png";
+  };
+
   render() {
     const { isAuthenticated, loggedUser } = this.props.auth;
 
@@ -115,15 +119,21 @@ class AuthNavBar extends Component {
             <span>
               <strong>
                 {loggedUser ? (
-                  <div className="authnavbar-greeting-username">
-                    <Translate id="authnavbar.greeting" />{" "}
-                    <Link
-                      to={`/users/${loggedUser._id}`}
-                      className="user-link link"
-                    >
-                      {loggedUser.username}
-                    </Link>
-                  </div>
+                  <Link to={`/users/${loggedUser.username}`}>
+                    <div className="authnavbar__profile-pic-container">
+                      <img
+                        className="authnavbar__profile-pic"
+                        src={
+                          loggedUser.profile_pictures.length === 0
+                            ? "/Assets/no_profile_pic.png"
+                            : loggedUser.profile_pictures[0]
+                        }
+                        onError={this.addDefaultSrc}
+                        alt="profile pic"
+                      />
+                      <div className="authnavbar__profile-pic-filter"></div>
+                    </div>
+                  </Link>
                 ) : (
                   ""
                 )}
@@ -138,15 +148,21 @@ class AuthNavBar extends Component {
               <span>
                 <strong>
                   {loggedUser ? (
-                    <div className="authnavbar-greeting-username">
-                      <Translate id="authnavbar.greeting" />{" "}
-                      <Link
-                        to={`/users/${loggedUser._id}`}
-                        className="user-link link"
-                      >
-                        {loggedUser.username}
-                      </Link>
-                    </div>
+                    <Link to={`/users/${loggedUser.username}`}>
+                      <div className="authnavbar__profile-pic-container">
+                        <img
+                          className="authnavbar__profile-pic"
+                          src={
+                            loggedUser.profile_pictures.length === 0
+                              ? "/Assets/no_profile_pic.png"
+                              : loggedUser.profile_pictures[0]
+                          }
+                          onError={this.addDefaultSrc}
+                          alt="profile pic"
+                        />
+                        <div className="authnavbar__profile-pic-filter"></div>
+                      </div>
+                    </Link>
                   ) : (
                     ""
                   )}
