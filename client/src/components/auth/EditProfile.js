@@ -10,7 +10,7 @@ import { Alert } from "reactstrap";
 import { clearErrors } from "../../actions/errorActions";
 
 const EditProfile = ({
-  auth: { isAuthenticated, loggedUser, token },
+  auth: { isAuthenticated, loggedUser, token, editing_profile },
   error,
   editProfile,
   clearErrors
@@ -200,7 +200,15 @@ const EditProfile = ({
               <input
                 type="submit"
                 className="edit-profile-button-submit"
-                value={translate("edit_profile.submit")}
+                value={translate(
+                  `edit_profile.${
+                    editing_profile
+                      ? "editing_button"
+                      : error.msg.msg
+                      ? "try_again_button"
+                      : "submit_button"
+                  }`
+                )}
               />
             )}
           </Translate>

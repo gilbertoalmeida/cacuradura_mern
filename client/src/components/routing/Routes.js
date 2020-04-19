@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import ArticlePage from "../articles/ArticlePage";
 import AddArticlePage from "../articles/AddArticlePage";
 import UserPage from "../users/UserPage";
-import EditProfile from "../users/EditProfile";
+import EditProfile from "../auth/EditProfile";
 import NotFound from "../NotFound";
 import About from "../About";
 import PrivacyPolicy from "../PrivacyPolicy";

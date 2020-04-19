@@ -18,7 +18,13 @@ import { clearErrors } from "../../actions/errorActions";
 
 import { withLocalize, Translate } from "react-localize-redux";
 
-const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
+const RegisterModal = ({
+  error,
+  auth,
+  isAuthenticated,
+  clearErrors,
+  register
+}) => {
   const [modal, setModal] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -183,7 +189,13 @@ const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
                 </Translate>
               ) : null}
               <Button className="button-form-top submit-register" block>
-                <Translate id="registermodal.submitbutton"></Translate>
+                {auth.registering ? (
+                  <Translate id="registermodal.registering_button"></Translate>
+                ) : error.msg.msg ? (
+                  <Translate id="registermodal.try_again_button"></Translate>
+                ) : (
+                  <Translate id="registermodal.submit_button"></Translate>
+                )}
               </Button>
             </FormGroup>
           </Form>
@@ -204,13 +216,15 @@ const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
 RegisterModal.propTypes = {
   isAuthenticated: PropTypes.bool,
   error: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   register: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
+  auth: state.auth
 });
 
 export default withLocalize(
