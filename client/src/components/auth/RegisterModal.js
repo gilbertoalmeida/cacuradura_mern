@@ -88,12 +88,12 @@ const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
   const onSubmit = e => {
     e.preventDefault();
 
-    if (!username && password.length < 8) {
+    if (!username && password.length < 6) {
       setUsernameMsg("username-empty-msg");
       setPasswordMsg("password-min-msg");
     } else if (!username) {
       setUsernameMsg("username-empty-msg");
-    } else if (password.length < 8) {
+    } else if (password.length < 6) {
       setPasswordMsg("password-min-msg");
     } else {
       //Create User object

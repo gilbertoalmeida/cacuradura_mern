@@ -35,7 +35,7 @@ router.post("/register", async (req, res) => {
     });
   }
 
-  if (password.length < 8) {
+  if (password.length < 6) {
     return res.status(400).json({
       msg: "small_password"
     });
@@ -61,18 +61,19 @@ router.post("/register", async (req, res) => {
 
     newUser.password = await bcrypt.hash(password, salt);
 
-    let createdUser = await newUser.save();
+    await newUser.save();
 
     jwt.sign(
-      { _id: createdUser._id }, // payload. I am sending the user id to verify actions later
+      { _id: newUser._id }, // payload. I am sending the user id to verify actions later
       config.get("jwtSecret"),
       { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
         res.json({
           token: token,
-          _id: createdUser._id,
-          username: createdUser.username
+          _id: newUser._id,
+          username: newUser.username,
+          profile_pictures: newUser.profile_pictures
         });
       }
     );

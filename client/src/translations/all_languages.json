@@ -57,15 +57,15 @@
       "Como você será chamado por aqui"
     ],
     "password_placeholder": [
-      "Between 8 - 50 characters",
-      "Entre 8 - 50 caracteres"
+      "Between 6 - 50 characters",
+      "Entre 6 - 50 caracteres"
     ],
     "username-wrong-msg": [
       "keep it among letters, numbers, . or _",
       "use apenas letras, números, . ou _"
     ],
     "username-empty-msg": ["choose a cacura name", "escolha um nome de cacura"],
-    "password-min-msg": ["at least 8 characters", "pelo menos 8 caracteres"],
+    "password-min-msg": ["at least 6 characters", "pelo menos 6 caracteres"],
     "username-max-msg": ["max. 30 characters", "máx. 30 caracteres"],
     "password-max-msg": ["max. 50 characters", "máx. 50 caracteres"],
     "submitbutton": ["Done", "Pronto"]
@@ -234,8 +234,8 @@
       "O nome de cacura não deve ter mais que 30 caracteres"
     ],
     "small_password": [
-      "The password should have at least 8 characters",
-      "A senha deve ter pelo menos 8 caracteres"
+      "The password should have at least 6 characters",
+      "A senha deve ter pelo menos 6 caracteres"
     ],
     "big_password": [
       "The cacura name shouldn't have more than 30 characters",
