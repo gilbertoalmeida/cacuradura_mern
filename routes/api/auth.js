@@ -21,25 +21,15 @@ router.post("/register", async (req, res) => {
     });
   }
 
-  //removing white spaces around the string without notifying the user
-  //This is to avoid giving an error msg for a mistake space in the end
-  usernameTrim = username.trim().toLowerCase();
+  //removing everything that isn't a letter, number or . or _
+  // then trimming white spaces
+  usernameEdited = username
+    .replace(/[^a-zA-Z0-9_.]/gi, "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "");
 
-  //removing all white spaces in the string and showing an error message if there's any
-  let usernameWithoutSpaces = usernameTrim.replace(/\s+/g, "");
-
-  //actually this error message should be of all unwanted characters together.
-  if (usernameWithoutSpaces != usernameTrim) {
-    return res.status(400).json({
-      msg: "whitespaces_username"
-    });
-  }
-
-  if (usernameWithoutSpaces.length < 4) {
-    return res.status(400).json({
-      msg: "small_username"
-    });
-  } else if (usernameWithoutSpaces.length > 30) {
+  if (usernameEdited.length > 30) {
     return res.status(400).json({
       msg: "big_username"
     });
@@ -47,13 +37,13 @@ router.post("/register", async (req, res) => {
 
   try {
     //checking if username exists
-    let existingUser = await User.findOne({ username: usernameTrim });
+    let existingUser = await User.findOne({ username: usernameEdited });
     if (existingUser) {
       return res.status(400).json({ msg: "existing_username" });
     }
 
     const newUser = new User({
-      username: usernameTrim,
+      username: usernameEdited,
       password
     });
 

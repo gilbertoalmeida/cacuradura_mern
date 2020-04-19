@@ -57,9 +57,17 @@
       "Como você será chamado por aqui"
     ],
     "password_placeholder": [
-      "Don't make a mistake, we won't confirm it",
-      "Não erre, porque aqui não tem confirmar"
+      "Between 8 - 50 characters",
+      "Entre 8 - 50 caracteres"
     ],
+    "username-wrong-msg": [
+      "keep it among letters, numbers, . or _",
+      "use apenas letras, números, . ou _"
+    ],
+    "username-empty-msg": ["choose a cacura name", "escolha um nome de cacura"],
+    "password-min-msg": ["at least 8 characters", "pelo menos 8 caracteres"],
+    "username-max-msg": ["max. 30 characters", "máx. 30 caracteres"],
+    "password-max-msg": ["max. 50 characters", "máx. 50 caracteres"],
     "submitbutton": ["Done", "Pronto"]
   },
   "article": {
@@ -221,13 +229,9 @@
       "Choose a cacura name wihtout white spaces",
       "Escolha um nome de cacura sem espaços"
     ],
-    "small_username": [
-      "The cacura name should have at least 4 letters",
-      "O nome de cacura tem que ter pelo menos 4 letras"
-    ],
     "big_username": [
-      "The cacura name shouldn't have more than 18 letters",
-      "O nome de cacura não deve ter mais que 18 letras"
+      "The cacura name shouldn't have more than 30 characters",
+      "O nome de cacura não deve ter mais que 30 caracteres"
     ]
   }
 }
