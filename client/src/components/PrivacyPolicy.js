@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
 import { withLocalize, Translate } from "react-localize-redux";
 import RegisterModal from "./auth/RegisterModal";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const PrivacyPolicy = () => {
+const PrivacyPolicy = ({ auth }) => {
   window.scrollTo(0, 0);
   return (
     <Fragment>
@@ -14,13 +16,23 @@ const PrivacyPolicy = () => {
         </div>
         <div className="privacy-body">
           <Translate id="footer.privacy_policy_text" />
-          <div className="privacy-body__register-call-to-action">
-            <RegisterModal />
-          </div>
+          {auth.loggedUser ? null : (
+            <div className="privacy-body__register-call-to-action">
+              <RegisterModal />
+            </div>
+          )}
         </div>
       </div>
     </Fragment>
   );
 };
 
-export default withLocalize(PrivacyPolicy);
+PrivacyPolicy.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default withLocalize(connect(mapStateToProps)(PrivacyPolicy));
