@@ -20,10 +20,10 @@ import { withLocalize, Translate } from "react-localize-redux";
 
 const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
   const [modal, setModal] = useState(false);
-  const [registerForm, setRegisterForm] = useState({
-    username: "",
-    password: ""
-  });
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [usernameMsg, setUsernameMsg] = useState(null);
+  const [passwordMsg, setPasswordMsg] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
   /* putting the toggle function inside this callback hook was a recomendation of react
@@ -49,18 +49,62 @@ const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
     }
   }, [modal, isAuthenticated, toggle]);
 
-  const onChange = e => {
-    setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
+  const onChangeUsername = e => {
+    let editedUsername = e.target.value
+      .replace(/[^a-zA-Z0-9_.]/gi, "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "");
+
+    if (editedUsername !== e.target.value) {
+      setUsernameMsg("username-wrong-msg");
+    } else {
+      setUsernameMsg(null);
+    }
+
+    setUsername(editedUsername);
   };
+
+  useEffect(() => {
+    if (username.length === 30) {
+      setUsernameMsg("username-max-msg");
+    } else {
+      setUsernameMsg(null);
+    }
+  }, [username]);
+
+  const onChangePassword = e => {
+    setPassword(e.target.value);
+  };
+
+  useEffect(() => {
+    if (password.length === 50) {
+      setPasswordMsg("password-max-msg");
+    } else {
+      setPasswordMsg(null);
+    }
+  }, [password]);
 
   const onSubmit = e => {
     e.preventDefault();
 
-    //Create User object
-    const newUser = registerForm;
+    if (!username && password.length < 8) {
+      setUsernameMsg("username-empty-msg");
+      setPasswordMsg("password-min-msg");
+    } else if (!username) {
+      setUsernameMsg("username-empty-msg");
+    } else if (password.length < 8) {
+      setPasswordMsg("password-min-msg");
+    } else {
+      //Create User object
+      const newUser = {
+        username,
+        password
+      };
 
-    //attempt to register
-    register(newUser);
+      //attempt to register
+      register(newUser);
+    }
   };
 
   return (
@@ -82,46 +126,57 @@ const RegisterModal = ({ error, isAuthenticated, clearErrors, register }) => {
           </div>
           <Form onSubmit={onSubmit}>
             <FormGroup>
-              <Label for="username">
+              <Label className="mt-2" for="username">
                 <Translate id="registermodal.username"></Translate>
               </Label>
               <Translate>
                 {({ translate }) => (
                   <Input
+                    style={{ borderColor: usernameMsg ? "#f02d0a" : "#05050a" }}
                     type="text"
                     name="username"
-                    id="username"
+                    value={username}
                     maxLength="30"
                     placeholder={translate(
                       "registermodal.username_placeholder"
                     )}
-                    className="mb-3"
-                    onChange={onChange}
+                    onChange={onChangeUsername}
                   />
                 )}
               </Translate>
+              {usernameMsg ? (
+                <div className="input-msg">
+                  <Translate id={`registermodal.${usernameMsg}`} />
+                </div>
+              ) : null}
 
-              <Label for="password">
+              <Label className="mt-4" for="password">
                 <Translate id="registermodal.password"></Translate>
               </Label>
               <Translate>
                 {({ translate }) => (
                   <Input
+                    style={{ borderColor: passwordMsg ? "#f02d0a" : "#05050a" }}
                     type="password"
                     name="password"
-                    id="password"
                     placeholder={translate(
                       "registermodal.password_placeholder"
                     )}
-                    className="mb-3"
-                    onChange={onChange}
+                    maxLength="50"
+                    onChange={onChangePassword}
                   />
                 )}
               </Translate>
+              {passwordMsg ? (
+                <div className="input-msg">
+                  <Translate id={`registermodal.${passwordMsg}`} />
+                </div>
+              ) : null}
+
               {errorMsg ? (
                 <Translate>
                   {({ translate }) => (
-                    <Alert color="danger">
+                    <Alert className="mt-4" color="danger">
                       {translate(`error_messages.${errorMsg}`)}
                     </Alert>
                   )}
