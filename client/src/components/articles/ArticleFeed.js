@@ -28,7 +28,10 @@ const ArticleFeed = ({ articles }) => {
               <time dateTime={date}>
                 §}> {prettyDateNoHours(date)},{" "}
                 <Translate id="article.by"></Translate>{" "}
-                <Link to={`/users/${author._id}`} className="user-link link">
+                <Link
+                  to={`/users/${author.username}`}
+                  className="user-link link"
+                >
                   {author.username}
                 </Link>
               </time>

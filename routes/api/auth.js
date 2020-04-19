@@ -11,47 +11,78 @@ const User = require("../../models/User");
 // @route   POST api/users
 // @desc    Register new user
 // @access  Public
-router.post("/register", (req, res) => {
+
+router.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
-  //Simple validation
   if (!username || !password) {
     return res.status(400).json({
       msg: "missing_register_fields" //this is now not the error message itself, but part of the id of the translation
     });
   }
 
-  //Check for existing user
-  User.findOne({ username: username }).then(user => {
-    if (user) return res.status(400).json({ msg: "existing_username" }); //check if its safe to say whats in the translation file
+  //removing everything that isn't a letter, number or . or _
+  // then trimming white spaces
+  usernameEdited = username
+    .replace(/[^a-zA-Z0-9_.]/gi, "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "");
+
+  if (usernameEdited.length > 30) {
+    return res.status(400).json({
+      msg: "big_username"
+    });
+  }
+
+  if (password.length < 6) {
+    return res.status(400).json({
+      msg: "small_password"
+    });
+  } else if (password.length > 50) {
+    return res.status(400).json({
+      msg: "big_password"
+    });
+  }
+
+  try {
+    //checking if username exists
+    let existingUser = await User.findOne({ username: usernameEdited });
+    if (existingUser) {
+      return res.status(400).json({ msg: "existing_username" });
+    }
+
     const newUser = new User({
-      username,
+      username: usernameEdited,
       password
     });
 
-    //Create salt and hash
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
+    const salt = await bcrypt.genSalt(10);
+
+    newUser.password = await bcrypt.hash(password, salt);
+
+    await newUser.save();
+
+    jwt.sign(
+      { _id: newUser._id }, // payload. I am sending the user id to verify actions later
+      config.get("jwtSecret"),
+      { expiresIn: 360000 },
+      (err, token) => {
         if (err) throw err;
-        newUser.password = hash;
-        newUser.save().then(user => {
-          jwt.sign(
-            { _id: user._id }, // payload. I am sending the user id to verify actions later
-            config.get("jwtSecret"),
-            { expiresIn: 360000 },
-            (err, token) => {
-              if (err) throw err;
-              res.json({
-                token: token,
-                _id: user._id,
-                username: user.username
-              });
-            }
-          );
+        res.json({
+          token: token,
+          _id: newUser._id,
+          username: newUser.username,
+          profile_pictures: newUser.profile_pictures
         });
-      });
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({
+      msg: "server_error"
     });
-  });
+  }
 });
 
 // @route   POST api/auth
@@ -83,8 +114,7 @@ router.post("/", (req, res) => {
             token: token,
             _id: loggedUser._id,
             username: loggedUser.username,
-            profile_pictures: loggedUser.profile_pictures,
-            email: loggedUser.email
+            profile_pictures: loggedUser.profile_pictures
           });
         }
       );
@@ -108,19 +138,33 @@ router.get("/user", auth, (req, res) => {
 router.post("/edit", auth, async (req, res) => {
   const { id, username, profilePicsArray } = req.body;
 
-  //Profile Object
-  const profileFields = {
-    username,
-    profile_pictures: profilePicsArray
-  };
+  //removing everything that isn't a letter, number or . or _
+  // then trimming white spaces
+  usernameEdited = username
+    .replace(/[^a-zA-Z0-9_.]/gi, "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "");
+
+  if (usernameEdited.length > 30) {
+    return res.status(400).json({
+      msg: "big_username"
+    });
+  }
 
   //check if the username exists
   try {
-    let existingUser = await User.findOne({ username: username });
+    let existingUser = await User.findOne({ username: usernameEdited });
     if (existingUser && existingUser._id != id) {
       return res.status(400).json({ msg: "existing_username" }); //check if its safe to say whats in the translation file
     }
     try {
+      //Profile Object
+      const profileFields = {
+        username: usernameEdited,
+        profile_pictures: profilePicsArray
+      };
+
       let foundAndEditedProfile = await User.findOneAndUpdate(
         { _id: id },
         profileFields,
@@ -133,7 +177,9 @@ router.post("/edit", auth, async (req, res) => {
     }
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).json({
+      msg: "server_error"
+    });
   }
 });
 

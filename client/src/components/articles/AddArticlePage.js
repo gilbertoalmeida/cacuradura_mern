@@ -185,7 +185,7 @@ const AddArticlePage = ({
                     <p>
                       <Translate id="article.by" />{" "}
                       <Link
-                        to={`/users/${loggedUser._id}`}
+                        to={`/users/${loggedUser.username}`}
                         className="user-link link"
                       >
                         {loggedUser.username}
