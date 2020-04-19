@@ -1,16 +1,6 @@
-import React, { Component, Fragment } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  Container,
-  Alert,
-  Button
-} from "reactstrap";
-import { connect } from "react-redux"; //access the state
+import React, { Component } from "react";
+import { Alert, Button } from "reactstrap";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -111,136 +101,101 @@ class AuthNavBar extends Component {
   render() {
     const { isAuthenticated, loggedUser } = this.props.auth;
 
-    const authLinks = (
-      <Fragment>
-        <Nav className="ml-auto" navbar>
-          <NavItem className="greeting-outside-collapse">
-            {/* Using two greetings bc I can't make the greeting be outside of the collape, but still be next to the buttons. So I am using two types and hidding each of them depending if the collapse happened or not */}
-            <span>
-              <strong>
-                {loggedUser ? (
-                  <Link to={`/users/${loggedUser.username}`}>
-                    <div className="authnavbar__profile-pic-container">
-                      <img
-                        className="authnavbar__profile-pic"
-                        src={
-                          loggedUser.profile_pictures.length === 0
-                            ? "/Assets/no_profile_pic.png"
-                            : loggedUser.profile_pictures[0]
-                        }
-                        onError={this.addDefaultSrc}
-                        alt="profile pic"
-                      />
-                      <div className="authnavbar__profile-pic-filter"></div>
-                    </div>
-                  </Link>
-                ) : (
-                  ""
-                )}
-              </strong>
-            </span>
-          </NavItem>
-        </Nav>
-        <NavbarToggler onClick={this.toggle}></NavbarToggler>
-        <Collapse isOpen={this.state.isOpen} onClick={this.toggle} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavItem className="greeting-inside-collapse">
-              <span>
-                <strong>
-                  {loggedUser ? (
-                    <Link to={`/users/${loggedUser.username}`}>
-                      <div className="authnavbar__profile-pic-container">
-                        <img
-                          className="authnavbar__profile-pic"
-                          src={
-                            loggedUser.profile_pictures.length === 0
-                              ? "/Assets/no_profile_pic.png"
-                              : loggedUser.profile_pictures[0]
-                          }
-                          onError={this.addDefaultSrc}
-                          alt="profile pic"
-                        />
-                        <div className="authnavbar__profile-pic-filter"></div>
-                      </div>
-                    </Link>
-                  ) : (
-                    ""
-                  )}
-                </strong>
-              </span>
-            </NavItem>
-            <NavItem>
-              <Link to={`/articles/addarticle`}>
-                <Button className="button-form-top post-article">
-                  <Translate id="authnavbar.postarticlebutton" />
-                </Button>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Logout />
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Fragment>
-    );
+    const authLinks = loggedUser ? (
+      <div className="authnavbar__logged-content">
+        <Link to={`/articles/addarticle`}>
+          <Button className="button-form-top post-article">
+            <Translate id="authnavbar.postarticlebutton" />
+          </Button>
+        </Link>
+        <div
+          onClick={this.toggle}
+          className="authnavbar__profile-pic-container"
+        >
+          <img
+            className="authnavbar__profile-pic"
+            src={
+              loggedUser.profile_pictures.length === 0
+                ? "/Assets/no_profile_pic.png"
+                : loggedUser.profile_pictures[0]
+            }
+            onError={this.addDefaultSrc}
+            alt="profile pic"
+          />
+          <div className="authnavbar__profile-pic-filter"></div>
+        </div>
+        <div
+          className={`authnavbar__profile-menu ${
+            this.state.isOpen ? "profile-menu-active" : ""
+          }`}
+        >
+          <div className="authnavbar__profile-menu-content">
+            <Link to={`/users/${loggedUser.username}`}>
+              <Button className="button-form-top">View profile</Button>
+            </Link>
+            <Button className="button-form-top">Edit profile</Button>
+            <Logout />
+          </div>
+        </div>
+      </div>
+    ) : null;
 
     const guestLinks = (
-      <Fragment>
-        <NavbarToggler onClick={this.toggle}></NavbarToggler>
-        <Collapse isOpen={this.state.isOpen} className="ml-auto" navbar>
-          <Nav className="ml-auto justify-content-end" navbar>
-            <NavItem>
-              <LoginForm />
-            </NavItem>
-            <NavItem>
-              <RegisterModal />
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Fragment>
+      <div>
+        <div
+          className={`authnavbar__login-register-wrapper ${
+            this.state.isOpen ? "authnavbar__hamb-content-active" : ""
+          }`}
+        >
+          <div className="authnavbar__login-register-wrapper-content">
+            <LoginForm />
+            <RegisterModal />
+          </div>
+          <div className="authnavbar__alerts">
+            {this.state.msg ? (
+              <Translate>
+                {({ translate }) => (
+                  <Alert color="danger">
+                    {translate(`error_messages.${this.state.msg}`)}
+                  </Alert>
+                )}
+              </Translate>
+            ) : null}{" "}
+          </div>
+        </div>
+        <div
+          onClick={this.toggle}
+          className={`authnavbar__hamburger-menu ${
+            this.state.isOpen ? "toggled" : ""
+          }`}
+        >
+          <div className="line1"></div>
+          <div className="line2"></div>
+          <div className="line3"></div>
+        </div>
+      </div>
     );
 
     return (
-      <div>
-        <Navbar
-          fixed="top"
-          style={{ backgroundColor: "#c42f1570", flexFlow: "wrap" }}
-          expand="md"
-          className="navbar-dark"
-        >
-          <div className="authnavbar-main-box-element">
-            <div className="navbar-wrapper">
-              <div className="navbar-wrapper-brand-lang">
-                <NavbarBrand>
-                  <Link to="/">
-                    <img
-                      alt="favicon of the website"
-                      src="/NavBarBrand.png"
-                      width="32"
-                      height="32"
-                      className="d-inline-block align-top"
-                    />
-                  </Link>
-                </NavbarBrand>
-                <LanguageToggle />
-              </div>
-              {isAuthenticated ? authLinks : guestLinks}
+      <nav className="authnavbar-top-fixer">
+        <div className="authnavbar-main-box-element">
+          <div className="authnavbar__main-content">
+            <div className="authnavbar__favi-brand-wrapper">
+              <Link to="/">
+                <img
+                  alt="favicon of the website"
+                  src="/NavBarBrand.png"
+                  width="32"
+                  height="32"
+                  className="d-inline-block align-top"
+                />
+              </Link>
+              <LanguageToggle />
             </div>
-            <Container style={{ display: "block" }}>
-              {this.state.msg ? (
-                <Translate>
-                  {({ translate }) => (
-                    <Alert color="danger">
-                      {translate(`error_messages.${this.state.msg}`)}
-                    </Alert>
-                  )}
-                </Translate>
-              ) : null}{" "}
-              {/* operator to show the alert only if there is an error */}
-            </Container>
+            {isAuthenticated ? authLinks : guestLinks}
           </div>
-        </Navbar>
-      </div>
+        </div>
+      </nav>
     );
   }
 }
