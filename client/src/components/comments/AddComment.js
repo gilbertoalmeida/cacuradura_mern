@@ -20,6 +20,12 @@ const AddComment = ({
     clearErrors();
   }, [clearErrors, loggedUser]);
 
+  useEffect(() => {
+    if (comment.posting_success) {
+      setCommentValue("");
+    }
+  }, [comment.posting_success]);
+
   const onSubmit = e => {
     e.preventDefault();
 
@@ -34,7 +40,6 @@ const AddComment = ({
     };
 
     addComment(newComment);
-    setCommentValue("");
   };
 
   return (
