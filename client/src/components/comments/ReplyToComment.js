@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
 import { withLocalize, Translate } from "react-localize-redux";
 import { addReply } from "../../actions/commentActions";
@@ -16,6 +16,14 @@ const ReplyToComment = ({
 }) => {
   const [replyValue, setReplyValue] = useState("");
 
+  useEffect(() => {
+    if (comment.replying_success) {
+      setReplyValue("");
+
+      setCommentIDWithActiveReplies(commentID);
+    }
+  }, [comment.replying_success]);
+
   const onSubmit = e => {
     e.preventDefault();
 
@@ -29,8 +37,6 @@ const ReplyToComment = ({
     };
 
     addReply(newReply, commentID, articleID);
-    setReplyValue("");
-    setCommentIDWithActiveReplies(commentID);
   };
 
   return loggedUser ? (
