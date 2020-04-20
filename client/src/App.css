@@ -1215,11 +1215,11 @@ header h2 {
   background-color: #c42f1570;
   max-height: 0;
   overflow: hidden;
-  transition: all 0.7s ease;
+  transition: all 0.3s ease;
 }
 
 .profile-menu-active {
-  max-height: 500px;
+  max-height: 110px;
 }
 
 .authnavbar__profile-menu-content {
@@ -1255,6 +1255,7 @@ header h2 {
 .authnavbar__hamburger-menu {
   display: none;
   padding: 2px 0;
+  cursor: pointer;
 }
 
 .authnavbar__hamburger-menu div {
@@ -1291,7 +1292,7 @@ header h2 {
     background-color: #c42f1570;
     max-height: 0;
     overflow: hidden;
-    transition: all 0.7s ease;
+    transition: all 0.3s ease;
   }
 
   .authnavbar__login-register-wrapper-content {
@@ -1301,7 +1302,7 @@ header h2 {
   }
 
   .authnavbar__hamb-content-active {
-    max-height: 500px;
+    max-height: 165px;
   }
 
   .authnavbar__login-register-wrapper .form-top,
@@ -1425,6 +1426,7 @@ header h2 {
   height: 38px; /* this value is the height of the buttons of the AuthNavBar */
   width: 38px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .authnavbar__profile-pic {
