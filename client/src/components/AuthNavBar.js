@@ -54,6 +54,10 @@ class AuthNavBar extends Component {
     msg: null
   };
 
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClick, false);
+  }
+
   static propTypes = {
     auth: PropTypes.object.isRequired,
     error: PropTypes.object.isRequired
@@ -86,7 +90,18 @@ class AuthNavBar extends Component {
 
   componentWillUnmount() {
     clearInterval(this.timer);
+    document.removeEventListener("mousedown", this.handleClick, false);
   }
+
+  handleClick = e => {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+
+    if (this.state.isOpen) {
+      this.toggle();
+    }
+  };
 
   toggle = () => {
     this.setState({
@@ -131,9 +146,15 @@ class AuthNavBar extends Component {
         >
           <div className="authnavbar__profile-menu-content">
             <Link to={`/users/${loggedUser.username}`}>
-              <Button className="button-form-top">View profile</Button>
+              <Button onClick={this.toggle} className="button-form-top">
+                View profile
+              </Button>
             </Link>
-            <Button className="button-form-top">Edit profile</Button>
+            <Link to={`/users/edit_profile`}>
+              <Button onClick={this.toggle} className="button-form-top">
+                Edit profile
+              </Button>
+            </Link>
             <Logout />
           </div>
         </div>
@@ -177,7 +198,7 @@ class AuthNavBar extends Component {
     );
 
     return (
-      <nav className="authnavbar-top-fixer">
+      <nav ref={node => (this.node = node)} className="authnavbar-top-fixer">
         <div className="authnavbar-main-box-element">
           <div className="authnavbar__main-content">
             <div className="authnavbar__favi-brand-wrapper">
