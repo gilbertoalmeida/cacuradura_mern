@@ -19,6 +19,12 @@ class LoginForm extends Component {
     login: PropTypes.func.isRequired
   };
 
+  componentDidMount() {
+    if (this.props.isOpen) {
+      this.props.toggle();
+    }
+  }
+
   componentDidUpdate(prevProps) {
     const { error } = this.props; //extracting the errors imported from the map function below that transforms the state into a prop
     if (error !== prevProps.error) {
