@@ -2296,7 +2296,8 @@ header h2 {
  .field-form-top::-webkit-input-placeholder,
  .rdw-embedded-modal-link-input::-webkit-input-placeholder,
  .add-comment-form__textarea::-webkit-input-placeholder,
- .add-reply-form__input::-webkit-input-placeholder /* Chrome/Opera/Safari */
+ .add-reply-form__input::-webkit-input-placeholder,
+ .edit-profile-form-input::-webkit-input-placeholder /* Chrome/Opera/Safari */
   /* Chrome/Opera/Safari */
  {
   color: #05050a;
@@ -2307,7 +2308,8 @@ header h2 {
  .field-form-top::-moz-placeholder,
  .rdw-embedded-modal-link-input::-moz-placeholder,
  .add-comment-form__textarea::-moz-placeholder,
- .add-reply-form__input::-moz-placeholder /* Firefox 19+ */
+ .add-reply-form__input::-moz-placeholder,
+ .edit-profile-form-input::-moz-placeholder /* Firefox 19+ */
   /* Firefox 19+ */
  {
   color: #05050a;
@@ -2318,7 +2320,8 @@ header h2 {
  .field-form-top:-ms-input-placeholder,
  .rdw-embedded-modal-link-input:-ms-input-placeholder,
  .add-comment-form__textarea:-ms-input-placeholder,
- .add-reply-form__input:-ms-input-placeholder /* IE 10+ */
+ .add-reply-form__input:-ms-input-placeholder,
+ .edit-profile-form-input:-ms-input-placeholder /* IE 10+ */
   /* IE 10+ */
  {
   color: #05050a;
@@ -2329,7 +2332,8 @@ header h2 {
  .field-form-top:-moz-placeholder,
  .rdw-embedded-modal-link-input:-moz-placeholder,
  .add-comment-form__textarea:-moz-placeholder,
- .add-reply-form__input:-moz-placeholder /* Firefox 18- */
+ .add-reply-form__input:-moz-placeholder,
+ .edit-profile-form-input:-moz-placeholder /* Firefox 18- */
   /* Firefox 18- */
  {
   color: #05050a;
@@ -2442,6 +2446,36 @@ header h2 {
   .post-article-title .title-textarea-with-img:-moz-placeholder {
     font-size: 5.6vw;
   }
+}
+
+/* placeholders without size */
+
+.add-picture-input::-webkit-input-placeholder /* Chrome/Opera/Safari */
+  /* Chrome/Opera/Safari */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+}
+
+.add-picture-input::-moz-placeholder /* Firefox 19+ */
+  /* Firefox 19+ */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+}
+
+.add-picture-input:-ms-input-placeholder /* IE 10+ */
+  /* IE 10+ */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+}
+
+.add-picture-input:-moz-placeholder /* Firefox 18- */
+  /* Firefox 18- */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
 }
 
 /* User profile */
