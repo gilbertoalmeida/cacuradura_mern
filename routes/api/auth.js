@@ -138,6 +138,12 @@ router.get("/user", auth, (req, res) => {
 router.post("/edit", auth, async (req, res) => {
   const { id, username, profilePicsArray } = req.body;
 
+  if (!username) {
+    return res.status(400).json({
+      msg: "missing_username" //this is now not the error message itself, but part of the id of the translation
+    });
+  }
+
   //removing everything that isn't a letter, number or . or _
   // then trimming white spaces
   usernameEdited = username
