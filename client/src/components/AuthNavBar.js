@@ -155,7 +155,7 @@ class AuthNavBar extends Component {
                 Edit profile
               </Button>
             </Link>
-            <Logout />
+            <Logout toggle={this.toggle} isOpen={this.state.isOpen} />
           </div>
         </div>
       </div>
@@ -169,7 +169,7 @@ class AuthNavBar extends Component {
           }`}
         >
           <div className="authnavbar__login-register-wrapper-content">
-            <LoginForm />
+            <LoginForm toggle={this.toggle} isOpen={this.state.isOpen} />
             <RegisterModal />
           </div>
           <div className="authnavbar__alerts">

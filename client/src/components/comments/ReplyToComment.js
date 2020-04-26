@@ -22,7 +22,7 @@ const ReplyToComment = ({
 
       setCommentIDWithActiveReplies(commentID);
     }
-  }, [comment.replying_success]);
+  }, [comment.replying_success, setCommentIDWithActiveReplies, commentID]);
 
   const onSubmit = e => {
     e.preventDefault();
