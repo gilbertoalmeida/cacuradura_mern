@@ -248,6 +248,10 @@
     "big_password": [
       "The cacura name shouldn't have more than 30 characters",
       "O nome de cacura não deve ter mais que 30 caracteres"
+    ],
+    "missing_username": [
+      "Please choose a cacura name",
+      "Escolha um nome de cacura"
     ]
   }
 }

@@ -2924,6 +2924,7 @@ header h2 {
   outline: none;
   background-color: #05050a !important;
   color: #faa9cb !important;
+  margin-top: 5px;
 }
 
 /* Footer */
