@@ -42,7 +42,7 @@ class LoginForm extends Component {
     const { username, password } = this.state; //from the form
 
     const user = {
-      username,
+      username: username.trim(),
       password
     };
 
