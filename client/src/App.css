@@ -238,10 +238,10 @@ header h2 {
     left bottom,
     left top,
     from(#05050a),
-    to(#c42f1500)
+    to(transparent)
   );
-  background-image: -o-linear-gradient(bottom, #05050a, #c42f1500);
-  background-image: linear-gradient(to top, #05050a, #c42f1500);
+  background-image: -o-linear-gradient(bottom, #05050a, transparent);
+  background-image: linear-gradient(to top, #05050a, transparent);
   z-index: 2;
 }
 
@@ -365,10 +365,10 @@ header h2 {
     left top,
     left bottom,
     from(#05050a),
-    to(#05050a00)
+    to(transparent)
   );
-  background-image: -o-linear-gradient(#05050a, #05050a00);
-  background-image: linear-gradient(#05050a, #05050a00);
+  background-image: -o-linear-gradient(#05050a, transparent);
+  background-image: linear-gradient(#05050a, transparent);
   z-index: 2;
 }
 
@@ -410,10 +410,10 @@ header h2 {
     left top,
     left bottom,
     from(#05050a),
-    to(#05050a00)
+    to(transparent)
   );
-  background-image: -o-linear-gradient(#05050a, #05050a00);
-  background-image: linear-gradient(#05050a, #05050a00);
+  background-image: -o-linear-gradient(#05050a, transparent);
+  background-image: linear-gradient(#05050a, transparent);
   z-index: 2;
 }
 
@@ -1302,7 +1302,7 @@ header h2 {
   }
 
   .authnavbar__hamb-content-active {
-    max-height: 165px;
+    max-height: 230px;
   }
 
   .authnavbar__login-register-wrapper .form-top,
@@ -1649,10 +1649,10 @@ header h2 {
     left top,
     left bottom,
     from(#05050a),
-    to(#05050a00)
+    to(transparent)
   );
-  background-image: -o-linear-gradient(#05050a, #05050a00);
-  background-image: linear-gradient(#05050a, #05050a00);
+  background-image: -o-linear-gradient(#05050a, transparent);
+  background-image: linear-gradient(#05050a, transparent);
   z-index: 2;
 }
 
@@ -2296,7 +2296,8 @@ header h2 {
  .field-form-top::-webkit-input-placeholder,
  .rdw-embedded-modal-link-input::-webkit-input-placeholder,
  .add-comment-form__textarea::-webkit-input-placeholder,
- .add-reply-form__input::-webkit-input-placeholder /* Chrome/Opera/Safari */
+ .add-reply-form__input::-webkit-input-placeholder,
+ .edit-profile-form-input::-webkit-input-placeholder /* Chrome/Opera/Safari */
   /* Chrome/Opera/Safari */
  {
   color: #05050a;
@@ -2307,7 +2308,8 @@ header h2 {
  .field-form-top::-moz-placeholder,
  .rdw-embedded-modal-link-input::-moz-placeholder,
  .add-comment-form__textarea::-moz-placeholder,
- .add-reply-form__input::-moz-placeholder /* Firefox 19+ */
+ .add-reply-form__input::-moz-placeholder,
+ .edit-profile-form-input::-moz-placeholder /* Firefox 19+ */
   /* Firefox 19+ */
  {
   color: #05050a;
@@ -2318,7 +2320,8 @@ header h2 {
  .field-form-top:-ms-input-placeholder,
  .rdw-embedded-modal-link-input:-ms-input-placeholder,
  .add-comment-form__textarea:-ms-input-placeholder,
- .add-reply-form__input:-ms-input-placeholder /* IE 10+ */
+ .add-reply-form__input:-ms-input-placeholder,
+ .edit-profile-form-input:-ms-input-placeholder /* IE 10+ */
   /* IE 10+ */
  {
   color: #05050a;
@@ -2329,7 +2332,8 @@ header h2 {
  .field-form-top:-moz-placeholder,
  .rdw-embedded-modal-link-input:-moz-placeholder,
  .add-comment-form__textarea:-moz-placeholder,
- .add-reply-form__input:-moz-placeholder /* Firefox 18- */
+ .add-reply-form__input:-moz-placeholder,
+ .edit-profile-form-input:-moz-placeholder /* Firefox 18- */
   /* Firefox 18- */
  {
   color: #05050a;
@@ -2444,6 +2448,36 @@ header h2 {
   }
 }
 
+/* placeholders without size */
+
+.add-picture-input::-webkit-input-placeholder /* Chrome/Opera/Safari */
+  /* Chrome/Opera/Safari */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+}
+
+.add-picture-input::-moz-placeholder /* Firefox 19+ */
+  /* Firefox 19+ */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+}
+
+.add-picture-input:-ms-input-placeholder /* IE 10+ */
+  /* IE 10+ */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+}
+
+.add-picture-input:-moz-placeholder /* Firefox 18- */
+  /* Firefox 18- */
+ {
+  color: #05050a;
+  font-family: "Rokkitt", serif;
+}
+
 /* User profile */
 
 .user-profile-main-box-element {
@@ -2506,11 +2540,11 @@ header h2 {
     linear,
     left top,
     left bottom,
-    from(#05050a00),
+    from(transparent),
     to(#05050a)
   );
-  background-image: -o-linear-gradient(#05050a00, #05050a);
-  background-image: linear-gradient(#05050a00, #05050a5d);
+  background-image: -o-linear-gradient(transparent, #05050a);
+  background-image: linear-gradient(transparent, #05050a5d);
 }
 
 .profile-pic-nav-arrows {
@@ -2924,6 +2958,7 @@ header h2 {
   outline: none;
   background-color: #05050a !important;
   color: #faa9cb !important;
+  margin-top: 5px;
 }
 
 /* Footer */

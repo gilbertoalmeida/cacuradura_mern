@@ -17,6 +17,12 @@ class Logout extends Component {
     this.props.logout();
   };
 
+  componentDidMount() {
+    if (this.props.isOpen) {
+      this.props.toggle();
+    }
+  }
+
   render() {
     return (
       <Fragment>
