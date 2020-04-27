@@ -3416,7 +3416,6 @@ header h2 {
 .please-login__login-form *,
 .please-login__login-form button:active,
 .please-login__login-form button:hover {
-  width: 200px;
   margin: auto;
   margin-bottom: 10px;
 }
@@ -3429,7 +3428,7 @@ header h2 {
 .please-login__register-call-to-action button,
 .please-login__register-call-to-action button:hover,
 .please-login__register-call-to-action button:active {
-  padding: 8px 64px;
+  padding: 8px 0;
   font-size: 15px;
   margin-left: 0;
 }

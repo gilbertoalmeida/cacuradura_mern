@@ -45,6 +45,8 @@ const EditArticlePage = ({
     if (article) {
       let contentState = stateFromHTML(article.body);
       setEditorState(EditorState.createWithContent(contentState));
+      setArticleTitle(article.title);
+      setCoverImg(article.coverImg);
     }
   }, [article]);
 
@@ -181,7 +183,7 @@ const EditArticlePage = ({
                       <textarea
                         type="text"
                         name="title"
-                        id="title"
+                        value={articleTitle}
                         placeholder={translate("add_article_page.title")}
                         onChange={e => {
                           setArticleTitle(e.target.value);
@@ -207,7 +209,10 @@ const EditArticlePage = ({
                   </time>
                 </div>
               </div>
-              <ChooseCoverImgModal coverImgInState={coverImgInState} />
+              <ChooseCoverImgModal
+                coverImgInState={coverImgInState}
+                coverImg={coverImg}
+              />
             </div>
 
             <Translate>
