@@ -65,6 +65,9 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
             </time>
           </div>
         </div>
+        <Link to={`/articles/edit-article/${article._id}`}>
+          <button>Edit</button>
+        </Link>
         <div className="article-body">{ReactHtmlParser(article.body)}</div>
         <CommentsSection articleID={match.params.id} match={match} />
       </div>

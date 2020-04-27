@@ -8,6 +8,7 @@
     "core-js": "^3.4.2",
     "draft-js": "^0.10.5",
     "draft-js-export-html": "^1.4.1",
+    "draft-js-import-html": "^1.4.1",
     "jquery": "^3.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

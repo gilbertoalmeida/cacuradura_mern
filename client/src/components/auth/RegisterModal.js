@@ -203,7 +203,7 @@ const RegisterModal = ({
             onClick={toggle}
             className="register-modal__body__privicy_policy"
           >
-            <Link to="/privacy_policy">
+            <Link to="/privacy-policy">
               <Translate id="general.privacy_policy" />
             </Link>
           </div>
