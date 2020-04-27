@@ -4,7 +4,7 @@ import LoginForm from "./auth/LoginForm";
 import { Link } from "react-router-dom";
 import RegisterModal from "./auth/RegisterModal";
 
-const PrivacyPolicy = () => {
+const PleaseLogin = () => {
   window.scrollTo(0, 0);
   return (
     <Fragment>
@@ -22,7 +22,7 @@ const PrivacyPolicy = () => {
           <div className="please-login__register-call-to-action">
             <RegisterModal />
             <div className="please-login__privicy_policy">
-              <Link to="/privacy_policy">
+              <Link to="/privacy-policy">
                 <Translate id="general.privacy_policy" />
               </Link>
             </div>
@@ -33,4 +33,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default withLocalize(PrivacyPolicy);
+export default withLocalize(PleaseLogin);

@@ -57,7 +57,7 @@ const Footer = ({ auth: { loggedUser } }) => {
         </div>
         <div className="footer-container__links">
           <div className="footer-container__links__privacy-policy">
-            <Link to="/privacy_policy">
+            <Link to="/privacy-policy">
               <Translate id="footer.privacy_policy" />
             </Link>
           </div>
