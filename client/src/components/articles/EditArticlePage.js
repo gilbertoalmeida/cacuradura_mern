@@ -3,11 +3,12 @@ import { Button, Form, FormGroup, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
-import { addArticle } from "../../actions/articleActions";
+import { getArticle, editArticle } from "../../actions/articleActions";
 import { clearErrors } from "../../actions/errorActions";
 import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { stateToHTML } from "draft-js-export-html";
+import { stateFromHTML } from "draft-js-import-html";
 import ChooseCoverImgModal from "./ChooseCoverImgModal";
 import {
   prettyDateNoHours,
@@ -24,19 +25,40 @@ import LoadingArticlePage from "./LoadingArticlePage";
 
 let resizeEventListener = null;
 
-const AddArticlePage = ({
+const EditArticlePage = ({
   error,
-  chosenLanguage,
   auth: { isLoading: authLoading, loggedUser, isAuthenticated },
-  article: { loading: articleLoading, posting, posting_failed },
-  addArticle,
-  clearErrors
+  article: {
+    loading: articleLoading,
+    article,
+    posting,
+    posting_failed,
+    author
+  },
+  getArticle,
+  editArticle,
+  clearErrors,
+  match
 }) => {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [editorState, setEditorState] = useState("");
   const [articleTitle, setArticleTitle] = useState("");
   const [coverImg, setCoverImg] = useState("");
   const [coverImgLoading, setCoverImgLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    getArticle(match.params.id);
+    window.scrollTo(0, 0);
+  }, [getArticle, match.params.id]);
+
+  useEffect(() => {
+    if (article) {
+      let contentState = stateFromHTML(article.body);
+      setEditorState(EditorState.createWithContent(contentState));
+      setArticleTitle(article.title);
+      setCoverImg(article.coverImg);
+    }
+  }, [article]);
 
   useEffect(() => {
     clearErrors();
@@ -59,6 +81,27 @@ const AddArticlePage = ({
     });
   }
 
+  /* this useEffect has [] to run on mount, this doesn't mean that the textarea is painted, tho. 
+  So, first the effect removes previous textareas that might be there from previous renders of 
+  this or other component. then it calls a function that repeats itself usingrequestAnimationFrame 
+  until the textarea is painted, and only then resizes it */
+  useEffect(() => {
+    if (document.querySelector("textarea")) {
+      document.querySelector("textarea").remove();
+    }
+
+    const waitingForTextarea = () => {
+      let textareaTitulo = document.querySelector("textarea");
+
+      if (!textareaTitulo) {
+        window.requestAnimationFrame(waitingForTextarea);
+      } else {
+        resizeTitleTextarea(textareaTitulo);
+      }
+    };
+    waitingForTextarea();
+  }, []);
+
   useEffect(() => {
     let textareaTitulo = document.querySelector("textarea");
     resizeTitleTextarea(textareaTitulo);
@@ -79,20 +122,13 @@ const AddArticlePage = ({
     const contentState = editorState.getCurrentContent();
     const body = stateToHTML(contentState);
 
-    //Create Article object
-    const newArticle = {
-      title: articleTitle,
+    editArticle(
+      articleTitle,
       body,
       coverImg,
-      language: chosenLanguage,
-      author: {
-        username: loggedUser.username || "cacura não logada",
-        _id: loggedUser._id || "cacura não logada"
-      }
-    };
-
-    //send the article
-    addArticle(newArticle);
+      match.params.id,
+      article.author.username
+    );
 
     /* CODE MOVED. This redirect code was moved to the axios request at articleActions. To make it wait for ADD_ARTICLE_SUCCESS
     this.props.history.push(`/users/${this.props.user._id}`);
@@ -140,7 +176,7 @@ const AddArticlePage = ({
 
   return articleLoading || authLoading ? (
     <LoadingArticlePage />
-  ) : !isAuthenticated ? (
+  ) : !isAuthenticated || article.author._id !== loggedUser._id ? (
     <PleaseLogin />
   ) : (
     <div>
@@ -174,7 +210,7 @@ const AddArticlePage = ({
                       <textarea
                         type="text"
                         name="title"
-                        id="title"
+                        value={articleTitle}
                         placeholder={translate("add_article_page.title")}
                         onChange={e => {
                           setArticleTitle(e.target.value);
@@ -187,7 +223,13 @@ const AddArticlePage = ({
                     )}
                   </Translate>
                   <time dateTime={dateNow}>
-                    <p>§}> {prettyDateNoHours(dateNow)},</p>
+                    <p>§}> {prettyDateNoHours(article.date)}</p>
+                    <p>
+                      <i>
+                        <Translate id="article.edited_on" />{" "}
+                        {prettyDateNoHours(dateNow)}
+                      </i>
+                    </p>
                     <p>
                       <Translate id="article.by" />{" "}
                       <Link
@@ -200,7 +242,10 @@ const AddArticlePage = ({
                   </time>
                 </div>
               </div>
-              <ChooseCoverImgModal coverImgInState={coverImgInState} />
+              <ChooseCoverImgModal
+                coverImgInState={coverImgInState}
+                coverImg={coverImg}
+              />
             </div>
 
             <Translate>
@@ -289,12 +334,13 @@ const AddArticlePage = ({
   );
 };
 
-AddArticlePage.propTypes = {
+EditArticlePage.propTypes = {
   isAuthenticated: PropTypes.bool,
   error: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   article: PropTypes.object.isRequired,
-  addArticle: PropTypes.func.isRequired,
+  getArticle: PropTypes.func.isRequired,
+  editArticle: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired
 };
 
@@ -309,6 +355,6 @@ const mapStateToProps = state => ({
 export default withLocalize(
   connect(
     mapStateToProps,
-    { addArticle, clearErrors }
-  )(withRouter(AddArticlePage))
+    { getArticle, editArticle, clearErrors }
+  )(withRouter(EditArticlePage))
 );

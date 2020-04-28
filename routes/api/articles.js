@@ -94,4 +94,48 @@ router.post("/add", auth, (req, res) => {
   });
 });
 
+// @route   PATCH api/articles/edit/:id
+// @desc    Edit an article of the database
+// @access  Private
+router.patch("/edit/:id", auth, async (req, res) => {
+  const { title, body, coverImg } = req.body;
+
+  //Simple validation
+  if (!title || body == "<p><br></p>") {
+    return res.status(400).json({
+      msg: "missing_title_text" //this is now not the error message itself, but part of the id of the translation
+    });
+  }
+
+  try {
+    const articleUser = await Article.findById(req.params.id, {
+      author: 1,
+      _id: 0
+    });
+
+    // Check if token sent by the user has id of the article's author
+    if (articleUser.author._id !== req.user._id) {
+      return res.status(401).json({ msg: "User not authorized" });
+    }
+
+    //Article Object
+    const articleFields = {
+      title,
+      body,
+      coverImg,
+      editDate: Date.now()
+    };
+
+    let foundAndEditedArticle = await Article.findOneAndUpdate(
+      { _id: req.params.id },
+      articleFields,
+      { new: true, useFindAndModify: false }
+    );
+    res.json(foundAndEditedArticle);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;

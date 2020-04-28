@@ -112,7 +112,7 @@ export const editProfile = (username, profilePicsArray, id) => async (
   const body = JSON.stringify({ id, username, profilePicsArray });
 
   try {
-    const res = await axios.post(
+    const res = await axios.patch(
       "/api/auth/edit",
       body,
       tokenConfig(getState),

@@ -146,7 +146,7 @@ const UserPage = ({
             {auth.isAuthenticated &&
             auth.isLoading === false &&
             auth.loggedUser._id === loadedUser._id ? (
-              <Link to={`/users/edit_profile`}>
+              <Link to={`/users/edit-profile`}>
                 <button className="profile-buttons edit-profile-button">
                   <Translate id="user_page.edit_profile"></Translate>
                 </button>

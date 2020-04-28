@@ -8,6 +8,9 @@ import {
   ADDING_THE_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
+  EDITING_THE_ARTICLE,
+  EDIT_ARTICLE_SUCCESS,
+  EDIT_ARTICLE_FAIL,
   GETTING_USER_ARTICLES,
   GET_USER_ARTICLES_SUCCESS,
   GET_USER_ARTICLES_FAIL
@@ -18,7 +21,9 @@ const initialState = {
   article: null,
   loading: false,
   posting: false,
-  posting_failed: false
+  posting_failed: false,
+  editing: false,
+  editing_failed: false
 };
 
 export default function(state = initialState, action) {
@@ -76,6 +81,24 @@ export default function(state = initialState, action) {
         article: null,
         posting: false,
         posting_failed: true
+      };
+    case EDITING_THE_ARTICLE:
+      return {
+        ...state,
+        editing: true,
+        editing_failed: false
+      };
+    case EDIT_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        article: action.payload,
+        editing_failed: false
+      };
+    case EDIT_ARTICLE_FAIL:
+      return {
+        ...state,
+        editing: false,
+        editing_failed: true
       };
     case GETTING_USER_ARTICLES:
       return {
