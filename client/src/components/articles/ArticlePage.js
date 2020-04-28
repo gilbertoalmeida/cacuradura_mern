@@ -59,6 +59,14 @@ const ArticlePage = ({
             <div className="article-title">{article.title}</div>
             <time dateTime={article.date}>
               <p>§}> {prettyDateNoHours(article.date)}</p>
+              {article.editDate && (
+                <p>
+                  <i>
+                    <Translate id="article.edited_on" />{" "}
+                    {prettyDateNoHours(article.editDate)}
+                  </i>
+                </p>
+              )}
               <p>
                 <Translate id="article.by" />{" "}
                 <Link

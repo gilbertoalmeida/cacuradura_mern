@@ -202,7 +202,13 @@ const EditArticlePage = ({
                     )}
                   </Translate>
                   <time dateTime={dateNow}>
-                    <p>§}> {prettyDateNoHours(dateNow)},</p>
+                    <p>§}> {prettyDateNoHours(article.date)}</p>
+                    <p>
+                      <i>
+                        <Translate id="article.edited_on" />{" "}
+                        {prettyDateNoHours(dateNow)}
+                      </i>
+                    </p>
                     <p>
                       <Translate id="article.by" />{" "}
                       <Link
