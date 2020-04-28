@@ -74,6 +74,7 @@
   },
   "article": {
     "by": ["by", "por"],
+    "edited_on": ["edited on", "editado em"],
     "post": ["Post", "Postar"],
     "posting": ["Posting...", "Postando..."],
     "posting_failed": [

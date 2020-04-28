@@ -122,7 +122,8 @@ router.patch("/edit/:id", auth, async (req, res) => {
     const articleFields = {
       title,
       body,
-      coverImg
+      coverImg,
+      editDate: Date.now()
     };
 
     let foundAndEditedArticle = await Article.findOneAndUpdate(
