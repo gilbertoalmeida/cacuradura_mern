@@ -131,11 +131,11 @@ router.get("/user", auth, (req, res) => {
     .then(user => res.json(user));
 });
 
-// @route    POST api/users/edit
+// @route    PATCH api/users/edit
 // @desc     Update user profile
 // @access   Private
 
-router.post("/edit", auth, async (req, res) => {
+router.patch("/edit", auth, async (req, res) => {
   const { id, username, profilePicsArray } = req.body;
 
   if (!username) {

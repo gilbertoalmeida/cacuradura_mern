@@ -17,7 +17,6 @@ function ChooseCoverImgModal({ coverImgInState, coverImg }) {
 
   useEffect(() => {
     setCoverImgModal(coverImg);
-    console.log(coverImgModal);
   }, [coverImg]);
 
   const changePic = coverImgModal => {
