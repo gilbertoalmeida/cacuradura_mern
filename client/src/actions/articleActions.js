@@ -9,6 +9,9 @@ import {
   ADDING_THE_ARTICLE,
   ADD_ARTICLE_SUCCESS,
   ADD_ARTICLE_FAIL,
+  EDITING_THE_ARTICLE,
+  EDIT_ARTICLE_SUCCESS,
+  EDIT_ARTICLE_FAIL,
   GETTING_USER_ARTICLES,
   GET_USER_ARTICLES_SUCCESS,
   GET_USER_ARTICLES_FAIL
@@ -125,6 +128,43 @@ export const addArticle = ({
       );
       dispatch({
         type: ADD_ARTICLE_FAIL
+      });
+    });
+};
+
+export const editArticle = (title, body, coverImg, articleID, username) => (
+  dispatch,
+  getState
+) => {
+  //Request body
+  const bbody = JSON.stringify({
+    title,
+    body,
+    coverImg
+  });
+
+  axios
+    .patch(
+      `/api/articles/edit/${articleID}`,
+      bbody,
+      tokenConfig(getState),
+      dispatch({
+        type: EDITING_THE_ARTICLE
+      })
+    )
+    .then(res => {
+      window.location.href = `/users/${username}`; //redirects to the userpage of who posted the article
+      dispatch({
+        type: EDIT_ARTICLE_SUCCESS,
+        payload: res.data // this endpoint sends everything, including the token to the auth reducer
+      });
+    })
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "ADD_ARTICLE_FAIL")
+      );
+      dispatch({
+        type: EDIT_ARTICLE_FAIL
       });
     });
 };

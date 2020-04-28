@@ -17,14 +17,15 @@ import {
 } from "react-localize-redux";
 import { resizeTitleTextarea } from "../../Utils/Utils";
 import PleaseLogin from "../PleaseLogin";
+import LoadingArticlePage from "./LoadingArticlePage";
 
 let resizeEventListener = null;
 
 const AddArticlePage = ({
   error,
   chosenLanguage,
-  auth: { loggedUser, isAuthenticated },
-  article: { posting, posting_failed },
+  auth: { isLoading: authLoading, loggedUser, isAuthenticated },
+  article: { loading: articleLoading, posting, posting_failed },
   addArticle,
   clearErrors
 }) => {
@@ -134,7 +135,9 @@ const AddArticlePage = ({
   const dateNow = Date.now();
   const { width } = useWindowDimensions();
 
-  return !isAuthenticated ? (
+  return articleLoading || authLoading ? (
+    <LoadingArticlePage />
+  ) : !isAuthenticated ? (
     <PleaseLogin />
   ) : (
     <div>

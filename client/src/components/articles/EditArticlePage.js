@@ -3,11 +3,11 @@ import { Button, Form, FormGroup, Alert } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
-import { getArticle } from "../../actions/articleActions";
+import { getArticle, editArticle } from "../../actions/articleActions";
 import { clearErrors } from "../../actions/errorActions";
 import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-/* import { stateToHTML } from "draft-js-export-html"; */
+import { stateToHTML } from "draft-js-export-html";
 import { stateFromHTML } from "draft-js-import-html";
 import ChooseCoverImgModal from "./ChooseCoverImgModal";
 import { prettyDateNoHours, useWindowDimensions } from "../../Utils/Utils";
@@ -18,15 +18,16 @@ import {
 } from "react-localize-redux";
 import { resizeTitleTextarea } from "../../Utils/Utils";
 import PleaseLogin from "../PleaseLogin";
+import LoadingArticlePage from "./LoadingArticlePage";
 
 let resizeEventListener = null;
 
 const EditArticlePage = ({
   error,
-  chosenLanguage,
-  auth: { loggedUser, isAuthenticated },
-  article: { article, posting, posting_failed },
+  auth: { isLoading: authLoading, loggedUser, isAuthenticated },
+  article: { loading: articleLoading, article, posting, posting_failed },
   getArticle,
+  editArticle,
   clearErrors,
   match
 }) => {
@@ -88,22 +89,16 @@ const EditArticlePage = ({
   const onSubmit = e => {
     e.preventDefault();
 
-    /* const contentState = editorState.getCurrentContent();
-    const body = stateToHTML(contentState); */
+    const contentState = editorState.getCurrentContent();
+    const body = stateToHTML(contentState);
 
-    //Create Article object
-    /* const newArticle = {
-      title: articleTitle,
+    editArticle(
+      articleTitle,
       body,
       coverImg,
-      language: chosenLanguage,
-      author: {
-        username: loggedUser.username || "cacura não logada",
-        _id: loggedUser._id || "cacura não logada"
-      }
-    }; */
-
-    //send the article
+      match.params.id,
+      article.author.username
+    );
 
     /* CODE MOVED. This redirect code was moved to the axios request at articleActions. To make it wait for ADD_ARTICLE_SUCCESS
     this.props.history.push(`/users/${this.props.user._id}`);
@@ -149,7 +144,9 @@ const EditArticlePage = ({
   const dateNow = Date.now();
   const { width } = useWindowDimensions();
 
-  return !isAuthenticated ? (
+  return articleLoading || authLoading ? (
+    <LoadingArticlePage />
+  ) : !isAuthenticated ? (
     <PleaseLogin />
   ) : (
     <div>
@@ -307,6 +304,7 @@ EditArticlePage.propTypes = {
   auth: PropTypes.object.isRequired,
   article: PropTypes.object.isRequired,
   getArticle: PropTypes.func.isRequired,
+  editArticle: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired
 };
 
@@ -321,6 +319,6 @@ const mapStateToProps = state => ({
 export default withLocalize(
   connect(
     mapStateToProps,
-    { getArticle, clearErrors }
+    { getArticle, editArticle, clearErrors }
   )(withRouter(EditArticlePage))
 );
