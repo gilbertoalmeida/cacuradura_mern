@@ -81,6 +81,27 @@ const EditArticlePage = ({
     });
   }
 
+  /* this useEffect has [] to run on mount, this doesn't mean that the textarea is painted, tho. 
+  So, first the effect removes previous textareas that might be there from previous renders of 
+  this or other component. then it calls a function that repeats itself usingrequestAnimationFrame 
+  until the textarea is painted, and only then resizes it */
+  useEffect(() => {
+    if (document.querySelector("textarea")) {
+      document.querySelector("textarea").remove();
+    }
+
+    const waitingForTextarea = () => {
+      let textareaTitulo = document.querySelector("textarea");
+
+      if (!textareaTitulo) {
+        window.requestAnimationFrame(waitingForTextarea);
+      } else {
+        resizeTitleTextarea(textareaTitulo);
+      }
+    };
+    waitingForTextarea();
+  }, []);
+
   useEffect(() => {
     let textareaTitulo = document.querySelector("textarea");
     resizeTitleTextarea(textareaTitulo);
