@@ -334,7 +334,7 @@ header h2 {
   position: relative;
 }
 
-.article-cover img {
+.article-cover .article-cover__img {
   width: 100%;
   max-height: 400px;
   -webkit-filter: grayscale(80%); /* Safari 6.0 - 9.0 */
@@ -456,7 +456,7 @@ header h2 {
     font-size: 5.6vw;
   }
 
-  .article-cover img {
+  .article-cover .article-cover__img {
     max-height: 45vw;
   }
 
@@ -522,6 +522,13 @@ header h2 {
 .article-cover-text .user-link:hover {
   color: #faa9cb;
   text-decoration: none;
+}
+
+.article-cover-icons {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 2;
 }
 
 .article-body {
