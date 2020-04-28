@@ -11,7 +11,12 @@ import { withLocalize, Translate } from "react-localize-redux";
 import LoadingArticlePage from "./LoadingArticlePage";
 import ArticleNotFound from "./ArticleNotFound";
 
-const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
+const ArticlePage = ({
+  getArticle,
+  article: { article, loading },
+  auth: { isAuthenticated, loggedUser },
+  match
+}) => {
   useEffect(() => {
     getArticle(match.params.id);
     window.scrollTo(0, 0);
@@ -38,6 +43,7 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
             style={{
               display: article.coverImg ? "block" : "none"
             }}
+            className="article-cover__img"
           />
           <div
             className="article-cover-img-filter"
@@ -64,10 +70,19 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
               </p>
             </time>
           </div>
+          {isAuthenticated && loggedUser._id === article.author._id && (
+            <div className="article-cover-icons">
+              <Link to={`/articles/edit-article/${article._id}`}>
+                <img
+                  src="/Assets/edit_icon.png"
+                  alt="edit icon"
+                  width="20px"
+                  height="20px"
+                />
+              </Link>
+            </div>
+          )}
         </div>
-        <Link to={`/articles/edit-article/${article._id}`}>
-          <button>Edit</button>
-        </Link>
         <div className="article-body">{ReactHtmlParser(article.body)}</div>
         <CommentsSection articleID={match.params.id} match={match} />
       </div>
@@ -77,11 +92,13 @@ const ArticlePage = ({ getArticle, article: { article, loading }, match }) => {
 
 ArticlePage.propTypes = {
   getArticle: PropTypes.func.isRequired,
-  article: PropTypes.object.isRequired
+  article: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  article: state.article
+  article: state.article,
+  auth: state.auth
 });
 
 export default withLocalize(

@@ -10,13 +10,16 @@ import { Editor } from "react-draft-wysiwyg";
 import { stateToHTML } from "draft-js-export-html";
 import { stateFromHTML } from "draft-js-import-html";
 import ChooseCoverImgModal from "./ChooseCoverImgModal";
-import { prettyDateNoHours, useWindowDimensions } from "../../Utils/Utils";
+import {
+  prettyDateNoHours,
+  useWindowDimensions,
+  resizeTitleTextarea
+} from "../../Utils/Utils";
 import {
   withLocalize,
   Translate,
   getActiveLanguage
 } from "react-localize-redux";
-import { resizeTitleTextarea } from "../../Utils/Utils";
 import PleaseLogin from "../PleaseLogin";
 import LoadingArticlePage from "./LoadingArticlePage";
 
@@ -25,7 +28,13 @@ let resizeEventListener = null;
 const EditArticlePage = ({
   error,
   auth: { isLoading: authLoading, loggedUser, isAuthenticated },
-  article: { loading: articleLoading, article, posting, posting_failed },
+  article: {
+    loading: articleLoading,
+    article,
+    posting,
+    posting_failed,
+    author
+  },
   getArticle,
   editArticle,
   clearErrors,
@@ -146,7 +155,7 @@ const EditArticlePage = ({
 
   return articleLoading || authLoading ? (
     <LoadingArticlePage />
-  ) : !isAuthenticated ? (
+  ) : !isAuthenticated || article.author._id !== loggedUser._id ? (
     <PleaseLogin />
   ) : (
     <div>

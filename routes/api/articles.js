@@ -108,6 +108,16 @@ router.patch("/edit/:id", auth, async (req, res) => {
   }
 
   try {
+    const articleUser = await Article.findById(req.params.id, {
+      author: 1,
+      _id: 0
+    });
+
+    // Check if token sent by the user has id of the article's author
+    if (articleUser.author._id !== req.user._id) {
+      return res.status(401).json({ msg: "User not authorized" });
+    }
+
     //Article Object
     const articleFields = {
       title,

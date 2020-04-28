@@ -9,13 +9,16 @@ import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { stateToHTML } from "draft-js-export-html";
 import ChooseCoverImgModal from "./ChooseCoverImgModal";
-import { prettyDateNoHours, useWindowDimensions } from "../../Utils/Utils";
+import {
+  prettyDateNoHours,
+  useWindowDimensions,
+  resizeTitleTextarea
+} from "../../Utils/Utils";
 import {
   withLocalize,
   Translate,
   getActiveLanguage
 } from "react-localize-redux";
-import { resizeTitleTextarea } from "../../Utils/Utils";
 import PleaseLogin from "../PleaseLogin";
 import LoadingArticlePage from "./LoadingArticlePage";
 
