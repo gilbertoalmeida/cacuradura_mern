@@ -118,7 +118,7 @@ class AuthNavBar extends Component {
 
     const authLinks = loggedUser ? (
       <div className="authnavbar__logged-content">
-        <Link to={`/articles/addarticle`}>
+        <Link to={`/articles/add-article`}>
           <Button className="button-form-top post-article">
             <Translate id="authnavbar.postarticlebutton" />
           </Button>
@@ -150,7 +150,7 @@ class AuthNavBar extends Component {
                 View profile
               </Button>
             </Link>
-            <Link to={`/users/edit_profile`}>
+            <Link to={`/users/edit-profile`}>
               <Button onClick={this.toggle} className="button-form-top">
                 Edit profile
               </Button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Modal,
@@ -11,9 +11,13 @@ import {
 
 import { withLocalize, Translate } from "react-localize-redux";
 
-function ChooseCoverImgModal({ coverImgInState }) {
+function ChooseCoverImgModal({ coverImgInState, coverImg }) {
   const [modal, toggle] = useState(false);
   const [coverImgModal, setCoverImgModal] = useState("");
+
+  useEffect(() => {
+    setCoverImgModal(coverImg);
+  }, [coverImg]);
 
   const changePic = coverImgModal => {
     toggle(!modal);
