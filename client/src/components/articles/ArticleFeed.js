@@ -1,5 +1,4 @@
 import React from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import { prettyDateNoHours } from "../../Utils/Utils";
 import { withLocalize, Translate } from "react-localize-redux";
@@ -14,12 +13,24 @@ const ArticleFeed = ({ articles }) => {
     <LoadingArticleFeed />
   ) : (
     <div className="article-feed-main-box-element">
-      <ListGroup className="article-feed-wrapper">
+      <div
+        className={`article-feed-wrapper ${
+          articles.length > 2 ? "addColumns" : ""
+        }`}
+      >
         {articles.map(({ _id, title, date, author, coverImg }) => (
-          <ListGroupItem key={_id} className="article-feed__item">
-            <img src={coverImg} onError={addDefaultSrc} alt="" />
-            <div className="article-feed__item__img-filter"></div>
-            <div className="article-feed__item__text">
+          <div
+            key={_id}
+            className={`article-feed__item${coverImg ? "" : "-no-img"}`}
+          >
+            {coverImg && <img src={coverImg} onError={addDefaultSrc} alt="" />}
+            {coverImg && <div className="article-feed__item__img-filter"></div>}
+
+            <div
+              className={`article-feed__item__text ${
+                coverImg ? "addBlackShadow" : ""
+              }`}
+            >
               <h3 className="article-title">
                 <Link to={`/articles/${_id}`} className="article-title link">
                   {title}
@@ -36,9 +47,9 @@ const ArticleFeed = ({ articles }) => {
                 </Link>
               </time>
             </div>
-          </ListGroupItem>
+          </div>
         ))}
-      </ListGroup>
+      </div>
     </div>
   );
 };
