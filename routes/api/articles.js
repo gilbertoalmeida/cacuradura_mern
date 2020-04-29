@@ -15,7 +15,7 @@ router.get("/pt", (req, res) => {
   Article.aggregate([
     { $match: { homepage: true, language: "pt" } },
     { $project: { body: 0 } },
-    { $sample: { size: 6 } }
+    { $sample: { size: 8 } }
   ]).then(articles => res.json(articles));
 });
 
@@ -26,7 +26,7 @@ router.get("/en", (req, res) => {
   Article.aggregate([
     { $match: { homepage: true, language: "en" } },
     { $project: { body: 0 } },
-    { $sample: { size: 6 } }
+    { $sample: { size: 8 } }
   ]).then(articles => res.json(articles));
 });
 
