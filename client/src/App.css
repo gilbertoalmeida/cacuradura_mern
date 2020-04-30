@@ -162,7 +162,7 @@ If I don't find any problems, I will delete later */
 
 .addColumns {
   column-count: 2;
-  column-gap: 1em;
+  column-gap: 20px;
 }
 
 .article-feed__item {
