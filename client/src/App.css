@@ -3319,7 +3319,8 @@ If I don't find any problems, I will delete later */
 .privacy-body__register-call-to-action button,
 .privacy-body__register-call-to-action button:hover,
 .privacy-body__register-call-to-action button:active {
-  padding: 10px 80px;
+  padding: 10px 20px;
+  width: 200px;
   font-size: 20px;
   margin-left: 0;
 }

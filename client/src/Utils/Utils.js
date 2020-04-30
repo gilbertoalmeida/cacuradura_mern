@@ -147,3 +147,7 @@ export const useWindowDimensions = () => {
 
   return windowDimensions;
 };
+
+export const addErrorSrc = ev => {
+  ev.target.src = "/Assets/img_load_fail.png";
+};

@@ -8,6 +8,7 @@ import PleaseLogin from "../PleaseLogin";
 import { withLocalize, Translate } from "react-localize-redux";
 import { Alert } from "reactstrap";
 import { clearErrors } from "../../actions/errorActions";
+import { addErrorSrc } from "../../Utils/Utils";
 
 const EditProfile = ({
   auth: { isAuthenticated, loggedUser, token, editing_profile },
@@ -49,10 +50,6 @@ const EditProfile = ({
       setAddPicDisabled(false);
     }
   }, [profilePicsArray, newProfilePic]);
-
-  const addDefaultSrc = ev => {
-    ev.target.src = "/Assets/img_load_fail.png";
-  };
 
   const onChangeUsername = e => {
     let editedUsername = e.target.value
@@ -150,7 +147,7 @@ const EditProfile = ({
                 <img
                   className="profile-pics-thumbnail"
                   src={picture}
-                  onError={addDefaultSrc}
+                  onError={addErrorSrc}
                   alt="profile pictures"
                 />
                 <div className="profile-pic-thumbnail-filter"></div>

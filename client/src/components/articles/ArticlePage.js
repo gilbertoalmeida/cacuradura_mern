@@ -7,6 +7,7 @@ import ReactHtmlParser from "react-html-parser";
 import CommentsSection from "../comments/CommentsSection";
 import { prettyDateNoHours } from "../../Utils/Utils";
 import { withLocalize, Translate } from "react-localize-redux";
+import { addErrorSrc } from "../../Utils/Utils";
 
 import LoadingArticlePage from "./LoadingArticlePage";
 import ArticleNotFound from "./ArticleNotFound";
@@ -22,10 +23,6 @@ const ArticlePage = ({
     window.scrollTo(0, 0);
   }, [getArticle, match.params.id]);
 
-  function addDefaultSrc(ev) {
-    ev.target.src = "/Assets/img_load_fail.png";
-  }
-
   return loading && !article ? (
     <LoadingArticlePage />
   ) : !article ? (
@@ -38,7 +35,7 @@ const ArticlePage = ({
         <div className="article-cover">
           <img
             src={article.coverImg}
-            onError={addDefaultSrc}
+            onError={addErrorSrc}
             alt="cover of the article"
             style={{
               display: article.coverImg ? "block" : "none"
