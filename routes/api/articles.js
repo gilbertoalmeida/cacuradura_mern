@@ -14,7 +14,8 @@ const Article = require("../../models/Article");
 router.get("/pt", (req, res) => {
   Article.aggregate([
     { $match: { homepage: true, language: "pt" } },
-    { $sample: { size: 6 } }
+    { $project: { body: 0 } },
+    { $sample: { size: 8 } }
   ]).then(articles => res.json(articles));
 });
 
@@ -24,7 +25,8 @@ router.get("/pt", (req, res) => {
 router.get("/en", (req, res) => {
   Article.aggregate([
     { $match: { homepage: true, language: "en" } },
-    { $sample: { size: 6 } }
+    { $project: { body: 0 } },
+    { $sample: { size: 8 } }
   ]).then(articles => res.json(articles));
 });
 
@@ -51,7 +53,7 @@ router.get("/:id", async (req, res) => {
 router.get("/user/:username", async (req, res) => {
   let query = { "author.username": req.params.username };
   try {
-    const articles = await Article.find(query);
+    const articles = await Article.find(query, { body: 0 });
 
     if (!articles) {
       return res.status(404);

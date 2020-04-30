@@ -12,7 +12,8 @@ import ChooseCoverImgModal from "./ChooseCoverImgModal";
 import {
   prettyDateNoHours,
   useWindowDimensions,
-  resizeTitleTextarea
+  resizeTitleTextarea,
+  addErrorSrc
 } from "../../Utils/Utils";
 import {
   withLocalize,
@@ -99,10 +100,6 @@ const AddArticlePage = ({
       window.location.reload(); */
   };
 
-  const addDefaultSrc = ev => {
-    ev.target.src = "/Assets/img_load_fail.png";
-  };
-
   const onEditorStateChange = editorState => {
     setEditorState(editorState);
   };
@@ -150,7 +147,7 @@ const AddArticlePage = ({
             <div className="post-article-cover">
               <img
                 src={coverImg}
-                onError={addDefaultSrc}
+                onError={addErrorSrc}
                 onLoad={setLoadingToFalse}
                 alt=""
                 style={{
