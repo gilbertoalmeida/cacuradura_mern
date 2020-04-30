@@ -7,6 +7,7 @@ import { getComments } from "../../actions/commentActions";
 import { prettyDateHours } from "../../Utils/Utils";
 import ReplyToComment from "./ReplyToComment";
 import { Collapse } from "reactstrap";
+import { addErrorSrc } from "../../Utils/Utils";
 
 const Comments = ({
   getComments,
@@ -59,10 +60,11 @@ const Comments = ({
                     <div className="comments-section__comments__single__content__img">
                       <img
                         src={
-                          comments[key].author.picture.length === 0
-                            ? "/Assets/no_profile_pic.png"
-                            : comments[key].author.picture
+                          comments[key].author.picture
+                            ? comments[key].author.picture
+                            : "/Assets/no_profile_pic.png"
                         }
+                        onError={addErrorSrc}
                         alt="profile of the user"
                       />{" "}
                       <div className="comments-section__comments__single__content__img-filter"></div>

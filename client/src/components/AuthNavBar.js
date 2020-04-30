@@ -8,7 +8,7 @@ import RegisterModal from "./auth/RegisterModal";
 import LoginForm from "./auth/LoginForm";
 import Logout from "./auth/Logout";
 import LanguageToggle from "./LanguageToggle";
-
+import { addErrorSrc } from "../Utils/Utils";
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
 import overallTranslations from "../translations/all_languages.json";
@@ -109,10 +109,6 @@ class AuthNavBar extends Component {
     });
   };
 
-  addDefaultSrc = ev => {
-    ev.target.src = "/Assets/img_load_fail.png";
-  };
-
   render() {
     const { isAuthenticated, loggedUser } = this.props.auth;
 
@@ -134,7 +130,7 @@ class AuthNavBar extends Component {
                 ? "/Assets/no_profile_pic.png"
                 : loggedUser.profile_pictures[0]
             }
-            onError={this.addDefaultSrc}
+            onError={addErrorSrc}
             alt="profile pic"
           />
           <div className="authnavbar__profile-pic-filter"></div>

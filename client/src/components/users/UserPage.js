@@ -7,7 +7,7 @@ import { getUser } from "../../actions/userActions";
 import { getUserArticles } from "../../actions/articleActions";
 import PropTypes from "prop-types";
 import { withLocalize, Translate } from "react-localize-redux";
-
+import { addErrorSrc } from "../../Utils/Utils";
 import ArticleFeed from "../articles/ArticleFeed";
 import LoadingUserPage from "./LoadingUserPage";
 import UserNotFound from "./UserNotFound";
@@ -37,10 +37,6 @@ const UserPage = ({
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   };
-
-  function addDefaultSrc(ev) {
-    ev.target.src = "/Assets/img_load_fail.png";
-  }
 
   const spinner = {
     interval: 80,
@@ -82,7 +78,7 @@ const UserPage = ({
                 ? "/Assets/no_profile_pic.png"
                 : loadedUser.profile_pictures[pictureID]
             }
-            onError={addDefaultSrc}
+            onError={addErrorSrc}
             onLoad={profileImgLoaded}
             alt="profile pic"
           />

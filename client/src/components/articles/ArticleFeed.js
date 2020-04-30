@@ -1,14 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { prettyDateNoHours } from "../../Utils/Utils";
+import { prettyDateNoHours, addErrorSrc } from "../../Utils/Utils";
 import { withLocalize, Translate } from "react-localize-redux";
 import LoadingArticleFeed from "./LoadingArticleFeed";
 
 const ArticleFeed = ({ articles }) => {
-  const addDefaultSrc = ev => {
-    ev.target.src = "/Assets/img_load_fail.png";
-  };
-
   return !articles ? (
     <LoadingArticleFeed />
   ) : (
@@ -23,7 +19,7 @@ const ArticleFeed = ({ articles }) => {
             key={_id}
             className={`article-feed__item${coverImg ? "" : "-no-img"}`}
           >
-            {coverImg && <img src={coverImg} onError={addDefaultSrc} alt="" />}
+            {coverImg && <img src={coverImg} onError={addErrorSrc} alt="" />}
             {coverImg && <div className="article-feed__item__img-filter"></div>}
 
             <div
